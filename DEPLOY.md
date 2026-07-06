@@ -20,15 +20,15 @@ Two GitHub Actions ship with the repo and run automatically on push:
 
 Repo → **Settings → Pages → Source: GitHub Actions**. The next push to `main`
 (or a manual run of the `deploy-website` workflow) publishes the site at
-`https://kwisniewski-ops.github.io/Quantitative_Markets_Research_Lab/`.
+`https://kwisniewski-ops.github.io/quant-finance-research-lab/`.
 
 All site links are relative, so it works at any subpath — and you can also just
 open `app/frontend/index.html` locally in a browser.
 
 ## 3. After pushing, update two placeholders
 
-- README + site link GitHub at `https://github.com/kwisniewski-ops/Quantitative_Markets_Research_Lab` —
-  adjust if your username/repo name differs (`grep -rn "kwisniewski-ops/Quantitative_Markets_Research_Lab" README.md app/frontend/`).
+- README + site link GitHub at `https://github.com/kwisniewski-ops/quant-finance-research-lab` —
+  adjust if your username/repo name differs (`grep -rn "kwisniewski-ops/quant-finance-research-lab" README.md app/frontend/`).
 - Optionally add the live Pages URL to the repo description and README.
 
 ## 4. Custom domain (optional)

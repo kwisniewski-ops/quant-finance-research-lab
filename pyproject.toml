@@ -38,7 +38,7 @@ dev = ["pytest>=7.4", "pytest-cov", "ruff"]
 all = ["quant-research-lab[data,notebooks,dev]"]
 
 [project.urls]
-Repository = "https://github.com/kwisniewski-ops/Quantitative_Markets_Research_Lab"
+Repository = "https://github.com/kwisniewski-ops/quant-finance-research-lab"
 
 [tool.setuptools.packages.find]
 include = ["src*"]

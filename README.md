@@ -51,8 +51,8 @@ results. The companion website presents the same research interactively:
 ## Quick start
 
 ```bash
-git clone https://github.com/kwisniewski-ops/Quantitative_Markets_Research_Lab.git
-cd Quantitative_Markets_Research_Lab
+git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
+cd quant-finance-research-lab
 pip install -e ".[all]"
 pytest            # 201 tests, ~1 minute
 ```
