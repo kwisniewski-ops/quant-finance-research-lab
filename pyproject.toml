@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-research-lab"
+version = "0.1.0"
+description = "Quantitative Markets Research Lab — a reproducible research engine for testing, visualizing, and explaining quantitative finance models across asset pricing, portfolio optimization, derivatives, risk, and stochastic simulation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kyle Wisniewski", email = "kywisniewski@gmail.com" }]
+keywords = [
+    "quantitative-finance", "asset-pricing", "portfolio-optimization",
+    "risk-management", "monte-carlo", "stochastic-volatility", "factor-models",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+data = ["yfinance>=0.2.40", "requests>=2.31"]
+notebooks = ["jupyter", "plotly>=5.18", "nbformat>=5.9"]
+dev = ["pytest>=7.4", "pytest-cov", "ruff"]
+all = ["quant-research-lab[data,notebooks,dev]"]
+
+[project.urls]
+Repository = "https://github.com/kylewisniewski/quant-research-lab"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "NPY"]
+ignore = ["E501"]

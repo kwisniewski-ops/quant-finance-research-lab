@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factor Research — Quantitative Markets Research Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="asset-pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html">Simulation</a>
+      <a href="factors.html" aria-current="page">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="kicker">Module 05 · Cross-Sectional Research</p>
+      <h1>Factor Research</h1>
+      <p class="lede">The cross-sectional view of markets: not "which stock?" but "which shared
+      characteristics are being paid for?" An overview of the factor zoo's founding animals and the
+      regression machinery that keeps them honest.</p>
+    </div>
+
+    <section class="section prose-col">
+      <p class="kicker">The idea</p>
+      <h2>From stocks to characteristics</h2>
+      <p>Factor investing begins with an empirical observation that will not go away: large groups
+      of stocks sharing a characteristic — cheapness, recent momentum, small size, quality balance
+      sheets, low volatility — have historically earned returns that a market beta alone cannot
+      explain. The modern framework descends from the CAPM through Ross's arbitrage pricing theory
+      to Fama and French: expected returns are compensation for exposure to a small number of
+      systematic risk dimensions,</p>
+      <div class="math-block">$$\mathbb{E}[r_i] - r_f = \sum_{k} \beta_{ik}\,\lambda_k$$</div>
+      <p>where \(\beta_{ik}\) is asset \(i\)'s loading on factor \(k\) and \(\lambda_k\) is that
+      factor's premium. The canonical six:</p>
+      <dl class="assume">
+        <dt>Market (MKT)</dt>
+        <dd>The equity risk premium itself — exposure to aggregate market movements. Everything
+        else is defined net of it.</dd>
+        <dt>Size (SMB)</dt>
+        <dd>Small minus big. The premium is historically real but episodic, and much of it
+        concentrates in the smallest, least liquid names.</dd>
+        <dt>Value (HML)</dt>
+        <dd>High book-to-market minus low. The oldest documented premium and the most publicly
+        tortured — a decade-plus drawdown after 2007 became the field's favorite argument about
+        whether premia die or hibernate.</dd>
+        <dt>Momentum (UMD)</dt>
+        <dd>Recent winners minus recent losers. Strong average returns punctuated by violent
+        crashes when the market reverses — a premium that looks like selling insurance against
+        regime change.</dd>
+        <dt>Quality (QMJ)</dt>
+        <dd>Profitable, stable, conservatively financed firms minus their opposites. Robust across
+        specifications, and suspiciously close to "things Warren Buffett already told you."</dd>
+        <dt>Low volatility</dt>
+        <dd>The anomaly that inverts theory: lower-risk stocks have earned <em>higher</em>
+        risk-adjusted returns, plausibly because leverage-constrained investors overpay for
+        lottery-like volatility.</dd>
+      </dl>
+    </section>
+
+    <section class="section prose-col">
+      <p class="kicker">Methodology</p>
+      <h2>Cross-sectional regression</h2>
+      <p>The standard estimation machinery is the Fama-MacBeth two-pass procedure. First,
+      time-series regressions estimate each asset's loadings:</p>
+      <div class="math-block">$$r_{i,t} - r_{f,t} = \alpha_i + \sum_k \beta_{ik} F_{k,t} + \varepsilon_{i,t}$$</div>
+      <p>Second, at each date \(t\), a cross-sectional regression of returns on those loadings
+      estimates the premia:</p>
+      <div class="math-block">$$r_{i,t} = \gamma_{0,t} + \sum_k \gamma_{k,t}\,\hat\beta_{ik} + u_{i,t},
+      \qquad \hat\lambda_k = \frac{1}{T}\sum_t \gamma_{k,t}$$</div>
+      <p>The time series of \(\gamma_{k,t}\) gives both the premium estimate and — because the
+      cross-sectional estimates are (roughly) independent across dates — its standard error. The
+      procedure's honesty comes from that second pass: a factor must be paid <em>in the cross
+      section, date after date</em>, not merely correlate with returns in aggregate. Its dishonesty
+      risks are equally well catalogued: errors-in-variables from estimated betas, premia that
+      vanish outside the sample, and a research industry running thousands of implicit hypothesis
+      tests on one shared history. Harvey, Liu, and Zhu's t-statistic threshold of 3.0 exists
+      because the factor zoo is largely a multiple-comparisons problem wearing a lab coat.</p>
+    </section>
+
+    <section class="section">
+      <p class="kicker">Illustration</p>
+      <h2>Factor exposures of well-known ETFs</h2>
+      <div class="prose-col">
+      <p>The chart below shows stylized factor loadings for four widely held ETFs — the kind of
+      profile a Fama-MacBeth first pass produces. The values are <strong>illustrative</strong>,
+      chosen to reflect each fund's well-understood tilts rather than estimated from data here;
+      the genuine estimation, with standard errors and sample details, lives in the
+      <a href="https://github.com/kylewisniewski/quant-research-lab">repository's factor research
+      notebook</a>.</p>
+      </div>
+      <div id="chart-factors" class="chart tall"></div>
+      <p class="chart-caption">Illustrative factor loadings (β) by fund. SPY: broad market; IWM:
+      small-cap tilt; VTV: value tilt; MTUM: momentum tilt. Not estimates — see the repo notebook
+      for the real regression.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kylewisniewski/quant-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/factors.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Optimization — Quantitative Markets Research Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="asset-pricing.html">Pricing</a>
+      <a href="portfolio.html" aria-current="page">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html">Simulation</a>
+      <a href="factors.html">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="kicker">Module 02 · Portfolio Theory</p>
+      <h1>Efficient Frontier Explorer</h1>
+      <p class="lede">Twenty thousand long-only portfolios over six asset classes, sampled from a
+      Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper
+      edge of the cloud; the assumptions that drew it are the real subject.
+      <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
+    </div>
+
+    <div class="tool-grid">
+      <div>
+        <div class="panel">
+          <h3>Universe</h3>
+          <div id="asset-checks"></div>
+        </div>
+        <div class="panel">
+          <h3>Parameters</h3>
+          <div class="ctrl">
+            <label for="in-rf">Risk-free rate <span class="val" id="val-rf">3.0%</span></label>
+            <input type="range" id="in-rf" min="0" max="0.06" step="0.0025" value="0.03">
+          </div>
+          <div class="ctrl">
+            <label for="in-n">Sampled portfolios <span class="val" id="val-n">20,000</span></label>
+            <input type="range" id="in-n" min="2000" max="40000" step="1000" value="20000">
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Highlighted portfolios</h3>
+          <table class="data" id="highlight-table" style="margin:0">
+            <thead><tr><th>Portfolio</th><th class="num">E[r]</th><th class="num">σ</th><th class="num">Sharpe</th></tr></thead>
+            <tbody>
+              <tr><td>Min variance</td><td class="num" id="mv-ret">—</td><td class="num" id="mv-vol">—</td><td class="num" id="mv-sh">—</td></tr>
+              <tr><td>Max Sharpe</td><td class="num" id="ms-ret">—</td><td class="num" id="ms-vol">—</td><td class="num" id="ms-sh">—</td></tr>
+              <tr><td>Equal weight</td><td class="num" id="ew-ret">—</td><td class="num" id="ew-vol">—</td><td class="num" id="ew-sh">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div id="chart-frontier" class="chart tall"></div>
+        <p class="chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are the
+        individual assets; the line from the risk-free rate through the max-Sharpe portfolio is the
+        capital market line. Extremes are located by sampling, so they are close to — not exactly on —
+        the true frontier.</p>
+
+        <div id="chart-weights" class="chart short"></div>
+        <p class="chart-caption">Weights of the highlighted portfolios. Note how concentrated the
+        max-Sharpe solution tends to be relative to minimum variance — optimizers amplify whatever
+        the inputs whisper.</p>
+      </div>
+    </div>
+
+    <section class="section prose-col">
+      <p class="kicker">Inputs</p>
+      <h2>Illustrative capital market assumptions</h2>
+      <p>The explorer uses the annualized expected returns, volatilities, and correlations below.
+      They are <strong>illustrative</strong> — plausible in magnitude and ordering, chosen for
+      pedagogy, and not estimated from any particular sample. That is precisely the point: change
+      them by amounts well within estimation error and the "optimal" portfolio can change
+      dramatically. Expected returns are the least estimable quantity in finance, and mean-variance
+      optimization is maximally sensitive to them.</p>
+      <div id="assumptions-table"></div>
+
+      <div class="rq">
+        <p class="kicker">Research question</p>
+        <p>How does portfolio construction change when we move from classical return optimization
+        to uncertainty-aware risk allocation?</p>
+      </div>
+
+      <h3>Three answers to the same problem</h3>
+      <p><strong>Mean-variance optimization</strong> (Markowitz, 1952) solves
+      \( \min_w \; w^\top \Sigma w \) subject to a target return \( w^\top \mu = \bar\mu \). It is
+      the intellectual foundation of everything else, and in raw form it is an
+      <em>error-maximizing</em> machine: it takes the noisiest inputs — expected returns — and
+      loads onto whichever asset's estimation error happens to look most attractive. Small input
+      perturbations produce violently different weights.</p>
+      <p><strong>Risk parity</strong> abandons return forecasts entirely and equalizes each asset's
+      contribution to portfolio risk, \( w_i (\Sigma w)_i = w_j (\Sigma w)_j \). It answers
+      uncertainty about \(\mu\) by refusing to estimate it — an epistemically humble move that
+      implicitly bets risk premia per unit of risk are roughly comparable across assets, and that
+      typically requires leverage on low-vol assets to reach equity-like returns.</p>
+      <p><strong>Hierarchical risk parity</strong> (López de Prado, 2016) attacks a different
+      weakness: inverting an estimated covariance matrix. HRP clusters assets by correlation
+      distance, then allocates down the resulting tree by inverse variance — no matrix inversion,
+      no return forecasts. It sacrifices in-sample optimality for out-of-sample robustness, and in
+      many horse races that trade is a good one.</p>
+      <p>The progression MVO → risk parity → HRP is a progression in <em>what you admit you do not
+      know</em>. Each method encodes a different level of confidence in the inputs, and the
+      portfolios differ accordingly: more diversified, less leveraged on estimation error, less
+      spectacular in backtests, and more likely to survive contact with the future.</p>
+
+      <div class="note">
+        <span class="note-label">On the sampling method</span>
+        Weights are drawn from a symmetric Dirichlet distribution (normalized unit-rate exponentials),
+        which is uniform on the simplex — every long-only, fully invested portfolio is equally likely.
+        The frontier is then the empirical upper envelope. A quadratic-programming solver would find it
+        exactly; the cloud makes the geometry, and the sparseness of near-optimal portfolios, visible.
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kylewisniewski/quant-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Core scientific stack
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+
+# Data (optional at runtime — cached snapshots ship with the repo)
+yfinance>=0.2.40
+requests>=2.31
+
+# Research notebooks
+jupyter
+plotly>=5.18
+nbformat>=5.9
+
+# Development
+pytest>=7.4
+pytest-cov
+ruff

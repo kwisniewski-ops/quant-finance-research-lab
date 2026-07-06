@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantitative Markets Research Lab</title>
+<meta name="description" content="An open-source research project exploring the mathematical structure of financial markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="asset-pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html">Simulation</a>
+      <a href="factors.html">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">An open research program</p>
+      <h1>The mathematical structure of financial markets, examined in public.</h1>
+      <p class="lede">Quantitative Markets Research Lab is a quantitative finance research project
+      exploring the mathematical structure of financial markets through asset pricing, portfolio
+      optimization, derivatives modeling, risk analytics, and stochastic simulation. The project
+      combines applied quantitative finance, advanced mathematics, and software engineering to
+      examine how models can clarify uncertainty without pretending to eliminate it.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="thesis">
+      <p class="kicker">Central thesis</p>
+      <blockquote>
+        Markets are complex adaptive systems — populations of interacting agents whose collective
+        behavior generates fat tails, volatility clustering, and regime shifts that no closed-form
+        model fully contains. <span class="plain">The working position of this lab is therefore
+        modest and demanding at once:</span> models clarify; they do not prophesy.
+      </blockquote>
+    </div>
+
+    <p class="prose-col">Every module below is a self-contained piece of that argument. The
+    interactive tools run entirely in your browser — the same mathematics discussed in the prose,
+    implemented in plain JavaScript you can inspect. The heavier empirical work lives in the
+    <a href="https://github.com/kylewisniewski/quant-research-lab">open-source repository</a>,
+    where the Python research library and notebooks carry the full analysis.</p>
+
+    <section class="section">
+      <p class="kicker">Research modules</p>
+      <div class="card-grid">
+        <a class="card" href="asset-pricing.html">
+          <span class="card-no">01 · Interactive</span>
+          <h3>Asset Pricing</h3>
+          <p>A full Black-Scholes-Merton pricer with live Greeks, set against a Cox-Ross-Rubinstein
+          binomial tree — two routes to the same no-arbitrage price, and where they part ways.</p>
+        </a>
+        <a class="card" href="portfolio.html">
+          <span class="card-no">02 · Interactive</span>
+          <h3>Portfolio Optimization</h3>
+          <p>An efficient-frontier explorer over six asset classes. Sample twenty thousand
+          portfolios, find minimum variance and maximum Sharpe, and watch assumptions do the work.</p>
+        </a>
+        <a class="card" href="risk.html">
+          <span class="card-no">03 · Dashboard</span>
+          <h3>Risk Analytics</h3>
+          <p>Drawdowns, rolling volatility, Value-at-Risk and Expected Shortfall on a simulated
+          multi-asset portfolio — and an honest account of what tail estimates can and cannot say.</p>
+        </a>
+        <a class="card" href="simulations.html">
+          <span class="card-no">04 · Interactive</span>
+          <h3>Stochastic Simulation</h3>
+          <p>Five canonical processes — GBM, Ornstein-Uhlenbeck, Merton jumps, Heston, regime
+          switching — simulated live, each with its SDE and its blind spots.</p>
+        </a>
+        <a class="card" href="factors.html">
+          <span class="card-no">05 · Overview</span>
+          <h3>Factor Research</h3>
+          <p>The cross-sectional view: market, size, value, momentum, quality, and low volatility
+          as organizing dimensions of return, with the regression machinery that estimates them.</p>
+        </a>
+        <a class="card" href="math-notes.html">
+          <span class="card-no">06 · Notes</span>
+          <h3>Mathematical Notes</h3>
+          <p>Itô's lemma, the GBM solution, risk-neutral pricing, Feynman-Kac and the Black-Scholes
+          PDE, Monte Carlo error scaling, and why fat tails break Gaussian VaR.</p>
+        </a>
+        <a class="card" href="case-study.html">
+          <span class="card-no">07 · Flagship study</span>
+          <h3>From Black-Scholes to Stochastic Volatility</h3>
+          <p>Why market reality requires better models: the volatility smile as empirical
+          refutation, and Heston dynamics as a disciplined response.</p>
+        </a>
+        <a class="card" href="about.html">
+          <span class="card-no">08 · The lab</span>
+          <h3>About</h3>
+          <p>The project, its author, and its credo: models clarify uncertainty — they do not
+          eliminate it.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="kicker">Method</p>
+      <div class="prose-col">
+        <p>The lab works in a deliberate sequence: state a model's assumptions precisely, implement
+        it faithfully, confront it with data or simulation, and record where it breaks. The failures
+        are the research product as much as the successes — a pricing model that misprices the wings
+        of the volatility surface is telling you something true about markets, if you are prepared
+        to listen.</p>
+        <p>Everything here is illustrative and educational. Nothing on this site is investment
+        advice, and every synthetic dataset is labeled as such.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kylewisniewski/quant-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+</body>
+</html>

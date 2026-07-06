@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asset Pricing — Quantitative Markets Research Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="asset-pricing.html" aria-current="page">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html">Simulation</a>
+      <a href="factors.html">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="kicker">Module 01 · Derivatives</p>
+      <h1>Option Pricing Laboratory</h1>
+      <p class="lede">Two canonical routes to the arbitrage-free price of a European option — the
+      Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented
+      side by side, with every Greek computed live in your browser.</p>
+    </div>
+
+    <div class="tool-grid">
+      <div>
+        <div class="panel">
+          <h3>Contract &amp; Market</h3>
+          <div class="ctrl">
+            <span class="seg" id="type-toggle">
+              <button type="button" data-type="call" class="active">Call</button>
+              <button type="button" data-type="put">Put</button>
+            </span>
+            <span class="seg" id="style-toggle" style="margin-left:0.6rem">
+              <button type="button" data-style="european" class="active">European</button>
+              <button type="button" data-style="american">American</button>
+            </span>
+          </div>
+          <div class="ctrl">
+            <label for="in-S">Spot S <span class="val" id="val-S">100</span></label>
+            <input type="range" id="in-S" min="40" max="200" step="1" value="100">
+          </div>
+          <div class="ctrl">
+            <label for="in-K">Strike K <span class="val" id="val-K">100</span></label>
+            <input type="range" id="in-K" min="40" max="200" step="1" value="100">
+          </div>
+          <div class="ctrl">
+            <label for="in-T">Maturity T (years) <span class="val" id="val-T">1.00</span></label>
+            <input type="range" id="in-T" min="0.05" max="3" step="0.05" value="1">
+          </div>
+          <div class="ctrl">
+            <label for="in-r">Risk-free rate r <span class="val" id="val-r">5.0%</span></label>
+            <input type="range" id="in-r" min="0" max="0.10" step="0.0025" value="0.05">
+          </div>
+          <div class="ctrl">
+            <label for="in-sigma">Volatility σ <span class="val" id="val-sigma">20.0%</span></label>
+            <input type="range" id="in-sigma" min="0.05" max="0.80" step="0.005" value="0.20">
+          </div>
+          <div class="ctrl">
+            <label for="in-q">Dividend yield q <span class="val" id="val-q">0.0%</span></label>
+            <input type="range" id="in-q" min="0" max="0.06" step="0.0025" value="0">
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Binomial lattice</h3>
+          <div class="ctrl">
+            <label for="in-steps">CRR steps N <span class="val" id="val-steps">200</span></label>
+            <input type="range" id="in-steps" min="10" max="1000" step="10" value="200">
+          </div>
+          <p style="font-family:var(--mono);font-size:0.68rem;color:var(--faint);margin:0.4rem 0 0">
+          American style is priced on the lattice only; the closed form applies to European exercise.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="price-display">
+          <div class="stat"><span class="k" id="bs-label">Black-Scholes (European)</span><span class="v accent" id="out-bs">—</span></div>
+          <div class="stat"><span class="k" id="crr-label">CRR Binomial</span><span class="v" id="out-crr">—</span></div>
+          <div class="stat"><span class="k">Difference</span><span class="v" id="out-diff">—</span></div>
+        </div>
+
+        <div class="stat-grid" id="greeks">
+          <div class="stat"><span class="k">Delta Δ</span><span class="v" id="g-delta">—</span></div>
+          <div class="stat"><span class="k">Gamma Γ</span><span class="v" id="g-gamma">—</span></div>
+          <div class="stat"><span class="k">Vega (per 1% vol)</span><span class="v" id="g-vega">—</span></div>
+          <div class="stat"><span class="k">Theta (per day)</span><span class="v" id="g-theta">—</span></div>
+          <div class="stat"><span class="k">Rho (per 1% rate)</span><span class="v" id="g-rho">—</span></div>
+          <div class="stat"><span class="k">Intrinsic value</span><span class="v" id="g-intrinsic">—</span></div>
+        </div>
+        <p class="figure-note" style="margin-top:0.6rem">Greeks are Black-Scholes analytical values for the European contract.</p>
+
+        <div id="chart-value" class="chart"></div>
+        <p class="chart-caption">Option value against the underlying price at several times to maturity,
+        holding the current strike, rate, volatility, and yield fixed. The dashed line is intrinsic value.</p>
+
+        <div id="chart-vol" class="chart short"></div>
+        <p class="chart-caption">Price as a function of volatility (vega is the slope). Optionality is,
+        in a precise sense, a long position in uncertainty.</p>
+      </div>
+    </div>
+
+    <section class="section prose-col">
+      <p class="kicker">The closed form</p>
+      <h2>Black-Scholes-Merton</h2>
+      <p>Under the model's assumptions, the arbitrage-free price of a European call on an asset
+      paying a continuous dividend yield \(q\) is</p>
+      <div class="math-block">
+      $$C(S,t) = S e^{-q\tau}\,N(d_1) - K e^{-r\tau}\,N(d_2)$$
+      $$d_1 = \frac{\ln(S/K) + \left(r - q + \tfrac{1}{2}\sigma^2\right)\tau}{\sigma\sqrt{\tau}},
+      \qquad d_2 = d_1 - \sigma\sqrt{\tau}, \qquad \tau = T - t$$
+      </div>
+      <p>with \(N(\cdot)\) the standard normal CDF, evaluated here with an erf approximation
+      (Abramowitz &amp; Stegun 7.1.26, accurate to about \(1.5\times10^{-7}\)). The put follows from
+      put-call parity. The formula's power comes from what it assumes away:</p>
+      <dl class="assume">
+        <dt>Geometric Brownian motion</dt>
+        <dd>The underlying follows \(dS = \mu S\,dt + \sigma S\,dW\) with <em>constant</em> volatility —
+        log-returns are i.i.d. Gaussian. Real returns have fat tails and volatility that clusters.</dd>
+        <dt>Frictionless, continuous hedging</dt>
+        <dd>The derivation replicates the option by trading the stock continuously with no costs or
+        gaps. Discrete hedging and transaction costs leave residual risk the price ignores.</dd>
+        <dt>Constant rate, no arbitrage</dt>
+        <dd>A single risk-free rate for borrowing and lending, and no free lunches. Reasonable at
+        short horizons; strained across regimes.</dd>
+        <dt>Why it survives anyway</dt>
+        <dd>Because the market uses it in reverse: quote the price, invert for implied volatility.
+        The formula became a coordinate system rather than a forecast — a theme the
+        <a href="case-study.html">case study</a> takes up in full.</dd>
+      </dl>
+
+      <p class="kicker" style="margin-top:2.6rem">The lattice</p>
+      <h2>Cox-Ross-Rubinstein</h2>
+      <p>The binomial model discretizes time into \(N\) steps of length \(\Delta t = \tau/N\). Each
+      step the price moves up by \(u = e^{\sigma\sqrt{\Delta t}}\) or down by \(d = 1/u\), with
+      risk-neutral probability</p>
+      <div class="math-block">
+      $$p = \frac{e^{(r-q)\Delta t} - d}{u - d}$$
+      </div>
+      <p>Prices are computed by backward induction from the terminal payoffs, discounting the
+      expected value one step at a time. Two properties make the lattice more than a numerical
+      curiosity. First, as \(N \to \infty\) the CRR price converges to Black-Scholes — the tree
+      <em>is</em> the binomial construction of Brownian motion, and watching the two prices agree
+      as you raise \(N\) above is convergence made visible (the oscillation you see at low \(N\) is
+      the tree's discrete strikes straddling the true value). Second, the lattice handles what the
+      closed form cannot: <strong>early exercise</strong>. At each node an American option is worth
+      the greater of continuation value and immediate exercise, a free-boundary problem with no
+      closed-form solution. Toggle the American put above and note the premium over its European
+      twin — that gap is the value of the right to exercise early, largest deep in the money and
+      when rates are high.</p>
+
+      <div class="note">
+        <span class="note-label">Reading the difference column</span>
+        For European contracts the BS-CRR gap is pure discretization error, shrinking like
+        \(O(1/N)\). For American contracts the gap is economically real: early-exercise value the
+        European formula structurally omits. The same number on screen, two entirely different
+        meanings — a small lesson in why model output needs interpretation before it needs decimals.
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kylewisniewski/quant-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/pricing.js"></script>
+</body>
+</html>

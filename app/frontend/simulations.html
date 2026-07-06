@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stochastic Simulation — Quantitative Markets Research Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="asset-pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html" aria-current="page">Simulation</a>
+      <a href="factors.html">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <p class="kicker">Module 04 · Stochastic Processes</p>
+      <h1>Stochastic Process Explorer</h1>
+      <p class="lede">Five canonical models of randomness in markets, simulated live with a seeded
+      generator. Each process is a hypothesis about how uncertainty moves — pick one, perturb its
+      parameters, and watch the hypothesis draw itself.</p>
+    </div>
+
+    <div class="tool-grid">
+      <div>
+        <div class="panel">
+          <h3>Process</h3>
+          <div class="ctrl">
+            <select id="process-select">
+              <option value="gbm">Geometric Brownian motion</option>
+              <option value="ou">Ornstein-Uhlenbeck</option>
+              <option value="merton">Merton jump-diffusion</option>
+              <option value="heston">Heston stochastic volatility</option>
+              <option value="regime">Regime-switching GBM</option>
+            </select>
+          </div>
+          <div id="param-box"></div>
+          <div class="ctrl" style="margin-top:1.2rem">
+            <label for="in-seed">Seed <span class="val" id="val-seed">7</span></label>
+            <input type="range" id="in-seed" min="1" max="99" step="1" value="7">
+          </div>
+          <button class="btn" id="btn-sim" style="width:100%;margin-top:0.6rem">Simulate</button>
+        </div>
+        <div class="panel">
+          <h3>Simulation</h3>
+          <p style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin:0;line-height:1.7">
+            50 paths · 252 steps · T = 1y<br>
+            Euler-Maruyama discretization<br>
+            Box-Muller normals, mulberry32 seed
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div id="chart-paths" class="chart tall"></div>
+        <div id="chart-terminal" class="chart short"></div>
+        <p class="chart-caption">Terminal-value distribution across paths, with the mean marked.</p>
+      </div>
+    </div>
+
+    <section class="section prose-col" id="prose-gbm">
+      <p class="kicker">Process notes</p>
+      <h2>Geometric Brownian motion</h2>
+      <div class="math-block">$$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
+      \qquad\Longrightarrow\qquad S_t = S_0 \exp\!\left[\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right]$$</div>
+      <p><strong>Where it is used.</strong> The default model for equity prices; the substrate of
+      Black-Scholes and of most textbook portfolio mathematics.</p>
+      <p><strong>What it captures.</strong> Proportional randomness (returns, not price changes, are
+      the natural unit), positivity of prices, and compounding — including the subtle
+      \(-\tfrac{1}{2}\sigma^2\) drag that separates median from mean growth.</p>
+      <p><strong>What it misses.</strong> Everything the rest of this page exists for: volatility is
+      constant, returns are Gaussian and independent, and nothing ever jumps. Real markets violate
+      all three, persistently.</p>
+    </section>
+
+    <section class="section prose-col" id="prose-ou" hidden>
+      <p class="kicker">Process notes</p>
+      <h2>Ornstein-Uhlenbeck</h2>
+      <div class="math-block">$$dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$$</div>
+      <p><strong>Where it is used.</strong> Short-rate models (Vasicek), commodity convenience
+      yields, volatility itself, and the spread dynamics behind statistical arbitrage.</p>
+      <p><strong>What it captures.</strong> Mean reversion — the pull toward \(\theta\) at speed
+      \(\kappa\), with a stationary distribution \(\mathcal{N}(\theta, \sigma^2/2\kappa)\). The
+      half-life of a shock is \(\ln 2 / \kappa\), a genuinely useful number in trading.</p>
+      <p><strong>What it misses.</strong> Gaussian increments allow negative values (fatal for
+      nominal rates near zero, tolerable for spreads), the reversion speed is assumed constant, and
+      the level it reverts to must actually exist — many "mean-reverting" spreads are regimes in
+      disguise, and OU is silent about the regime change that ends the trade.</p>
+    </section>
+
+    <section class="section prose-col" id="prose-merton" hidden>
+      <p class="kicker">Process notes</p>
+      <h2>Merton jump-diffusion</h2>
+      <div class="math-block">$$\frac{dS_t}{S_{t^-}} = (\mu - \lambda \bar{k})\,dt + \sigma\,dW_t + (J-1)\,dN_t,
+      \qquad \ln J \sim \mathcal{N}(\mu_J, \sigma_J^2)$$</div>
+      <p><strong>Where it is used.</strong> Pricing short-dated options where crash risk dominates;
+      credit and event-risk modeling; any setting where the smile is steep at short maturities.</p>
+      <p><strong>What it captures.</strong> Discontinuity. A Poisson process \(N_t\) with intensity
+      \(\lambda\) fires jumps of lognormal size \(J\), producing genuine fat tails and — with
+      \(\mu_J < 0\) — the negative skew that equity markets exhibit. It explains why deep
+      out-of-the-money puts cost "too much" under Black-Scholes.</p>
+      <p><strong>What it misses.</strong> Jump risk here is diversifiable and independent of the
+      diffusion; in reality crashes arrive precisely when volatility is already elevated, and jump
+      intensity is anything but constant. Volatility between jumps is still flat — Merton fixes the
+      tails while leaving clustering unexplained.</p>
+    </section>
+
+    <section class="section prose-col" id="prose-heston" hidden>
+      <p class="kicker">Process notes</p>
+      <h2>Heston stochastic volatility</h2>
+      <div class="math-block">$$dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S, \qquad
+      dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v, \qquad
+      d\langle W^S, W^v\rangle_t = \rho\,dt$$</div>
+      <p><strong>Where it is used.</strong> The workhorse stochastic-volatility model for equity
+      index options, chosen largely because its characteristic function is known in closed form and
+      whole smiles can be calibrated quickly.</p>
+      <p><strong>What it captures.</strong> Variance as a mean-reverting random process (CIR
+      dynamics), volatility clustering, and — through \(\rho &lt; 0\) — the leverage effect: prices
+      fall as volatility rises, generating the implied-vol skew. Simulated here with a
+      full-truncation Euler scheme, which floors \(v_t\) at zero inside the square roots so the
+      discretized variance cannot go negative.</p>
+      <p><strong>What it misses.</strong> No jumps, so very short-dated smiles are too flat; a
+      single volatility factor, so the term structure of skew is too rigid; and calibrated
+      parameters drift over time, quietly confessing misspecification. The
+      <a href="case-study.html">case study</a> treats this in depth.</p>
+    </section>
+
+    <section class="section prose-col" id="prose-regime" hidden>
+      <p class="kicker">Process notes</p>
+      <h2>Regime-switching GBM</h2>
+      <div class="math-block">$$dS_t = \mu_{Z_t} S_t\,dt + \sigma_{Z_t} S_t\,dW_t,
+      \qquad Z_t \in \{\text{calm}, \text{stress}\}\ \text{a 2-state Markov chain}$$</div>
+      <p><strong>Where it is used.</strong> Tactical allocation, risk-regime dashboards, and
+      econometric business-cycle work in the Hamilton (1989) tradition.</p>
+      <p><strong>What it captures.</strong> The blunt empirical fact that markets have moods:
+      long quiet stretches with drift, punctuated by high-volatility episodes with poor returns.
+      Even this two-state caricature reproduces fat tails and clustering as an
+      <em>emergent mixture</em> — no exotic distributions required; each path carries its own
+      hidden regime sequence.</p>
+      <p><strong>What it misses.</strong> The chain's transition probabilities are fixed and the
+      regimes are labeled in hindsight; real regime identification is only obvious after the fact.
+      The model describes the moods without explaining the psychology — which is, candidly, most of
+      financial modeling in one sentence.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kylewisniewski/quant-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/simulations.js"></script>
+</body>
+</html>
