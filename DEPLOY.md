@@ -27,8 +27,8 @@ open `app/frontend/index.html` locally in a browser.
 
 ## 3. After pushing, update two placeholders
 
-- README + site link GitHub at `https://github.com/kylewisniewski/quant-research-lab` —
-  adjust if your username/repo name differs (`grep -rn "kylewisniewski/quant-research-lab" README.md app/frontend/`).
+- README + site link GitHub at `https://github.com/kwisniewski-ops/Quantitative_Markets_Research_Lab` —
+  adjust if your username/repo name differs (`grep -rn "kwisniewski-ops/Quantitative_Markets_Research_Lab" README.md app/frontend/`).
 - Optionally add the live Pages URL to the repo description and README.
 
 ## 4. Custom domain (optional)
