@@ -24,3 +24,7 @@ htmlcov/
 
 # Local scratch (cached snapshots in data/snapshots ARE committed for reproducibility)
 data/scratch/
+
+# WRDS / CRSP / Compustat extracts — LICENSED DATA, never commit or redistribute.
+# Only derived, aggregated results may be published. See docs/wrds_setup.md.
+data/wrds/
