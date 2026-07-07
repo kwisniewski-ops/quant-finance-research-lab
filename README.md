@@ -12,7 +12,8 @@ market microstructure.
 **Models clarify uncertainty; they do not eliminate it.** Every module here ships with
 its assumptions documented, its limitations stated, and tests that anchor it to known
 results. The companion website presents the same research interactively:
-[`app/frontend/`](app/frontend/) (deployable to GitHub Pages — see [DEPLOY.md](DEPLOY.md)).
+**[lab.kylewisniewski.com](https://lab.kylewisniewski.com/)** (source in
+[`app/frontend/`](app/frontend/), deployed via GitHub Pages — see [DEPLOY.md](DEPLOY.md)).
 
 ---
 

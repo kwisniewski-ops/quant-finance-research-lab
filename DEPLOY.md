@@ -20,7 +20,7 @@ Two GitHub Actions ship with the repo and run automatically on push:
 
 Repo → **Settings → Pages → Source: GitHub Actions**. The next push to `main`
 (or a manual run of the `deploy-website` workflow) publishes the site at
-`https://kwisniewski-ops.github.io/quant-finance-research-lab/`.
+`https://lab.kylewisniewski.com/` (custom domain; the github.io address 301-redirects there).
 
 All site links are relative, so it works at any subpath — and you can also just
 open `app/frontend/index.html` locally in a browser.
