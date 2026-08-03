@@ -1,11 +1,17 @@
 name: deploy-website
 
+# The lab is published at https://kylewisniewski.com/lab, served from the main
+# site's repository, which vendors app/frontend via its scripts/sync-lab.mjs.
+# This workflow keeps lab.kylewisniewski.com serving during the migration:
+# every page here declares the new location canonical, so search engines
+# consolidate before DNS moves. Retire this workflow once the subdomain is
+# redirected at Vercel and GitHub Pages is switched off.
+
 on:
   push:
     branches: [main]
     paths:
       - "app/frontend/**"
-      - "scripts/build_sitemap.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -25,14 +31,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Full history: sitemap lastmod values come from each page's last commit
-      # date, which a shallow clone cannot see.
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/configure-pages@v5
-      - name: Generate sitemap
-        run: python3 scripts/build_sitemap.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app/frontend
