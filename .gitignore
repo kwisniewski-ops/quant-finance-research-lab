@@ -25,6 +25,10 @@ htmlcov/
 # Local scratch (cached snapshots in data/snapshots ARE committed for reproducibility)
 data/scratch/
 
+# Generated at deploy time by scripts/build_sitemap.py — committing it would
+# freeze lastmod dates that are supposed to track the pages themselves.
+app/frontend/sitemap.xml
+
 # WRDS / CRSP / Compustat extracts — LICENSED DATA, never commit or redistribute.
 # Only derived, aggregated results may be published. See docs/wrds_setup.md.
 data/wrds/

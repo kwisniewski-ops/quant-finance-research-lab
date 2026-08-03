@@ -3,7 +3,10 @@ name: deploy-website
 on:
   push:
     branches: [main]
-    paths: ["app/frontend/**", ".github/workflows/pages.yml"]
+    paths:
+      - "app/frontend/**"
+      - "scripts/build_sitemap.py"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -22,8 +25,14 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Full history: sitemap lastmod values come from each page's last commit
+      # date, which a shallow clone cannot see.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/configure-pages@v5
+      - name: Generate sitemap
+        run: python3 scripts/build_sitemap.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app/frontend
