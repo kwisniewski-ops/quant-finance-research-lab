@@ -4,22 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Asset Pricing — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="asset-pricing.html" aria-current="page">Pricing</a>
       <a href="portfolio.html">Portfolio</a>
@@ -28,12 +27,13 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html">Notes</a>
       <a href="case-study.html">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
       <p class="kicker">Module 01 · Derivatives</p>
@@ -46,46 +46,46 @@
     <div class="tool-grid">
       <div>
         <div class="panel">
-          <h3>Contract &amp; Market</h3>
+          <h2>Contract &amp; Market</h2>
           <div class="ctrl">
-            <span class="seg" id="type-toggle">
-              <button type="button" data-type="call" class="active">Call</button>
-              <button type="button" data-type="put">Put</button>
+            <span class="seg" id="type-toggle" role="group" aria-label="Option type">
+              <button type="button" data-type="call" class="active" aria-pressed="true">Call</button>
+              <button type="button" data-type="put" aria-pressed="false">Put</button>
             </span>
-            <span class="seg" id="style-toggle" style="margin-left:0.6rem">
-              <button type="button" data-style="european" class="active">European</button>
-              <button type="button" data-style="american">American</button>
+            <span class="seg" id="style-toggle" role="group" aria-label="Exercise style" style="margin-left:0.6rem">
+              <button type="button" data-style="european" class="active" aria-pressed="true">European</button>
+              <button type="button" data-style="american" aria-pressed="false">American</button>
             </span>
           </div>
           <div class="ctrl">
-            <label for="in-S">Spot S <span class="val" id="val-S">100</span></label>
+            <label for="in-S">Spot S <output class="val" id="val-S" for="in-S">100</output></label>
             <input type="range" id="in-S" min="40" max="200" step="1" value="100">
           </div>
           <div class="ctrl">
-            <label for="in-K">Strike K <span class="val" id="val-K">100</span></label>
+            <label for="in-K">Strike K <output class="val" id="val-K" for="in-K">100</output></label>
             <input type="range" id="in-K" min="40" max="200" step="1" value="100">
           </div>
           <div class="ctrl">
-            <label for="in-T">Maturity T (years) <span class="val" id="val-T">1.00</span></label>
+            <label for="in-T">Maturity T (years) <output class="val" id="val-T" for="in-T">1.00</output></label>
             <input type="range" id="in-T" min="0.05" max="3" step="0.05" value="1">
           </div>
           <div class="ctrl">
-            <label for="in-r">Risk-free rate r <span class="val" id="val-r">5.0%</span></label>
+            <label for="in-r">Risk-free rate r <output class="val" id="val-r" for="in-r">5.0%</output></label>
             <input type="range" id="in-r" min="0" max="0.10" step="0.0025" value="0.05">
           </div>
           <div class="ctrl">
-            <label for="in-sigma">Volatility σ <span class="val" id="val-sigma">20.0%</span></label>
+            <label for="in-sigma">Volatility σ <output class="val" id="val-sigma" for="in-sigma">20.0%</output></label>
             <input type="range" id="in-sigma" min="0.05" max="0.80" step="0.005" value="0.20">
           </div>
           <div class="ctrl">
-            <label for="in-q">Dividend yield q <span class="val" id="val-q">0.0%</span></label>
+            <label for="in-q">Dividend yield q <output class="val" id="val-q" for="in-q">0.0%</output></label>
             <input type="range" id="in-q" min="0" max="0.06" step="0.0025" value="0">
           </div>
         </div>
         <div class="panel">
-          <h3>Binomial lattice</h3>
+          <h2>Binomial lattice</h2>
           <div class="ctrl">
-            <label for="in-steps">CRR steps N <span class="val" id="val-steps">200</span></label>
+            <label for="in-steps">CRR steps N <output class="val" id="val-steps" for="in-steps">200</output></label>
             <input type="range" id="in-steps" min="10" max="1000" step="10" value="200">
           </div>
           <p style="font-family:var(--mono);font-size:0.68rem;color:var(--faint);margin:0.4rem 0 0">
@@ -94,29 +94,47 @@
       </div>
 
       <div>
+        <h2 class="sr-only" id="pricing-results-heading">Pricing results</h2>
+        <div aria-labelledby="pricing-results-heading">
         <div class="price-display">
-          <div class="stat"><span class="k" id="bs-label">Black-Scholes (European)</span><span class="v accent" id="out-bs">—</span></div>
-          <div class="stat"><span class="k" id="crr-label">CRR Binomial</span><span class="v" id="out-crr">—</span></div>
-          <div class="stat"><span class="k">Difference</span><span class="v" id="out-diff">—</span></div>
+          <div class="stat"><span class="k" id="bs-label">Black-Scholes (European)</span><output class="v accent" id="out-bs">—</output></div>
+          <div class="stat"><span class="k" id="crr-label">CRR Binomial</span><output class="v" id="out-crr">—</output></div>
+          <div class="stat"><span class="k">Difference</span><output class="v" id="out-diff">—</output></div>
         </div>
 
         <div class="stat-grid" id="greeks">
-          <div class="stat"><span class="k">Delta Δ</span><span class="v" id="g-delta">—</span></div>
-          <div class="stat"><span class="k">Gamma Γ</span><span class="v" id="g-gamma">—</span></div>
-          <div class="stat"><span class="k">Vega (per 1% vol)</span><span class="v" id="g-vega">—</span></div>
-          <div class="stat"><span class="k">Theta (per day)</span><span class="v" id="g-theta">—</span></div>
-          <div class="stat"><span class="k">Rho (per 1% rate)</span><span class="v" id="g-rho">—</span></div>
-          <div class="stat"><span class="k">Intrinsic value</span><span class="v" id="g-intrinsic">—</span></div>
+          <div class="stat"><span class="k">Delta Δ</span><output class="v" id="g-delta">—</output></div>
+          <div class="stat"><span class="k">Gamma Γ</span><output class="v" id="g-gamma">—</output></div>
+          <div class="stat"><span class="k">Vega (per 1% vol)</span><output class="v" id="g-vega">—</output></div>
+          <div class="stat"><span class="k">Theta (per day)</span><output class="v" id="g-theta">—</output></div>
+          <div class="stat"><span class="k">Rho (per 1% rate)</span><output class="v" id="g-rho">—</output></div>
+          <div class="stat"><span class="k">Intrinsic value</span><output class="v" id="g-intrinsic">—</output></div>
         </div>
         <p class="figure-note" style="margin-top:0.6rem">Greeks are Black-Scholes analytical values for the European contract.</p>
+        <output id="pricing-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></output>
+        </div>
 
-        <div id="chart-value" class="chart"></div>
-        <p class="chart-caption">Option value against the underlying price at several times to maturity,
-        holding the current strike, rate, volatility, and yield fixed. The dashed line is intrinsic value.</p>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="value-chart-title">Option value by underlying price</h2>
+          <div id="chart-value" class="chart" role="img" aria-labelledby="value-chart-title" aria-describedby="value-chart-caption"></div>
+          <figcaption class="chart-caption" id="value-chart-caption">Option value against the underlying price at several times to maturity,
+          holding the current strike, rate, volatility, and yield fixed. Each maturity has a distinct line pattern; the dashed gray line is intrinsic value.</figcaption>
+          <details class="chart-data">
+            <summary>View representative option-value data</summary>
+            <div class="table-scroll" id="value-data-table"></div>
+          </details>
+        </figure>
 
-        <div id="chart-vol" class="chart short"></div>
-        <p class="chart-caption">Price as a function of volatility (vega is the slope). Optionality is,
-        in a precise sense, a long position in uncertainty.</p>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="vol-chart-title">Option value by volatility</h2>
+          <div id="chart-vol" class="chart short" role="img" aria-labelledby="vol-chart-title" aria-describedby="vol-chart-caption"></div>
+          <figcaption class="chart-caption" id="vol-chart-caption">Price as a function of volatility (vega is the slope). The current volatility is marked by an open circle. Optionality is,
+          in a precise sense, a long position in uncertainty.</figcaption>
+          <details class="chart-data">
+            <summary>View representative volatility data</summary>
+            <div class="table-scroll" id="vol-data-table"></div>
+          </details>
+        </figure>
       </div>
     </div>
 
@@ -183,7 +201,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 

@@ -4,22 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stochastic Simulation — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="asset-pricing.html">Pricing</a>
       <a href="portfolio.html">Portfolio</a>
@@ -28,12 +27,13 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html">Notes</a>
       <a href="case-study.html">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
       <p class="kicker">Module 04 · Stochastic Processes</p>
@@ -46,8 +46,9 @@
     <div class="tool-grid">
       <div>
         <div class="panel">
-          <h3>Process</h3>
+          <h2>Process</h2>
           <div class="ctrl">
+            <label for="process-select">Stochastic process</label>
             <select id="process-select">
               <option value="gbm">Geometric Brownian motion</option>
               <option value="ou">Ornstein-Uhlenbeck</option>
@@ -58,13 +59,13 @@
           </div>
           <div id="param-box"></div>
           <div class="ctrl" style="margin-top:1.2rem">
-            <label for="in-seed">Seed <span class="val" id="val-seed">7</span></label>
+            <label for="in-seed">Seed <output class="val" id="val-seed" for="in-seed">7</output></label>
             <input type="range" id="in-seed" min="1" max="99" step="1" value="7">
           </div>
-          <button class="btn" id="btn-sim" style="width:100%;margin-top:0.6rem">Simulate</button>
+          <button class="btn" id="btn-sim" type="button" style="width:100%;margin-top:0.6rem">Simulate</button>
         </div>
         <div class="panel">
-          <h3>Simulation</h3>
+          <h2>Simulation</h2>
           <p style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin:0;line-height:1.7">
             50 paths · 252 steps · T = 1y<br>
             Euler-Maruyama discretization<br>
@@ -74,9 +75,31 @@
       </div>
 
       <div>
-        <div id="chart-paths" class="chart tall"></div>
-        <div id="chart-terminal" class="chart short"></div>
-        <p class="chart-caption">Terminal-value distribution across paths, with the mean marked.</p>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="paths-chart-title">Simulated process paths</h2>
+          <div id="chart-paths" class="chart tall" role="img" aria-labelledby="paths-chart-title" aria-describedby="paths-chart-caption"></div>
+          <figcaption class="chart-caption" id="paths-chart-caption">Fifty simulated paths. Individual paths use thin dotted lines; the cross-sectional mean uses a thick solid line.</figcaption>
+          <details class="chart-data">
+            <summary>View representative mean-path data</summary>
+            <div class="table-scroll" id="mean-path-data-table"></div>
+          </details>
+        </figure>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="terminal-chart-title">Terminal-value distribution</h2>
+          <div id="chart-terminal" class="chart short" role="img" aria-labelledby="terminal-chart-title" aria-describedby="terminal-chart-caption"></div>
+          <figcaption class="chart-caption" id="terminal-chart-caption">Terminal-value distribution across paths, with the mean marked by a dashed vertical line.</figcaption>
+          <details class="chart-data">
+            <summary>View terminal distribution summary</summary>
+            <div class="table-scroll">
+              <table>
+                <caption>Terminal distribution summary statistics</caption>
+                <thead><tr><th scope="col">Minimum</th><th scope="col">25th percentile</th><th scope="col">Median</th><th scope="col">Mean</th><th scope="col">75th percentile</th><th scope="col">Maximum</th></tr></thead>
+                <tbody id="simulation-summary-body"></tbody>
+              </table>
+            </div>
+          </details>
+        </figure>
+        <output id="simulation-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></output>
       </div>
     </div>
 
@@ -170,7 +193,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 

@@ -173,3 +173,92 @@ var QL = (function () {
     fmt: fmt, pct: pct, linspace: linspace
   };
 })();
+
+/* ---------- keyboard-accessible overflow regions ---------- */
+(function () {
+  "use strict";
+
+  if (typeof document === "undefined") return;
+
+  var scheduled = false;
+
+  function nearestHeadingText(region) {
+    var section = region.closest("section");
+    var heading = section ? section.querySelector("h2, h3") : null;
+    return heading ? heading.textContent.replace(/[#¶]/g, "").trim() : "research content";
+  }
+
+  function regionLabel(region) {
+    var caption = region.querySelector("caption");
+    var kind = region.classList.contains("math-block") ? "equation" : "table";
+    return "Scrollable " + kind + ": " + (caption ? caption.textContent.trim() : nearestHeadingText(region));
+  }
+
+  function enhance(region) {
+    if (region.dataset.scrollEnhanced === "true") return;
+
+    var kind = region.classList.contains("math-block") ? "equation" : "table";
+    var frame = document.createElement("div");
+    var cue = document.createElement("span");
+    var cueId = "scroll-cue-" + Math.random().toString(36).slice(2, 10);
+
+    frame.className = "scroll-frame scroll-frame-" + kind;
+    cue.className = "scroll-cue";
+    cue.id = cueId;
+    cue.hidden = true;
+    cue.setAttribute("aria-hidden", "true");
+    cue.textContent = "Scroll " + kind + " →";
+
+    region.parentNode.insertBefore(frame, region);
+    frame.appendChild(region);
+    frame.appendChild(cue);
+    region.classList.add("scroll-region");
+    region.dataset.scrollEnhanced = "true";
+    region.dataset.scrollCue = cueId;
+  }
+
+  function update(region) {
+    var frame = region.parentElement;
+    var cue = frame && frame.querySelector(".scroll-cue");
+    if (!frame || !cue) return;
+
+    var overflowing = region.scrollWidth > region.clientWidth + 2;
+    frame.classList.toggle("is-overflowing", overflowing);
+    cue.hidden = !overflowing;
+
+    if (overflowing) {
+      region.tabIndex = 0;
+      region.setAttribute("role", "region");
+      region.setAttribute("aria-label", regionLabel(region));
+    } else {
+      region.removeAttribute("tabindex");
+      region.removeAttribute("role");
+      region.removeAttribute("aria-label");
+    }
+  }
+
+  function refresh() {
+    scheduled = false;
+    var regions = document.querySelectorAll(".math-block, .table-scroll");
+    Array.prototype.forEach.call(regions, enhance);
+    Array.prototype.forEach.call(regions, update);
+  }
+
+  function scheduleRefresh() {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(refresh);
+  }
+
+  function init() {
+    refresh();
+    window.addEventListener("load", scheduleRefresh);
+    window.addEventListener("resize", scheduleRefresh);
+    if (typeof MutationObserver !== "undefined") {
+      new MutationObserver(scheduleRefresh).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();

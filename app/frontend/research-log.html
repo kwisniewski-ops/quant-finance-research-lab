@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Log — Quantitative Markets Research Lab</title>
+<meta name="description" content="The public research ledger for Quantitative Markets Research Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="asset-pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="risk.html">Risk</a>
+      <a href="simulations.html">Simulation</a>
+      <a href="factors.html">Factors</a>
+      <a href="math-notes.html">Notes</a>
+      <a href="case-study.html">Case Study</a>
+      <a href="research-log.html" aria-current="page">Log</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <div class="wrap">
+    <div class="page-head ledger-head">
+      <p class="kicker">The public record</p>
+      <h1>Research Log</h1>
+      <p class="lede">Questions before conclusions. Assumptions beside results. Failures preserved
+      rather than edited away. This ledger records what the lab has tested, what the evidence says,
+      how uncertain the answer remains, and the exact artifact from which it can be reproduced.</p>
+    </div>
+
+    <section class="ledger-preface" aria-labelledby="ledger-rule">
+      <div>
+        <p class="kicker" id="ledger-rule">The rule</p>
+        <p class="ledger-principle">A result that cannot be reproduced from a clean clone is an anecdote.</p>
+      </div>
+      <dl class="ledger-summary">
+        <div><dt>Investigations</dt><dd>06</dd></div>
+        <div><dt>Empirical</dt><dd>04</dd></div>
+        <div><dt>Seeded</dt><dd>05</dd></div>
+        <div><dt>Artifact commit</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a"><code>ad24c4999583</code></a></dd></div>
+      </dl>
+    </section>
+
+    <section class="ledger-key" aria-labelledby="status-key">
+      <p class="kicker" id="status-key">Status key</p>
+      <div class="status-list">
+        <span><span class="status status-proposed">Proposed</span> question registered; test not begun</span>
+        <span><span class="status status-running">Running</span> evidence being produced</span>
+        <span><span class="status status-replicated">Replicated</span> result survived an independent or theoretical check</span>
+        <span><span class="status status-rejected">Rejected</span> stated claim failed its criterion</span>
+        <span><span class="status status-revised">Revised</span> evidence required a narrower claim</span>
+      </div>
+    </section>
+
+    <nav class="ledger-index" aria-label="Research log entries">
+      <p class="kicker">Ledger index</p>
+      <ol>
+        <li><a href="#pricing-validation"><span>01</span> Four roads to one price <span class="status status-replicated">Replicated</span></a></li>
+        <li><a href="#portfolio-construction"><span>02</span> Return forecasts to risk budgets <span class="status status-revised">Revised</span></a></li>
+        <li><a href="#stochastic-volatility"><span>03</span> Constant volatility meets market data <span class="status status-rejected">Rejected</span></a></li>
+        <li><a href="#monte-carlo"><span>04</span> Simulation as a numerical instrument <span class="status status-replicated">Replicated</span></a></li>
+        <li><a href="#factor-exposures"><span>05</span> Do factor ETFs own what they promise? <span class="status status-revised">Revised</span></a></li>
+        <li><a href="#market-risk"><span>06</span> Does historical VaR survive its own backtest? <span class="status status-rejected">Rejected</span></a></li>
+      </ol>
+    </nav>
+
+    <section class="ledger" aria-label="Research investigations">
+      <article class="ledger-entry" id="pricing-validation">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 01 · Numerical validation</span>
+            <h2>Four roads to one price</h2>
+          </div>
+          <span class="status status-replicated">Replicated</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>Do four independent implementations of European option pricing agree within their distinct, pre-declared numerical error budgets?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>Black–Scholes, a CRR tree, a Crank–Nicolson PDE solver, and Monte Carlo will converge to the same arbitrage-free value; put–call parity will hold for every method.</dd></div>
+          <div><dt>Assumptions</dt><dd>GBM under the risk-neutral measure; constant rate and volatility; frictionless markets; European exercise; identical contract inputs across methods.</dd></div>
+          <div><dt>Dataset / version / seed</dt><dd>Synthetic benchmark contracts with S₀ = 100, r = 5%, σ = 20%, T = 1 year, K ∈ {90, 100, 110}; 200,000 antithetic paths; PCG64 seed 42.</dd></div>
+          <div><dt>Method</dt><dd>Cross-method price comparison, put–call parity, CRR convergence against a 1/n guide, PDE error checks, Monte Carlo standardized error, and implied-volatility round trips.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>A deterministic method exceeds its discretization tolerance; Monte Carlo differs materially beyond its reported standard error; parity fails; or implied volatility does not round-trip to solver tolerance.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The tree and PDE land within roughly 10⁻³ of closed form; Monte Carlo prices are statistically consistent with it; implied volatility returns to about 10⁻⁸. Monte Carlo uncertainty is reported as estimator standard error, while tree and PDE errors remain discretization-dependent.</dd></div>
+          <div><dt>Failure modes</dt><dd>Agreement validates numerics, not GBM. Exact terminal sampling flatters Monte Carlo. Barrier, digital, and American contracts stress different weaknesses. Model Greeks do not measure misspecified-dynamics hedging error.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/01_asset_pricing_models.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
+        </dl>
+      </article>
+
+      <article class="ledger-entry" id="portfolio-construction">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 02 · Portfolio construction</span>
+            <h2>From return forecasts to risk budgets</h2>
+          </div>
+          <span class="status status-revised">Revised</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>How does portfolio construction change when classical return optimization gives way to uncertainty-aware risk allocation?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>Methods that reduce or remove dependence on estimated returns will produce more stable out-of-sample risk profiles than unconstrained maximum-Sharpe optimization.</dd></div>
+          <div><dt>Assumptions</dt><dd>Long-only, fully invested allocations; liquid ETF universe selected in 2026; historical moments stand in for future moments; identical raw covariance inputs; frozen weights during evaluation.</dd></div>
+          <div><dt>Dataset / period / version / seed</dt><dd>Frozen adjusted-close snapshot for 15 ETFs, 2,891 daily observations from 2015-01-05 to 2026-07-06. Fit: 2015–2021. Sealed evaluation: 2022–2026. Seed 42.</dd></div>
+          <div><dt>Method</dt><dd>Compare max-Sharpe MVO, box-uncertainty robust MVO, equal-risk-contribution risk parity, and hierarchical risk parity in sample and on one untouched out-of-sample window.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>The claim fails if return-optimized weights retain their in-sample advantage without greater concentration or degradation, or if risk-based portfolios fail to reduce realized volatility and drawdown out of sample.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>MVO Sharpe fell from about 1.12 in sample to 0.44 out of sample. Risk-based portfolios ran at roughly half the volatility and two-thirds the drawdown of optimized books, but did not reliably win on return. Sharpe differences of ±0.2 are well inside an estimated sampling error near 0.5 for this 4.5-year window. The broad claim was narrowed: risk-based methods delivered risk shape, not superior return.</dd></div>
+          <div><dt>Failure modes</dt><dd>One evaluation window; survivorship-tilted universe; no rolling-origin test; frozen weights; raw rather than shrunk covariance; robust MVO preserved a concentrated ranking and benefited from a specific mega-cap regime.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
+        </dl>
+      </article>
+
+      <article class="ledger-entry" id="stochastic-volatility">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 03 · Flagship derivatives study</span>
+            <h2>Constant volatility meets market data</h2>
+          </div>
+          <span class="status status-rejected">Rejected</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>Are the constant-volatility and Gaussian-return fingerprints required by Black–Scholes compatible with observed equity-index behavior?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>If constant-volatility GBM is an adequate description, realized volatility should fluctuate around a stable level, return magnitudes should not remain autocorrelated, standardized returns should be approximately Gaussian, and one implied volatility should price every strike.</dd></div>
+          <div><dt>Assumptions</dt><dd>SPY is used as an equity-index proxy; adjusted daily closes represent the observable return process; Heston parameters are illustrative rather than calibrated to a dated option chain.</dd></div>
+          <div><dt>Dataset / period / version / seed</dt><dd>Frozen SPY adjusted-close snapshot, approximately 2,900 daily observations from 2015-01 to 2026-07. Seed 42 for simulated Heston paths.</dd></div>
+          <div><dt>Method</dt><dd>Measure rolling realized volatility, skew, kurtosis, extreme standardized moves, and return/absolute-return autocorrelation; then compare flat Black–Scholes volatility with Heston-generated strike and maturity skews.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>Materially unstable realized volatility, persistent magnitude autocorrelation, fat or asymmetric tails, or a strike-dependent implied-volatility curve rejects the stated GBM fingerprints.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The claim was rejected. Realized volatility ranged from roughly 3% to 93%; excess kurtosis was about 14; the worst day was near 10σ under a Gaussian yardstick; lag-1 absolute-return autocorrelation was about 0.35 and persisted. An equity-like Heston specification generated a short-dated skew near 25% to 16%. The empirical rejection is sample-specific; the Heston surface demonstrates mechanism, not a live market calibration.</dd></div>
+          <div><dt>Failure modes</dt><dd>One underlying and one historical window; close-to-close returns omit intraday structure; parameters treated as constants still drift in practice; Heston omits jumps and rough volatility; simulation discretization carries bias.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
+        </dl>
+      </article>
+
+      <article class="ledger-entry" id="monte-carlo">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 04 · Numerical simulation</span>
+            <h2>Simulation as a numerical instrument</h2>
+          </div>
+          <span class="status status-replicated">Replicated</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>Do the simulation library's errors behave as theory requires, and when does Monte Carlo earn its computational cost?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>Exact schemes are free of time-step bias at observation points; Euler bias shrinks with Δt; independent-replication RMSE decays as N⁻¹ᐟ²; and antithetic sampling lowers estimator variance for monotone payoffs.</dd></div>
+          <div><dt>Assumptions</dt><dd>Specified stochastic processes are the data-generating truth; PCG64 pseudorandomness is adequate; payoff and scheme comparisons use common random numbers where required.</dd></div>
+          <div><dt>Dataset / version / seed</dt><dd>Fully synthetic experiments. Primary seed 42; 30 antithetic replications use deterministic seeds 1000 + replicate; convergence replications use 7000 + replicate.</dd></div>
+          <div><dt>Method</dt><dd>Benchmark exact and Euler GBM against closed form, estimate antithetic variance reduction across independent replications, test OU/CIR moments and boundaries, fit the Monte Carlo log–log convergence slope, and price a discretely monitored barrier.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>Persistent bias from an exact transition, an Euler error that does not shrink with step size, a fitted RMSE slope materially different from −0.5, or confidence intervals that systematically miss known benchmarks.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The N⁻¹ᐟ² law was recovered within replication noise; exact GBM remained unbiased across step counts; Euler bias contracted with Δt; antithetic pairing cut empirical standard error by about 30% at the same path budget. Every Monte Carlo estimate retains its reported sampling error.</dd></div>
+          <div><dt>Failure modes</dt><dd>CIR and Heston discretization bias was not fully budgeted by step-halving; regime parameters were chosen rather than estimated; antithetics are weak for some payoff shapes; all results share one pseudorandom generator family.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/04_monte_carlo_simulation.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
+        </dl>
+      </article>
+
+      <article class="ledger-entry" id="factor-exposures">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 05 · Factor research</span>
+            <h2>Do factor ETFs own what they promise?</h2>
+          </div>
+          <span class="status status-revised">Revised</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>Do widely held style ETFs load on their advertised factors, and does statistically credible alpha remain after those exposures are controlled?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>Each branded ETF should have a positive, economically meaningful loading on its named factor; most apparent excess return should disappear after six-factor attribution.</dd></div>
+          <div><dt>Assumptions</dt><dd>Linear exposures over each estimation window; the Fama–French five factors plus momentum span the relevant systematic effects; adjusted-close ETF returns approximate investor experience; Newey–West HAC(5) is sufficient for short-range residual dependence.</dd></div>
+          <div><dt>Dataset / period / version</dt><dd>2,867 aligned daily observations, 2015-01-05 to 2026-05-29. Factor snapshot ends 2026-05-29, SHA-256 <code>6a8853963fab…</code>; price snapshot ends 2026-07-06, SHA-256 <code>5dc8433e1c99…</code>.</dd></div>
+          <div><dt>Method</dt><dd>Six-factor time-series OLS for MTUM, VLUE, QUAL, IWM, USMV, and QQQ with Newey–West HAC(5) intervals; 252-observation rolling QQQ betas; chronological 50/50 frozen-coefficient holdout; Holm and Benjamini–Hochberg correction across six alpha tests.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>An advertised factor loading is absent, incorrectly signed, or economically negligible; or alpha remains broad, stable, and statistically credible after exposure and multiple-testing considerations.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The advertised exposures were recovered. QQQ's +3.29% annualized alpha has a raw HAC p-value of 0.024, but its Benjamini–Hochberg q-value is 0.147; no alpha survives the 5% false-discovery threshold. Frozen-coefficient holdout R² decays by 0.4 to 29.6 percentage points across ETFs, with USMV showing the largest decay. Confidence intervals and adjusted p-values are published on the factor page.</dd></div>
+          <div><dt>Failure modes</dt><dd>The factor menu defines the alpha left behind; factor portfolios are not costless tradables; eleven years is one regime; the 50/50 split is only one holdout path; HAC lag choice and vendor price adjustments can move inference.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/05_factor_investing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
+        </dl>
+      </article>
+
+      <article class="ledger-entry" id="market-risk">
+        <header class="ledger-entry-head">
+          <div>
+            <span class="ledger-number">Investigation 06 · Market risk</span>
+            <h2>Does historical VaR survive its own backtest?</h2>
+          </div>
+          <span class="status status-rejected">Rejected</span>
+        </header>
+        <dl class="ledger-record">
+          <div class="ledger-wide"><dt>Research question</dt><dd>Does a rolling 500-observation historical 95% VaR forecast achieve correct unconditional coverage and independent breaches for the cost-aware multi-asset portfolio?</dd></div>
+          <div class="ledger-wide"><dt>Testable claim</dt><dd>If the model is calibrated, the breach rate should be statistically compatible with 5% and breach arrivals should not cluster.</dd></div>
+          <div><dt>Assumptions</dt><dd>Fixed strategic weights; monthly rebalancing; 10bp proportional costs; frozen liquid-ETF universe; historical shocks are informative but not exhaustive; static correlation stress preserves asset volatilities.</dd></div>
+          <div><dt>Dataset / period / version / seed</dt><dd>Frozen adjusted-close snapshot through 2026-07-06, SHA-256 <code>5dc8433e1c99…</code>; 2,640 net backtest returns after warm-up and 2,140 one-step VaR forecasts. Moving-block bootstrap seed <code>20260803</code>.</dd></div>
+          <div><dt>Method</dt><dd>Look-ahead-free monthly backtest with 10bp turnover costs; one-day historical VaR/ES; 2,000-replication 21-day moving-block bootstrap; rolling 500-observation VaR; Kupiec coverage and Christoffersen independence/conditional-coverage tests; three date-fixed stress windows.</dd></div>
+          <div><dt>Falsification criterion</dt><dd>Reject calibration if Kupiec or Christoffersen conditional-coverage p-value is below 0.05; report independence separately to distinguish frequency error from clustered failures.</dd></div>
+          <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>Rejected. The model records 135 breaches versus 107 expected (6.31%); Kupiec p = 0.0075, independence p = 0.00025, and conditional-coverage p = 0.000035. VaR95 is 1.079% with a block-bootstrap 95% interval of 0.930%–1.219%; ES95 is 1.718% with interval 1.421%–2.126%. The failure is both excess breach frequency and clustering.</dd></div>
+          <div><dt>Failure modes</dt><dd>The bootstrap conditions on one realized history; block length is judgmental; empirical quantiles adapt slowly after regime changes; historical scenarios replay known crises; the fixed portfolio and close-to-close prices omit intraday liquidity and dynamic de-risking.</dd></div>
+          <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="ledger-protocol" aria-labelledby="reproduction-protocol">
+      <p class="kicker" id="reproduction-protocol">Shared reproduction protocol</p>
+      <div class="prose-col">
+        <p>Every entry above is pinned to the commit that produced its executed notebook. Clone that
+        revision, install the project, run the tests, and execute the selected notebook against the
+        committed snapshots. Refreshing market data is deliberately a separate, opt-in operation
+        because a revised dataset is a new experiment.</p>
+        <pre><code>git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
+cd quant-finance-research-lab
+git checkout ad24c49995832f84ebeceb2f8243011463591a4a
+pip install -e ".[all]"
+pytest
+jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
+        <p><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/docs/research_methodology.md">Read the full research methodology</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Quantitative Markets Research Lab · MMXXVI</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
+  </div>
+</footer>
+
+</body>
+</html>

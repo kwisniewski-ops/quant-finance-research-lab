@@ -3,117 +3,106 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Risk Analytics — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<title>Empirical Risk Analytics — Quantitative Markets Research Lab</title>
+<meta name="description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<script src="js/plotly-loader.js"></script>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html" aria-current="page">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="about.html">About</a>
-    </nav>
-  </div>
-</header>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header"><div class="wrap">
+  <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+  <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="asset-pricing.html">Pricing</a><a href="portfolio.html">Portfolio</a><a href="risk.html" aria-current="page">Risk</a><a href="simulations.html">Simulation</a><a href="factors.html">Factors</a><a href="math-notes.html">Notes</a><a href="case-study.html">Case Study</a><a href="research-log.html">Log</a><a href="about.html">About</a></nav>
+</div></header>
 
-<main>
-  <div class="wrap">
-    <div class="page-head">
-      <p class="kicker">Module 03 · Risk Analytics</p>
-      <h1>Risk Dashboard</h1>
-      <p class="lede">A ten-year daily history for an illustrative 60/40-with-alternatives portfolio
-      — simulated with a seeded GARCH-style volatility process so the data is identical on every
-      load, and honest about being synthetic.
-      <span class="tag warn" style="margin-left:0.4rem">Illustrative simulated data</span></p>
+<main id="main-content" tabindex="-1"><div class="wrap">
+  <div class="page-head">
+    <p class="kicker">Module 03 · Empirical risk analytics</p>
+    <h1>A risk model that can fail in public</h1>
+    <p class="lede">A monthly rebalanced multi-asset portfolio, built from frozen adjusted-close
+    snapshots with transaction costs. Historical VaR and Expected Shortfall are shown with bootstrap
+    uncertainty, rolling forecast tests, and named market stress windows.</p>
+    <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
+    <a href="research-log.html#market-risk">research record</a></p>
+  </div>
+
+  <section class="section" aria-labelledby="risk-provenance-title">
+    <p class="kicker">Data and design</p><h2 id="risk-provenance-title">A leak-free, version-pinned backtest</h2>
+    <dl class="provenance-grid" id="risk-provenance"><div><dt>Status</dt><dd>Loading frozen research artifact…</dd></div></dl>
+    <p class="figure-note">Target weights: 30% SPY, 10% QQQ, 5% IWM, 10% EFA, 20% AGG,
+    10% TLT, 7.5% GLD, and 7.5% VNQ. Rebalanced monthly after a 252-day warm-up; 10bp is charged
+    on one-sided turnover. No future observation enters a rebalance decision.</p>
+  </section>
+
+  <section class="section" aria-labelledby="risk-results-title">
+    <p class="kicker">Observed path</p><h2 id="risk-results-title">Portfolio risk results</h2>
+    <dl class="stat-grid" id="risk-stats"></dl>
+    <p class="figure-note">Annualized where applicable. VaR and ES are one-day historical estimates
+    at 95%; uncertainty intervals appear in the next section.</p>
+    <figure class="chart-figure"><div id="chart-equity" class="chart" role="img" aria-label="Cumulative growth of one dollar in the empirical portfolio backtest" aria-describedby="equity-chart-caption"></div><figcaption class="chart-caption" id="equity-chart-caption">Growth of $1 after modeled transaction costs. The horizontal axis uses calendar dates from the frozen price snapshot.</figcaption></figure>
+    <figure class="chart-figure"><div id="chart-dd" class="chart short" role="img" aria-label="Empirical portfolio drawdown from running peak" aria-describedby="drawdown-chart-caption"></div><figcaption class="chart-caption" id="drawdown-chart-caption">Drawdown from the portfolio’s running peak. Depth is encoded by position and a shaded area.</figcaption></figure>
+    <div class="chart-pair">
+      <figure class="chart-figure"><div id="chart-vol" class="chart short" role="img" aria-label="Rolling 63-day annualized portfolio volatility" aria-describedby="risk-vol-caption"></div><figcaption class="chart-caption" id="risk-vol-caption">Rolling 63-observation annualized volatility.</figcaption></figure>
+      <figure class="chart-figure"><div id="chart-hist" class="chart short" role="img" aria-label="Binned distribution of empirical daily portfolio returns" aria-describedby="risk-hist-caption"></div><figcaption class="chart-caption" id="risk-hist-caption">Pre-binned daily returns with empirical VaR and ES thresholds; a matched Gaussian is overlaid only as a diagnostic reference.</figcaption></figure>
     </div>
+    <details class="chart-data"><summary>View key chart data</summary><div class="table-scroll" id="risk-data-table"></div></details>
+  </section>
 
-    <section class="section" style="padding-top:2.2rem">
-      <div class="stat-grid" id="stats"></div>
-      <p class="figure-note" style="margin-top:0.7rem">Annualized where applicable · 2,520 simulated
-      trading days · VaR and ES are one-day, historical (empirical quantile) estimates at 95%.</p>
+  <section class="section" aria-labelledby="uncertainty-title">
+    <p class="kicker">Sampling uncertainty</p><h2 id="uncertainty-title">Tail estimates are intervals, not talismans</h2>
+    <p class="prose-col">The point estimates are recomputed across 2,000 moving-block bootstrap
+    samples, using 21-day blocks and seed <code>20260803</code>. Blocks preserve some local dependence;
+    the percentile interval still describes uncertainty conditional on this observed history and
+    does not manufacture crises missing from it.</p>
+    <div class="table-scroll" id="risk-uncertainty-table" tabindex="0" role="region" aria-label="VaR and Expected Shortfall uncertainty intervals"></div>
+  </section>
 
-      <div id="chart-equity" class="chart"></div>
-      <p class="chart-caption">Cumulative growth of $1. The visible calm-then-storm texture is the
-      volatility clustering built into the generating process.</p>
+  <section class="section" aria-labelledby="coverage-title">
+    <p class="kicker">Falsification test</p><h2 id="coverage-title">The 95% historical VaR forecast is rejected</h2>
+    <p class="prose-col">Each forecast uses only the preceding 500 observations. In the holdout
+    sequence, breaches occur too often and cluster. Both Kupiec unconditional coverage and
+    Christoffersen conditional coverage reject the model at 5%. A red result is useful: it marks
+    the exact boundary of a method that looks plausible in a static histogram.<sup><a href="#risk-ref-1" id="risk-cite-1">1</a></sup><sup><a href="#risk-ref-2" id="risk-cite-2">2</a></sup></p>
+    <div class="table-scroll" id="risk-coverage-table" tabindex="0" role="region" aria-label="VaR coverage test results"></div>
+  </section>
 
-      <div id="chart-dd" class="chart short"></div>
-      <p class="chart-caption">Drawdown from running peak. Depth gets the attention; duration does the
-      psychological damage.</p>
+  <section class="section" aria-labelledby="stress-title">
+    <p class="kicker">Historical stress</p><h2 id="stress-title">Three dated windows inside the sample</h2>
+    <p class="prose-col">Stress windows are descriptive slices fixed by event dates, not optimized
+    after inspecting portfolio minima. They show how the same allocation behaved through the Q4
+    2018 volatility shock, the COVID-19 selloff, and the 2022 inflation and rate shock.</p>
+    <div class="table-scroll" id="risk-stress-table" tabindex="0" role="region" aria-label="Historical stress window results"></div>
+  </section>
 
-      <div class="chart-pair">
-        <div>
-          <div id="chart-vol" class="chart short"></div>
-          <p class="chart-caption">Rolling 63-day (quarterly) annualized volatility.</p>
-        </div>
-        <div>
-          <div id="chart-hist" class="chart short"></div>
-          <p class="chart-caption">Daily returns with VaR<sub>95</sub> and ES<sub>95</sub> marked; a
-          Gaussian with matching mean and variance overlaid for contrast.</p>
-        </div>
-      </div>
-    </section>
+  <section class="section" aria-labelledby="risk-interpret-title">
+    <p class="kicker">Interpretation</p><h2 id="risk-interpret-title">What the rejection means</h2>
+    <div class="prose-col">
+      <p>VaR marks a quantile; Expected Shortfall averages the losses beyond it. Neither becomes a
+      law of nature because it has three decimal places. The rejected coverage tests say that a
+      rolling 500-day empirical distribution does not adapt fast enough to regime changes in this
+      portfolio. They do not say that the portfolio is uninvestable or that every alternative model
+      is better.</p>
+      <p>The next research iteration should compare filtered historical simulation and volatility-
+      scaled forecasts on the same locked dates, preserving the present model as a baseline. That
+      comparison belongs in the ledger before any method is declared superior.</p>
+    </div>
+  </section>
 
-    <section class="section prose-col">
-      <p class="kicker">Interpretation</p>
-      <h2>VaR, Expected Shortfall, and the limits of tail arithmetic</h2>
-      <p><strong>Value-at-Risk</strong> answers a quantile question: with 95% confidence, tomorrow's
-      loss will not exceed VaR<sub>95</sub>. Formally it is
-      \( \mathrm{VaR}_\alpha = -\inf\{x : F(x) \ge 1-\alpha\} \) — a single point on the loss
-      distribution. Its virtue is legibility; its vice is that it says <em>nothing about what
-      happens beyond the threshold</em>. Two portfolios can share a VaR while one loses 2% in its
-      bad tail and the other loses 40%. VaR is also not subadditive in general — merging two
-      portfolios can appear to <em>increase</em> risk — which disqualifies it as a coherent risk
-      measure in the Artzner sense.</p>
-      <p><strong>Expected Shortfall</strong> repairs the worst of this by averaging the tail:
-      \( \mathrm{ES}_\alpha = \mathbb{E}[\,L \mid L \ge \mathrm{VaR}_\alpha\,] \). It is coherent,
-      it sees the shape of the tail rather than one point of it, and it is why regulators moved
-      market-risk capital from VaR to ES under FRTB. In the histogram above the gap between the two
-      lines is the tail's verdict on itself.</p>
-      <p>But neither number escapes the deeper problem: <strong>tail estimation is data-starved by
-      construction.</strong> A 95% one-day VaR on ten years of data rests on roughly 126
-      observations of "bad days"; a 99% estimate on about 25. The events that dominate long-run
-      outcomes — the 1987s, 2008s, and March 2020s — appear in a sample zero or one times, and a
-      volatility model fitted to calm regimes will extrapolate calm. This dashboard's own data
-      illustrates the mechanism: because returns are drawn from a clustering, occasionally-jumping
-      process, the empirical tail is fatter than the matched Gaussian — the normal curve visibly
-      underestimates both the peak and the extremes. Historical VaR at least lets the data speak;
-      parametric-normal VaR forces the data through an assumption the tails reject (see the
-      <a href="math-notes.html">notes</a> for the arithmetic of how badly).</p>
-      <div class="note">
-        <span class="note-label">Working rule</span>
-        Treat VaR as a weather report, ES as a stress briefing, and both as statements conditional
-        on the sample resembling the future. Risk numbers are inputs to judgment, not substitutes
-        for it.
-      </div>
-    </section>
-  </div>
-</main>
+  <section class="section" aria-labelledby="risk-reproduce-title">
+    <p class="kicker">Reproduce</p><h2 id="risk-reproduce-title">Code, commit, and references</h2>
+    <p class="prose-col">Inspect the <a id="risk-notebook-link" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">risk notebook at the source commit</a>
+    and the <a id="risk-engine-link" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/src/backtesting/engine.py">backtest engine used to construct the return stream</a>.</p>
+    <ol class="bibliography">
+      <li id="risk-ref-1">Kupiec, P. H. (1995), “Techniques for Verifying the Accuracy of Risk Measurement Models,” <i>Journal of Derivatives</i> 3(2), 73–84. <a href="https://doi.org/10.3905/jod.1995.407942">doi:10.3905/jod.1995.407942</a> <a href="#risk-cite-1" aria-label="Return to citation 1">↩</a></li>
+      <li id="risk-ref-2">Christoffersen, P. F. (1998), “Evaluating Interval Forecasts,” <i>International Economic Review</i> 39(4), 841–862. <a href="https://doi.org/10.2307/2527341">doi:10.2307/2527341</a> <a href="#risk-cite-2" aria-label="Return to citation 2">↩</a></li>
+      <li>Artzner, P., F. Delbaen, J.-M. Eber, and D. Heath (1999), “Coherent Measures of Risk,” <i>Mathematical Finance</i> 9(3), 203–228. <a href="https://doi.org/10.1111/1467-9965.00068">doi:10.1111/1467-9965.00068</a></li>
+    </ol>
+  </section>
+  <output id="risk-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
+</div></main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
-  </div>
-</footer>
-
-<script src="js/common.js"></script>
-<script src="js/risk.js"></script>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span></div></footer>
+<script src="js/common.js"></script><script src="js/risk.js"></script>
 </body>
 </html>

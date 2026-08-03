@@ -4,22 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>From Black-Scholes to Stochastic Volatility — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="asset-pricing.html">Pricing</a>
       <a href="portfolio.html">Portfolio</a>
@@ -28,23 +27,48 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html">Notes</a>
       <a href="case-study.html" aria-current="page">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap narrow">
     <div class="page-head">
       <p class="kicker">Module 07 · Flagship Study</p>
-      <h1>From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models</h1>
+      <h1 id="black-scholes-to-stochastic-volatility">From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models</h1>
       <p class="lede">A study in how a beautiful model fails, what the failure teaches, and what a
       disciplined repair looks like — ending where all good modeling ends, in calibrated humility.</p>
+      <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
+      numerical recovery study, not a market calibration</p>
+      <dl class="reading-meta">
+        <dt>Reading time</dt><dd>Approximately 12 minutes</dd>
+        <dt>Prerequisites</dt><dd><a href="asset-pricing.html">Option pricing fundamentals</a>, implied volatility, and stochastic-process notation</dd>
+      </dl>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models" data-cite-target="black-scholes-to-stochastic-volatility">Cite this study</button>
+      </div>
     </div>
 
-    <section class="section">
+    <details class="local-toc">
+      <summary>Contents · six sections</summary>
+      <nav aria-label="Case study contents">
+        <ol>
+          <li><a href="#case-model">I · What Black-Scholes claims</a></li>
+          <li><a href="#case-refutation">II · What market data violates</a></li>
+          <li><a href="#case-repair">III · Heston's repair</a></li>
+          <li><a href="#case-comparison">IV · Strike-by-strike comparison</a></li>
+          <li><a href="#case-residue">V · What Heston still misses</a></li>
+          <li><a href="#case-conclusion">VI · Model risk and humility</a></li>
+        </ol>
+      </nav>
+    </details>
+    <output id="reading-tools-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
+
+    <section class="section" aria-labelledby="case-model">
       <p class="kicker">I · The model</p>
-      <h2>What Black-Scholes claims</h2>
+      <h2 id="case-model" class="reference-heading">What Black-Scholes claims<a class="heading-link" href="#case-model" aria-label="Permalink to What Black-Scholes claims">#</a></h2>
       <p>The 1973 model makes one structural bet: that a single number, \(\sigma\), describes the
       randomness of an asset for the life of an option. Under geometric Brownian motion with
       constant volatility, continuous frictionless hedging, and a constant rate, every European
@@ -52,37 +76,47 @@
       minor implication — it is <em>the</em> testable implication. Invert the formula on market
       prices and the implied volatility should come back flat across strikes:</p>
       <div class="math-block">$$\sigma_{\text{imp}}(K, T) = \text{const} \quad \text{for all } K.$$</div>
-      <p>Until October 1987, index option markets roughly obeyed this. Then they stopped.</p>
+      <p>The relevant historical claim is narrower than “the smile began in 1987.” Rubinstein’s
+      S&amp;P 500 option study documents a pronounced and persistent post-crash skew in the 1987–1992
+      sample, while emphasizing that the observed surface is inconsistent with the constant-
+      volatility model.<sup><a href="#case-ref-2" id="case-cite-2">2</a></sup></p>
+      <nav class="section-nav" aria-label="Case study section I navigation">
+        <a href="#black-scholes-to-stochastic-volatility">↑ Study overview</a>
+        <a href="#case-refutation">Next · The refutation →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="case-refutation">
       <p class="kicker">II · The refutation</p>
-      <h2>What any trading day violates</h2>
+      <h2 id="case-refutation" class="reference-heading">What any trading day violates<a class="heading-link" href="#case-refutation" aria-label="Permalink to What any trading day violates">#</a></h2>
       <p>Take the model's assumptions in order and hold them against an ordinary day of market
       data. <strong>Returns are not Gaussian:</strong> daily index returns show excess kurtosis and
       negative skew; moves the model rates as once-in-millennia arrive within careers (the
-      arithmetic is in <a href="math-notes.html">Note VI</a>). <strong>Volatility is not
+      arithmetic is in <a href="math-notes.html#note-fat-tail-var">Note VI</a>). <strong>Volatility is not
       constant:</strong> it clusters — quiet weeks follow quiet weeks, violent days follow violent
       days — and it moves inversely with price, the leverage effect. <strong>Prices jump:</strong>
       earnings, policy surprises, and liquidity spirals produce discontinuities no continuous
       diffusion generates. Each violation leaves a fingerprint in option prices, and the market,
       which prices repricing risk whether or not the model does, records them all in one curve:</p>
-      <div id="chart-smile" class="chart"></div>
-      <p class="chart-caption">Implied volatility across strikes for a 6-month option (S₀ = 100).
-      Curve: implied vols recovered from Heston-model prices calibrated to equity-like dynamics —
-      illustrative of the post-1987 index skew. Dashed line: what Black-Scholes says the curve must
-      be. The slider in section IV moves the dashed line.</p>
+      <figure class="chart-figure">
+        <div id="chart-smile" class="chart" role="img" aria-label="Implied volatility skew compared with flat Black-Scholes volatility" aria-describedby="smile-chart-caption price-table"></div>
+        <figcaption class="chart-caption" id="smile-chart-caption">Implied volatility across strikes for a 6-month option (S₀ = 100). The smile-consistent series uses points and a solid line; Black-Scholes uses a dashed flat line. The slider in section IV moves the dashed line, and the comparison table supplies the underlying values.</figcaption>
+      </figure>
       <p>Out-of-the-money puts trade at implied volatilities several points above at-the-money;
       out-of-the-money calls below. Traders are paying up for crash protection and the market is
       quoting that premium <em>through</em> the Black-Scholes formula, using implied volatility as
       the unit. The smile is the market's standing annotation on the model: <em>your Gaussian is
       too thin on the left, and your constant σ is not constant.</em></p>
+      <nav class="section-nav" aria-label="Case study section II navigation">
+        <a href="#case-model">← Previous · The model</a>
+        <a href="#case-repair">Next · The repair →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="case-repair">
       <p class="kicker">III · The repair</p>
-      <h2>Heston's intuition: let variance breathe</h2>
-      <p>Heston (1993) promotes variance from parameter to process:</p>
+      <h2 id="case-repair" class="reference-heading">Heston's intuition: let variance breathe<a class="heading-link" href="#case-repair" aria-label="Permalink to Heston's intuition: let variance breathe">#</a></h2>
+      <p>Heston (1993) promotes variance from parameter to process:<sup><a href="#case-ref-1" id="case-cite-1">1</a></sup></p>
       <div class="math-block">$$dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S, \qquad
       dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v, \qquad
       d\langle W^S, W^v \rangle_t = \rho\,dt.$$</div>
@@ -97,45 +131,74 @@
       as a matter of course. And because the model has a closed-form characteristic function,
       whole volatility surfaces can be calibrated in seconds — a large part of why Heston, and not
       a dozen worthier candidates, became the industry workhorse.</p>
+      <nav class="section-nav" aria-label="Case study section III navigation">
+        <a href="#case-refutation">← Previous · The refutation</a>
+        <a href="#case-comparison">Next · The comparison →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="case-comparison">
       <p class="kicker">IV · The comparison</p>
-      <h2>Black-Scholes vs. Heston, strike by strike</h2>
-      <p>Below, the flat-σ model meets smile-consistent prices. The Heston call values are
+      <h2 id="case-comparison" class="reference-heading">Black-Scholes vs. Heston, strike by strike<a class="heading-link" href="#case-comparison" aria-label="Permalink to Black-Scholes versus Heston, strike by strike">#</a></h2>
+      <p>Below, the flat-σ model meets Heston-generated target prices. The Heston call values are
       <strong>precomputed offline</strong> from the Heston characteristic function (Heston 1993,
       "little trap" formulation, Simpson-rule integration of the P₁/P₂ integrals; parameters in
       the table note). The Black-Scholes prices are computed live at whatever flat volatility you
       choose. No single σ reconciles the two columns — that is the entire point.</p>
 
+      <div class="note">
+        <span class="note-label">Scope boundary</span>
+        No dated option chain, bid–ask spread, or observed implied-volatility surface enters this
+        example. It is a numerical recovery and misspecification audit, not an empirical Heston
+        calibration. The fixed Heston grid is the target and flat Black–Scholes is the candidate.
+      </div>
+
+      <h3 id="calibration-objective" class="reference-heading">Objective and residual definition<a class="heading-link" href="#calibration-objective" aria-label="Permalink to objective and residual definition">#</a></h3>
+      <p>For the displayed one-parameter comparison, the diagnostic objective is the vega-weighted
+      implied-volatility root-mean-square error</p>
+      <div class="math-block">$$J(\sigma)=\sqrt{\frac{\sum_i \nu_i\,[\sigma-\sigma_i^{H}]^2}{\sum_i \nu_i}},
+      \qquad \nu_i=\operatorname{Vega}_{BS}(K_i,\sigma_i^{H}).$$</div>
+      <p>A genuine market calibration would replace the generated targets with timestamped option
+      quotes and should weight residuals by measurement quality such as bid–ask spread. Exposing the
+      objective is essential: the parameter vector is otherwise impossible to interpret or reproduce.</p>
+      <dl class="stat-grid calibration-stats" id="calibration-stats"></dl>
+
       <div class="panel" style="max-width:420px">
-        <h3>Flat Black-Scholes volatility</h3>
+        <h3 id="flat-volatility-control" class="reference-heading">Flat Black-Scholes volatility<a class="heading-link" href="#flat-volatility-control" aria-label="Permalink to flat Black-Scholes volatility control">#</a></h3>
         <div class="ctrl">
-          <label for="in-flatvol">σ (applied to all strikes) <span class="val" id="val-flatvol">19.2%</span></label>
+          <label for="in-flatvol">σ (applied to all strikes) <output class="val" id="val-flatvol" for="in-flatvol">19.2%</output></label>
           <input type="range" id="in-flatvol" min="0.10" max="0.32" step="0.002" value="0.192">
         </div>
         <p style="font-family:var(--mono);font-size:0.68rem;color:var(--faint);margin:0.5rem 0 0">
         19.2% is the ATM implied vol of the Heston surface — the "best single number" available.</p>
       </div>
 
-      <div id="chart-prices" class="chart"></div>
-      <p class="chart-caption">Six-month European call prices across strikes: precomputed Heston
-      values (points) against live Black-Scholes at the chosen flat σ (line).</p>
+      <figure class="chart-figure">
+        <div id="chart-prices" class="chart" role="img" aria-label="Black-Scholes and Heston call prices by strike" aria-describedby="price-chart-caption price-table"></div>
+        <figcaption class="chart-caption" id="price-chart-caption">Six-month European call prices across strikes: precomputed Heston values shown as diamonds against live Black-Scholes at the chosen flat σ shown as a solid line.</figcaption>
+      </figure>
 
-      <div id="chart-diff" class="chart short"></div>
-      <p class="chart-caption">Pricing error, BS minus Heston. Matching at-the-money leaves the
-      wings mispriced — cheap crash protection on the left, overpriced upside on the right. Slide σ
-      and watch the error seesaw: fixing one region breaks another.</p>
+      <figure class="chart-figure">
+        <div id="chart-diff" class="chart short" role="img" aria-label="Black-Scholes minus Heston pricing error by strike" aria-describedby="diff-chart-caption price-table"></div>
+        <figcaption class="chart-caption" id="diff-chart-caption">Pricing error, BS minus Heston. Positive and negative bars use different fill patterns as well as different sides of zero. Matching at-the-money leaves the wings mispriced — cheap crash protection on the left, overpriced upside on the right.</figcaption>
+      </figure>
 
-      <div id="price-table"></div>
+      <div class="table-scroll" id="price-table"></div>
+      <output id="case-pricing-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></output>
       <p class="figure-note">Heston parameters: S₀ = 100, r = 2%, q = 0, T = 0.5y, v₀ = 0.04,
       κ = 2.0, θ = 0.05, ξ = 0.6, ρ = −0.7. Values computed offline in Python (Simpson rule,
-      4,000 nodes on [0, 200]) and hardcoded; implied vols recovered by bisection.</p>
+      4,000 nodes on [0, 200]) and hardcoded; implied vols recovered by bisection. Inspect the
+      <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/src/models/heston_model.py">Heston implementation at commit <code>ad24c499958</code></a>
+      and the <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">derivatives notebook at the same commit</a>.</p>
+      <nav class="section-nav" aria-label="Case study section IV navigation">
+        <a href="#case-repair">← Previous · The repair</a>
+        <a href="#case-residue">Next · The residue →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="case-residue">
       <p class="kicker">V · The residue</p>
-      <h2>What stochastic volatility still misses</h2>
+      <h2 id="case-residue" class="reference-heading">What stochastic volatility still misses<a class="heading-link" href="#case-residue" aria-label="Permalink to What stochastic volatility still misses">#</a></h2>
       <p>Heston is a better description, not a true one. Its diffusive variance cannot move fast
       enough to explain the <strong>steep smiles of short-dated options</strong> — a market
       pricing overnight jump risk needs jumps, which is why practice moved to Bates (Heston plus
@@ -147,11 +210,15 @@
       structurally unlike anything a Markovian diffusion can produce. Each generation of models
       recapitulates the same pattern: capture the last generation's known failure, inherit an
       unknown one.</p>
+      <nav class="section-nav" aria-label="Case study section V navigation">
+        <a href="#case-comparison">← Previous · The comparison</a>
+        <a href="#case-conclusion">Next · Conclusion →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="case-conclusion">
       <p class="kicker">VI · Conclusion</p>
-      <h2>Model risk and epistemic humility</h2>
+      <h2 id="case-conclusion" class="reference-heading">Model risk and epistemic humility<a class="heading-link" href="#case-conclusion" aria-label="Permalink to Model risk and epistemic humility">#</a></h2>
       <p>The deepest lesson of the smile is not that Black-Scholes is wrong — every model is wrong
       — but that markets <em>metabolized</em> its wrongness. The formula survived its own
       refutation by becoming a quoting convention: implied volatility is the market's chosen
@@ -168,6 +235,20 @@
         the second clause, the model stops being an instrument and becomes a liability with
         excellent typography.
       </div>
+      <nav class="section-nav" aria-label="Case study section VI navigation">
+        <a href="#case-residue">← Previous · The residue</a>
+        <a href="#black-scholes-to-stochastic-volatility">↑ Study overview</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="case-sources">
+      <p class="kicker">Scholarly record</p>
+      <h2 id="case-sources" class="reference-heading">Sources and implementation references<a class="heading-link" href="#case-sources" aria-label="Permalink to sources and implementation references">#</a></h2>
+      <ol class="bibliography">
+        <li id="case-ref-1">Heston, S. L. (1993), “A Closed-Form Solution for Options with Stochastic Volatility,” <i>Review of Financial Studies</i> 6(2), 327–343. <a href="https://doi.org/10.1093/rfs/6.2.327">doi:10.1093/rfs/6.2.327</a> <a href="#case-cite-1" aria-label="Return to citation 1">↩</a></li>
+        <li id="case-ref-2">Rubinstein, M. (1994), “Implied Binomial Trees,” <i>Journal of Finance</i> 49(3), 771–818, especially pp. 771–775 on the post-1987 S&amp;P 500 pattern. <a href="https://doi.org/10.1111/j.1540-6261.1994.tb00079.x">doi:10.1111/j.1540-6261.1994.tb00079.x</a> <a href="#case-cite-2" aria-label="Return to citation 2">↩</a></li>
+        <li>Black, F., and M. Scholes (1973), “The Pricing of Options and Corporate Liabilities,” <i>Journal of Political Economy</i> 81(3), 637–654. <a href="https://doi.org/10.1086/260062">doi:10.1086/260062</a></li>
+      </ol>
     </section>
   </div>
 </main>
@@ -175,11 +256,12 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 
 <script src="js/common.js"></script>
 <script src="js/case-study.js"></script>
+<script src="js/reading.js"></script>
 </body>
 </html>

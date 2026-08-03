@@ -50,6 +50,7 @@
     S: 100, K: 100, T: 1, r: 0.05, sigma: 0.20, q: 0,
     type: "call", style: "european", steps: 200
   };
+  var announceTimer;
 
   function $(id) { return document.getElementById(id); }
 
@@ -77,6 +78,7 @@
       btn.addEventListener("click", function () {
         Array.prototype.forEach.call(box.querySelectorAll("button"), function (b) {
           b.classList.remove("active");
+          b.setAttribute("aria-pressed", String(b === btn));
         });
         btn.classList.add("active");
         state[key] = btn.getAttribute(attr);
@@ -108,6 +110,15 @@
     var intrinsic = s.type === "put" ? Math.max(s.K - s.S, 0) : Math.max(s.S - s.K, 0);
     $("g-intrinsic").textContent = QL.fmt(intrinsic, 2);
 
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(function () {
+      $("pricing-announcement").textContent =
+        (s.style === "american" ? "American" : "European") + " " + s.type +
+        " updated. Black-Scholes " + QL.fmt(bs, 4) +
+        ", CRR " + QL.fmt(crr, 4) +
+        ", difference " + QL.fmt(crr - bs, 4) + ".";
+    }, 250);
+
     drawValueChart();
     drawVolChart();
   }
@@ -117,14 +128,18 @@
     var s = state;
     var Sgrid = QL.linspace(Math.max(5, 0.4 * s.K), 1.8 * s.K, 121);
     var fracs = [1.0, 0.5, 0.25, 0.05];
+    var dashStyles = ["solid", "dash", "dot", "dashdot"];
+    var valuesByFrac = [];
     var traces = fracs.map(function (f, i) {
       var T = Math.max(s.T * f, 0.01);
+      var values = Sgrid.map(function (x) { return QL.bsPrice(x, s.K, T, s.r, s.sigma, s.q, s.type); });
+      valuesByFrac.push({ label: "τ = " + QL.fmt(T, 2) + " years", values: values });
       return {
         x: Sgrid,
-        y: Sgrid.map(function (x) { return QL.bsPrice(x, s.K, T, s.r, s.sigma, s.q, s.type); }),
+        y: values,
         mode: "lines",
         name: "τ = " + QL.fmt(T, 2) + "y",
-        line: { width: 1.6, color: QL.series[i] }
+        line: { width: 1.8, color: QL.series[i], dash: dashStyles[i] }
       };
     });
     traces.push({
@@ -146,15 +161,28 @@
       xaxis: { title: { text: "underlying price S" } },
       yaxis: { title: { text: "option value" } }
     }), QL.plotConfig);
+
+    var sampleIndices = [0, 15, 30, 45, 60, 75, 90, 105, 120];
+    var html = '<table><caption>Representative values from the option-value chart</caption><thead><tr><th scope="col">Underlying price</th>';
+    valuesByFrac.forEach(function (series) { html += '<th scope="col">' + series.label + '</th>'; });
+    html += '<th scope="col">Intrinsic value</th></tr></thead><tbody>';
+    sampleIndices.forEach(function (idx) {
+      var intrinsic = s.type === "put" ? Math.max(s.K - Sgrid[idx], 0) : Math.max(Sgrid[idx] - s.K, 0);
+      html += '<tr><th scope="row">' + QL.fmt(Sgrid[idx], 2) + '</th>';
+      valuesByFrac.forEach(function (series) { html += '<td>' + QL.fmt(series.values[idx], 4) + '</td>'; });
+      html += '<td>' + QL.fmt(intrinsic, 4) + '</td></tr>';
+    });
+    $("value-data-table").innerHTML = html + '</tbody></table>';
   }
 
   /* ---------- chart 2: price vs volatility ---------- */
   function drawVolChart() {
     var s = state;
     var vGrid = QL.linspace(0.02, 0.8, 100);
+    var priceGrid = vGrid.map(function (v) { return QL.bsPrice(s.S, s.K, s.T, s.r, v, s.q, s.type); });
     var traces = [{
       x: vGrid.map(function (v) { return 100 * v; }),
-      y: vGrid.map(function (v) { return QL.bsPrice(s.S, s.K, s.T, s.r, v, s.q, s.type); }),
+      y: priceGrid,
       mode: "lines", name: "BS price",
       line: { width: 1.8, color: QL.colors.slate }
     }, {
@@ -169,6 +197,13 @@
       yaxis: { title: { text: "option value" } },
       showlegend: false
     }), QL.plotConfig);
+
+    var sampleIndices = [0, 12, 25, 37, 50, 62, 75, 87, 99];
+    var html = '<table><caption>Representative values from the volatility chart</caption><thead><tr><th scope="col">Volatility</th><th scope="col">Option value</th></tr></thead><tbody>';
+    sampleIndices.forEach(function (idx) {
+      html += '<tr><th scope="row">' + QL.fmt(100 * vGrid[idx], 2) + '%</th><td>' + QL.fmt(priceGrid[idx], 4) + '</td></tr>';
+    });
+    $("vol-data-table").innerHTML = html + '</tbody></table>';
   }
 
   update();

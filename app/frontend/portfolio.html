@@ -4,22 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfolio Optimization — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="css/main.css">
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="asset-pricing.html">Pricing</a>
       <a href="portfolio.html" aria-current="page">Portfolio</a>
@@ -28,12 +27,13 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html">Notes</a>
       <a href="case-study.html">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
       <p class="kicker">Module 02 · Portfolio Theory</p>
@@ -47,44 +47,52 @@
     <div class="tool-grid">
       <div>
         <div class="panel">
-          <h3>Universe</h3>
-          <div id="asset-checks"></div>
+          <h2 id="universe-heading">Universe</h2>
+          <div id="asset-checks" role="group" aria-labelledby="universe-heading"></div>
         </div>
         <div class="panel">
-          <h3>Parameters</h3>
+          <h2>Parameters</h2>
           <div class="ctrl">
-            <label for="in-rf">Risk-free rate <span class="val" id="val-rf">3.0%</span></label>
+            <label for="in-rf">Risk-free rate <output class="val" id="val-rf" for="in-rf">3.0%</output></label>
             <input type="range" id="in-rf" min="0" max="0.06" step="0.0025" value="0.03">
           </div>
           <div class="ctrl">
-            <label for="in-n">Sampled portfolios <span class="val" id="val-n">20,000</span></label>
+            <label for="in-n">Sampled portfolios <output class="val" id="val-n" for="in-n">20,000</output></label>
             <input type="range" id="in-n" min="2000" max="40000" step="1000" value="20000">
           </div>
         </div>
         <div class="panel">
-          <h3>Highlighted portfolios</h3>
+          <h2>Highlighted portfolios</h2>
+          <div class="table-scroll">
           <table class="data" id="highlight-table" style="margin:0">
-            <thead><tr><th>Portfolio</th><th class="num">E[r]</th><th class="num">σ</th><th class="num">Sharpe</th></tr></thead>
+            <caption class="sr-only">Performance statistics for highlighted portfolios</caption>
+            <thead><tr><th scope="col">Portfolio</th><th scope="col" class="num">E[r]</th><th scope="col" class="num">σ</th><th scope="col" class="num">Sharpe</th></tr></thead>
             <tbody>
-              <tr><td>Min variance</td><td class="num" id="mv-ret">—</td><td class="num" id="mv-vol">—</td><td class="num" id="mv-sh">—</td></tr>
-              <tr><td>Max Sharpe</td><td class="num" id="ms-ret">—</td><td class="num" id="ms-vol">—</td><td class="num" id="ms-sh">—</td></tr>
-              <tr><td>Equal weight</td><td class="num" id="ew-ret">—</td><td class="num" id="ew-vol">—</td><td class="num" id="ew-sh">—</td></tr>
+              <tr><th scope="row">Min variance</th><td class="num" id="mv-ret">—</td><td class="num" id="mv-vol">—</td><td class="num" id="mv-sh">—</td></tr>
+              <tr><th scope="row">Max Sharpe</th><td class="num" id="ms-ret">—</td><td class="num" id="ms-vol">—</td><td class="num" id="ms-sh">—</td></tr>
+              <tr><th scope="row">Equal weight</th><td class="num" id="ew-ret">—</td><td class="num" id="ew-vol">—</td><td class="num" id="ew-sh">—</td></tr>
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 
       <div>
-        <div id="chart-frontier" class="chart tall"></div>
-        <p class="chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are the
-        individual assets; the line from the risk-free rate through the max-Sharpe portfolio is the
-        capital market line. Extremes are located by sampling, so they are close to — not exactly on —
-        the true frontier.</p>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="frontier-chart-title">Efficient frontier risk-return plot</h2>
+          <div id="chart-frontier" class="chart tall" role="img" aria-labelledby="frontier-chart-title" aria-describedby="frontier-chart-caption"></div>
+          <figcaption class="chart-caption" id="frontier-chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are individual assets; a circle marks minimum variance, an X marks maximum Sharpe, and an open triangle marks equal weight. The dotted line from the risk-free rate through the max-Sharpe portfolio is the capital market line. Exact highlighted values appear in the table beside the chart.</figcaption>
+        </figure>
 
-        <div id="chart-weights" class="chart short"></div>
-        <p class="chart-caption">Weights of the highlighted portfolios. Note how concentrated the
-        max-Sharpe solution tends to be relative to minimum variance — optimizers amplify whatever
-        the inputs whisper.</p>
+        <figure class="chart-figure">
+          <h2 class="sr-only" id="weights-chart-title">Highlighted portfolio weights</h2>
+          <div id="chart-weights" class="chart short" role="img" aria-labelledby="weights-chart-title" aria-describedby="weights-chart-caption"></div>
+          <figcaption class="chart-caption" id="weights-chart-caption">Weights of the highlighted portfolios use both color and distinct fill patterns. Note how concentrated the max-Sharpe solution tends to be relative to minimum variance — optimizers amplify whatever the inputs whisper.</figcaption>
+          <details class="chart-data">
+            <summary>View portfolio weight data</summary>
+            <div class="table-scroll" id="weights-data-table"></div>
+          </details>
+        </figure>
       </div>
     </div>
 
@@ -97,7 +105,7 @@
       them by amounts well within estimation error and the "optimal" portfolio can change
       dramatically. Expected returns are the least estimable quantity in finance, and mean-variance
       optimization is maximally sensitive to them.</p>
-      <div id="assumptions-table"></div>
+      <div class="table-scroll" id="assumptions-table"></div>
 
       <div class="rq">
         <p class="kicker">Research question</p>
@@ -141,7 +149,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 

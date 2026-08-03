@@ -41,6 +41,7 @@
     var row = document.createElement("label");
     row.className = "check-row";
     var cb = document.createElement("input");
+    cb.id = "asset-" + a.key;
     cb.type = "checkbox";
     cb.checked = true;
     cb.addEventListener("change", function () {
@@ -129,10 +130,19 @@
   ];
 
   function drawFrontier(vols, rets, sharpes, minv, best, ewSt, idx) {
+    /* Keep all samples in the optimization, but cap SVG markers for the basic
+       Plotly bundle and a responsive browser payload. */
+    var stride = Math.max(1, Math.ceil(vols.length / 3500));
+    var displayVols = [], displayRets = [], displaySharpes = [];
+    for (var sample = 0; sample < vols.length; sample += stride) {
+      displayVols.push(vols[sample]);
+      displayRets.push(rets[sample]);
+      displaySharpes.push(sharpes[sample]);
+    }
     var traces = [{
-      x: vols, y: rets, mode: "markers", type: "scattergl", name: "portfolios",
+      x: displayVols, y: displayRets, mode: "markers", type: "scatter", name: "portfolios",
       marker: {
-        size: 3, opacity: 0.5, color: sharpes, colorscale: sharpeScale,
+        size: 3, opacity: 0.5, color: displaySharpes, colorscale: sharpeScale,
         colorbar: { title: { text: "Sharpe", font: { size: 10 } }, thickness: 8, len: 0.6, outlinewidth: 0 }
       },
       hoverinfo: "skip"
@@ -148,7 +158,10 @@
       marker: { size: 12, symbol: "circle-open", color: "#3e5c76", line: { width: 2.5 } }
     }, {
       x: [100 * best.s.vol], y: [100 * best.s.mu], mode: "markers", name: "max Sharpe",
-      marker: { size: 12, symbol: "circle-open", color: "#8a3033", line: { width: 2.5 } }
+      marker: { size: 12, symbol: "x", color: "#8a3033", line: { width: 2.5 } }
+    }, {
+      x: [100 * ewSt.vol], y: [100 * ewSt.mu], mode: "markers", name: "equal weight",
+      marker: { size: 12, symbol: "triangle-up-open", color: "#1c1a17", line: { width: 2.5 } }
     }, {
       /* capital market line */
       x: [0, 100 * best.s.vol * 1.6],
@@ -157,7 +170,7 @@
       line: { width: 1, color: "#9a938a", dash: "dot" }
     }];
     Plotly.react("chart-frontier", traces, QL.layout({
-      title: { text: "RISK-RETURN SPACE · " + vols.length.toLocaleString("en-US") + " RANDOM PORTFOLIOS", font: { size: 11 }, x: 0 },
+      title: { text: "RISK-RETURN SPACE · " + vols.length.toLocaleString("en-US") + " SAMPLED · " + displayVols.length.toLocaleString("en-US") + " SHOWN", font: { size: 11 }, x: 0 },
       xaxis: { title: { text: "annualized volatility (%)" }, rangemode: "tozero" },
       yaxis: { title: { text: "annualized expected return (%)" } },
       showlegend: false
@@ -166,16 +179,16 @@
 
   function drawWeights(wMin, wMax, wEw, idx) {
     var names = idx.map(function (i) { return ASSETS[i].name; });
-    function bar(w, label, color) {
+    function bar(w, label, color, shape) {
       return {
         x: names, y: w.map(function (x) { return 100 * x; }),
-        name: label, type: "bar", marker: { color: color }
+        name: label, type: "bar", marker: { color: color, pattern: { shape: shape } }
       };
     }
     var traces = [
-      bar(wMin, "min variance", "#3e5c76"),
-      bar(wMax, "max Sharpe", "#8a3033"),
-      bar(wEw, "equal weight", "#c9c2b4")
+      bar(wMin, "min variance", "#3e5c76", "/"),
+      bar(wMax, "max Sharpe", "#8a3033", "x"),
+      bar(wEw, "equal weight", "#c9c2b4", ".")
     ];
     Plotly.react("chart-weights", traces, QL.layout({
       title: { text: "PORTFOLIO WEIGHTS (%)", font: { size: 11 }, x: 0 },
@@ -183,15 +196,21 @@
       yaxis: { title: { text: "weight (%)" } },
       xaxis: { tickfont: { size: 9 } }
     }), QL.plotConfig);
+
+    var html = '<table><caption>Weights of highlighted portfolios, percent</caption><thead><tr><th scope="col">Asset</th><th scope="col">Minimum variance</th><th scope="col">Maximum Sharpe</th><th scope="col">Equal weight</th></tr></thead><tbody>';
+    names.forEach(function (name, i) {
+      html += '<tr><th scope="row">' + name + '</th><td>' + QL.fmt(100 * wMin[i], 2) + '%</td><td>' + QL.fmt(100 * wMax[i], 2) + '%</td><td>' + QL.fmt(100 * wEw[i], 2) + '%</td></tr>';
+    });
+    $("weights-data-table").innerHTML = html + '</tbody></table>';
   }
 
   /* ---------- assumptions table ---------- */
   function buildAssumptionsTable() {
-    var html = '<table class="data"><thead><tr><th>Asset class</th><th class="num">E[return]</th><th class="num">Volatility</th>';
-    ASSETS.forEach(function (a) { html += '<th class="num">ρ ' + a.key.toUpperCase() + "</th>"; });
+    var html = '<table class="data"><caption>Illustrative annualized capital-market assumptions and correlations</caption><thead><tr><th scope="col">Asset class</th><th scope="col" class="num">E[return]</th><th scope="col" class="num">Volatility</th>';
+    ASSETS.forEach(function (a) { html += '<th scope="col" class="num">ρ ' + a.key.toUpperCase() + "</th>"; });
     html += "</tr></thead><tbody>";
     ASSETS.forEach(function (a, i) {
-      html += "<tr><td>" + a.name + '</td><td class="num">' + QL.pct(a.mu, 1) +
+      html += '<tr><th scope="row">' + a.name + '</th><td class="num">' + QL.pct(a.mu, 1) +
               '</td><td class="num">' + QL.pct(a.vol, 1) + "</td>";
       CORR[i].forEach(function (c) { html += '<td class="num">' + QL.fmt(c, 2) + "</td>"; });
       html += "</tr>";

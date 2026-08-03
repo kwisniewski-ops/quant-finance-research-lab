@@ -136,6 +136,8 @@
       var lab = document.createElement("label");
       lab.textContent = prm.label;
       var inp = document.createElement("input");
+      inp.id = "param-" + state.proc + "-" + prm.key;
+      lab.htmlFor = inp.id;
       inp.type = "number";
       inp.value = prm.value;
       inp.step = prm.step;
@@ -174,7 +176,7 @@
       terminals[k] = path[N_STEPS];
       traces.push({
         x: times, y: path.slice(), mode: "lines", hoverinfo: "skip",
-        line: { width: 0.8, color: "rgba(62,92,118,0.38)" }
+        line: { width: 0.8, color: "rgba(62,92,118,0.38)", dash: "dot" }
       });
     }
     /* mean path across simulations (recompute by re-running with same seed would be costly;
@@ -197,10 +199,27 @@
       showlegend: false
     }), QL.plotConfig);
 
+    var timeIndices = [0, 42, 84, 126, 168, 210, 252];
+    var pathHtml = '<table><caption>Representative values from the cross-sectional mean path</caption><thead><tr><th scope="col">Time, years</th><th scope="col">Mean path value</th></tr></thead><tbody>';
+    timeIndices.forEach(function (idx) {
+      pathHtml += '<tr><th scope="row">' + QL.fmt(times[idx], 3) + '</th><td>' + QL.fmt(meanPath[idx], 4) + '</td></tr>';
+    });
+    $("mean-path-data-table").innerHTML = pathHtml + '</tbody></table>';
+
     var meanT = QL.mean(terminals);
+    var sortedTerminals = terminals.slice().sort(function (a, b) { return a - b; });
+    var binCount = 24;
+    var low = sortedTerminals[0], high = sortedTerminals[sortedTerminals.length - 1];
+    var binWidth = high === low ? 1 : (high - low) / binCount;
+    var binCenters = new Array(binCount), binCounts = new Array(binCount).fill(0);
+    for (var bin = 0; bin < binCount; bin++) binCenters[bin] = low + (bin + 0.5) * binWidth;
+    terminals.forEach(function (value) {
+      var index = Math.min(binCount - 1, Math.max(0, Math.floor((value - low) / binWidth)));
+      binCounts[index] += 1;
+    });
     Plotly.react("chart-terminal", [{
-      x: terminals, type: "histogram", nbinsx: 24,
-      marker: { color: "rgba(138,48,51,0.5)", line: { width: 0 } }
+      x: binCenters, y: binCounts, type: "bar",
+      marker: { color: "rgba(138,48,51,0.5)", pattern: { shape: "/" }, line: { width: 0 } }
     }], QL.layout({
       title: { text: "TERMINAL VALUES AT T = 1", font: { size: 11 }, x: 0 },
       xaxis: { title: { text: proc.yTitle + " at T" } },
@@ -215,6 +234,21 @@
         showarrow: false, font: { size: 9, color: QL.colors.ink }
       }]
     }), QL.plotConfig);
+
+    var summaryValues = [
+      sortedTerminals[0],
+      QL.quantile(sortedTerminals, 0.25),
+      QL.quantile(sortedTerminals, 0.5),
+      meanT,
+      QL.quantile(sortedTerminals, 0.75),
+      sortedTerminals[sortedTerminals.length - 1]
+    ];
+    $("simulation-summary-body").innerHTML = "<tr>" + summaryValues.map(function (value) {
+      return "<td>" + QL.fmt(value, 3) + "</td>";
+    }).join("") + "</tr>";
+    $("simulation-announcement").textContent = proc.label + " simulation complete. Median terminal value " +
+      QL.fmt(summaryValues[2], 2) + ", mean " + QL.fmt(meanT, 2) +
+      ", range " + QL.fmt(summaryValues[0], 2) + " to " + QL.fmt(summaryValues[5], 2) + ".";
   }
 
   /* ---------- prose visibility ---------- */

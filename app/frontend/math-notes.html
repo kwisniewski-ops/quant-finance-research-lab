@@ -4,9 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mathematical Notes — Quantitative Markets Research Lab</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="css/main.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
@@ -15,10 +12,12 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html">Home</a>
       <a href="asset-pricing.html">Pricing</a>
       <a href="portfolio.html">Portfolio</a>
@@ -27,28 +26,51 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html" aria-current="page">Notes</a>
       <a href="case-study.html">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap narrow">
     <div class="page-head">
       <p class="kicker">Module 06 · Working Notes</p>
-      <h1>Mathematical Notes</h1>
+      <h1 id="mathematical-notes">Mathematical Notes</h1>
       <p class="lede">Six derivations that carry most of the weight in quantitative finance,
       written to be read rather than merely cited. Each note states what is being assumed, does the
       calculation, and says what the result is actually worth.</p>
+      <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> · citations refer to the editions listed below</p>
+      <dl class="reading-meta">
+        <dt>Reading time</dt><dd>Approximately 16 minutes for the complete set</dd>
+        <dt>Prerequisites</dt><dd>Single-variable calculus, probability, and basic derivative pricing</dd>
+      </dl>
     </div>
 
-    <section class="section">
+    <details class="local-toc">
+      <summary>Contents · six notes</summary>
+      <nav aria-label="Mathematical notes contents">
+        <ol>
+          <li><a href="#note-ito">I · Itô's Lemma</a></li>
+          <li><a href="#note-gbm">II · Geometric Brownian Motion</a></li>
+          <li><a href="#note-risk-neutral-pricing">III · Risk-Neutral Pricing</a></li>
+          <li><a href="#note-feynman-kac">IV · Feynman-Kac and the PDE</a></li>
+          <li><a href="#note-monte-carlo-error">V · Monte Carlo Error</a></li>
+          <li><a href="#note-fat-tail-var">VI · Fat Tails and Normal VaR</a></li>
+          <li><a href="#notes-references">Standing references</a></li>
+        </ol>
+      </nav>
+    </details>
+    <output id="reading-tools-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
+
+    <section class="section note-section" aria-labelledby="note-ito">
       <p class="kicker">Note I</p>
-      <h2>Itô's Lemma</h2>
+      <h2 id="note-ito" class="reference-heading">Itô's Lemma<a class="heading-link" href="#note-ito" aria-label="Permalink to Itô's Lemma">#</a></h2>
+      <p class="note-meta">4 min · Prerequisites: multivariable calculus and Brownian motion</p>
       <p>Ordinary calculus fails for Brownian motion because \(W_t\) accumulates <em>quadratic
       variation</em>: over a partition of \([0,t]\), \(\sum (\Delta W)^2 \to t\), not zero. The
       squared increments of a Brownian path are not negligible — they behave, in the limit, like
-      time itself. The heuristic multiplication table is</p>
+      time itself.<sup><a href="#notes-ref-1" id="notes-cite-1">1</a></sup> The heuristic multiplication table is</p>
       <div class="math-block">$$(dW)^2 = dt, \qquad dW\,dt = 0, \qquad (dt)^2 = 0.$$</div>
       <p>Take an Itô process \(dX_t = \mu_t\,dt + \sigma_t\,dW_t\) and a smooth function
       \(f(t, x)\). A second-order Taylor expansion gives</p>
@@ -65,11 +87,19 @@
       option books bleed or earn theta, and why the drift of a log-price is not the drift of the
       price. Whenever a payoff is curved and the underlying is volatile, the correction term is
       where the money is.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Itô's Lemma" data-cite-target="note-ito">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note I navigation">
+        <a href="#mathematical-notes">↑ Notes overview</a>
+        <a href="#note-gbm">Next · Geometric Brownian Motion →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section note-section" aria-labelledby="note-gbm">
       <p class="kicker">Note II</p>
-      <h2>Solving Geometric Brownian Motion</h2>
+      <h2 id="note-gbm" class="reference-heading">Solving Geometric Brownian Motion<a class="heading-link" href="#note-gbm" aria-label="Permalink to Solving Geometric Brownian Motion">#</a></h2>
+      <p class="note-meta">3 min · Prerequisite: <a href="#note-ito">Note I, Itô's Lemma</a></p>
       <p>The SDE \(dS_t = \mu S_t\,dt + \sigma S_t\,dW_t\) is solved by applying Itô's lemma to
       \(f(S) = \ln S\), for which \(f' = 1/S\) and \(f'' = -1/S^2\):</p>
       <div class="math-block">$$d(\ln S_t) = \frac{1}{S_t}\,dS_t - \frac{1}{2}\frac{1}{S_t^2}(dS_t)^2
@@ -84,11 +114,19 @@
       average outcome is dragged upward by a shrinking minority of enormous paths while the typical
       path does worse. This "volatility drag" is not a market imperfection; it is arithmetic, and it
       is the quantitative core of why compounding punishes variance.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Solving Geometric Brownian Motion" data-cite-target="note-gbm">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note II navigation">
+        <a href="#note-ito">← Previous · Itô's Lemma</a>
+        <a href="#note-risk-neutral-pricing">Next · Risk-Neutral Pricing →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section note-section" aria-labelledby="note-risk-neutral-pricing">
       <p class="kicker">Note III</p>
-      <h2>Risk-Neutral Pricing, Sketched Honestly</h2>
+      <h2 id="note-risk-neutral-pricing" class="reference-heading">Risk-Neutral Pricing, Sketched Honestly<a class="heading-link" href="#note-risk-neutral-pricing" aria-label="Permalink to Risk-Neutral Pricing, Sketched Honestly">#</a></h2>
+      <p class="note-meta">4 min · Prerequisites: discounting, replication, and binomial trees</p>
       <p>Consider one period and two assets: a bond growing at \(r\), and a stock worth \(S\) that
       moves to \(uS\) or \(dS\) with \(d &lt; e^{r\Delta t} &lt; u\). To price a claim paying
       \(V_u\) or \(V_d\), build a portfolio of \(\Delta\) shares and \(B\) in bonds that replicates
@@ -98,7 +136,7 @@
       \qquad p^* = \frac{e^{r\Delta t} - d}{u - d}.$$</div>
       <p>The real-world probability of the up-move never entered. The price is a discounted
       expectation under an artificial probability \(p^*\) — the unique one that makes the
-      discounted stock a martingale. This is the whole content of risk-neutral pricing: <strong>no
+      discounted stock a martingale.<sup><a href="#notes-ref-2" id="notes-cite-2">2</a></sup> This is the whole content of risk-neutral pricing: <strong>no
       arbitrage plus replication implies prices are expectations under a measure \(\mathbb{Q}\)
       constructed for accounting convenience, not belief.</strong> In continuous time Girsanov's
       theorem plays the same role, shifting the drift of \(W_t\) so that
@@ -110,11 +148,19 @@
       arbitrage-free price becomes an interval. The market then selects a measure by supply and
       demand for risk, which is a polite way of saying the model hands the hard part back to
       economics.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Risk-Neutral Pricing, Sketched Honestly" data-cite-target="note-risk-neutral-pricing">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note III navigation">
+        <a href="#note-gbm">← Previous · Geometric Brownian Motion</a>
+        <a href="#note-feynman-kac">Next · Feynman-Kac and the PDE →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section note-section" aria-labelledby="note-feynman-kac">
       <p class="kicker">Note IV</p>
-      <h2>Feynman-Kac and the Black-Scholes PDE</h2>
+      <h2 id="note-feynman-kac" class="reference-heading">Feynman-Kac and the Black-Scholes PDE<a class="heading-link" href="#note-feynman-kac" aria-label="Permalink to Feynman-Kac and the Black-Scholes PDE">#</a></h2>
+      <p class="note-meta">4 min · Prerequisites: <a href="#note-ito">Note I</a>, <a href="#note-risk-neutral-pricing">Note III</a>, and PDE basics</p>
       <p>The Feynman-Kac theorem is the bridge between expectations and differential equations. If</p>
       <div class="math-block">$$V(t,x) = \mathbb{E}\!\left[\left. e^{-r(T-t)}\,\varphi(X_T)\,\right|\, X_t = x\right],
       \qquad dX_s = a(X_s)\,ds + b(X_s)\,dW_s,$$</div>
@@ -135,14 +181,22 @@
       intuition: the equation is a heat equation in disguise (substitute \(x = \ln S\) and rescale
       time), so option value <em>diffuses</em> — kinks in payoffs get smoothed exactly the way heat
       smooths a temperature spike.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Feynman-Kac and the Black-Scholes PDE" data-cite-target="note-feynman-kac">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note IV navigation">
+        <a href="#note-risk-neutral-pricing">← Previous · Risk-Neutral Pricing</a>
+        <a href="#note-monte-carlo-error">Next · Monte Carlo Error →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section note-section" aria-labelledby="note-monte-carlo-error">
       <p class="kicker">Note V</p>
-      <h2>Monte Carlo Error Scales as \(O(1/\sqrt{N})\)</h2>
+      <h2 id="note-monte-carlo-error" class="reference-heading">Monte Carlo Error Scales as \(O(1/\sqrt{N})\)<a class="heading-link" href="#note-monte-carlo-error" aria-label="Permalink to Monte Carlo Error Scales as O of one over square root N">#</a></h2>
+      <p class="note-meta">4 min · Prerequisites: variance, sample means, and the central limit theorem</p>
       <p>Estimate \(\theta = \mathbb{E}[f(X)]\) by the sample mean
       \(\hat\theta_N = \frac{1}{N}\sum_{i=1}^N f(X_i)\) over independent draws. The estimator is
-      unbiased, and its standard error follows from nothing deeper than the variance of a mean:</p>
+      unbiased, and its standard error follows from nothing deeper than the variance of a mean:<sup><a href="#notes-ref-3" id="notes-cite-3">3</a></sup></p>
       <div class="math-block">$$\operatorname{se}(\hat\theta_N) = \frac{\sigma_f}{\sqrt{N}},
       \qquad \sigma_f^2 = \operatorname{Var}[f(X)],$$</div>
       <p>with the central limit theorem supplying asymptotic normality and hence confidence
@@ -162,17 +216,25 @@
       \(\approx \sqrt{(1-p)/(pN)}\) — for a \(p = 0.1\%\) event, ten percent relative accuracy
       needs on the order of \(10^7\) paths. Rare-event estimation without importance sampling is
       mostly the production of confident noise, which links this note directly to the next one.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Monte Carlo Error Scales as O(1/sqrt(N))" data-cite-target="note-monte-carlo-error">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note V navigation">
+        <a href="#note-feynman-kac">← Previous · Feynman-Kac and the PDE</a>
+        <a href="#note-fat-tail-var">Next · Fat Tails and Normal VaR →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section note-section" aria-labelledby="note-fat-tail-var">
       <p class="kicker">Note VI</p>
-      <h2>Why Fat Tails Break Normal VaR</h2>
+      <h2 id="note-fat-tail-var" class="reference-heading">Why Fat Tails Break Normal VaR<a class="heading-link" href="#note-fat-tail-var" aria-label="Permalink to Why Fat Tails Break Normal VaR">#</a></h2>
+      <p class="note-meta">5 min · Prerequisites: quantiles, moments, and basic risk metrics</p>
       <p>Parametric-normal VaR takes a mean and standard deviation and reads the quantile off the
       Gaussian: \( \mathrm{VaR}_\alpha = -( \mu + z_{1-\alpha}\,\sigma )\). The procedure is exact
       when returns are normal and quietly catastrophic when they are not, because the Gaussian
       density dies like \(e^{-x^2/2}\) while empirical return distributions die like a power law,
       \(\mathbb{P}[|r| > x] \sim x^{-\alpha}\) with tail index \(\alpha\) around 3 to 4 for daily
-      equity returns. Every moment of the comparison fails in the same direction:</p>
+      equity returns.<sup><a href="#notes-ref-4" id="notes-cite-4">4</a></sup> Every moment of the comparison fails in the same direction:</p>
       <p><strong>The counting argument.</strong> Daily equity moves of five standard deviations
       should occur, under normality, about once per 14,000 years. The realized record produces
       them every few years; October 19, 1987 was, on a Gaussian yardstick, roughly a 20σ event —
@@ -197,17 +259,24 @@
       theory (fit the tail's own asymptotic family, GPD/GEV, instead of the body's); and the
       standing admission that any tail estimate at the 99.9% level is an extrapolation wearing
       the costume of a measurement.</p>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Why Fat Tails Break Normal VaR" data-cite-target="note-fat-tail-var">Cite this note</button>
+      </div>
+      <nav class="section-nav" aria-label="Note VI navigation">
+        <a href="#note-monte-carlo-error">← Previous · Monte Carlo Error</a>
+        <a href="#notes-references">Standing references →</a>
+      </nav>
     </section>
 
-    <section class="section">
+    <section class="section" aria-labelledby="notes-references">
       <p class="kicker">Sources</p>
-      <h3>Standing references for these notes</h3>
-      <ul class="refs">
-        <li>Øksendal, <em>Stochastic Differential Equations</em> — Notes I, II, IV.</li>
-        <li>Shreve, <em>Stochastic Calculus for Finance II</em> — Notes III, IV.</li>
-        <li>Glasserman, <em>Monte Carlo Methods in Financial Engineering</em> — Note V.</li>
-        <li>McNeil, Frey &amp; Embrechts, <em>Quantitative Risk Management</em> — Note VI.</li>
-      </ul>
+      <h2 id="notes-references" class="reference-heading">Standing references for these notes<a class="heading-link" href="#notes-references" aria-label="Permalink to standing references">#</a></h2>
+      <ol class="bibliography">
+        <li id="notes-ref-1">Øksendal, B. (2003), <i>Stochastic Differential Equations: An Introduction with Applications</i>, 6th ed., Springer, pp. 21–84 (Itô integrals, Itô formula, and SDEs). <a href="https://doi.org/10.1007/978-3-642-14394-6">doi:10.1007/978-3-642-14394-6</a> <a href="#notes-cite-1" aria-label="Return to citation 1">↩</a></li>
+        <li id="notes-ref-2">Shreve, S. E. (2004), <i>Stochastic Calculus for Finance II: Continuous-Time Models</i>, 1st ed., Springer, chs. 4–6, pp. 131–339 (stochastic calculus, risk-neutral pricing, and PDE connections), ISBN 978-0-387-40101-0. <a href="https://link.springer.com/book/9780387401010">publisher record</a> <a href="#notes-cite-2" aria-label="Return to citation 2">↩</a></li>
+        <li id="notes-ref-3">Glasserman, P. (2003), <i>Monte Carlo Methods in Financial Engineering</i>, Springer, pp. 1–38 and 185–337 (foundations, variance reduction, and quasi-Monte Carlo). <a href="https://doi.org/10.1007/978-0-387-21617-1">doi:10.1007/978-0-387-21617-1</a> <a href="#notes-cite-3" aria-label="Return to citation 3">↩</a></li>
+        <li id="notes-ref-4">McNeil, A. J., R. Frey, and P. Embrechts (2015), <i>Quantitative Risk Management: Concepts, Techniques and Tools</i>, revised 2nd ed., Princeton University Press, chs. 2 and 5, ISBN 978-0-691-16627-8. <a href="https://assets.press.princeton.edu/catalogs/econ15.pdf">publisher catalog</a> <a href="#notes-cite-4" aria-label="Return to citation 4">↩</a></li>
+      </ol>
     </section>
   </div>
 </main>
@@ -215,9 +284,11 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 
+<script src="js/common.js"></script>
+<script src="js/reading.js"></script>
 </body>
 </html>

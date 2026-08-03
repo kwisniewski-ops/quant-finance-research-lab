@@ -5,17 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quantitative Markets Research Lab</title>
 <meta name="description" content="An open-source research project exploring the mathematical structure of financial markets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://lab.kylewisniewski.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:title" content="Quantitative Markets Research Lab">
+<meta property="og:description" content="Open, reproducible research on pricing, factors, portfolio construction, simulation, and market risk.">
+<meta property="og:url" content="https://lab.kylewisniewski.com/">
+<meta property="og:image" content="https://lab.kylewisniewski.com/og-lab.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quantitative Markets Research Lab">
+<meta name="twitter:description" content="Open, reproducible research on pricing, factors, portfolio construction, simulation, and market risk.">
+<meta name="twitter:image" content="https://lab.kylewisniewski.com/og-lab.jpg">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <link rel="stylesheet" href="css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://lab.kylewisniewski.com/#kyle-wisniewski",
+      "name": "Kyle Wisniewski",
+      "url": "https://lab.kylewisniewski.com/about.html",
+      "sameAs": ["https://github.com/kwisniewski-ops"]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://lab.kylewisniewski.com/#lab",
+      "name": "Quantitative Markets Research Lab",
+      "url": "https://lab.kylewisniewski.com/",
+      "description": "An open research program on the mathematical structure of financial markets.",
+      "dateModified": "2026-08-03",
+      "author": {"@id": "https://lab.kylewisniewski.com/#kyle-wisniewski"},
+      "license": "https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/LICENSE"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://lab.kylewisniewski.com/#source",
+      "name": "Quantitative Markets Research Lab source",
+      "codeRepository": "https://github.com/kwisniewski-ops/quant-finance-research-lab",
+      "programmingLanguage": ["Python", "JavaScript", "HTML", "CSS"],
+      "author": {"@id": "https://lab.kylewisniewski.com/#kyle-wisniewski"},
+      "isPartOf": {"@id": "https://lab.kylewisniewski.com/#lab"}
+    }
+  ]
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <header class="site-header">
   <div class="wrap">
     <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="asset-pricing.html">Pricing</a>
       <a href="portfolio.html">Portfolio</a>
@@ -24,12 +71,13 @@
       <a href="factors.html">Factors</a>
       <a href="math-notes.html">Notes</a>
       <a href="case-study.html">Case Study</a>
+      <a href="research-log.html">Log</a>
       <a href="about.html">About</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <section class="hero">
     <div class="wrap">
       <p class="kicker">An open research program</p>
@@ -39,10 +87,38 @@
       optimization, derivatives modeling, risk analytics, and stochastic simulation. The project
       combines applied quantitative finance, advanced mathematics, and software engineering to
       examine how models can clarify uncertainty without pretending to eliminate it.</p>
+      <div class="hero-actions" aria-label="Start exploring">
+        <a class="primary-action" href="asset-pricing.html">Run your first experiment <span aria-hidden="true">→</span></a>
+        <a class="secondary-action" href="case-study.html">Read the flagship study <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
   <div class="wrap">
+    <section class="arrival-grid" aria-label="Current lab activity">
+      <article class="arrival-item arrival-new">
+        <p class="kicker">What’s new · 3 Aug 2026</p>
+        <h2>Illustrations replaced by falsifiable estimates</h2>
+        <p>The factor and risk modules now publish frozen datasets, confidence intervals, holdout
+        results, multiplicity corrections, and coverage tests.</p>
+        <a href="research-log.html">Read the revision record →</a>
+      </article>
+      <article class="arrival-item">
+        <p class="kicker">Active research</p>
+        <h2>Can filtered risk forecasts repair breach clustering?</h2>
+        <p>The 500-day historical VaR baseline fails coverage and independence. The next test is
+        specified before a replacement model is compared.</p>
+        <a href="risk.html#coverage-title">Inspect the rejection →</a>
+      </article>
+      <article class="arrival-item">
+        <p class="kicker">Recently revised</p>
+        <h2>ETF factor exposures</h2>
+        <p>QQQ’s raw alpha appears significant alone, but does not survive Benjamini–Hochberg
+        correction across six simultaneous tests.</p>
+        <a href="factors.html#multiplicity-title">See the evidence →</a>
+      </article>
+    </section>
+
     <div class="thesis">
       <p class="kicker">Central thesis</p>
       <blockquote>
@@ -64,51 +140,57 @@
       <div class="card-grid">
         <a class="card" href="asset-pricing.html">
           <span class="card-no">01 · Interactive</span>
-          <h3>Asset Pricing</h3>
+          <h2>Asset Pricing</h2>
           <p>A full Black-Scholes-Merton pricer with live Greeks, set against a Cox-Ross-Rubinstein
           binomial tree — two routes to the same no-arbitrage price, and where they part ways.</p>
         </a>
         <a class="card" href="portfolio.html">
           <span class="card-no">02 · Interactive</span>
-          <h3>Portfolio Optimization</h3>
+          <h2>Portfolio Optimization</h2>
           <p>An efficient-frontier explorer over six asset classes. Sample twenty thousand
           portfolios, find minimum variance and maximum Sharpe, and watch assumptions do the work.</p>
         </a>
         <a class="card" href="risk.html">
-          <span class="card-no">03 · Dashboard</span>
-          <h3>Risk Analytics</h3>
-          <p>Drawdowns, rolling volatility, Value-at-Risk and Expected Shortfall on a simulated
-          multi-asset portfolio — and an honest account of what tail estimates can and cannot say.</p>
+          <span class="card-no">03 · Empirical</span>
+          <h2>Risk Analytics</h2>
+          <p>A cost-aware multi-asset backtest with VaR/ES uncertainty, forecast-coverage tests,
+          and dated historical stress windows.</p>
         </a>
         <a class="card" href="simulations.html">
           <span class="card-no">04 · Interactive</span>
-          <h3>Stochastic Simulation</h3>
+          <h2>Stochastic Simulation</h2>
           <p>Five canonical processes — GBM, Ornstein-Uhlenbeck, Merton jumps, Heston, regime
           switching — simulated live, each with its SDE and its blind spots.</p>
         </a>
         <a class="card" href="factors.html">
-          <span class="card-no">05 · Overview</span>
-          <h3>Factor Research</h3>
-          <p>The cross-sectional view: market, size, value, momentum, quality, and low volatility
-          as organizing dimensions of return, with the regression machinery that estimates them.</p>
+          <span class="card-no">05 · Empirical</span>
+          <h2>Factor Research</h2>
+          <p>ETF exposures estimated from documented factor data, with HAC intervals, rolling
+          betas, chronological holdouts, and multiple-testing correction.</p>
         </a>
         <a class="card" href="math-notes.html">
           <span class="card-no">06 · Notes</span>
-          <h3>Mathematical Notes</h3>
+          <h2>Mathematical Notes</h2>
           <p>Itô's lemma, the GBM solution, risk-neutral pricing, Feynman-Kac and the Black-Scholes
           PDE, Monte Carlo error scaling, and why fat tails break Gaussian VaR.</p>
         </a>
         <a class="card" href="case-study.html">
           <span class="card-no">07 · Flagship study</span>
-          <h3>From Black-Scholes to Stochastic Volatility</h3>
+          <h2>From Black-Scholes to Stochastic Volatility</h2>
           <p>Why market reality requires better models: the volatility smile as empirical
           refutation, and Heston dynamics as a disciplined response.</p>
         </a>
         <a class="card" href="about.html">
           <span class="card-no">08 · The lab</span>
-          <h3>About</h3>
+          <h2>About</h2>
           <p>The project, its author, and its credo: models clarify uncertainty — they do not
           eliminate it.</p>
+        </a>
+        <a class="card" href="research-log.html">
+          <span class="card-no">09 · Public record</span>
+          <h2>Research Log</h2>
+          <p>The lab's questions, testable claims, assumptions, evidence, uncertainty, failures,
+          and version-pinned reproduction artifacts — recorded in public.</p>
         </a>
       </div>
     </section>
@@ -121,8 +203,9 @@
         are the research product as much as the successes — a pricing model that misprices the wings
         of the volatility surface is telling you something true about markets, if you are prepared
         to listen.</p>
-        <p>Everything here is illustrative and educational. Nothing on this site is investment
-        advice, and every synthetic dataset is labeled as such.</p>
+        <p>Everything here is educational. Empirical modules publish their data vintage and
+        reproduction path; synthetic demonstrations are labeled as such. Nothing on this site is
+        investment advice.</p>
       </div>
     </section>
   </div>
@@ -131,7 +214,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="about.html">About</a> · Not investment advice</span>
+    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · Not investment advice</span>
   </div>
 </footer>
 

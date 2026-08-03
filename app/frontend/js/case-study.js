@@ -20,6 +20,7 @@
                     0.1747, 0.1605, 0.1514, 0.1476, 0.1474, 0.1490];
 
   var state = { flatVol: 0.192 };
+  var announceTimer;
 
   function $(id) { return document.getElementById(id); }
 
@@ -65,7 +66,8 @@
     Plotly.react("chart-diff", [{
       x: STRIKES, y: diff, type: "bar", name: "BS − Heston",
       marker: {
-        color: diff.map(function (d) { return d >= 0 ? "rgba(62,92,118,0.7)" : "rgba(138,48,51,0.7)"; })
+        color: diff.map(function (d) { return d >= 0 ? "rgba(62,92,118,0.7)" : "rgba(138,48,51,0.7)"; }),
+        pattern: { shape: diff.map(function (d) { return d >= 0 ? "/" : "x"; }) }
       }
     }], QL.layout({
       title: { text: "PRICING ERROR: BS(σ=" + (100 * state.flatVol).toFixed(1) + "%) − HESTON", font: { size: 11 }, x: 0 },
@@ -75,20 +77,48 @@
     }), QL.plotConfig);
 
     buildTable(bs);
+    var maxError = Math.max.apply(null, diff.map(function (d) { return Math.abs(d); }));
+    updateObjective(bs, diff);
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(function () {
+      $("case-pricing-announcement").textContent = "Flat Black-Scholes volatility updated to " +
+        QL.pct(state.flatVol, 1) + ". Maximum absolute pricing error is " + QL.fmt(maxError, 4) + ".";
+    }, 250);
+  }
+
+  function bsVega(K, sigma) {
+    var d1 = (Math.log(S0 / K) + (R - Q + 0.5 * sigma * sigma) * T) / (sigma * Math.sqrt(T));
+    return S0 * Math.exp(-Q * T) * QL.normPdf(d1) * Math.sqrt(T);
+  }
+
+  function updateObjective(bs, priceResiduals) {
+    var vegas = STRIKES.map(function (K, i) { return bsVega(K, HESTON_IVS[i]); });
+    var ivResiduals = HESTON_IVS.map(function (iv) { return state.flatVol - iv; });
+    var weightedSquared = ivResiduals.reduce(function (sum, residual, i) { return sum + vegas[i] * residual * residual; }, 0);
+    var ivObjective = Math.sqrt(weightedSquared / vegas.reduce(function (a, b) { return a + b; }, 0));
+    var priceRmse = Math.sqrt(priceResiduals.reduce(function (sum, residual) { return sum + residual * residual; }, 0) / priceResiduals.length);
+    var maxIndex = priceResiduals.map(Math.abs).indexOf(Math.max.apply(null, priceResiduals.map(Math.abs)));
+    $("calibration-stats").innerHTML = [
+      ["Vega-weighted IV RMSE", QL.pct(ivObjective, 3)],
+      ["Price RMSE", QL.fmt(priceRmse, 4)],
+      ["Largest absolute residual", QL.fmt(Math.abs(priceResiduals[maxIndex]), 4)],
+      ["Largest-residual strike", STRIKES[maxIndex]]
+    ].map(function (row) { return '<div class="stat"><dt class="k">' + row[0] + '</dt><dd class="v">' + row[1] + "</dd></div>"; }).join("");
   }
 
   function buildTable(bs) {
-    var html = '<table class="data"><thead><tr>' +
-      '<th class="num">Strike</th><th class="num">Heston call</th>' +
-      '<th class="num">Heston impl. vol</th><th class="num">BS call (flat σ)</th>' +
-      '<th class="num">BS − Heston</th></tr></thead><tbody>';
+    var html = '<table class="data comparison-table"><caption>Black-Scholes and Heston call-price comparison by strike</caption><thead><tr>' +
+      '<th scope="col" class="num">Strike</th><th scope="col" class="num">Heston call</th>' +
+      '<th scope="col" class="num">Heston impl. vol</th><th scope="col" class="num">BS call (flat σ)</th>' +
+      '<th scope="col" class="num">IV residual</th><th scope="col" class="num">BS − Heston</th></tr></thead><tbody>';
     STRIKES.forEach(function (K, i) {
       var d = bs[i] - HESTON_CALLS[i];
-      html += "<tr><td class=\"num\">" + K + "</td>" +
-        '<td class="num">' + QL.fmt(HESTON_CALLS[i], 4) + "</td>" +
-        '<td class="num">' + QL.pct(HESTON_IVS[i], 2) + "</td>" +
-        '<td class="num">' + QL.fmt(bs[i], 4) + "</td>" +
-        '<td class="num" style="color:' + (Math.abs(d) > 0.15 ? "#8a3033" : "inherit") + '">' +
+      html += '<tr><th scope="row" class="num">' + K + "</th>" +
+        '<td class="num" data-label="Heston call">' + QL.fmt(HESTON_CALLS[i], 4) + "</td>" +
+        '<td class="num" data-label="Heston implied volatility">' + QL.pct(HESTON_IVS[i], 2) + "</td>" +
+        '<td class="num" data-label="Black-Scholes call">' + QL.fmt(bs[i], 4) + "</td>" +
+        '<td class="num" data-label="Implied volatility residual">' + (state.flatVol - HESTON_IVS[i] >= 0 ? "+" : "") + QL.pct(state.flatVol - HESTON_IVS[i], 2) + "</td>" +
+        '<td class="num" data-label="BS minus Heston" style="color:' + (Math.abs(d) > 0.15 ? "#8a3033" : "inherit") + '">' +
         (d >= 0 ? "+" : "") + QL.fmt(d, 4) + "</td></tr>";
     });
     html += "</tbody></table>";
