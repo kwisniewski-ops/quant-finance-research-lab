@@ -6,8 +6,8 @@ the assumptions that most often bite. The companion page,
 [`limitations.md`](limitations.md), covers what goes wrong when they fail;
 the notebooks demonstrate several of the failures on real data.
 
-A useful habit when reading any table below: for each assumption, ask *"what
-observable would tell me this is false?"* — most have cheap empirical fingerprints,
+A useful habit when reading any table below: for each assumption, ask *"which
+observable result would falsify this assumption?"* — most have cheap empirical fingerprints,
 and notebooks 03 and 06 compute several of them.
 
 ## Summary table
@@ -38,7 +38,7 @@ $\sigma$ a constant of nature, markets frictionless and continuous, and paths fr
 jumps. Its deepest assumption is the *consequence* of these: the option is redundant,
 perfectly replicable by continuous delta hedging, so its price contains no risk
 premium. Empirical fingerprints of failure: realized volatility varied by a factor of
-~27 in our 2015–2026 SPY sample, daily returns show excess kurtosis ≈ 14, and
+~27 in the analyzed 2015–2026 SPY sample, daily returns show excess kurtosis ≈ 14, and
 absolute returns are autocorrelated for weeks (notebook 03, §2). The binomial tree
 and Crank–Nicolson solver inherit the same market assumptions and add only numerical
 ones (lattice/grid resolution, domain truncation at `s_max_mult` times spot,

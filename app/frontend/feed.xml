@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Quantitative Markets Research Lab — Findings</title>
-  <id>https://kylewisniewski.com/lab/feed.xml</id>
-  <link href="https://kylewisniewski.com/lab/feed.xml" rel="self" type="application/atom+xml"/>
-  <link href="https://kylewisniewski.com/lab/findings.html" rel="alternate" type="text/html"/>
-  <updated>2026-08-08T00:00:00-06:00</updated>
-  <author><name>Quantitative Markets Research Lab</name><uri>https://kylewisniewski.com/lab</uri></author>
-  <subtitle>Evidence-backed decision briefs on quantitative models, their practical consequences, and their limits.</subtitle>
+  <title>Quantitative Markets &amp; Institutions Lab — Research</title>
+  <id>https://www.kylewisniewski.com/lab/feed.xml</id>
+  <link href="https://www.kylewisniewski.com/lab/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://www.kylewisniewski.com/lab/" rel="alternate" type="text/html"/>
+  <updated>2026-08-09T00:00:00-06:00</updated>
+  <author><name>Quantitative Markets &amp; Institutions Lab</name><uri>https://www.kylewisniewski.com/lab</uri></author>
+  <subtitle>Independent, evidence-led research on financial models, market regimes, institutions, and investor decisions.</subtitle>
+  <entry>
+    <title>Why can stocks and bonds fall together?</title>
+    <id>https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html</id>
+    <link href="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html"/>
+    <published>2026-08-09T00:00:00-06:00</published><updated>2026-08-09T00:00:00-06:00</updated>
+    <summary>A long-form synthesis examining a stock–bond correlation shift alongside diversification, portfolio construction, and historical risk-model monitoring.</summary>
+  </entry>
   <entry>
     <title>Can an “optimal” portfolio stay optimal?</title>
-    <id>https://kylewisniewski.com/lab/finding-portfolio-estimation.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-portfolio-estimation.html"/>
-    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
+    <id>https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html"/>
+    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-09T00:00:00-06:00</updated>
     <summary>Why a maximum-Sharpe portfolio’s estimated advantage degraded—and what risk-based methods did and did not fix.</summary>
   </entry>
   <entry>
     <title>Does a 95% risk estimate fail only 5% of the time?</title>
-    <id>https://kylewisniewski.com/lab/finding-var-backtest.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-var-backtest.html"/>
-    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
+    <id>https://www.kylewisniewski.com/lab/finding-var-backtest.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-var-backtest.html"/>
+    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-09T00:00:00-06:00</updated>
     <summary>A rolling historical VaR forecast produced too many breaches, and the exceptions clustered.</summary>
   </entry>
   <entry>
     <title>Will bonds diversify stocks in the next stress?</title>
-    <id>https://kylewisniewski.com/lab/finding-diversification-regimes.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-diversification-regimes.html"/>
-    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
+    <id>https://www.kylewisniewski.com/lab/finding-diversification-regimes.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-diversification-regimes.html"/>
+    <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-09T00:00:00-06:00</updated>
     <summary>Stock–bond correlation changed sign in the studied sample, exposing the regime assumption inside diversification.</summary>
   </entry>
   <entry>
     <title>Does a factor fund deliver the exposure on its label?</title>
-    <id>https://kylewisniewski.com/lab/finding-factor-etfs.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-factor-etfs.html"/>
+    <id>https://www.kylewisniewski.com/lab/finding-factor-etfs.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-factor-etfs.html"/>
     <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
     <summary>The advertised exposures appeared, but no alpha survived the multiple-testing threshold.</summary>
   </entry>
   <entry>
     <title>Can one volatility number describe every option?</title>
-    <id>https://kylewisniewski.com/lab/finding-volatility-smile.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-volatility-smile.html"/>
+    <id>https://www.kylewisniewski.com/lab/finding-volatility-smile.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-volatility-smile.html"/>
     <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
     <summary>Observed volatility, fat tails, and an implied-volatility skew reject the constant-volatility Gaussian fingerprints.</summary>
   </entry>
   <entry>
     <title>How many simulations are enough?</title>
-    <id>https://kylewisniewski.com/lab/finding-monte-carlo-error.html</id>
-    <link href="https://kylewisniewski.com/lab/finding-monte-carlo-error.html"/>
+    <id>https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html</id>
+    <link href="https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html"/>
     <published>2026-08-08T00:00:00-06:00</published><updated>2026-08-08T00:00:00-06:00</updated>
     <summary>Monte Carlo accuracy depends on a declared tolerance, sampling variance, and the numerical bias the path count cannot cure.</summary>
   </entry>

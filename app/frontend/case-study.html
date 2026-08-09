@@ -3,39 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab</title>
+<title>Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets &amp; Institutions Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <meta name="description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
-<link rel="canonical" href="https://kylewisniewski.com/lab/case-study.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Quantitative Markets Research Lab">
-<meta property="og:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab">
+<link rel="canonical" href="https://www.kylewisniewski.com/lab/case-study.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets &amp; Institutions Lab">
 <meta property="og:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
-<meta property="og:url" content="https://kylewisniewski.com/lab/case-study.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:url" content="https://www.kylewisniewski.com/lab/case-study.html">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab">
+<meta name="twitter:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets &amp; Institutions Lab">
 <meta name="twitter:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
-<meta name="twitter:url" content="https://kylewisniewski.com/lab/case-study.html">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
+<meta name="twitter:url" content="https://www.kylewisniewski.com/lab/case-study.html">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Black–Scholes Assumptions and Stochastic-Volatility Alternatives",
   "description": "A technical study of the constant-volatility model's testable failures and the partial repair offered by Heston stochastic volatility.",
-  "url": "https://kylewisniewski.com/lab/case-study.html",
+  "url": "https://www.kylewisniewski.com/lab/case-study.html",
   "dateModified": "2026-08-03",
-  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
+  "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
-    "name": "Quantitative Markets Research Lab",
-    "url": "https://kylewisniewski.com/lab/"
+    "name": "Quantitative Markets & Institutions Lab",
+    "url": "https://www.kylewisniewski.com/lab/"
   }
 }
 </script>
@@ -44,7 +44,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
-<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,20 +53,20 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Research Lab",
-      "item": "https://kylewisniewski.com/lab"
+      "name": "Quantitative Markets & Institutions Lab",
+      "item": "https://www.kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Questions",
-      "item": "https://kylewisniewski.com/lab/findings.html"
+      "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Black–Scholes Assumptions and Stochastic-Volatility Alternatives",
-      "item": "https://kylewisniewski.com/lab/case-study.html"
+      "item": "https://www.kylewisniewski.com/lab/case-study.html"
     }
   ]
 }
@@ -79,7 +79,7 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
     <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
@@ -321,11 +321,12 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/case-study.js"></script>
 <script src="js/reading.js"></script>
+
 <script src="js/engagement.js"></script>
 </body>
 </html>

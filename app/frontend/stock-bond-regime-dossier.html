@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Stocks and Bonds Can Fall Together — Regime Dossier</title>
+<meta name="description" content="Examine a stock–bond correlation shift alongside its implications for diversification, portfolio construction, and risk-model monitoring.">
+<link rel="canonical" href="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Why Stocks and Bonds Can Fall Together — Regime Dossier">
+<meta property="og:description" content="One changing relationship raises distinct questions about diversification, portfolio construction, and risk-model monitoring.">
+<meta property="og:url" content="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Stocks and Bonds Can Fall Together — Regime Dossier">
+<meta name="twitter:description" content="Examine a stock–bond correlation shift alongside economic context, portfolio consequences, and model monitoring.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Why Can Stocks and Bonds Fall Together—and What Does That Reveal About Diversification?",
+  "description": "A long-form synthesis examining stock–bond correlation regimes alongside diversification, portfolio construction, and historical risk-model monitoring.",
+  "url": "https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09",
+  "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
+  "mainEntityOfPage": "https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html",
+  "about": ["stock bond correlation", "portfolio diversification", "inflation regimes", "portfolio construction", "value at risk", "model calibration"],
+  "proficiencyLevel": "Intermediate"
+}
+</script>
+<link rel="stylesheet" href="css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Quantitative Markets & Institutions Lab",
+      "item": "https://www.kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Questions",
+      "item": "https://www.kylewisniewski.com/lab/findings.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Why can stocks and bonds fall together—and what does that reveal about diversification?",
+      "item": "https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <div class="wrap narrow">
+    <div class="page-head">
+      <p class="kicker">Flagship synthesis · Regime dossier</p>
+      <h1 id="stock-bond-regime-dossier">Why can stocks and bonds fall together—and what does that reveal about diversification?</h1>
+      <p class="lede">A negative stock–bond correlation is not a permanent market law. It is a
+      conditional outcome shaped by the shocks being priced and the response expected from monetary,
+      fiscal, and market institutions.</p>
+      <p class="revision-line">Published <time datetime="2026-08-09">9 August 2026</time> ·
+      synthesis of existing investigations, not a new causal estimate</p>
+      <dl class="reading-meta">
+        <dt>Reading time</dt><dd>Approximately 14 minutes</dd>
+        <dt>Start simpler</dt><dd><a href="finding-diversification-regimes.html">Read the diversification decision brief</a></dd>
+      </dl>
+      <div class="reading-actions">
+        <button class="cite-button" type="button" data-cite-title="Why Can Stocks and Bonds Fall Together—and What Does That Reveal About Diversification?" data-cite-year="2026" data-cite-target="stock-bond-regime-dossier">Cite this dossier</button>
+      </div>
+    </div>
+
+    <section class="decision-summary" aria-labelledby="dossier-decision-title">
+      <p class="kicker">Short answer</p>
+      <h2 id="dossier-decision-title">Bonds do not protect a portfolio in every kind of downturn.</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>Bonds often help when growth weakens and inflation is contained. They may fall with stocks when inflation keeps interest rates high or investors demand more compensation to hold long-term debt.</p></div>
+        <div><h3>Decision affected</h3><p>Whether a balanced allocation deserves to be treated as self-hedging, and how much confidence to place in one historical relationship among assets.</p></div>
+        <div><h3>Who should care</h3><p>Multi-asset investors, risk committees, portfolio researchers, retirement allocators, and model validators.</p></div>
+        <div><h3>Caveat</h3><p>The lab observes one liquid-ETF history. The synthesis connects that record with external evidence but does not identify a single cause or forecast the next regime.</p></div>
+      </div>
+    </section>
+
+    <details class="local-toc">
+      <summary>Contents · seven sections</summary>
+      <nav aria-label="Regime dossier contents">
+        <ol>
+          <li><a href="#dossier-observation">01 · What changed</a></li>
+          <li><a href="#dossier-regime-map">02 · The regime map</a></li>
+          <li><a href="#dossier-diversification">03 · Diversification</a></li>
+          <li><a href="#dossier-allocation">04 · Portfolio construction</a></li>
+          <li><a href="#dossier-risk">05 · Risk-model calibration</a></li>
+          <li><a href="#dossier-limits">06 · Limits and monitoring</a></li>
+          <li><a href="#dossier-sources">07 · Sources and reproduction</a></li>
+        </ol>
+      </nav>
+    </details>
+    <output id="reading-tools-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
+
+    <section class="section" aria-labelledby="dossier-observation">
+      <p class="kicker">01 · Observation</p>
+      <h2 id="dossier-observation" class="reference-heading">The relationship changed sign<a class="heading-link" href="#dossier-observation" aria-label="Permalink to The relationship changed sign">#</a></h2>
+      <p><span class="evidence-label evidence-label-inline">Measured here</span> The lab records a clear change in one studied portfolio relationship. A rolling
+      126-trading-day correlation between SPY and TLT averaged negative during 2015–2019, became
+      positive during 2022–2023, and remained positive at the end of the frozen sample. Separately,
+      an all-asset static stress moved the full correlation matrix toward one and materially increased
+      the studied portfolio's volatility.</p>
+
+      <dl class="proof-strip ledger-summary" aria-label="Stock and bond regime evidence">
+        <div><dt>SPY–TLT · 2015–19</dt><dd>−0.35</dd></div>
+        <div><dt>SPY–TLT · 2022–23</dt><dd>+0.37 peak</dd></div>
+        <div><dt>Observed-corr. vol</dt><dd>11.6%</dd></div>
+        <div><dt>Corr. → 1 vol</dt><dd>15.8%</dd></div>
+      </dl>
+
+      <div class="evidence-taxonomy" aria-label="Evidence labels used in this dossier">
+        <article><p class="evidence-label">Measured here</p><p>Values produced by the lab's frozen data, declared transformations, tests, and stress design.</p></article>
+        <article><p class="evidence-label">Established context</p><p>Historical facts and mechanisms documented by central banks, international institutions, and primary research.</p></article>
+        <article><p class="evidence-label">Interpretive implication</p><p>A bounded connection between the measured result, the external record, and an investor decision.</p></article>
+      </div>
+
+      <div class="note">
+        <span class="note-label">Causal boundary</span>
+        Correlation establishes co-movement, not cause. The lab did not identify monetary, fiscal,
+        inflation, growth, liquidity, or geopolitical shocks inside the SPY–TLT series.
+      </div>
+      <nav class="section-nav" aria-label="Regime dossier section 1 navigation">
+        <a href="#stock-bond-regime-dossier">↑ Dossier overview</a>
+        <a href="#dossier-regime-map">Next · The regime map →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-regime-map">
+      <p class="kicker">02 · Economic mechanism</p>
+      <h2 id="dossier-regime-map" class="reference-heading">One documented channel runs through inflation and expected policy<a class="heading-link" href="#dossier-regime-map" aria-label="Permalink to One documented channel runs through inflation and expected policy">#</a></h2>
+      <p><span class="evidence-label evidence-label-inline">Established context</span> The negative
+      stock–bond relationship familiar during much of the 2000s was historically unusual rather
+      than timeless. BIS research reports that the correlation between United States equities and
+      government bonds switched sign in mid-2021; prolonged positive correlations had last appeared
+      in the 1980s and early 1990s.<sup><a href="#dossier-ref-1" id="dossier-cite-1">1</a></sup>
+      ECB evidence similarly documents generally positive correlations from the late 1960s through
+      the late 1990s and predominantly negative correlations during the 2000s.<sup><a href="#dossier-ref-2" id="dossier-cite-2">2</a></sup></p>
+
+      <p><span class="evidence-label evidence-label-inline">Established context</span> One documented
+      mechanism begins with the news that dominates expected policy. When inflation is low
+      and stable, disappointing growth can reduce expected earnings while increasing the likelihood
+      of monetary easing. Stocks fall, yields decline, and bond prices can rise. When high or volatile
+      inflation constrains that response, inflation news can lower nominal bond prices, lift expected
+      rates, and weigh on equities at the same time.</p>
+
+      <p><span class="evidence-label evidence-label-inline">Established context</span> The June 2022 Federal Reserve Monetary Policy Report records that Treasury yields rose amid
+      sustained inflation pressure and expectations of tightening while broad equity prices declined
+      sharply. The report also records rapid increases in the federal-funds target range and the start
+      of balance-sheet reduction.<sup><a href="#dossier-ref-3" id="dossier-cite-3">3</a></sup>
+      A later Federal Reserve Board staff working paper finds that higher-than-expected inflation was associated
+      with lower stock prices, higher nominal risk-free yields, and higher equity risk premia in the
+      studied announcement windows.<sup><a href="#dossier-ref-4" id="dossier-cite-4">4</a></sup></p>
+
+      <div class="table-scroll">
+        <table class="data regime-map">
+          <caption>Scenario map. These are mechanisms to test, not forecasts or guaranteed asset responses.</caption>
+          <thead><tr><th scope="col">Dominant shock</th><th scope="col">Policy constraint</th><th scope="col">Possible stock channel</th><th scope="col">Possible nominal-bond channel</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Disinflationary growth shock</th><td>Room to ease</td><td>Lower expected earnings</td><td>Lower yields can support prices</td></tr>
+            <tr><th scope="row">Inflationary supply or policy shock</th><td>Inflation limits easing</td><td>Higher discount rates and weaker margins</td><td>Higher expected rates reduce prices</td></tr>
+            <tr><th scope="row">Fiscal or term-premium shock</th><td>More duration must be absorbed</td><td>Tighter financial conditions</td><td>Higher risk compensation reduces prices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><span class="evidence-label evidence-label-inline">Established context</span> The Federal
+      Reserve's historical account of the Great Inflation describes interacting monetary, fiscal,
+      energy-price, and institutional forces rather than one isolated cause.<sup><a href="#dossier-ref-6" id="dossier-cite-6">6</a></sup>
+      The IMF separately documents how greater sovereign-bond supply and central-bank balance-sheet
+      runoff can place more duration with price-sensitive investors and pressure term premia. That
+      evidence supports the fiscal and market-capacity scenario above; it does not identify the cause
+      of the observed stock–bond reversal.<sup><a href="#dossier-ref-7" id="dossier-cite-7">7</a></sup></p>
+
+      <p><span class="evidence-label evidence-label-inline">Interpretive implication</span> A bond
+      hedge is partly an institutional outcome. Inflation credibility, the expected central-bank
+      reaction, fiscal financing, debt supply, and market capacity can influence whether sovereign
+      duration behaves as insurance. None of those channels is identified by the rolling correlation
+      alone. They form a disciplined scenario set for testing the allocation.</p>
+      <nav class="section-nav" aria-label="Regime dossier section 2 navigation">
+        <a href="#dossier-observation">← Previous · What changed</a>
+        <a href="#dossier-diversification">Next · Diversification →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-diversification">
+      <p class="kicker">03 · Diversification consequence</p>
+      <h2 id="dossier-diversification" class="reference-heading">Asset labels do not determine the hedge<a class="heading-link" href="#dossier-diversification" aria-label="Permalink to Asset labels do not determine the hedge">#</a></h2>
+      <p><span class="evidence-label evidence-label-inline">Measured here</span> Two separate tests
+      establish two narrow facts. The pairwise SPY–TLT relationship changed sign. In a distinct
+      all-asset stress, moving the full correlation matrix toward one raised annualized portfolio
+      volatility from 11.6% to 15.8%. Neither result establishes when another change will occur.</p>
+      <p><span class="evidence-label evidence-label-inline">Established context</span> BIS evidence
+      associates the recent positive correlation with an environment in which inflation news became
+      more important to expected monetary policy, while growth-news effects weakened. Structural
+      research also connects long-run changes in stock–bond co-movement with changes in the
+      inflation–output relationship and time-varying risk premia.<sup><a href="#dossier-ref-5" id="dossier-cite-5">5</a></sup></p>
+      <p><span class="evidence-label evidence-label-inline">Interpretive implication</span> “Bonds
+      are defensive” is incomplete. Nominal government bonds may hedge disinflationary growth shocks;
+      they can share losses with equities when inflation, expected policy rates, or term premia
+      dominate. A portfolio review should name the shock each defensive sleeve is expected to absorb.</p>
+      <div class="note">
+        <span class="note-label">Decision rule</span>
+        Show risk across several correlation states. Pair the covariance matrix with named macroeconomic
+        scenarios, duration exposure, liquidity assumptions, and an explicit account of which institution
+        is expected to absorb the shock.
+      </div>
+      <p><a href="finding-diversification-regimes.html">Inspect the complete diversification finding →</a></p>
+      <nav class="section-nav" aria-label="Regime dossier section 3 navigation">
+        <a href="#dossier-regime-map">← Previous · The regime map</a>
+        <a href="#dossier-allocation">Next · Portfolio construction →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-allocation">
+      <p class="kicker">04 · Portfolio construction</p>
+      <h2 id="dossier-allocation" class="reference-heading">Fitted relationships were carried into a different observed environment<a class="heading-link" href="#dossier-allocation" aria-label="Permalink to Fitted relationships were carried into a different observed environment">#</a></h2>
+      <p><span class="evidence-label evidence-label-inline">Measured here</span> Maximum-Sharpe
+      optimization fell from about 1.12 in the 2015–2021 fit period to 0.44 in the sealed 2022–2026
+      evaluation. Risk parity and hierarchical risk parity delivered a more stable realized risk
+      shape but did not establish a reliable return advantage.</p>
+      <p><span class="evidence-label evidence-label-inline">Established context</span> The fit and
+      evaluation windows straddle a documented change in stock–bond correlation and monetary
+      conditions. That chronology matters because every estimated mean and covariance summarizes
+      the sample that produced it.</p>
+      <p><span class="evidence-label evidence-label-inline">Interpretive implication</span> Precise
+      weights implicitly assume that fitted returns and covariances remain useful for the next
+      decision. Here, relationships measured in one observed environment were applied in another;
+      the optimizer itself did not estimate or forecast a policy regime.</p>
+      <div class="note">
+        <span class="note-label">Causal boundary</span>
+        The experiment did not identify a regime change as the cause of the performance ranking. It
+        cannot attribute the Sharpe decline to stock–bond correlation alone; estimation error,
+        concentration, asset selection, and the realized equity path also affected the ranking.
+      </div>
+      <p><a href="finding-portfolio-estimation.html">Inspect the portfolio-estimation finding</a> ·
+      <a href="portfolio.html">Explore allocation sensitivity</a> ·
+      <a href="research-log.html#portfolio-construction">Audit the investigation</a></p>
+      <nav class="section-nav" aria-label="Regime dossier section 4 navigation">
+        <a href="#dossier-diversification">← Previous · Diversification</a>
+        <a href="#dossier-risk">Next · Risk calibration →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-risk">
+      <p class="kicker">05 · Risk-model calibration</p>
+      <h2 id="dossier-risk" class="reference-heading">Exception clusters demand a regime review, not a convenient story<a class="heading-link" href="#dossier-risk" aria-label="Permalink to Exception clusters demand a regime review, not a convenient story">#</a></h2>
+      <p><span class="evidence-label evidence-label-inline">Measured here</span> The rolling
+      historical 95% VaR model produced 135 breaches against 107 expected across 2,140 forecasts.
+      Coverage, independence, and conditional-coverage tests all rejected calibration. The exceptions
+      were both too frequent and clustered. The 500-observation reference window changes only as new
+      returns enter it.</p>
+      <p><span class="evidence-label evidence-label-inline">Established context</span> The sample
+      contains a period in which inflation, policy rates, Treasury yields, equity valuations, and
+      cross-asset correlation changed together.</p>
+      <p><span class="evidence-label evidence-label-inline">Interpretive implication</span> A breach
+      cluster should trigger a review of the assumed return process, covariance structure, volatility
+      state, and missing scenarios. Increasing the latest risk number without diagnosing the forecast
+      process leaves the failure mechanism unresolved.</p>
+      <div class="note">
+        <span class="note-label">Causal boundary</span>
+        The backtests identify frequency error and dependence among exceptions; they do not reveal
+        which return process changed. They also do not identify
+        inflation, policy, correlation reversal, or any other macro factor as the cause. Other windows,
+        weighting schemes, and conditional models require their own validation.
+      </div>
+      <p><a href="finding-var-backtest.html">Inspect the VaR finding</a> ·
+      <a href="risk.html">Explore the risk dashboard</a> ·
+      <a href="research-log.html#market-risk">Audit the investigation</a></p>
+      <nav class="section-nav" aria-label="Regime dossier section 5 navigation">
+        <a href="#dossier-allocation">← Previous · Portfolio construction</a>
+        <a href="#dossier-limits">Next · Limits and monitoring →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-limits">
+      <p class="kicker">06 · Limits and monitoring</p>
+      <h2 id="dossier-limits" class="reference-heading">A regime map disciplines questions; it does not predict the next state<a class="heading-link" href="#dossier-limits" aria-label="Permalink to A regime map disciplines questions">#</a></h2>
+      <p>The dossier does not estimate a structural macroeconomic model, identify shocks, or
+      decompose returns into inflation, growth, policy, cash-flow, liquidity, and term-premium
+      components. The external literature supplies credible mechanisms, not a unique explanation
+      for the lab's observations.</p>
+
+      <div class="table-scroll">
+        <table class="data regime-monitor-table">
+          <caption>Monitoring map. Every proxy is incomplete and should be interpreted with competing explanations.</caption>
+          <thead><tr><th scope="col">State</th><th scope="col">Possible observations</th><th scope="col">Interpretation risk</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Inflation</th><td>Level, surprises, dispersion, and persistence</td><td>A level is not the same as a shock or expectation.</td></tr>
+            <tr><th scope="row">Policy</th><td>Target path, real yields, balance-sheet direction</td><td>Market prices mix policy expectations with risk premia.</td></tr>
+            <tr><th scope="row">Correlation</th><td>Several return frequencies and rolling windows</td><td>Overlapping windows are backward-looking and dependent.</td></tr>
+            <tr><th scope="row">Fiscal and market capacity</th><td>Debt supply, term premium, liquidity, intermediary balance sheets</td><td>High debt alone does not establish fiscal dominance.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="refs">
+        <li>Correlation depends on return frequency, bond duration, total-return construction, and window length.</li>
+        <li>Inflation levels, surprises, uncertainty, expectations, and inflation-risk compensation are different variables.</li>
+        <li>Breakeven inflation also contains risk and liquidity premia; it is not a pure expectation.</li>
+        <li>Historical analogies should use data available at the time rather than revised series alone.</li>
+        <li>Portfolio risk depends on weights and volatilities as well as correlation.</li>
+        <li>Political and institutional narratives require explicit alternatives and cannot substitute for identification.</li>
+      </ul>
+
+      <p>A new empirical investigation would require a declared regime classifier, longer
+      duration-consistent total-return histories, several defensible windows, real-time macroeconomic
+      vintages, an uncertainty treatment for overlapping estimates, and a falsification criterion
+      specified before comparison. Until then, the defensible output is a scenario framework—not a
+      probability assigned to the next regime.</p>
+      <nav class="section-nav" aria-label="Regime dossier section 6 navigation">
+        <a href="#dossier-risk">← Previous · Risk calibration</a>
+        <a href="#dossier-sources">Next · Sources →</a>
+      </nav>
+    </section>
+
+    <section class="section" aria-labelledby="dossier-sources">
+      <p class="kicker">07 · Sources and reproduction</p>
+      <h2 id="dossier-sources" class="reference-heading">Evidence behind the synthesis<a class="heading-link" href="#dossier-sources" aria-label="Permalink to Evidence behind the synthesis">#</a></h2>
+      <ol class="bibliography">
+        <li id="dossier-ref-1">Lombardi, M. J., and V. Sushko (2023), “The Correlation of Equity and Bond Returns,” <i>BIS Quarterly Review</i>, December. <a href="https://www.bis.org/publ/qtrpdf/r_qt2312v.htm">BIS research box</a> <a href="#dossier-cite-1" aria-label="Return to citation 1">↩</a></li>
+        <li id="dossier-ref-2">Mosk, B., L. Pangallo, and S. M. Zema (2022), “Cross-asset correlations in a more inflationary environment and challenges for diversification strategies,” <i>Financial Stability Review</i>, November. <a href="https://www.ecb.europa.eu/press/financial-stability-publications/fsr/focus/2022/html/ecb.fsrbox202211_02~7abb48e333.en.html">ECB analysis</a> <a href="#dossier-cite-2" aria-label="Return to citation 2">↩</a></li>
+        <li id="dossier-ref-3">Board of Governors of the Federal Reserve System (2022), <i>Monetary Policy Report</i>, June, part 1. <a href="https://www.federalreserve.gov/monetarypolicy/2022-06-mpr-part1.htm">Federal Reserve report</a> <a href="#dossier-cite-3" aria-label="Return to citation 3">↩</a></li>
+        <li id="dossier-ref-4">Knox, B., and Y. Timmer (2025), “Stagflationary Stock Returns,” Finance and Economics Discussion Series 2025-056. <a href="https://www.federalreserve.gov/econres/feds/stagflationary-stock-returns.htm">Federal Reserve research page</a> <a href="#dossier-cite-4" aria-label="Return to citation 4">↩</a></li>
+        <li id="dossier-ref-5">Campbell, J. Y., C. Pflueger, and L. M. Viceira (2020), “Macroeconomic Drivers of Bond and Equity Risks,” <i>Journal of Political Economy</i> 128(8), 3148–3185. <a href="https://doi.org/10.1086/707766">doi:10.1086/707766</a> <a href="#dossier-cite-5" aria-label="Return to citation 5">↩</a></li>
+        <li id="dossier-ref-6">Federal Reserve History (2013), “The Great Inflation.” <a href="https://www.federalreservehistory.org/essays/great-inflation">Historical overview</a> <a href="#dossier-cite-6" aria-label="Return to citation 6">↩</a></li>
+        <li id="dossier-ref-7">International Monetary Fund (2025), <i>Global Financial Stability Report</i>, April, chapter 1 on sovereign-bond supply and market functioning. <a href="https://www.imf.org/en/publications/gfsr/issues/2025/04/22/global-financial-stability-report-april-2025">IMF report</a> <a href="#dossier-cite-7" aria-label="Return to citation 7">↩</a></li>
+      </ol>
+
+      <h3>Lab evidence and reproduction</h3>
+      <ul class="refs">
+        <li><a href="finding-diversification-regimes.html">Decision brief: why diversification can disappear when it is needed</a></li>
+        <li><a href="finding-portfolio-estimation.html">Decision brief: why optimal portfolios fail out of sample</a></li>
+        <li><a href="finding-var-backtest.html">Decision brief: when a 95% VaR model fails its own backtest</a></li>
+        <li><a href="research-log.html#portfolio-construction">Research record: portfolio construction</a></li>
+        <li><a href="research-log.html#market-risk">Research record: market risk and correlation stress</a></li>
+        <li><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Executed portfolio notebook at the evidence commit</a></li>
+        <li><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Executed market-risk notebook at the evidence commit</a></li>
+      </ul>
+      <nav class="section-nav" aria-label="Regime dossier section 7 navigation">
+        <a href="#dossier-limits">← Previous · Limits and monitoring</a>
+        <a href="#stock-bond-regime-dossier">↑ Dossier overview</a>
+      </nav>
+    </section>
+
+    <section class="section related-section" aria-labelledby="dossier-related-title">
+      <p class="kicker">Continue through the evidence</p>
+      <h2 id="dossier-related-title">Move from regime context to the tested claim</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-diversification-regimes.html"><span>Diversification</span><strong>How the stock–bond relationship changed</strong><em>Inspect the measured relationship, stress surface, application, and limitations.</em></a>
+        <a class="related-card" href="finding-portfolio-estimation.html"><span>Allocation</span><strong>Why fitted weights degraded</strong><em>See what survived when optimized allocations entered the sealed evaluation window.</em></a>
+        <a class="related-card" href="finding-var-backtest.html"><span>Calibration</span><strong>Why risk breaches clustered</strong><em>Separate forecast frequency error from dependence among exceptions.</em></a>
+        <a class="related-card" href="method.html"><span>Method</span><strong>How context remains separate from evidence</strong><em>Review falsification, uncertainty, provenance, reproduction, and bounded interpretation.</em></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+
+<script src="js/common.js"></script>
+<script src="js/reading.js"></script>
+
+<script src="js/engagement.js"></script>
+</body>
+</html>

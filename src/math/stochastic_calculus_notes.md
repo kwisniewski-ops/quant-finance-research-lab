@@ -1,7 +1,7 @@
 # Stochastic Calculus Notes
 
 Working notes on the mathematics underlying the models in this repository:
-Brownian motion, Itô calculus, the SDEs we simulate, the change of measure
+Brownian motion, Itô calculus, the SDEs implemented in this repository, the change of measure
 that justifies risk-neutral pricing, the Feynman–Kac bridge to PDEs, and the
 discretization schemes used in `src/math/monte_carlo_methods.py` and
 `src/models/`. The aim is to be precise but readable — every result here is
@@ -150,7 +150,7 @@ $$
 Variance is a CIR process; negative $\rho$ produces the equity skew
 (spot down → variance up → left tail fattens). The log-price characteristic
 function is known in closed form, giving semi-analytic European prices by
-Fourier inversion (Heston 1993; we use the numerically stable formulation of
+Fourier inversion (Heston 1993; the implementation uses the numerically stable formulation of
 Albrecher et al. 2007).
 
 **Merton jump-diffusion** (`jump_diffusion.py`):
@@ -194,8 +194,8 @@ $$
 Intuition: $\mathbb{Q}$ reweights scenarios by marginal utility — bad states
 (crashes) get more weight than their real-world frequency, which is exactly
 why implied vol exceeds realized vol on average and why the drift $\mu$
-drops out of every pricing formula in this repo. This is also why our Monte
-Carlo pricers are run with `mu = r`.
+drops out of every pricing formula in this repo. This is also why the Monte
+Carlo pricers run with `mu = r`.
 
 ## 6. Feynman–Kac and the pricing PDE
 

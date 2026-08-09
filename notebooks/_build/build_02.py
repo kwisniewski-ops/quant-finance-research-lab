@@ -9,7 +9,9 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 02 — From Return Forecasts to Risk Budgets: Four Portfolio Constructions on Real Data
 
-**Research question.** *How does portfolio construction change when we move from classical return optimization to uncertainty-aware risk allocation?*
+**Quantitative Markets & Institutions Lab** · portfolio construction notebook
+
+**Research question.** *How does portfolio construction change when moving from classical return optimization to uncertainty-aware risk allocation?*
 
 Markowitz (1952) posed portfolio choice as a mean–variance trade-off: given expected returns $\mu$ and covariance $\Sigma$, choose weights $w$ to maximize the Sharpe ratio
 
@@ -30,7 +32,7 @@ This notebook compares four responses to that problem on a real 15-ETF universe 
 | **Risk parity** | no | yes, not inverted | equalize risk contributions |
 | **HRP** | no | correlations only, never inverted | cluster, then split risk |
 
-We fit everything on 2015–2021 and keep 2022–2026 sealed for out-of-sample judgment.""")
+All four methods are fitted on 2015–2021; the 2022–2026 window remains sealed for out-of-sample judgment.""")
 
 code("""import sys, os, pathlib
 
@@ -68,7 +70,7 @@ md(r"""## 1. The universe and the estimation split
 
 Fifteen liquid ETFs spanning US equity (broad, small-cap, and four style factors), international and emerging equity, three bond sleeves, gold, commodities, and REITs. All statistics below are **annualized from daily data on the in-sample window only** (2015-01 to 2021-12); the out-of-sample window (2022-01 to 2026-07) is not touched until Section 5.
 
-A caveat we will keep repeating: the $\hat\mu$ column of this table is the least trustworthy number in the notebook. Its standard error, shown alongside, is computed as $\hat\sigma/\sqrt{Y}$ with $Y \approx 7$ years — for most equity ETFs the 95% confidence band on the annual mean is roughly $\pm 12$–$16$ percentage points wide.""")
+The $\hat\mu$ column of this table is the least trustworthy number in the notebook. Its standard error, shown alongside, is computed as $\hat\sigma/\sqrt{Y}$ with $Y \approx 7$ years — for most equity ETFs the 95% confidence band on the annual mean is roughly $\pm 12$–$16$ percentage points wide.""")
 
 code("""ins = rets.loc[:"2021-12-31"]
 oos = rets.loc["2022-01-01":]
@@ -137,7 +139,7 @@ ax.legend(fontsize=8, ncol=5)
 plt.tight_layout()
 rc.round(3)""")
 
-md(r"""**Interpretation.** The MVO and robust books derive essentially all of their variance from one or two positions — a single-factor bet wearing a fifteen-asset universe as a costume. Risk parity's bars sit on the $1/N$ line by construction. HRP is not exactly flat (it never promised to be) but spreads variance across clusters rather than names. If a risk committee asked "what are we actually exposed to?", only the right two portfolios have an answer longer than one ticker.
+md(r"""**Interpretation.** The MVO and robust books derive essentially all of their variance from one or two positions — a single-factor bet wearing a fifteen-asset universe as a costume. Risk parity's bars sit on the $1/N$ line by construction. HRP is not exactly flat (it never promised to be) but spreads variance across clusters rather than names. If a risk committee asked "which exposures actually dominate?", only the right two portfolios have an answer longer than one ticker.
 
 ## 4. The efficient frontier, with everyone on the map
 
@@ -153,7 +155,7 @@ plt.tight_layout()""")
 
 md(r"""## 5. Out-of-sample: the sealed envelope
 
-We now apply the four weight vectors — frozen at their 2021-12 values — to daily returns from 2022-01 through 2026-07. This is a deliberately simple protocol (no rebalancing, no transaction costs; notebook 06 does the cost-aware version) so that the only thing being tested is the *quality of the weights*.
+The four weight vectors — frozen at their 2021-12 values — are now applied to daily returns from 2022-01 through 2026-07. This is a deliberately simple protocol (no rebalancing, no transaction costs; notebook 06 does the cost-aware version) so that the only thing being tested is the *quality of the weights*.
 
 The window is an interesting stress: 2022 delivered a joint equity–bond drawdown that punished exactly the stock/bond diversification that 2015–2021 data recommends, followed by an AI-led mega-cap rally that rewarded concentration in QQQ.""")
 
@@ -185,10 +187,10 @@ Three lessons, none triumphant:
 - **One out-of-sample window is one draw.** A serious study would use rolling-origin evaluation across many windows and report the *distribution* of out-of-sample Sharpes, not a point estimate per method.
 - **Frozen weights favor no one consistently** but are unrealistic; costs, rebalancing, and drift are handled properly in notebook 06.
 - **The universe itself is survivorship-tilted**: these fifteen ETFs exist, are liquid, and were chosen in 2026 — an easy, invisible form of look-ahead.
-- **Covariance was taken raw.** Ledoit–Wolf shrinkage (available in `src.math.numerical_linear_algebra`) would likely improve every $\Sigma$-dependent method; we kept inputs identical across methods to isolate the construction step.
+- **Covariance was taken raw.** Ledoit–Wolf shrinkage (available in `src.math.numerical_linear_algebra`) would likely improve every $\Sigma$-dependent method; inputs were held identical across methods to isolate the construction step.
 - Sharpe differences of ±0.2 over 4.5 years are far inside sampling noise (the SE of a Sharpe estimate over $Y$ years is roughly $\sqrt{(1+\text{SR}^2/2)/Y} \approx 0.5$ here).
 
-Models clarify uncertainty; they do not eliminate it. Here the honest summary is: we know with confidence what risk parity and HRP will *hold* and roughly how they will *behave*; we know with very little confidence which method will post the best Sharpe over the next five years.""")
+Models clarify uncertainty; they do not eliminate it. The evidence supports high confidence about what risk parity and HRP will *hold* and roughly how they will *behave*, but very little confidence about which method will post the best Sharpe over the next five years.""")
 
 nb.cells = cells
 nbf.write(nb, "notebooks/02_portfolio_optimization.ipynb")

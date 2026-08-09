@@ -9,7 +9,7 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 03 — From Black–Scholes to Stochastic Volatility
 
-**Quantitative Markets Research Lab** · flagship derivatives notebook
+**Quantitative Markets & Institutions Lab** · flagship derivatives notebook
 
 Black–Scholes (1973) is one of the most successful wrong models ever built. It is wrong in ways that are visible in ten lines of data analysis, and successful because everything that came after it — Heston, SABR, local vol, rough vol — is best understood as a patch written in its language. This notebook walks that arc deliberately:
 
@@ -61,16 +61,16 @@ from src.data.market_data_loader import load_prices, to_returns""")
 
 code("""# Price a 1-year at-the-money call under Black-Scholes.
 S0, r = 100.0, 0.03
-sigma_bs = 0.20     # the single number the model asks us to know
+sigma_bs = 0.20     # the model's sole volatility input
 c_atm = bs_price(S0, 100.0, 1.0, r, sigma_bs)
 print(f"BS 1y ATM call, sigma = {sigma_bs:.0%}:  {c_atm:.4f}")
 print(f"  -> roughly S0 * 0.4 * sigma * sqrt(T) = {S0 * 0.4 * sigma_bs:.2f}  (the trader's approximation)")""")
 
-md(r"""One input carries all the risk: $\sigma$. The model does not merely require us to estimate it; it requires it to *be a constant of nature*. Let us check.
+md(r"""One input carries all the risk: $\sigma$. The model does not merely require an estimate; it requires volatility to *be a constant of nature*. This premise can be tested directly.
 
 ## 2. What eleven years of SPY actually look like
 
-We use the cached SPY history (2015-01 to 2026-07, ~2,900 daily observations) and test the two Gaussian-GBM fingerprints:
+The analysis uses the cached SPY history (2015-01 to 2026-07, ~2,900 daily observations) to test the two Gaussian-GBM fingerprints:
 
 - **Constant volatility** implies the rolling realized vol is a noisy but flat line, and that squared or absolute returns have no autocorrelation.
 - **Gaussian returns** imply skewness $\approx 0$ and excess kurtosis $\approx 0$, with the largest daily move in ~11 years around $4$–$4.5$ standard deviations.""")
@@ -269,7 +269,7 @@ md(r"""**Interpretation.** In the left panel, sweeping $\rho$ from $-0.8$ to $+0
 
 The arc of this notebook is worth restating as a chain of admissions:
 
-- **Black–Scholes assumes one volatility.** SPY's realized vol ranged from 3% to 93% in our sample, with clustering visible fifty trading days out, and an 11σ day where the model allows essentially none.
+- **Black–Scholes assumes one volatility.** SPY's realized vol ranged from 3% to 93% in the analyzed sample, with clustering visible fifty trading days out, and an 11σ day where the model allows essentially none.
 - **Heston repairs this** — stochastic, mean-reverting, correlated variance reproduces the skew, the clustering, and the fat tails with five parameters. But look at what it assumes in turn: $\kappa, \theta, \xi, \rho$ are *constants*. Heston commits, one level up, exactly the sin it corrects in Black–Scholes. In real markets these "constants" are recalibrated daily, which is the market's way of saying the model is wrong but usefully parameterized.
 - **SABR is not a truth claim at all** — practitioners use it as a smooth, arbitrage-aware *interpolator* of the smile, recalibrated per expiry. Its parameters are a coordinate system for quotes, not physics.
 

@@ -1,4 +1,4 @@
-# API Contract — Quantitative Markets Research Lab
+# API Contract — Quantitative Markets & Institutions Lab
 
 Internal specification. Every module implements these exact signatures so notebooks,
 tests, and the website data-export scripts interlock. Style: NumPy docstrings, full

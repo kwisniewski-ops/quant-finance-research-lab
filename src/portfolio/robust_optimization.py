@@ -6,8 +6,8 @@ Two guards against estimation error in expected returns:
   only known to lie in the box :math:`[\\mu_i - u_i, \\mu_i + u_i]`.
   The adversary's optimal choice against weights :math:`w` is
   :math:`\\mu_i - u_i \\, \\mathrm{sign}(w_i)`, so the worst-case
-  portfolio return is :math:`w^\\top \\mu - u^\\top |w|` and we
-  maximize the worst-case Sharpe ratio.
+  portfolio return is :math:`w^\\top \\mu - u^\\top |w|`; the optimizer
+  maximizes the worst-case Sharpe ratio.
 
 * **Michaud resampled frontier** — the frontier is re-estimated on
   many simulated return histories drawn from

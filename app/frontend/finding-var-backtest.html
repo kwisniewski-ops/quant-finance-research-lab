@@ -5,41 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Historical VaR Backtest: Why Breaches Clustered</title>
 <meta name="description" content="A rolling 95% historical VaR model recorded 135 breaches versus 107 expected, with statistically significant excess frequency and clustering. Read the decision brief.">
-<link rel="canonical" href="https://kylewisniewski.com/lab/finding-var-backtest.html">
+<link rel="canonical" href="https://www.kylewisniewski.com/lab/finding-var-backtest.html">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
 <meta property="og:title" content="Historical VaR Backtest: Why Breaches Clustered">
 <meta property="og:description" content="The 95% VaR model recorded 135 breaches versus 107 expected—and rejected both coverage and independence.">
-<meta property="og:url" content="https://kylewisniewski.com/lab/finding-var-backtest.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-var-backtest.html">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A value-at-risk breach timeline showing 135 observed exceptions against 107 expected.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Historical VaR Backtest: Why Breaches Clustered">
 <meta name="twitter:description" content="The 95% VaR model recorded 135 breaches versus 107 expected—and rejected both coverage and independence.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="A value-at-risk breach timeline showing 135 observed exceptions against 107 expected.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Historical VaR Backtest: Why Breaches Clustered",
   "description": "A decision brief on the rejected coverage and independence of a rolling 500-observation historical 95% VaR forecast.",
-  "url": "https://kylewisniewski.com/lab/finding-var-backtest.html",
-  "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
+  "url": "https://www.kylewisniewski.com/lab/finding-var-backtest.html",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
   "datePublished": "2026-08-08",
-  "dateModified": "2026-08-08",
-  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
-  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
-  "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-var-backtest.html",
+  "dateModified": "2026-08-09",
+  "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
+  "mainEntityOfPage": "https://www.kylewisniewski.com/lab/finding-var-backtest.html",
   "about": ["historical value at risk", "Kupiec test", "Christoffersen test", "model calibration"],
   "proficiencyLevel": "Intermediate"
 }
 </script>
 <link rel="stylesheet" href="css/main.css">
-<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,20 +48,20 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Research Lab",
-      "item": "https://kylewisniewski.com/lab"
+      "name": "Quantitative Markets & Institutions Lab",
+      "item": "https://www.kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Questions",
-      "item": "https://kylewisniewski.com/lab/findings.html"
+      "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "When a 95% VaR model fails its own backtest",
-      "item": "https://kylewisniewski.com/lab/finding-var-backtest.html"
+      "item": "https://www.kylewisniewski.com/lab/finding-var-backtest.html"
     }
   ]
 }
@@ -74,7 +74,7 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
     <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
@@ -108,7 +108,7 @@
         recorded 135 breaches versus 107 expected: a 6.31% breach rate. Kupiec coverage and
         Christoffersen independence and conditional-coverage tests all rejected calibration at the
         5% level. The misses were too frequent and clustered.</p>
-        <p><small>Published 8 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
+        <p><small>Published 8 August 2026 · Brief revised 9 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
       </section>
 
       <dl class="proof-strip ledger-summary" aria-label="Backtest evidence">
@@ -185,9 +185,21 @@
         </div>
       </section>
 
+      <aside class="regime-lens" aria-labelledby="regime-lens-var">
+        <p class="kicker">Regime lens · Forecast calibration</p>
+        <h2 id="regime-lens-var">Clustered breaches establish calibration failure, not its cause</h2>
+        <dl class="regime-lens__evidence">
+          <div><dt>Measured here</dt><dd>The rolling historical 95% VaR model produced 135 breaches against 107 expected across 2,140 forecasts. Coverage, independence, and conditional-coverage tests all rejected calibration. Its 500-observation window changes only as new returns enter it.</dd></div>
+          <div><dt>Established context</dt><dd>The sample contains a period in which inflation, policy rates, Treasury yields, equity valuations, and cross-asset correlation changed together.</dd></div>
+          <div><dt>Interpretive implication</dt><dd>An exception cluster should trigger a review of the return distribution, dependence structure, volatility process, and scenarios outside the window. Regime change is one possible explanation, not a state measured by the backtest.</dd></div>
+        </dl>
+        <p class="regime-lens__boundary">Causal boundary: the backtests identify frequency error and dependence among exceptions. They do not identify inflation, monetary policy, correlation reversal, or another macro factor as the cause.</p>
+        <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-risk" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:risk">Examine the calibration regime <span aria-hidden="true">→</span></a>
+      </aside>
+
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
-        <h2 id="related">The regime risk behind the exception cluster</h2>
+        <h2 id="related">Questions raised by the exception cluster</h2>
         <div class="related-grid">
           <a href="finding-diversification-regimes.html"><span>Correlation stress</span><strong>Why diversification can disappear</strong><em>See how a sign change in stock–bond correlation alters the portfolio's hidden assumption.</em></a>
           <a href="finding-volatility-smile.html"><span>Distribution risk</span><strong>Why Gaussian fingerprints fail</strong><em>Observed tails and volatility clustering explain why a stationary loss history can be fragile.</em></a>
@@ -198,7 +210,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

@@ -1,5 +1,5 @@
 /* ============================================================
-   Quantitative Markets Research Lab — shared utilities
+   Quantitative Markets & Institutions Lab — shared utilities
    Seeded PRNG, normal variates, normal CDF (erf-based),
    Black-Scholes core, Plotly theme helpers.
    ============================================================ */
