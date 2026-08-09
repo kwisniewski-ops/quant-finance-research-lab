@@ -23,7 +23,7 @@ def section_for(page: Path) -> str | None:
     name = page.name
     if name == "index.html":
         return "Start"
-    if name == "findings.html" or name.startswith("finding-") or name in {"case-study.html", "stock-bond-regime-dossier.html"}:
+    if name == "findings.html" or name.startswith("finding-") or name in {"case-study.html", "stock-bond-regime-dossier.html", "regime-atlas.html"}:
         return "Questions"
     if name in {"tools.html", "asset-pricing.html", "portfolio.html", "risk.html", "simulations.html", "factors.html"}:
         return "Models"
@@ -63,7 +63,7 @@ def header(active: str | None) -> str:
 FOOTER = (
     '<footer class="site-footer"><div class="wrap">'
     f'<span>{BRAND_NAME_HTML} · 2026</span>'
-    '<span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · '
+    '<span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · '
     '<a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · '
     '<a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · '
     '<a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · '

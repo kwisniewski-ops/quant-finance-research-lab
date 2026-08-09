@@ -1,10 +1,11 @@
 # Limitations
 
-This is the honest page. Everything in this repository works as specified — 201
-tests pass, four pricing methods agree to fractions of a cent, the backtester
-provably cannot peek — and none of that makes the outputs *true*. Below are the
-limitations that matter, stated specifically enough to be checked, with pointers to
-where the notebooks demonstrate them on real data.
+This is the honest page. Everything in this repository works as specified — 226
+tests pass, including 204 quantitative anchors; four pricing methods agree to
+fractions of a cent; the backtester provably cannot peek — and none of that makes
+the outputs *true*. Below are the limitations that matter, stated specifically
+enough to be checked, with pointers to where the notebooks demonstrate them on real
+data.
 
 **This is research tooling for studying quantitative methods. It is not investment
 advice, and nothing in this repository is fit for making investment decisions.**
@@ -33,9 +34,9 @@ Every model here freezes something the world insists on moving:
 - Factor models freeze betas; QQQ's momentum loading swung from **−0.14 to +0.26**
   across rolling windows — it changes *sign* (notebook 05).
 - Portfolio optimizers freeze $\Sigma$; the SPY–TLT correlation moved from an
-  average of **−0.35** (2015–2019) to **+0.37** (2022–23), a regime break that
-  invalidated the design premise of every 60/40-style allocation simultaneously
-  (notebook 06).
+  average of **−0.35** (2015–2019) to **+0.37** (2022–23). That measured change
+  exposes the correlation assumption inside the studied allocation; it does not
+  establish the behavior of every balanced portfolio (notebook 06).
 
 The pattern is recursive: each model fixes the previous model's moving part and
 introduces its own. There is no top to this ladder; there is only knowing which rung
@@ -65,17 +66,17 @@ you observed. High-turnover strategies evaluated with this cost model will look
 better than they are, roughly in proportion to their turnover. The barrier-option
 and hedging discussions similarly ignore that continuous rehedging is a fiction.
 
-## 5. Single-regime calibrations
+## 5. One limited historical sample
 
-Nearly every empirical number in this repository is estimated from 2015–2026: one
-secular-growth decade with two short crashes and one inflation shock, experienced by
-US-listed instruments during a historically unusual mega-cap run. The factor premia,
-the covariance structure, the Heston-like parameter magnitudes, the scenario
-calibrations — all are samples from this one regime. The 2022 stock–bond episode is
-the in-sample proof of what that costs: 2,500 daily observations of negative
-correlation provided zero warning of the sign flip, because all 2,500 came from the
-regime that was about to end. Models fitted here should be expected to fail at the
-next regime boundary, in a direction the fit cannot indicate.
+Nearly every empirical number in this repository is estimated from 2015–2026 using
+US-listed instruments. The sample contains materially different observed market and
+economic environments, including sharp crashes and the 2022–23 stock–bond
+correlation reversal, but the lab has not fitted a formal regime classifier. Factor
+premia, covariance, Heston-like parameter magnitudes, and scenario calibrations are
+therefore estimates from this particular history. Earlier observations did not
+prevent a later correlation sign change. Models fitted here can fail when the data-
+generating process changes, but the sample does not identify the next change, its
+timing, or its direction.
 
 ## 6. Past scenarios do not bound future ones
 
@@ -126,8 +127,8 @@ Before quoting a result, run it through five questions:
 
 1. **What was estimated, and what is its standard error?** If the answer involves a
    mean return, the standard error is probably comparable to the estimate.
-2. **What window produced it, and what regime was that window?** A statistic from
-   2015–2026 is a statistic *about* 2015–2026.
+2. **What window produced it, and what conditions occurred inside that window?** A
+   statistic from 2015–2026 is a statistic *about* 2015–2026.
 3. **Was the out-of-sample period touched more than once?** If a parameter was tuned
    after seeing the evaluation window, the evaluation window is gone.
 4. **What would this number look like under pure noise?** (Sharpe differences of
@@ -141,14 +142,13 @@ all five, and saying so is the job.
 
 ## What this repository is for
 
-Given all of the above, what survives? The *relationships* survive better than the
-*levels*: that MVO concentrates and degrades out-of-sample, that ES exceeds VaR under
-fat tails, that smiles steepen as maturity shortens, that diversification decays
-under correlation stress — these are structural results the notebooks demonstrate
-mechanically, and they replicate across regimes far better than any particular
-Sharpe ratio or VaR number will. Use the library to understand mechanisms, to check
-intuitions against honest arithmetic, and to practice saying precisely what a model
-cannot see.
+Given all of the above, what survives? The narrowest relationships are often more
+defensible than the reported levels: the notebooks mechanically demonstrate how MVO
+can concentrate, how ES exceeds VaR under specified tails, how an illustrative smile
+changes across strikes, and how portfolio volatility rises under correlation stress.
+Those demonstrations do not establish cross-regime replication. Use the library to
+understand mechanisms, to check intuitions against honest arithmetic, and to state
+precisely what a model cannot see.
 
 Models clarify uncertainty; they do not eliminate it. Risk models are lenses, not
 shields. And nothing here is investment advice.

@@ -17,6 +17,7 @@ PUBLIC_PAGES = sorted(
 )
 FINDING_PAGES = sorted(FRONTEND.glob("finding-*.html"))
 DOSSIER = FRONTEND / "stock-bond-regime-dossier.html"
+ATLAS = FRONTEND / "regime-atlas.html"
 BRAND_NAME = "Quantitative Markets & Institutions Lab"
 BRAND_NAME_HTML = "Quantitative Markets &amp; Institutions Lab"
 OLD_BRAND_NAME = "Quantitative Markets Research Lab"
@@ -242,6 +243,205 @@ def test_regime_dossier_is_discoverable_and_returns_to_the_record() -> None:
 
     record = (FRONTEND / "research-log.html").read_text(encoding="utf-8")
     assert record.count("stock-bond-regime-dossier.html") == 2
+
+
+def test_regime_atlas_is_a_bounded_questions_framework() -> None:
+    source = ATLAS.read_text(encoding="utf-8")
+    assert '<link rel="canonical" href="https://www.kylewisniewski.com/lab/regime-atlas.html">' in source
+    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a>' in source
+    assert 'class="depth-nav"' not in source
+    assert ATLAS not in FINDING_PAGES
+
+    schemas = re.findall(
+        r'<script(?: id="[^"]+")? type="application/ld\+json">(.*?)</script>',
+        source,
+        flags=re.DOTALL,
+    )
+    parsed = [json.loads(schema) for schema in schemas]
+    article = next(schema for schema in parsed if schema.get("@type") == "TechArticle")
+    assert article["author"] == {"@id": "https://www.kylewisniewski.com/lab#organization"}
+    assert article["datePublished"] == "2026-08-09"
+    assert article["dateModified"] == "2026-08-09"
+    breadcrumb = next(schema for schema in parsed if schema.get("@type") == "BreadcrumbList")
+    assert [item["name"] for item in breadcrumb["itemListElement"][:2]] == [
+        BRAND_NAME,
+        "Questions",
+    ]
+
+    for phrase in (
+        "does not classify the present",
+        "Scenario, not forecast",
+        "No live data",
+        "Forecast status",
+        "No present-state classification",
+    ):
+        assert phrase in source
+    prohibited = re.compile(r"(?i)\b(?:the )?(?:current|present) regime is\b")
+    assert not prohibited.search(visible_text(source))
+
+
+def test_regime_atlas_progressively_enhances_static_scenarios() -> None:
+    source = ATLAS.read_text(encoding="utf-8")
+    state_controls = re.findall(
+        r'<button[^>]+data-atlas-state="([^"]+)"[^>]+aria-controls="([^"]+)"[^>]+aria-pressed="(?:true|false)"',
+        source,
+    )
+    expected_states = {
+        "unclassified",
+        "weak-build",
+        "strong-build",
+        "weak-ease",
+        "strong-ease",
+    }
+    assert {state for state, _ in state_controls} == expected_states
+    assert len(state_controls) == 5
+    assert len(re.findall(r'<button[^>]+data-atlas-state="[^"]+"[^>]+disabled>', source)) == 5
+
+    for state, controlled_id in state_controls:
+        assert controlled_id == f"atlas-state-{state}"
+        panel = re.search(
+            rf'<section class="atlas-output" id="{re.escape(controlled_id)}" data-atlas-panel="{re.escape(state)}">(.*?)</section>',
+            source,
+            flags=re.DOTALL,
+        )
+        assert panel, state
+        assert "What becomes fragile" in panel.group(1)
+        assert "Evidence to inspect" in panel.group(1)
+
+    assert source.count('<details class="episode-card">') == 6
+    assert source.count("<strong>What this does not establish:</strong>") == 6
+    for label in (
+        "Measured here",
+        "Established context",
+        "Interpretive implication",
+        "Scenario, not forecast",
+        "Open question",
+    ):
+        assert label in source
+
+    for select_id, values in {
+        "atlas-liquidity": {"unclassified", "functioning", "tightening", "impaired", "normalizing"},
+        "atlas-response": {"unclassified", "routine", "constrained", "backstop", "fragmented"},
+    }.items():
+        select = re.search(rf'<select id="{select_id}".*?</select>', source, flags=re.DOTALL)
+        assert select
+        assert select.group(0).split(">", 1)[0].endswith(" disabled")
+        assert set(re.findall(r'<option value="([^"]+)">', select.group(0))) == values
+
+    definitions = re.findall(
+        r'data-atlas-definition="([^"]+)"[^>]*>.*?data-atlas-definition-text>(.*?)</td>',
+        source,
+        flags=re.DOTALL,
+    )
+    assert len(definitions) == 10
+    assert {key for key, _ in definitions} == {
+        "liquidity:unclassified",
+        "liquidity:functioning",
+        "liquidity:tightening",
+        "liquidity:impaired",
+        "liquidity:normalizing",
+        "response:unclassified",
+        "response:routine",
+        "response:constrained",
+        "response:backstop",
+        "response:fragmented",
+    }
+    assert all(visible_text(copy).strip() for _, copy in definitions)
+
+    script_order = [
+        source.index('src="js/common.js"'),
+        source.index('src="js/reading.js"'),
+        source.index('src="js/regime-atlas.js"'),
+        source.index('src="js/engagement.js"'),
+    ]
+    assert script_order == sorted(script_order)
+
+    javascript = (FRONTEND / "js" / "regime-atlas.js").read_text(encoding="utf-8")
+    assert "history.pushState" in javascript
+    assert 'const scenarioHashPrefix = "#scenario-"' in javascript
+    assert 'const liquidity =' not in javascript
+    assert 'const responses =' not in javascript
+    assert "overlayDefinition" in javascript
+    assert "button.disabled = false" in javascript
+    assert "liquiditySelect.disabled = false" in javascript
+    assert "responseSelect.disabled = false" in javascript
+    assert "if (!window.location.hash.startsWith(scenarioHashPrefix)) return;" in javascript
+    assert 'addEventListener("popstate"' in javascript
+    assert "scrollIntoView" not in javascript
+    assert ".focus(" not in javascript
+    for title in (
+        "Activity weakens while inflation pressure builds",
+        "Activity strengthens while inflation pressure builds",
+        "Activity weakens while inflation pressure eases",
+        "Activity strengthens while inflation pressure eases",
+    ):
+        assert title in source
+        assert title not in javascript
+
+    stylesheet = (FRONTEND / "css" / "main.css").read_text(encoding="utf-8")
+    assert '[data-atlas-panel][hidden] { display: none; }' in stylesheet
+
+
+def test_regime_atlas_is_discoverable_across_the_lab() -> None:
+    for page_name in (
+        "index.html",
+        "findings.html",
+        "stock-bond-regime-dossier.html",
+        "about.html",
+        "method.html",
+        "research-log.html",
+    ):
+        source = (FRONTEND / page_name).read_text(encoding="utf-8")
+        assert 'href="regime-atlas.html' in source, page_name
+
+    index = (FRONTEND / "index.html").read_text(encoding="utf-8")
+    findings = (FRONTEND / "findings.html").read_text(encoding="utf-8")
+    for source in (index, findings):
+        assert 'href="regime-atlas.html"' in source
+        assert 'href="stock-bond-regime-dossier.html"' in source
+        assert "Broad map · Historical framework" in source
+        assert "Focused synthesis · Measured evidence" in source
+
+
+def test_regime_frameworks_publish_ledgers_without_inflating_investigations() -> None:
+    atlas = ATLAS.read_text(encoding="utf-8")
+    dossier = DOSSIER.read_text(encoding="utf-8")
+    record = (FRONTEND / "research-log.html").read_text(encoding="utf-8")
+    assert 'class="ledger-record atlas-ledger"' in atlas
+    assert 'class="ledger-record dossier-ledger"' in dossier
+    for field in ("Classification", "Data status", "Forecast status"):
+        assert field in atlas
+    for field in ("Classification", "Data vintage", "Forecast status"):
+        assert field in dossier
+    assert 'id="research-pipeline"' in record
+    assert record.count('class="status status-proposed">Proposed</span>') >= 5
+    assert "Four regime questions define the next empirical program" in record
+    assert "<dt>Investigations</dt><dd>06</dd>" in record
+    assert (ROOT / "docs" / "research_pipeline.md").exists()
+
+
+def test_regime_atlas_has_one_research_feed_entry() -> None:
+    root = ET.parse(FRONTEND / "feed.xml").getroot()
+    namespace = {"atom": "http://www.w3.org/2005/Atom"}
+    atlas_id = "https://www.kylewisniewski.com/lab/regime-atlas.html"
+    matching = [
+        entry
+        for entry in root.findall("atom:entry", namespace)
+        if entry.findtext("atom:id", namespaces=namespace) == atlas_id
+    ]
+    assert len(matching) == 1
+    assert matching[0].findtext("atom:published", namespaces=namespace).startswith("2026-08-09")
+    assert matching[0].findtext("atom:updated", namespaces=namespace).startswith("2026-08-09")
+
+
+def test_measured_periods_are_not_labeled_as_formal_regimes() -> None:
+    index = (FRONTEND / "index.html").read_text(encoding="utf-8")
+    findings = (FRONTEND / "findings.html").read_text(encoding="utf-8")
+    diversification = (FRONTEND / "finding-diversification-regimes.html").read_text(encoding="utf-8")
+    assert "studied regimes" not in index
+    assert "studied regimes" not in findings
+    assert "2022–2023 inflation shock" not in diversification
+    assert "2022–2023 interval" in diversification
 
 
 def test_research_feed_includes_the_regime_dossier_once() -> None:

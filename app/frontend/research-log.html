@@ -102,6 +102,56 @@
       </div>
     </section>
 
+    <section class="section research-pipeline" id="research-pipeline" aria-labelledby="research-pipeline-title">
+      <p class="kicker">Registered before testing</p>
+      <h2 id="research-pipeline-title">Four regime questions define the next empirical program</h2>
+      <p class="lede">Each item is proposed, not supported. The question, baseline, competing
+      explanation, and publication gate are recorded before data selection or model comparison.</p>
+      <div class="tool-card-grid pipeline-grid">
+        <article class="tool-card">
+          <div class="tool-card-meta"><span>Program A · Valuation</span><span class="status status-proposed">Proposed</span></div>
+          <h3>When does discount-rate repricing dominate improving cash flows?</h3>
+          <dl>
+            <div><dt>Candidate evidence</dt><dd>Real-time activity and inflation releases, expectations, real and nominal yields, valuation duration, and dated policy decisions.</dd></div>
+            <div><dt>Baseline</dt><dd>A chronological model using market and yield inputs without regime labels.</dd></div>
+            <div><dt>Competing explanation</dt><dd>Observed valuation changes may reflect risk premia, earnings news, or market concentration rather than the named macro channel.</dd></div>
+            <div><dt>Publication gate</dt><dd>A declared holdout must improve decision-relevant error after uncertainty and multiple comparisons; otherwise the broader claim is rejected.</dd></div>
+          </dl>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span>Program B · Liquidity</span><span class="status status-proposed">Proposed</span></div>
+          <h3>Do liquidity measures explain risk-forecast failures beyond volatility filtering?</h3>
+          <dl>
+            <div><dt>Candidate evidence</dt><dd>Market depth and funding proxies, spreads, financial-stress measures, volatility states, and the existing breach sequence.</dd></div>
+            <div><dt>Baseline</dt><dd>The rejected rolling historical VaR model and a pre-specified volatility-filtered replacement.</dd></div>
+            <div><dt>Competing explanation</dt><dd>Breach clusters may follow volatility persistence or fat tails without an incremental liquidity channel.</dd></div>
+            <div><dt>Publication gate</dt><dd>Coverage and independence must improve on untouched data without relying on one crisis window or a post hoc proxy menu.</dd></div>
+          </dl>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span>Program C · Policy transmission</span><span class="status status-proposed">Proposed</span></div>
+          <h3>Can policy constraints improve forecasts of stock–bond correlation sign?</h3>
+          <dl>
+            <div><dt>Candidate evidence</dt><dd>Inflation and growth surprises, policy expectations, term-premium estimates, debt supply, communication, and duration-consistent total returns.</dd></div>
+            <div><dt>Baseline</dt><dd>Rolling historical correlation with no macroeconomic classifier.</dd></div>
+            <div><dt>Competing explanation</dt><dd>Correlation may move with risk premia, positioning, bond duration, or sampling window even when the proposed policy channel is unchanged.</dd></div>
+            <div><dt>Publication gate</dt><dd>Pre-declared classification must beat the historical baseline out of sample and report uncertainty around every state assignment.</dd></div>
+          </dl>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span>Program D · Institutions &amp; capital flows</span><span class="status status-proposed">Proposed</span></div>
+          <h3>When do institutional constraints alter currency and funding transmission?</h3>
+          <dl>
+            <div><dt>Candidate evidence</dt><dd>Foreign-currency liabilities, maturity structure, reserves, cross-border flows, exchange-rate design, legal authority, and dated program records.</dd></div>
+            <div><dt>Baseline</dt><dd>Country-specific market and balance-sheet variables without a composite institutional score.</dd></div>
+            <div><dt>Competing explanation</dt><dd>External shocks, private leverage, commodity exposure, and global risk appetite can produce similar price and flow outcomes.</dd></div>
+            <div><dt>Publication gate</dt><dd>Country heterogeneity, real-time availability, alternative mechanisms, and falsification criteria must be explicit before any general claim.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <p class="pipeline-links"><a href="regime-atlas.html">Open the scenario framework</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/docs/research_pipeline.md">Read the complete pipeline specification</a></p>
+    </section>
+
     <nav class="ledger-index" aria-label="Research log entries">
       <p class="kicker">Ledger index</p>
       <ol>
@@ -223,7 +273,7 @@
           <div><dt>Method</dt><dd>Six-factor time-series OLS for MTUM, VLUE, QUAL, IWM, USMV, and QQQ with Newey–West HAC(5) intervals; 252-observation rolling QQQ betas; chronological 50/50 frozen-coefficient holdout; Holm and Benjamini–Hochberg correction across six alpha tests.</dd></div>
           <div><dt>Falsification criterion</dt><dd>An advertised factor loading is absent, incorrectly signed, or economically negligible; or alpha remains broad, stable, and statistically credible after exposure and multiple-testing considerations.</dd></div>
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The advertised exposures were recovered. QQQ's +3.29% annualized alpha has a raw HAC p-value of 0.024, but its Benjamini–Hochberg q-value is 0.147; no alpha survives the 5% false-discovery threshold. Frozen-coefficient holdout R² decays by 0.4 to 29.6 percentage points across ETFs, with USMV showing the largest decay. Confidence intervals and adjusted p-values are published on the factor page.</dd></div>
-          <div><dt>Failure modes</dt><dd>The factor menu defines the alpha left behind; factor portfolios are not costless tradables; eleven years is one regime; the 50/50 split is only one holdout path; HAC lag choice and vendor price adjustments can move inference.</dd></div>
+          <div><dt>Failure modes</dt><dd>The factor menu defines the alpha left behind; factor portfolios are not costless tradables; eleven years is one historical sample; the 50/50 split is only one holdout path; HAC lag choice and vendor price adjustments can move inference.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/05_factor_investing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
           <div><dt>Decision brief</dt><dd><a href="finding-factor-etfs.html">Do factor ETFs deliver their advertised exposures?</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
@@ -274,7 +324,7 @@ jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

@@ -31,7 +31,7 @@ tools, and an auditable validation method:
 | **Data** (`src/data/`) | Cache-first loaders (15-ETF universe 2015→present, Fama–French 5 factors + momentum), data validation with outlier/staleness detection |
 | **Research notebooks** (`notebooks/`) | Six executed notebooks — pricing model cross-validation, optimization under estimation error, the flagship Black-Scholes→Heston case study, Monte Carlo methods, factor regressions on real ETFs, a full market-risk workup |
 | **Documentation** (`docs/`) | [Mathematical foundations](docs/mathematical_foundations.md) · [Model assumptions](docs/model_assumptions.md) · [Research methodology](docs/research_methodology.md) · [Limitations](docs/limitations.md) · [API contract](docs/api_contract.md) |
-| **Website** (`app/frontend/`) | Static research interface: practical finding briefs, interactive option pricer, efficient frontier explorer, stochastic process simulator, risk dashboard, factor research, mathematical notes, validation checklists, and the flagship case study |
+| **Website** (`app/frontend/`) | Static research interface: practical finding briefs, the Markets & Institutions Regime Atlas, the stock–bond regime dossier, interactive models, mathematical notes, validation checklists, and the public research record |
 
 ## Selected findings from the notebooks
 
@@ -57,7 +57,7 @@ tools, and an auditable validation method:
 git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
 cd quant-finance-research-lab
 pip install -e ".[all]"
-pytest            # 220 tests: 204 quantitative + 16 publishing regressions
+pytest            # 226 tests: 204 quantitative + 22 publishing regressions
 ```
 
 Cached market-data snapshots ship with the repo (`data/snapshots/`), so every notebook
@@ -100,7 +100,7 @@ do not bound future ones.
 quant-research-lab/
 ├── src/                  # library code (models, portfolio, risk, backtesting, math, data, visualization)
 ├── notebooks/            # six executed research notebooks + build scripts
-├── tests/                # 220 tests: 204 quantitative anchors + 16 publishing regressions
+├── tests/                # 226 tests: 204 quantitative anchors + 22 publishing regressions
 ├── docs/                 # foundations, assumptions, methodology, limitations, API contract
 ├── app/frontend/         # static research website (GitHub Pages ready)
 └── data/snapshots/       # cached market data for offline reproducibility
