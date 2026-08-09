@@ -9,7 +9,7 @@ description = "Quantitative Markets Research Lab — a reproducible research eng
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Kyle Wisniewski", email = "kywisniewski@gmail.com" }]
+authors = [{ name = "Kyle Wisniewski", email = "hello@kylewisniewski.com" }]
 keywords = [
     "quantitative-finance", "asset-pricing", "portfolio-optimization",
     "risk-management", "monte-carlo", "stochastic-volatility", "factor-models",

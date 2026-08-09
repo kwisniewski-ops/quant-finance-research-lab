@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Portfolio Diversification Disappears Across Regimes</title>
+<meta name="description" content="SPY–TLT rolling correlation moved from −0.35 to +0.37, while a correlation stress raised portfolio volatility from 11.6% to 15.8%. See the implications and limits.">
+<link rel="canonical" href="https://kylewisniewski.com/lab/finding-diversification-regimes.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:title" content="Why Portfolio Diversification Disappears Across Regimes">
+<meta property="og:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
+<meta property="og:url" content="https://kylewisniewski.com/lab/finding-diversification-regimes.html">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stock–bond correlation crossing from negative to positive as portfolio volatility rises under stress.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Portfolio Diversification Disappears Across Regimes">
+<meta name="twitter:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta name="twitter:image:alt" content="Stock–bond correlation crossing from negative to positive as portfolio volatility rises under stress.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Why Portfolio Diversification Disappears Across Regimes",
+  "description": "A decision brief on stock–bond correlation regime change and correlation-stress effects on a diversified portfolio.",
+  "url": "https://kylewisniewski.com/lab/finding-diversification-regimes.html",
+  "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
+  "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-diversification-regimes.html",
+  "about": ["portfolio diversification", "stock bond correlation", "regime risk", "stress testing"],
+  "proficiencyLevel": "Intermediate"
+}
+</script>
+<link rel="stylesheet" href="css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Findings",
+      "item": "https://kylewisniewski.com/lab/findings.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Why diversification can disappear when it is needed",
+      "item": "https://kylewisniewski.com/lab/finding-diversification-regimes.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <div class="wrap">
+    <article>
+      <header class="page-head">
+        <p class="kicker">Decision brief · Regime risk</p>
+        <h1>Why diversification can disappear when it is needed</h1>
+        <p class="lede">Diversification is not a permanent property of asset labels. It is an
+        empirical relationship among returns—and the relationship can change when a common macro
+        factor begins moving assets together.</p>
+      </header>
+
+      <section class="decision-summary" aria-labelledby="bottom-line">
+        <p class="kicker">Bottom line</p>
+        <h2 id="bottom-line">A balanced portfolio's protection depended on a correlation regime that changed sign.</h2>
+        <p>In the frozen sample, 126-day SPY–TLT correlation averaged −0.35 during 2015–2019,
+        reached +0.37 during 2022–2023, and remained positive at +0.31 at the sample end. In a
+        separate static stress, pushing all asset correlations toward one raised the studied
+        60/40-plus-alternatives portfolio's annualized volatility from 11.6% to 15.8%.</p>
+        <p><small>Published 8 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
+      </section>
+
+      <dl class="proof-strip ledger-summary" aria-label="Diversification evidence">
+        <div><dt>SPY–TLT · 2015–19</dt><dd>−0.35</dd></div>
+        <div><dt>SPY–TLT · 2022–23</dt><dd>+0.37 peak</dd></div>
+        <div><dt>Portfolio vol · observed corr.</dt><dd>11.6%</dd></div>
+        <div><dt>Portfolio vol · corr. → 1</dt><dd>15.8%</dd></div>
+      </dl>
+
+      <section class="section decision-grid" aria-label="Audience and decision">
+        <div>
+          <p class="kicker">Who should care</p>
+          <h3>Multi-asset allocators and enterprise risk teams</h3>
+          <p>The finding matters wherever historical correlations determine risk budgets, hedges,
+          capital allocation, retirement glide paths, or the expected protection of a balanced portfolio.</p>
+        </div>
+        <div>
+          <p class="kicker">Decision affected</p>
+          <h3>Whether historical diversification deserves to be treated as insurance</h3>
+          <p>Do not size protection from one estimated covariance matrix alone. Ask what happens if
+          the macro driver changes and historically distinct sleeves begin sharing the same loss factor.</p>
+        </div>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="evidence">
+        <p class="kicker">Evidence</p>
+        <h2 id="evidence">Two views expose the same hidden assumption</h2>
+        <p>The first view is historical. A rolling 126-trading-day correlation between SPY and TLT
+        captured the negative stock–bond relationship of 2015–2019 and its reversal during the
+        2022–2023 inflation shock. The values describe this sample; they do not identify the next regime.</p>
+        <p>The second view is counterfactual. The stress held individual asset volatilities fixed and
+        blended the estimated correlation matrix toward perfect positive correlation, repairing the
+        matrix to remain positive semidefinite. At the observed structure, the strategic portfolio had
+        11.6% annualized volatility. At the perfect-correlation limit, it reached the 15.8% weighted
+        average volatility of its components—about four percentage points of diversification removed.</p>
+        <p>These are complementary lenses. History shows that a load-bearing relationship moved;
+        correlation stress shows the portfolio consequence without claiming when or why the endpoint
+        will occur.</p>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="practice">
+        <p class="kicker">What changes in practice</p>
+        <h2 id="practice">Budget for the failure of relationships, not only assets</h2>
+        <ul class="refs">
+          <li>Show portfolio risk across a range of correlation states instead of one point estimate.</li>
+          <li>Identify which pairwise relationship contributes most to the diversification benefit.</li>
+          <li>Pair covariance-based risk with named macro scenarios that explain why correlations might change.</li>
+          <li>Monitor rolling relationships without treating the latest window as a forecast of the next regime.</li>
+          <li>Describe “defensive” assets conditionally: protection against one shock may share exposure to another.</li>
+        </ul>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="limitations">
+        <p class="kicker">Limitations</p>
+        <h2 id="limitations">A stress surface is not a timing model</h2>
+        <ul class="refs">
+          <li>The SPY–TLT result comes from one historical sample and one 126-day rolling-window choice.</li>
+          <li>The stress preserves individual volatilities while changing correlations; real crises can change both.</li>
+          <li>Blending every correlation toward one is deliberately stylized, not a forecast of a specific crisis.</li>
+          <li>The portfolio is one fixed strategic allocation with monthly rebalancing and liquid ETF proxies.</li>
+          <li>The analysis does not establish that positive stock–bond correlation will persist.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="explore">
+        <p class="kicker">Explore and reproduce</p>
+        <h2 id="explore">Interrogate the portfolio through several non-overlapping lenses</h2>
+        <div class="hero-actions">
+          <a class="primary-action" href="risk.html">Explore the risk dashboard <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="research-log.html#market-risk">Audit the ledger entry <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Open the executed notebook <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="related">
+        <p class="kicker">Related research</p>
+        <h2 id="related">What the regime change does downstream</h2>
+        <div class="related-grid">
+          <a href="finding-portfolio-estimation.html"><span>Portfolio construction</span><strong>Why optimized weights degrade</strong><em>Every construction method embeds an assumption about the regime it will face.</em></a>
+          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Why risk breaches cluster</strong><em>A slowly adapting historical forecast can fail when the return process changes.</em></a>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="professional-cta">
+        <div>
+          <p class="kicker">Professional relevance</p>
+          <h2 id="professional-cta">The practical skill is finding the assumption the dashboard hides.</h2>
+          <p>This work connects empirical monitoring, covariance engineering, mathematically valid
+          stress transformations, portfolio interpretation, and plain-language model limitations.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+
+<script src="js/engagement.js"></script>
+</body>
+</html>

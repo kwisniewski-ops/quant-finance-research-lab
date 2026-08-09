@@ -32,6 +32,7 @@
     document.getElementById("factor-notebook-link").href = p.notebook_url;
 
     var selector = document.getElementById("factor-etf");
+    selector.innerHTML = "";
     data.regressions.forEach(function (result) {
       var option = document.createElement("option");
       option.value = result.ticker;

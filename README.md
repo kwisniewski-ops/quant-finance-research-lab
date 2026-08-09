@@ -11,9 +11,10 @@ market microstructure.
 
 **Models clarify uncertainty; they do not eliminate it.** Every module here ships with
 its assumptions documented, its limitations stated, and tests that anchor it to known
-results. The companion website presents the same research interactively:
-**[lab.kylewisniewski.com](https://lab.kylewisniewski.com/)** (source in
-[`app/frontend/`](app/frontend/), deployed via GitHub Pages — see [DEPLOY.md](DEPLOY.md)).
+results. The companion website turns the research into decision briefs, interactive
+tools, and an auditable validation method:
+**[kylewisniewski.com/lab](https://kylewisniewski.com/lab/)** (source in
+[`app/frontend/`](app/frontend/), integrated into the main site — see [DEPLOY.md](DEPLOY.md)).
 
 ---
 
@@ -29,7 +30,7 @@ results. The companion website presents the same research interactively:
 | **Data** (`src/data/`) | Cache-first loaders (15-ETF universe 2015→present, Fama–French 5 factors + momentum), data validation with outlier/staleness detection |
 | **Research notebooks** (`notebooks/`) | Six executed notebooks — pricing model cross-validation, optimization under estimation error, the flagship Black-Scholes→Heston case study, Monte Carlo methods, factor regressions on real ETFs, a full market-risk workup |
 | **Documentation** (`docs/`) | [Mathematical foundations](docs/mathematical_foundations.md) · [Model assumptions](docs/model_assumptions.md) · [Research methodology](docs/research_methodology.md) · [Limitations](docs/limitations.md) · [API contract](docs/api_contract.md) |
-| **Website** (`app/frontend/`) | Static research interface: interactive option pricer, efficient frontier explorer, stochastic process simulator, risk dashboard, factor research, mathematical notes, and the flagship case study |
+| **Website** (`app/frontend/`) | Static research interface: practical finding briefs, interactive option pricer, efficient frontier explorer, stochastic process simulator, risk dashboard, factor research, mathematical notes, validation checklists, and the flagship case study |
 
 ## Selected findings from the notebooks
 
@@ -55,7 +56,7 @@ results. The companion website presents the same research interactively:
 git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
 cd quant-finance-research-lab
 pip install -e ".[all]"
-pytest            # 201 tests, ~1 minute
+pytest            # 204 tests, ~1 minute
 ```
 
 Cached market-data snapshots ship with the repo (`data/snapshots/`), so every notebook
@@ -98,7 +99,7 @@ do not bound future ones.
 quant-research-lab/
 ├── src/                  # library code (models, portfolio, risk, backtesting, math, data, visualization)
 ├── notebooks/            # six executed research notebooks + build scripts
-├── tests/                # 201 tests: cross-model anchors, no-look-ahead proofs, analytic checks
+├── tests/                # 204 tests: cross-model anchors, no-look-ahead proofs, analytic checks
 ├── docs/                 # foundations, assumptions, methodology, limitations, API contract
 ├── app/frontend/         # static research website (GitHub Pages ready)
 └── data/snapshots/       # cached market data for offline reproducibility
@@ -113,7 +114,7 @@ constitutes a recommendation to buy or sell any security.
 
 **Kyle Wisniewski** — data & AI strategist; graduate study in applied quantitative
 finance and global economic affairs, University of Denver.
-kywisniewski@gmail.com
+[hello@kylewisniewski.com](mailto:hello@kylewisniewski.com)
 
 ## License
 

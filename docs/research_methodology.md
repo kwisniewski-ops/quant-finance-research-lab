@@ -57,7 +57,7 @@ No notebook reaches around the loaders to read CSVs directly.
 
 ## 3. Testing philosophy: cross-model anchors
 
-The test suite (201 tests) leans on a principle that suits quantitative libraries
+The test suite (204 tests) leans on a principle that suits quantitative libraries
 unusually well: **independent implementations of the same mathematical object must
 agree**, so correctness can be tested without trusting any single implementation.
 The anchors, from `docs/api_contract.md`:
@@ -123,7 +123,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
 # 1. verify the library against its contract
-pytest                                    # 201 tests, seeds fixed, ~<1 min
+pytest                                    # 204 tests, seeds fixed, ~<1 min
 
 # 2. re-execute the notebooks against the cached snapshots
 pip install nbclient nbformat ipykernel

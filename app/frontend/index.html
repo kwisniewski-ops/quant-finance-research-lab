@@ -3,23 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quantitative Markets Research Lab</title>
-<meta name="description" content="An open-source research project exploring the mathematical structure of financial markets.">
+<title>Quantitative Markets Research Lab — Evidence for Decisions Under Uncertainty</title>
+<meta name="description" content="Evidence-led quantitative finance research on portfolio model risk, VaR backtesting, factor exposures, stochastic volatility, and simulation—with interactive tools, reproducible code, and explicit limitations.">
 <link rel="canonical" href="https://kylewisniewski.com/lab">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets Research Lab">
-<meta property="og:title" content="Quantitative Markets Research Lab">
-<meta property="og:description" content="Open, reproducible research on pricing, factors, portfolio construction, simulation, and market risk.">
+<meta property="og:title" content="I test the models people use to make decisions under uncertainty">
+<meta property="og:description" content="See the findings, explore the models, and audit the evidence behind an open quantitative finance research program.">
 <meta property="og:url" content="https://kylewisniewski.com/lab">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Quantitative Markets Research Lab: evidence for decisions under uncertainty.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Quantitative Markets Research Lab">
-<meta name="twitter:description" content="Open, reproducible research on pricing, factors, portfolio construction, simulation, and market risk.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:title" content="I test the models people use to make decisions under uncertainty">
+<meta name="twitter:description" content="Findings, interactive models, and reproducible evidence from the Quantitative Markets Research Lab.">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta name="twitter:image:alt" content="Quantitative Markets Research Lab: evidence for decisions under uncertainty.">
 <link rel="stylesheet" href="css/main.css">
 <script type="application/ld+json">
 {
@@ -30,19 +31,15 @@
       "@id": "https://kylewisniewski.com/#person",
       "name": "Kyle Wisniewski",
       "url": "https://kylewisniewski.com",
-      "sameAs": [
-        "https://kylewisniewski.com",
-        "https://www.linkedin.com/in/kylewwisniewski/",
-        "https://github.com/kwisniewski-ops"
-      ]
+      "sameAs": ["https://github.com/kwisniewski-ops"]
     },
     {
       "@type": "CreativeWork",
       "@id": "https://kylewisniewski.com/lab#lab",
       "name": "Quantitative Markets Research Lab",
       "url": "https://kylewisniewski.com/lab",
-      "description": "An open research program on the mathematical structure of financial markets.",
-      "dateModified": "2026-08-03",
+      "description": "An evidence-led research program testing quantitative finance models against data, numerical theory, and explicit falsification criteria.",
+      "dateModified": "2026-08-08",
       "author": {"@id": "https://kylewisniewski.com/#person"},
       "license": "https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/LICENSE"
     },
@@ -58,6 +55,7 @@
   ]
 }
 </script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
 </head>
 <body>
 
@@ -65,162 +63,167 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
-  <section class="hero">
+  <section class="hero hero-reframed">
     <div class="wrap">
-      <p class="kicker">An open research program</p>
-      <h1>The mathematical structure of financial markets, examined in public.</h1>
-      <p class="lede">Quantitative Markets Research Lab is a quantitative finance research project
-      exploring the mathematical structure of financial markets through asset pricing, portfolio
-      optimization, derivatives modeling, risk analytics, and stochastic simulation. The project
-      combines applied quantitative finance, advanced mathematics, and software engineering to
-      examine how models can clarify uncertainty without pretending to eliminate it.</p>
+      <p class="kicker">Quantitative research, engineered for scrutiny</p>
+      <h1>I test the models people use to make decisions under uncertainty.</h1>
+      <p class="lede">This public research lab combines quantitative modeling, data engineering,
+      software validation, and interactive communication to show what financial models explain,
+      where they fail, and what changes in practice.</p>
       <div class="hero-actions" aria-label="Start exploring">
-        <a class="primary-action" href="asset-pricing.html">Run your first experiment <span aria-hidden="true">→</span></a>
-        <a class="secondary-action" href="case-study.html">Read the flagship study <span aria-hidden="true">→</span></a>
+        <a class="primary-action" href="findings.html">See the strongest findings <span aria-hidden="true">→</span></a>
+        <a class="secondary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">Evaluate how I work <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
 
   <div class="wrap">
-    <section class="arrival-grid" aria-label="Current lab activity">
-      <article class="arrival-item arrival-new">
-        <p class="kicker">What’s new · 3 Aug 2026</p>
-        <h2>Illustrations replaced by falsifiable estimates</h2>
-        <p>The factor and risk modules now publish frozen datasets, confidence intervals, holdout
-        results, multiplicity corrections, and coverage tests.</p>
-        <a href="research-log.html">Read the revision record →</a>
-      </article>
-      <article class="arrival-item">
-        <p class="kicker">Active research</p>
-        <h2>Can filtered risk forecasts repair breach clustering?</h2>
-        <p>The 500-day historical VaR baseline fails coverage and independence. The next test is
-        specified before a replacement model is compared.</p>
-        <a href="risk.html#coverage-title">Inspect the rejection →</a>
-      </article>
-      <article class="arrival-item">
-        <p class="kicker">Recently revised</p>
-        <h2>ETF factor exposures</h2>
-        <p>QQQ’s raw alpha appears significant alone, but does not survive Benjamini–Hochberg
-        correction across six simultaneous tests.</p>
-        <a href="factors.html#multiplicity-title">See the evidence →</a>
-      </article>
+    <dl class="proof-strip" aria-label="Research program evidence">
+      <div><dt>Theory-anchored tests</dt><dd>204</dd></div>
+      <div><dt>Executed investigations</dt><dd>06</dd></div>
+      <div><dt>Market-data universe</dt><dd>15 ETFs</dd></div>
+      <div><dt>Research access</dt><dd>Open source</dd></div>
+    </dl>
+
+    <section class="section" aria-labelledby="start-result">
+      <p class="kicker">Start with a result</p>
+      <div class="section-heading-row">
+        <h2 id="start-result">Three findings with decisions attached</h2>
+        <a class="text-link" href="findings.html">View all findings →</a>
+      </div>
+      <div class="finding-card-grid featured-findings">
+        <a class="finding-card" href="finding-portfolio-estimation.html">
+          <span class="finding-status status status-revised">Revised</span>
+          <p class="finding-question">Portfolio construction</p>
+          <h3>Why “optimal” portfolios fail out of sample</h3>
+          <p class="finding-metric">Sharpe 1.12 → 0.44</p>
+          <p>Estimated returns created a precise in-sample answer that did not survive forward data.
+          Risk-based portfolios delivered a more stable risk shape, not guaranteed excess return.</p>
+          <span class="finding-link">Read the evidence →</span>
+        </a>
+        <a class="finding-card" href="finding-var-backtest.html">
+          <span class="finding-status status status-rejected">Rejected</span>
+          <p class="finding-question">Model validation</p>
+          <h3>When a 95% VaR model fails its own backtest</h3>
+          <p class="finding-metric">135 breaches · 107 expected</p>
+          <p>The model missed too often and its failures clustered. A familiar confidence label did
+          not make the risk forecast calibrated.</p>
+          <span class="finding-link">Read the evidence →</span>
+        </a>
+        <a class="finding-card" href="finding-diversification-regimes.html">
+          <span class="finding-status status status-revised">Regime shift</span>
+          <p class="finding-question">Diversification</p>
+          <h3>When diversification stops diversifying</h3>
+          <p class="finding-metric">SPY–TLT −0.35 → +0.37</p>
+          <p>Correlation changed sign across regimes. Portfolio stress tests must challenge
+          relationships between assets, not only shock each asset’s volatility.</p>
+          <span class="finding-link">Read the evidence →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="choose-path">
+      <p class="kicker">Choose your depth</p>
+      <h2 id="choose-path">Understand the consequence in two minutes. Reproduce it in an afternoon.</h2>
+      <div class="route-grid">
+        <a class="route-card" href="findings.html">
+          <span class="route-no">01</span>
+          <h3>Understand a finding</h3>
+          <p>Begin with the result, the decision it affects, the evidence, and the boundary of the claim.</p>
+          <span>Browse decision briefs →</span>
+        </a>
+        <a class="route-card" href="tools.html">
+          <span class="route-no">02</span>
+          <h3>Explore a scenario</h3>
+          <p>Change assumptions in pricing, portfolio, risk, factor, and stochastic-process tools.</p>
+          <span>Use the tools →</span>
+        </a>
+        <a class="route-card" href="method.html">
+          <span class="route-no">03</span>
+          <h3>Audit the method</h3>
+          <p>Inspect the validation protocol, reusable checklists, tests, assumptions, and source code.</p>
+          <span>Follow the evidence →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="capability-map">
+      <p class="kicker">Capabilities demonstrated</p>
+      <div class="section-heading-row">
+        <h2 id="capability-map">One research system, six transferable disciplines</h2>
+        <a class="text-link" href="method.html#capabilities">Inspect the method →</a>
+      </div>
+      <div class="capability-grid">
+        <article><h3>Research design</h3><p>Predeclared claims, falsification criteria, chronological holdouts, and a public revision ledger.</p></article>
+        <article><h3>Data engineering</h3><p>Cache-first loaders, validation rules, frozen snapshots, hashes, and explicit data vintages.</p></article>
+        <article><h3>Quantitative modeling</h3><p>Pricing, stochastic volatility, portfolio construction, factor attribution, simulation, and tail risk.</p></article>
+        <article><h3>Software engineering</h3><p>Cross-model anchors, convergence tests, numerical error budgets, and verified no-look-ahead behavior.</p></article>
+        <article><h3>Model governance</h3><p>Coverage testing, uncertainty intervals, multiplicity correction, limitations, and failure reporting.</p></article>
+        <article><h3>Analytical communication</h3><p>Interactive instruments, decision briefs, accessible tables, technical notes, and reproducible conclusions.</p></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="active-program">
+      <p class="kicker">The live program</p>
+      <h2 id="active-program">Research does not end when the chart renders</h2>
+      <div class="arrival-grid">
+        <article class="arrival-item arrival-new">
+          <p class="kicker">Current question</p>
+          <h3>Can filtered risk forecasts repair breach clustering?</h3>
+          <p>The historical baseline failed coverage and independence. The replacement test is specified before comparison.</p>
+          <a href="risk.html#coverage-title">Inspect the rejection →</a>
+        </article>
+        <article class="arrival-item">
+          <p class="kicker">Recently revised</p>
+          <h3>Do factor ETFs own what they promise?</h3>
+          <p>Advertised exposures appear, but no tested alpha survives the 5% false-discovery threshold.</p>
+          <a href="finding-factor-etfs.html">Read the decision brief →</a>
+        </article>
+        <article class="arrival-item">
+          <p class="kicker">Public record</p>
+          <h3>Failures remain visible</h3>
+          <p>Each investigation records its question, evidence, uncertainty, failure modes, and exact reproduction artifact.</p>
+          <a href="research-log.html">Open the research log →</a>
+        </article>
+      </div>
     </section>
 
     <div class="thesis">
       <p class="kicker">Central thesis</p>
       <blockquote>
-        Markets are complex adaptive systems — populations of interacting agents whose collective
-        behavior generates fat tails, volatility clustering, and regime shifts that no closed-form
-        model fully contains. <span class="plain">The working position of this lab is therefore
-        modest and demanding at once:</span> models clarify; they do not prophesy.
+        Models clarify uncertainty; they do not eliminate it. The useful question is not whether a
+        model is elegant, but whether its assumptions, errors, and failure modes are visible enough
+        to support a defensible decision.
       </blockquote>
     </div>
 
-    <p class="prose-col">Every module below is a self-contained piece of that argument. The
-    interactive tools run entirely in your browser — the same mathematics discussed in the prose,
-    implemented in plain JavaScript you can inspect. The heavier empirical work lives in the
-    <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">open-source repository</a>,
-    where the Python research library and notebooks carry the full analysis.</p>
-
-    <section class="section">
-      <p class="kicker">Research modules</p>
-      <div class="card-grid">
-        <a class="card" href="asset-pricing.html">
-          <span class="card-no">01 · Interactive</span>
-          <h2>Asset Pricing</h2>
-          <p>A full Black-Scholes-Merton pricer with live Greeks, set against a Cox-Ross-Rubinstein
-          binomial tree — two routes to the same no-arbitrage price, and where they part ways.</p>
-        </a>
-        <a class="card" href="portfolio.html">
-          <span class="card-no">02 · Interactive</span>
-          <h2>Portfolio Optimization</h2>
-          <p>An efficient-frontier explorer over six asset classes. Sample twenty thousand
-          portfolios, find minimum variance and maximum Sharpe, and watch assumptions do the work.</p>
-        </a>
-        <a class="card" href="risk.html">
-          <span class="card-no">03 · Empirical</span>
-          <h2>Risk Analytics</h2>
-          <p>A cost-aware multi-asset backtest with VaR/ES uncertainty, forecast-coverage tests,
-          and dated historical stress windows.</p>
-        </a>
-        <a class="card" href="simulations.html">
-          <span class="card-no">04 · Interactive</span>
-          <h2>Stochastic Simulation</h2>
-          <p>Five canonical processes — GBM, Ornstein-Uhlenbeck, Merton jumps, Heston, regime
-          switching — simulated live, each with its SDE and its blind spots.</p>
-        </a>
-        <a class="card" href="factors.html">
-          <span class="card-no">05 · Empirical</span>
-          <h2>Factor Research</h2>
-          <p>ETF exposures estimated from documented factor data, with HAC intervals, rolling
-          betas, chronological holdouts, and multiple-testing correction.</p>
-        </a>
-        <a class="card" href="math-notes.html">
-          <span class="card-no">06 · Notes</span>
-          <h2>Mathematical Notes</h2>
-          <p>Itô's lemma, the GBM solution, risk-neutral pricing, Feynman-Kac and the Black-Scholes
-          PDE, Monte Carlo error scaling, and why fat tails break Gaussian VaR.</p>
-        </a>
-        <a class="card" href="case-study.html">
-          <span class="card-no">07 · Flagship study</span>
-          <h2>From Black-Scholes to Stochastic Volatility</h2>
-          <p>Why market reality requires better models: the volatility smile as empirical
-          refutation, and Heston dynamics as a disciplined response.</p>
-        </a>
-        <a class="card" href="about.html">
-          <span class="card-no">08 · The lab</span>
-          <h2>About</h2>
-          <p>The project, its author, and its credo: models clarify uncertainty — they do not
-          eliminate it.</p>
-        </a>
-        <a class="card" href="research-log.html">
-          <span class="card-no">09 · Public record</span>
-          <h2>Research Log</h2>
-          <p>The lab's questions, testable claims, assumptions, evidence, uncertainty, failures,
-          and version-pinned reproduction artifacts — recorded in public.</p>
-        </a>
+    <section class="cta-band" aria-labelledby="professional-proof">
+      <div>
+        <p class="kicker">Professional proof</p>
+        <h2 id="professional-proof">The lab is also evidence of how I build analytical systems.</h2>
+        <p>See how the research design, data pipeline, software validation, and communication layer
+        compose into one auditable product—and how the same discipline transfers beyond finance.</p>
       </div>
-    </section>
-
-    <section class="section">
-      <p class="kicker">Method</p>
-      <div class="prose-col">
-        <p>The lab works in a deliberate sequence: state a model's assumptions precisely, implement
-        it faithfully, confront it with data or simulation, and record where it breaks. The failures
-        are the research product as much as the successes — a pricing model that misprices the wings
-        of the volatility surface is telling you something true about markets, if you are prepared
-        to listen.</p>
-        <p>Everything here is educational. Empirical modules publish their data vintage and
-        reproduction path; synthetic demonstrations are labeled as such. Nothing on this site is
-        investment advice.</p>
+      <div class="cta-actions">
+        <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">View the capability case study <span aria-hidden="true">→</span></a>
+        <a class="secondary-action" href="https://kylewisniewski.com/contact">Discuss a relevant problem <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
+<script src="js/engagement.js"></script>
 </body>
 </html>

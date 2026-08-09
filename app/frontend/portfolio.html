@@ -12,21 +12,77 @@
 <meta property="og:title" content="Portfolio Optimization — Quantitative Markets Research Lab">
 <meta property="og:description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/portfolio.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio Optimization — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/portfolio.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Efficient Frontier Explorer",
+  "description": "An interactive long-only efficient-frontier explorer for comparing minimum-variance, maximum-Sharpe, and equal-weight portfolios under illustrative assumptions.",
+  "url": "https://kylewisniewski.com/lab/portfolio.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tools",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Efficient Frontier Explorer",
+      "item": "https://kylewisniewski.com/lab/portfolio.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -34,19 +90,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html" aria-current="page">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -60,6 +109,17 @@
       edge of the cloud; the assumptions that drew it are the real subject.
       <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
     </div>
+
+    <section class="decision-summary" aria-labelledby="portfolio-decision-title">
+      <p class="kicker">Decision summary</p>
+      <h2 id="portfolio-decision-title">An efficient portfolio is only as stable as its inputs</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>The efficient frontier is conditional on expected returns and covariances that are not known in advance. A precise optimizer can amplify small estimation errors into concentrated allocations.</p></div>
+        <div><h3>Decision affected</h3><p>Choose an allocation method according to confidence in the inputs. In the lab’s locked test, risk-based portfolios reduced out-of-sample volatility and drawdown, but did not reliably deliver higher returns.</p></div>
+        <div><h3>Who should care</h3><p>Asset allocators, investment committees, model validators, and analysts comparing optimization with risk-budgeting approaches.</p></div>
+        <div><h3>Caveat</h3><p>This explorer uses illustrative capital-market assumptions. The empirical result comes from one frozen 2015–2026 ETF sample and one sealed evaluation window.</p></div>
+      </div>
+    </section>
 
     <div class="tool-grid">
       <div>
@@ -160,17 +220,25 @@
         exactly; the cloud makes the geometry, and the sparseness of near-optimal portfolios, visible.
       </div>
     </section>
+
+    <section class="section related-section" aria-labelledby="portfolio-related-title">
+      <p class="kicker">Continue exploring</p>
+      <h2 id="portfolio-related-title">Move from frontier geometry to allocation consequences</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-portfolio-estimation.html"><span>Finding</span><strong>Why “optimal” portfolios fail out of sample</strong><em>See how estimation error changed Sharpe, volatility, drawdown, and concentration in a locked test.</em></a>
+        <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>Examine the practical consequence of correlations moving when protection is needed.</em></a>
+        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Compare this illustrative frontier with pricing and simulation instruments.</em></a>
+        <a class="related-card" href="research-log.html#portfolio-construction"><span>Research record</span><strong>From return forecasts to risk budgets</strong><em>Inspect the claim, frozen holdout, uncertainty, failure modes, and source notebook.</em></a>
+        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See the analytical, engineering, and communication capabilities behind the lab.</em></a>
+      </div>
+    </section>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/portfolio.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>

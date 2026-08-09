@@ -22,6 +22,7 @@
     document.getElementById("risk-notebook-link").href = p.notebook_url;
     document.getElementById("risk-engine-link").href = p.engine_url;
 
+    document.getElementById("risk-stats").innerHTML = "";
     [["Ann. return", QL.pct(m.annual_return, 2)], ["Ann. volatility", QL.pct(m.annual_volatility, 2)],
       ["Sharpe (rf 3%)", QL.fmt(m.sharpe_rf_3pct, 2)], ["Max drawdown", QL.pct(m.max_drawdown, 1)],
       ["VaR 95 (1d)", QL.pct(m.var95, 2)], ["ES 95 (1d)", QL.pct(m.es95, 2)],

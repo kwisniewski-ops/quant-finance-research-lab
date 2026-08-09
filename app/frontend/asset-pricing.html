@@ -12,21 +12,77 @@
 <meta property="og:title" content="Asset Pricing — Quantitative Markets Research Lab">
 <meta property="og:description" content="Two canonical routes to the arbitrage-free price of a European option — the Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented side by side, with every Greek computed live in the browser.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/asset-pricing.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Asset Pricing — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Two canonical routes to the arbitrage-free price of a European option — the Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented side by side, with every Greek computed live in the browser.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/asset-pricing.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Option Pricing Laboratory",
+  "description": "An interactive comparison of Black-Scholes-Merton and Cox-Ross-Rubinstein option pricing with live Greeks.",
+  "url": "https://kylewisniewski.com/lab/asset-pricing.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tools",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Option Pricing Laboratory",
+      "item": "https://kylewisniewski.com/lab/asset-pricing.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -34,19 +90,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html" aria-current="page">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -59,6 +108,17 @@
       Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented
       side by side, with every Greek computed live in your browser.</p>
     </div>
+
+    <section class="decision-summary" aria-labelledby="pricing-decision-title">
+      <p class="kicker">Decision summary</p>
+      <h2 id="pricing-decision-title">Use agreement to validate the implementation—not the market model</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>For European options, Black–Scholes and a sufficiently fine CRR tree should converge. For American exercise, the lattice also represents early-exercise value that the closed form omits.</p></div>
+        <div><h3>Decision affected</h3><p>Cross-method agreement is evidence that a pricing implementation is numerically coherent. It does not establish that constant volatility, continuous hedging, or Gaussian returns describe the market.</p></div>
+        <div><h3>Who should care</h3><p>Derivatives practitioners, quantitative developers, model validators, and learners who need to separate numerical error from model risk.</p></div>
+        <div><h3>Caveat</h3><p>This educational tool uses user-selected inputs rather than a live option chain. Its outputs are model values, not executable prices or investment advice.</p></div>
+      </div>
+    </section>
 
     <div class="tool-grid">
       <div>
@@ -212,17 +272,25 @@
         meanings — a small lesson in why model output needs interpretation before it needs decimals.
       </div>
     </section>
+
+    <section class="section related-section" aria-labelledby="pricing-related-title">
+      <p class="kicker">Continue exploring</p>
+      <h2 id="pricing-related-title">Connect the pricing tool to evidence and practice</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-volatility-smile.html"><span>Finding</span><strong>Why one volatility number cannot price every option</strong><em>See the empirical fingerprints that reject constant-volatility market dynamics.</em></a>
+        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Move from option pricing to portfolio construction and stochastic processes.</em></a>
+        <a class="related-card" href="method.html"><span>Method</span><strong>How the lab validates models</strong><em>Review the standards for assumptions, falsification, uncertainty, and reproduction.</em></a>
+        <a class="related-card" href="research-log.html#pricing-validation"><span>Research record</span><strong>Four roads to one price</strong><em>Inspect the pre-declared test, numerical evidence, limitations, and source notebook.</em></a>
+        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See the capabilities and engineering practice demonstrated by the lab.</em></a>
+      </div>
+    </section>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/pricing.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>

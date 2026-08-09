@@ -14,16 +14,16 @@ git push -u origin main
 Two GitHub Actions ship with the repo and run automatically on push:
 
 - `tests.yml` — full pytest suite on Python 3.10/3.11/3.12 (a green badge-worthy CI run on every commit)
-- `pages.yml` — deploys `app/frontend/` to GitHub Pages
+- `pages.yml` — temporarily mirrors `app/frontend/` to the legacy lab subdomain during migration
 
-## 2. Enable GitHub Pages (one-time)
+## 2. Publish the canonical site
 
-Repo → **Settings → Pages → Source: GitHub Actions**. The next push to `main`
-(or a manual run of the `deploy-website` workflow) publishes the site at
-`https://lab.kylewisniewski.com/` (custom domain; the github.io address 301-redirects there).
+The canonical publication lives at **https://kylewisniewski.com/lab/**. The personal-site
+repository vendors `app/frontend/` with `scripts/sync-lab.mjs`, publishes those files under
+`public/lab/`, and includes every lab page in the main sitemap. Run the personal site's lab
+sync before its production build whenever this repository changes.
 
-All site links are relative, so it works at any subpath — and you can also just
-open `app/frontend/index.html` locally in a browser.
+All internal lab links are relative, so the same source can also be opened locally.
 
 ## 3. After pushing, update two placeholders
 
@@ -31,11 +31,17 @@ open `app/frontend/index.html` locally in a browser.
   adjust if your username/repo name differs (`grep -rn "kwisniewski-ops/quant-finance-research-lab" README.md app/frontend/`).
 - Optionally add the live Pages URL to the repo description and README.
 
-## 4. Custom domain (optional)
+## 4. Legacy subdomain migration
 
-Settings → Pages → Custom domain (e.g., `lab.yourdomain.com`), add a CNAME DNS
-record pointing to `<your-username>.github.io`, and commit the `CNAME` file
-GitHub creates into `app/frontend/`.
+`lab.kylewisniewski.com` remains a temporary GitHub Pages mirror while the canonical
+migration settles. Every mirrored page points to the apex `/lab` URL. Once the main-site
+copy and redirects are verified in production:
+
+1. Configure a permanent redirect from `lab.kylewisniewski.com/*` to
+   `kylewisniewski.com/lab/*`.
+2. Remove the custom domain from GitHub Pages and disable the `pages.yml` workflow.
+3. Remove `app/frontend/CNAME` after DNS no longer points at GitHub Pages.
+4. Recheck the main sitemap, canonical tags, and `/lab/index.html` redirect.
 
 ## 5. Refreshing data
 

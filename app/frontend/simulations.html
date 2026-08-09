@@ -12,21 +12,77 @@
 <meta property="og:title" content="Stochastic Simulation — Quantitative Markets Research Lab">
 <meta property="og:description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/simulations.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stochastic Simulation — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/simulations.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Stochastic Process Explorer",
+  "description": "An interactive seeded simulator for geometric Brownian motion, Ornstein-Uhlenbeck, Merton jump-diffusion, Heston stochastic volatility, and regime-switching dynamics.",
+  "url": "https://kylewisniewski.com/lab/simulations.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tools",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Stochastic Process Explorer",
+      "item": "https://kylewisniewski.com/lab/simulations.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -34,19 +90,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html" aria-current="page">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -59,6 +108,17 @@
       generator. Each process is a hypothesis about how uncertainty moves — pick one, perturb its
       parameters, and watch the hypothesis draw itself.</p>
     </div>
+
+    <section class="decision-summary" aria-labelledby="simulation-decision-title">
+      <p class="kicker">Decision summary</p>
+      <h2 id="simulation-decision-title">The process determines which risks your scenarios can contain</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>A simulation is a conditional experiment, not a forecast. GBM, jumps, stochastic volatility, mean reversion, and regimes produce different tails and dependencies because they encode different hypotheses.</p></div>
+        <div><h3>Decision affected</h3><p>Select the process according to the risk being evaluated, then budget sampling and discretization error before using simulated outcomes for pricing, stress, or allocation.</p></div>
+        <div><h3>Who should care</h3><p>Quantitative developers, risk and derivatives analysts, model validators, and learners building intuition about stochastic dynamics.</p></div>
+        <div><h3>Caveat</h3><p>The browser explorer uses 50 one-year paths and Euler-type discretization with illustrative parameters. A fixed seed makes a run repeatable; it does not make the scenario representative.</p></div>
+      </div>
+    </section>
 
     <div class="tool-grid">
       <div>
@@ -204,17 +264,25 @@
       The model describes the moods without explaining the psychology — which is, candidly, most of
       financial modeling in one sentence.</p>
     </section>
+
+    <section class="section related-section" aria-labelledby="simulation-related-title">
+      <p class="kicker">Continue exploring</p>
+      <h2 id="simulation-related-title">Connect simulated paths to numerical evidence</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-monte-carlo-error.html"><span>Finding</span><strong>How many simulations are enough for a defensible decision?</strong><em>See the measured square-root convergence rate, discretization bias, and variance reduction.</em></a>
+        <a class="related-card" href="finding-volatility-smile.html"><span>Finding</span><strong>Why one volatility number cannot price every option</strong><em>See how stochastic volatility addresses a measurable failure of constant-volatility dynamics.</em></a>
+        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Move from stochastic paths to pricing and portfolio experiments.</em></a>
+        <a class="related-card" href="research-log.html#monte-carlo"><span>Research record</span><strong>Simulation as a numerical instrument</strong><em>Inspect the convergence claims, experimental design, uncertainty, limitations, and source.</em></a>
+        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how the lab joins quantitative modeling with validated software and clear communication.</em></a>
+      </div>
+    </section>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/simulations.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Quantitative Finance Tools — Quantitative Markets Research Lab</title>
+<meta name="description" content="Explore option pricing, efficient frontiers, market-risk backtests, factor exposures, and stochastic processes in transparent browser-based quantitative finance tools.">
+<link rel="canonical" href="https://kylewisniewski.com/lab/tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:title" content="Interactive Quantitative Finance Tools">
+<meta property="og:description" content="Change an assumption, observe the result, and inspect what the model leaves out.">
+<meta property="og:url" content="https://kylewisniewski.com/lab/tools.html">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Interactive quantitative finance tools from the Quantitative Markets Research Lab.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Interactive Quantitative Finance Tools">
+<meta name="twitter:description" content="Pricing, portfolio, risk, factor, and stochastic-process tools with assumptions and limitations attached.">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<link rel="stylesheet" href="css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Interactive Quantitative Finance Tools",
+  "url": "https://kylewisniewski.com/lab/tools.html",
+  "description": "A collection of transparent browser-based tools for exploring quantitative finance models and empirical results.",
+  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab"}
+}
+</script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Change an assumption. Observe the result. Inspect what the model leaves out.",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <div class="wrap">
+    <div class="page-head">
+      <p class="kicker">Explore a scenario</p>
+      <h1>Change an assumption. Observe the result. Inspect what the model leaves out.</h1>
+      <p class="lede">These tools are instruments for reasoning, not answer machines. Every one
+      pairs an interactive or empirical result with the assumptions, interpretation, and failure
+      modes required to use it responsibly.</p>
+    </div>
+
+    <section class="decision-summary" aria-labelledby="choose-instrument">
+      <p class="kicker">Choose by decision</p>
+      <h2 id="choose-instrument">What are you trying to understand?</h2>
+      <div class="decision-grid">
+        <div><h3>Price a contingent payoff</h3><p>Compare closed-form and lattice routes to a European option value and inspect the Greeks.</p><a href="asset-pricing.html">Open option pricing →</a></div>
+        <div><h3>Allocate risk</h3><p>See how expected returns, covariance, and constraints draw the efficient frontier.</p><a href="portfolio.html">Open portfolio explorer →</a></div>
+        <div><h3>Measure model failure</h3><p>Inspect VaR coverage, breach clustering, uncertainty intervals, and historical stress.</p><a href="risk.html">Open risk analytics →</a></div>
+        <div><h3>Attribute return</h3><p>Examine factor loadings, confidence intervals, holdout decay, and multiplicity.</p><a href="factors.html">Open factor research →</a></div>
+        <div><h3>Model randomness</h3><p>Compare five stochastic processes and the market behavior each can and cannot express.</p><a href="simulations.html">Open process explorer →</a></div>
+        <div><h3>Understand model risk</h3><p>Follow a flat-volatility model from elegant assumption to empirical rejection and repair.</p><a href="case-study.html">Read the flagship study →</a></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tool-collection">
+      <p class="kicker">Tool collection</p>
+      <h2 id="tool-collection">Five front ends to the same discipline</h2>
+      <div class="tool-card-grid">
+        <article class="tool-card">
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
+          <h3>Option Pricing Laboratory</h3>
+          <p>Run Black–Scholes–Merton and a Cox–Ross–Rubinstein tree side by side. Change spot,
+          strike, maturity, rate, dividend yield, and volatility; observe price and Greek sensitivity.</p>
+          <dl><div><dt>Useful for</dt><dd>No-arbitrage pricing, sensitivity, numerical convergence</dd></div><div><dt>Boundary</dt><dd>European exercise and simplified market dynamics</dd></div></dl>
+          <a class="primary-action" href="asset-pricing.html">Use the pricer <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
+          <h3>Efficient Frontier Explorer</h3>
+          <p>Sample twenty thousand long-only portfolios over six illustrative asset classes and
+          examine minimum-variance, maximum-Sharpe, and equal-weight answers.</p>
+          <dl><div><dt>Useful for</dt><dd>Risk–return geometry, constraints, assumption sensitivity</dd></div><div><dt>Boundary</dt><dd>Illustrative moments are not forecasts or recommendations</dd></div></dl>
+          <a class="primary-action" href="portfolio.html">Explore the frontier <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span class="tag">Empirical</span><span>10–15 minutes</span></div>
+          <h3>Market Risk Workbench</h3>
+          <p>Inspect a cost-aware, leak-free portfolio path, block-bootstrap intervals, formal VaR
+          coverage tests, and dated stress windows.</p>
+          <dl><div><dt>Useful for</dt><dd>Risk-model validation, calibration, stress design</dd></div><div><dt>Boundary</dt><dd>One frozen history does not bound future losses</dd></div></dl>
+          <a class="primary-action" href="risk.html">Inspect the backtest <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span class="tag">Empirical</span><span>10–15 minutes</span></div>
+          <h3>Factor Exposure Workbench</h3>
+          <p>Compare six-factor ETF regressions, HAC intervals, rolling exposure, chronological
+          holdouts, and false-discovery corrections.</p>
+          <dl><div><dt>Useful for</dt><dd>Attribution, product-label verification, statistical governance</dd></div><div><dt>Boundary</dt><dd>The factor menu defines the alpha left behind</dd></div></dl>
+          <a class="primary-action" href="factors.html">Inspect factor evidence <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
+          <h3>Stochastic Process Explorer</h3>
+          <p>Simulate GBM, Ornstein–Uhlenbeck, Merton jumps, Heston stochastic volatility, and a
+          regime-switching process with a seeded generator.</p>
+          <dl><div><dt>Useful for</dt><dd>Path behavior, distribution shape, model comparison</dd></div><div><dt>Boundary</dt><dd>A simulated process is a hypothesis, not a forecast</dd></div></dl>
+          <a class="primary-action" href="simulations.html">Simulate a process <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="tools-next-step">
+      <div><p class="kicker">Do not stop at the output</p><h2 id="tools-next-step">A model becomes useful when its error budget is visible.</h2><p>After using a tool, follow the linked finding or method record to see the evidence, limitations, and reproducible implementation behind it.</p></div>
+      <div class="cta-actions"><a class="primary-action" href="findings.html">See what the evidence says <span aria-hidden="true">→</span></a><a class="secondary-action" href="method.html">Audit the method <span aria-hidden="true">→</span></a></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<script src="js/engagement.js"></script>
+</body>
+</html>

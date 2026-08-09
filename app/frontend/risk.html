@@ -11,26 +11,86 @@
 <meta property="og:title" content="Empirical Risk Analytics — Quantitative Markets Research Lab">
 <meta property="og:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/risk.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Empirical Risk Analytics — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/risk.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Does Historical VaR Survive Its Own Backtest?",
+  "description": "A reproducible multi-asset portfolio study with VaR and Expected Shortfall uncertainty, coverage tests, and historical stress windows.",
+  "url": "https://kylewisniewski.com/lab/risk.html",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script src="js/plotly-loader.js"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tools",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "A risk model that can fail in public",
+      "item": "https://kylewisniewski.com/lab/risk.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
-<header class="site-header"><div class="wrap">
-  <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-  <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="asset-pricing.html">Pricing</a><a href="portfolio.html">Portfolio</a><a href="risk.html" aria-current="page">Risk</a><a href="simulations.html">Simulation</a><a href="factors.html">Factors</a><a href="math-notes.html">Notes</a><a href="case-study.html">Case Study</a><a href="research-log.html">Log</a><a href="about.html">About</a></nav>
-</div></header>
+<header class="site-header">
+  <div class="wrap">
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+  </div>
+</header>
 
 <main id="main-content" tabindex="-1"><div class="wrap">
   <div class="page-head">
@@ -43,9 +103,20 @@
     <a href="research-log.html#market-risk">research record</a></p>
   </div>
 
+  <section class="decision-summary" aria-labelledby="risk-decision-title">
+    <p class="kicker">Decision summary</p>
+    <h2 id="risk-decision-title">A plausible risk number failed when its forecasts met the future</h2>
+    <div class="decision-grid">
+      <div><h3>Bottom line</h3><p>The rolling 95% historical VaR model was rejected: 135 breaches occurred versus 107 expected, and the breaches clustered rather than arriving independently.</p></div>
+      <div><h3>Decision affected</h3><p>Historical quantiles should be backtested and monitored as forecasts, not accepted as fixed capital or limit inputs. Slow adaptation to regime changes is part of the model risk.</p></div>
+      <div><h3>Who should care</h3><p>Risk managers, portfolio teams, model validators, audit and governance functions, and analysts responsible for limit frameworks.</p></div>
+      <div><h3>Caveat</h3><p>This rejection applies to one fixed multi-asset portfolio, dated daily data, and a 500-observation window. It does not establish that every alternative risk model is better.</p></div>
+    </div>
+  </section>
+
   <section class="section" aria-labelledby="risk-provenance-title">
     <p class="kicker">Data and design</p><h2 id="risk-provenance-title">A leak-free, version-pinned backtest</h2>
-    <dl class="provenance-grid" id="risk-provenance"><div><dt>Status</dt><dd>Loading frozen research artifact…</dd></div></dl>
+    <dl class="provenance-grid" id="risk-provenance"><!-- research-data:risk-provenance:start --><div><dt>Backtest sample</dt><dd>2016-01-04 – 2026-07-06</dd></div><div><dt>Price vintage</dt><dd>2026-07-06</dd></div><div><dt>Snapshot hash</dt><dd><code>sha256:5dc8433e1c99bf8e…</code></dd></div><div><dt>Pinned source</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb"><code>ad24c4999583</code></a></dd></div><div><dt>Daily observations</dt><dd>2,640</dd></div><div><dt>Total modeled costs</dt><dd>0.183% of NAV</dd></div><!-- research-data:risk-provenance:end --></dl>
     <p class="figure-note">Target weights: 30% SPY, 10% QQQ, 5% IWM, 10% EFA, 20% AGG,
     10% TLT, 7.5% GLD, and 7.5% VNQ. Rebalanced monthly after a 252-day warm-up; 10bp is charged
     on one-sided turnover. No future observation enters a rebalance decision.</p>
@@ -53,7 +124,7 @@
 
   <section class="section" aria-labelledby="risk-results-title">
     <p class="kicker">Observed path</p><h2 id="risk-results-title">Portfolio risk results</h2>
-    <dl class="stat-grid" id="risk-stats"></dl>
+    <dl class="stat-grid" id="risk-stats"><!-- research-data:risk-stats:start --><div class="stat"><dt class="k">Ann. return</dt><dd class="v">10.14%</dd></div><div class="stat"><dt class="k">Ann. volatility</dt><dd class="v">11.50%</dd></div><div class="stat"><dt class="k">Sharpe (rf 3%)</dt><dd class="v">0.64</dd></div><div class="stat"><dt class="k">Max drawdown</dt><dd class="v accent">-24.3%</dd></div><div class="stat"><dt class="k">VaR 95 (1d)</dt><dd class="v accent">1.08%</dd></div><div class="stat"><dt class="k">ES 95 (1d)</dt><dd class="v accent">1.72%</dd></div><div class="stat"><dt class="k">Skewness</dt><dd class="v">-0.54</dd></div><div class="stat"><dt class="k">Excess kurtosis</dt><dd class="v">12.98</dd></div><!-- research-data:risk-stats:end --></dl>
     <p class="figure-note">Annualized where applicable. VaR and ES are one-day historical estimates
     at 95%; uncertainty intervals appear in the next section.</p>
     <figure class="chart-figure"><div id="chart-equity" class="chart" role="img" aria-label="Cumulative growth of one dollar in the empirical portfolio backtest" aria-describedby="equity-chart-caption"></div><figcaption class="chart-caption" id="equity-chart-caption">Growth of $1 after modeled transaction costs. The horizontal axis uses calendar dates from the frozen price snapshot.</figcaption></figure>
@@ -62,7 +133,7 @@
       <figure class="chart-figure"><div id="chart-vol" class="chart short" role="img" aria-label="Rolling 63-day annualized portfolio volatility" aria-describedby="risk-vol-caption"></div><figcaption class="chart-caption" id="risk-vol-caption">Rolling 63-observation annualized volatility.</figcaption></figure>
       <figure class="chart-figure"><div id="chart-hist" class="chart short" role="img" aria-label="Binned distribution of empirical daily portfolio returns" aria-describedby="risk-hist-caption"></div><figcaption class="chart-caption" id="risk-hist-caption">Pre-binned daily returns with empirical VaR and ES thresholds; a matched Gaussian is overlaid only as a diagnostic reference.</figcaption></figure>
     </div>
-    <details class="chart-data"><summary>View key chart data</summary><div class="table-scroll" id="risk-data-table"></div></details>
+    <details class="chart-data"><summary>View key chart data</summary><div class="table-scroll" id="risk-data-table"><!-- research-data:risk-data-table:start --><table><caption>Key values represented in the empirical risk charts</caption><thead><tr><th scope="col">Measure</th><th scope="col">Value</th></tr></thead><tbody><tr><th scope="row">Ending value of $1</th><td>$2.750</td></tr><tr><th scope="row">Maximum drawdown</th><td>-24.33%</td></tr><tr><th scope="row">VaR 95, one day</th><td>1.08%</td></tr><tr><th scope="row">Expected Shortfall 95, one day</th><td>1.72%</td></tr><tr><th scope="row">Backtest observations</th><td>2,640</td></tr></tbody></table><!-- research-data:risk-data-table:end --></div></details>
   </section>
 
   <section class="section" aria-labelledby="uncertainty-title">
@@ -71,7 +142,7 @@
     samples, using 21-day blocks and seed <code>20260803</code>. Blocks preserve some local dependence;
     the percentile interval still describes uncertainty conditional on this observed history and
     does not manufacture crises missing from it.</p>
-    <div class="table-scroll" id="risk-uncertainty-table" tabindex="0" role="region" aria-label="VaR and Expected Shortfall uncertainty intervals"></div>
+    <div class="table-scroll" id="risk-uncertainty-table" tabindex="0" role="region" aria-label="VaR and Expected Shortfall uncertainty intervals"><!-- research-data:risk-uncertainty-table:start --><table><caption>Moving-block bootstrap uncertainty; 2,000 replications, 21-day blocks</caption><thead><tr><th scope="col">Measure</th><th scope="col">Point estimate</th><th scope="col">Bootstrap 95% interval</th></tr></thead><tbody><tr><th scope="row">Historical VaR 95</th><td>1.079%</td><td>0.930% – 1.219%</td></tr><tr><th scope="row">Historical ES 95</th><td>1.718%</td><td>1.421% – 2.126%</td></tr></tbody></table><!-- research-data:risk-uncertainty-table:end --></div>
   </section>
 
   <section class="section" aria-labelledby="coverage-title">
@@ -80,7 +151,7 @@
     sequence, breaches occur too often and cluster. Both Kupiec unconditional coverage and
     Christoffersen conditional coverage reject the model at 5%. A red result is useful: it marks
     the exact boundary of a method that looks plausible in a static histogram.<sup><a href="#risk-ref-1" id="risk-cite-1">1</a></sup><sup><a href="#risk-ref-2" id="risk-cite-2">2</a></sup></p>
-    <div class="table-scroll" id="risk-coverage-table" tabindex="0" role="region" aria-label="VaR coverage test results"></div>
+    <div class="table-scroll" id="risk-coverage-table" tabindex="0" role="region" aria-label="VaR coverage test results"><!-- research-data:risk-coverage-table:start --><table><caption>Rolling 500-observation historical VaR forecast tests</caption><thead><tr><th scope="col">Test</th><th scope="col">Statistic</th><th scope="col">p-value</th><th scope="col">Decision</th></tr></thead><tbody><tr><th scope="row">Observed breaches</th><td>135 / 2140</td><td>6.31% rate</td><td>Expected 107</td></tr><tr><th scope="row">Kupiec coverage</th><td>7.148</td><td>0.00751</td><td><span class="result-reject">Reject at 5%</span></td></tr><tr><th scope="row">Christoffersen independence</th><td>13.392</td><td>0.00025</td><td><span class="result-reject">Reject at 5%</span></td></tr><tr><th scope="row">Conditional coverage</th><td>20.540</td><td>0.00003</td><td><span class="result-reject">Reject at 5%</span></td></tr></tbody></table><!-- research-data:risk-coverage-table:end --></div>
   </section>
 
   <section class="section" aria-labelledby="stress-title">
@@ -88,7 +159,7 @@
     <p class="prose-col">Stress windows are descriptive slices fixed by event dates, not optimized
     after inspecting portfolio minima. They show how the same allocation behaved through the Q4
     2018 volatility shock, the COVID-19 selloff, and the 2022 inflation and rate shock.</p>
-    <div class="table-scroll" id="risk-stress-table" tabindex="0" role="region" aria-label="Historical stress window results"></div>
+    <div class="table-scroll" id="risk-stress-table" tabindex="0" role="region" aria-label="Historical stress window results"><!-- research-data:risk-stress-table:start --><table><caption>Fixed historical stress windows within the frozen sample</caption><thead><tr><th scope="col">Window</th><th scope="col">Dates</th><th scope="col">Cumulative return</th><th scope="col">Max drawdown</th><th scope="col">Worst day</th><th scope="col">VaR breaches</th></tr></thead><tbody><tr><th scope="row">Volatility shock of Q4 2018</th><td>2018-09-20 – 2018-12-24</td><td>-10.2%</td><td>-10.8%</td><td>-1.86%</td><td>16</td></tr><tr><th scope="row">COVID-19 selloff</th><td>2020-02-19 – 2020-03-23</td><td>-21.3%</td><td>-21.7%</td><td>-7.08%</td><td>9</td></tr><tr><th scope="row">2022 inflation and rate shock</th><td>2022-01-03 – 2022-10-14</td><td>-24.2%</td><td>-24.0%</td><td>-3.37%</td><td>26</td></tr></tbody></table><!-- research-data:risk-stress-table:end --></div>
   </section>
 
   <section class="section" aria-labelledby="risk-interpret-title">
@@ -115,10 +186,22 @@
       <li>Artzner, P., F. Delbaen, J.-M. Eber, and D. Heath (1999), “Coherent Measures of Risk,” <i>Mathematical Finance</i> 9(3), 203–228. <a href="https://doi.org/10.1111/1467-9965.00068">doi:10.1111/1467-9965.00068</a></li>
     </ol>
   </section>
+  <section class="section related-section" aria-labelledby="risk-related-title">
+    <p class="kicker">Continue exploring</p>
+    <h2 id="risk-related-title">Turn the rejected forecast into a better decision process</h2>
+    <div class="related-grid">
+      <a class="related-card" href="finding-var-backtest.html"><span>Finding</span><strong>When a 95% VaR model fails its own backtest</strong><em>Read the decision brief on breach frequency, clustering, and monitoring implications.</em></a>
+      <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>See why risk estimates can break precisely when portfolio relationships shift.</em></a>
+      <a class="related-card" href="method.html"><span>Method</span><strong>How the lab tests model claims</strong><em>Review holdouts, uncertainty reporting, falsification rules, and reproducibility standards.</em></a>
+      <a class="related-card" href="research-log.html#market-risk"><span>Research record</span><strong>Audit the complete VaR investigation</strong><em>Inspect the dated data, pre-declared criterion, test statistics, limitations, and source.</em></a>
+      <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how this study demonstrates model governance, data engineering, and research communication.</em></a>
+    </div>
+  </section>
   <output id="risk-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
 </div></main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 <script src="js/common.js"></script><script src="js/risk.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why One Volatility Number Cannot Price Every Strike</title>
+<meta name="description" content="SPY realized volatility ranged from about 3% to 93%, excess kurtosis was about 14, and an illustrative Heston model generated a 25% to 16% short-dated skew.">
+<link rel="canonical" href="https://kylewisniewski.com/lab/finding-volatility-smile.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:title" content="Why One Volatility Number Cannot Price Every Strike">
+<meta property="og:description" content="Observed volatility, tails, and clustering rejected the constant-volatility Gaussian fingerprints tested here.">
+<meta property="og:url" content="https://kylewisniewski.com/lab/finding-volatility-smile.html">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A flat volatility line bending into an equity-style implied volatility skew.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why One Volatility Number Cannot Price Every Strike">
+<meta name="twitter:description" content="Observed volatility, tails, and clustering rejected the constant-volatility Gaussian fingerprints tested here.">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta name="twitter:image:alt" content="A flat volatility line bending into an equity-style implied volatility skew.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Why One Volatility Number Cannot Price Every Strike",
+  "description": "A decision brief on the observed failure of constant-volatility Gaussian fingerprints and the mechanism illustrated by stochastic volatility.",
+  "url": "https://kylewisniewski.com/lab/finding-volatility-smile.html",
+  "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
+  "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-volatility-smile.html",
+  "about": ["Black-Scholes", "stochastic volatility", "Heston model", "implied volatility skew"],
+  "proficiencyLevel": "Intermediate"
+}
+</script>
+<link rel="stylesheet" href="css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Findings",
+      "item": "https://kylewisniewski.com/lab/findings.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Why one volatility number cannot price every strike",
+      "item": "https://kylewisniewski.com/lab/finding-volatility-smile.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <div class="wrap">
+    <article>
+      <header class="page-head">
+        <p class="kicker">Decision brief · Derivatives and model risk</p>
+        <h1>Why one volatility number cannot price every strike</h1>
+        <p class="lede">Black–Scholes is a powerful baseline. Its constant-volatility and Gaussian
+        fingerprints are also testable—and this study shows where observed equity-index behavior
+        departed from them.</p>
+      </header>
+
+      <section class="decision-summary" aria-labelledby="bottom-line">
+        <p class="kicker">Bottom line</p>
+        <h2 id="bottom-line">The tested Black–Scholes dynamics were inconsistent with the observed sample.</h2>
+        <p>SPY 21-day realized volatility ranged from roughly 3% to 93%, daily excess kurtosis was
+        about 14, the worst day was near a 10σ event under a Gaussian yardstick, and lag-1 absolute-
+        return autocorrelation was about 0.35. An equity-like, Feller-satisfying Heston specification
+        generated a short-dated implied-volatility skew from roughly 25% to 16% across strikes.</p>
+        <p><small>Published 8 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
+      </section>
+
+      <dl class="proof-strip ledger-summary" aria-label="Volatility evidence">
+        <div><dt>Realized vol range</dt><dd>≈3%–93%</dd></div>
+        <div><dt>Excess kurtosis</dt><dd>≈14</dd></div>
+        <div><dt>Worst-day yardstick</dt><dd>≈10σ</dd></div>
+        <div><dt>Illustrative skew</dt><dd>≈25%–16%</dd></div>
+      </dl>
+
+      <section class="section decision-grid" aria-label="Audience and decision">
+        <div>
+          <p class="kicker">Who should care</p>
+          <h3>Derivatives users, risk teams, and model validators</h3>
+          <p>The result matters wherever one volatility estimate drives option prices, Greeks,
+          hedges, scenario losses, or claims about the likelihood of extreme market moves.</p>
+        </div>
+        <div>
+          <p class="kicker">Decision affected</p>
+          <h3>When a flat-volatility baseline needs a richer model or surface</h3>
+          <p>Use Black–Scholes for the job it can do, while making strike, maturity, tail, and
+          volatility-dynamics risk visible. A precise price under a rejected dynamic assumption is
+          not the same as a reliable decision.</p>
+        </div>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="evidence">
+        <p class="kicker">Evidence</p>
+        <h2 id="evidence">The rejection came from several independent fingerprints</h2>
+        <p>The study measured a frozen SPY adjusted-close sample from January 2015 through July 2026.
+        Under constant-volatility geometric Brownian motion, rolling volatility should fluctuate
+        around a stable level, standardized returns should be approximately Gaussian, and return
+        magnitudes should not remain autocorrelated. The sample contradicted each fingerprint.</p>
+        <p>Direction remained difficult to predict, but magnitude persisted: lag-1 autocorrelation
+        of absolute returns was about 0.35 and remained present at longer lags. Fat tails and a nearly
+        thirty-fold realized-volatility range made a single constant parameter an inadequate
+        description of the observed return process.</p>
+        <p>The Heston result is a mechanism demonstration. Negative price–volatility correlation and
+        stochastic variance can generate an equity-like strike skew that a single Black–Scholes
+        volatility cannot. The parameters were illustrative, not calibrated to a dated live option chain.</p>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="practice">
+        <p class="kicker">What changes in practice</p>
+        <h2 id="practice">Separate a useful quoting convention from a claim about market dynamics</h2>
+        <ul class="refs">
+          <li>Inspect implied volatility across both strike and maturity instead of applying one volatility to every contract.</li>
+          <li>Monitor realized volatility and return-magnitude persistence as state variables rather than constants.</li>
+          <li>Stress hedge and valuation outputs to skew, term structure, jumps, and volatility-of-volatility.</li>
+          <li>Validate a richer model against a dated option surface before treating its calibration as empirical evidence.</li>
+          <li>Keep model-risk language attached to Greeks and prices; parameter precision does not remove specification error.</li>
+        </ul>
+      </section>
+
+      <section class="section prose-col" aria-labelledby="limitations">
+        <p class="kicker">Limitations</p>
+        <h2 id="limitations">The evidence rejects fingerprints; it does not crown a true model</h2>
+        <ul class="refs">
+          <li>The empirical study covers one underlying and one historical window.</li>
+          <li>Close-to-close returns omit intraday price and volatility structure.</li>
+          <li>The Heston parameters are illustrative rather than calibrated to contemporaneous market quotes.</li>
+          <li>Heston still treats parameters as constants and omits jumps and rough-volatility effects.</li>
+          <li>Simulated stochastic-volatility paths carry discretization bias that must be budgeted separately from sampling error.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="explore">
+        <p class="kicker">Explore and reproduce</p>
+        <h2 id="explore">Follow the model from closed form to empirical rejection</h2>
+        <div class="hero-actions">
+          <a class="primary-action" href="case-study.html">Read the full case study <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="asset-pricing.html">Explore the option pricer <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="research-log.html#stochastic-volatility">Audit the ledger entry <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">Open the executed notebook <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="related">
+        <p class="kicker">Related research</p>
+        <h2 id="related">What changing distributions do to numerical and risk models</h2>
+        <div class="related-grid">
+          <a href="finding-var-backtest.html"><span>Tail calibration</span><strong>When historical VaR fails</strong><em>Volatility regimes and clustered losses challenge a slowly adapting empirical quantile.</em></a>
+          <a href="finding-monte-carlo-error.html"><span>Numerical uncertainty</span><strong>How much simulation is enough?</strong><em>Separate estimator noise from the discretization bias of richer dynamics.</em></a>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="professional-cta">
+        <div>
+          <p class="kicker">Professional relevance</p>
+          <h2 id="professional-cta">Model sophistication matters less than knowing what evidence could reject it.</h2>
+          <p>The case study combines empirical diagnostics, analytical pricing, stochastic simulation,
+          calibration discipline, cross-model validation, and accessible explanation of specification risk.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+
+<script src="js/engagement.js"></script>
+</body>
+</html>

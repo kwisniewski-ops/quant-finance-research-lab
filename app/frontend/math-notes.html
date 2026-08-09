@@ -12,20 +12,74 @@
 <meta property="og:title" content="Mathematical Notes — Quantitative Markets Research Lab">
 <meta property="og:description" content="Six derivations that carry most of the weight in quantitative finance, written to be read rather than merely cited. Each states its assumptions, does the calculation, and says what the result is actually worth.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/math-notes.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mathematical Notes — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Six derivations that carry most of the weight in quantitative finance, written to be read rather than merely cited. Each states its assumptions, does the calculation, and says what the result is actually worth.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/math-notes.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Mathematical Notes for Quantitative Finance",
+  "description": "Six assumption-aware derivations covering Itô calculus, geometric Brownian motion, risk-neutral pricing, Feynman-Kac, Monte Carlo error, and fat-tailed risk.",
+  "url": "https://kylewisniewski.com/lab/math-notes.html",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Method",
+      "item": "https://kylewisniewski.com/lab/method.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Mathematical Notes",
+      "item": "https://kylewisniewski.com/lab/math-notes.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -33,19 +87,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html" aria-current="page">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html" aria-current="page">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -63,6 +110,17 @@
         <dt>Prerequisites</dt><dd>Single-variable calculus, probability, and basic derivative pricing</dd>
       </dl>
     </div>
+
+    <section class="decision-summary" aria-labelledby="notes-decision-title">
+      <p class="kicker">Decision summary</p>
+      <h2 id="notes-decision-title">Use the mathematics to expose assumptions, not conceal them</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>These six notes connect stochastic calculus, pricing, simulation, and tail risk into one chain: every useful result depends on a stated probability model and an error budget.</p></div>
+        <div><h3>Decision affected</h3><p>The derivations help determine when a pricing identity, simulation estimate, or risk metric is appropriate—and which assumption or approximation limits the conclusion.</p></div>
+        <div><h3>Who should care</h3><p>Quantitative-finance students, analysts moving into model work, technical reviewers, and practitioners who need an auditable conceptual reference.</p></div>
+        <div><h3>Prerequisites</h3><p>The collection assumes calculus, probability, and basic derivative pricing. It is a compact working reference, not a substitute for the cited full treatments.</p></div>
+      </div>
+    </section>
 
     <details class="local-toc">
       <summary>Contents · six notes</summary>
@@ -295,17 +353,25 @@
         <li id="notes-ref-4">McNeil, A. J., R. Frey, and P. Embrechts (2015), <i>Quantitative Risk Management: Concepts, Techniques and Tools</i>, revised 2nd ed., Princeton University Press, chs. 2 and 5, ISBN 978-0-691-16627-8. <a href="https://assets.press.princeton.edu/catalogs/econ15.pdf">publisher catalog</a> <a href="#notes-cite-4" aria-label="Return to citation 4">↩</a></li>
       </ol>
     </section>
+
+    <section class="section related-section" aria-labelledby="notes-related-title">
+      <p class="kicker">Continue exploring</p>
+      <h2 id="notes-related-title">Take the derivations into tested decisions</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-monte-carlo-error.html"><span>Finding</span><strong>How many simulations are enough?</strong><em>See the square-root error law recovered experimentally and what variance reduction changed.</em></a>
+        <a class="related-card" href="finding-var-backtest.html"><span>Finding</span><strong>When a 95% VaR model fails its own backtest</strong><em>Move from the tail-risk derivation to a dated empirical falsification test.</em></a>
+        <a class="related-card" href="tools.html"><span>Tools</span><strong>Manipulate the models directly</strong><em>Use the pricing, portfolio, and stochastic-process explorers built from these foundations.</em></a>
+        <a class="related-card" href="research-log.html"><span>Research log</span><strong>Audit every investigation</strong><em>Review the claims, methods, results, uncertainty, revisions, and source artifacts.</em></a>
+        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how mathematical fluency connects to research engineering and decision communication.</em></a>
+      </div>
+    </section>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/reading.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>

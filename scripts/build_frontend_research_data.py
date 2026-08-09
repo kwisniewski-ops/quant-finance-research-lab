@@ -361,4 +361,7 @@ def risk_study() -> None:
 if __name__ == "__main__":
     factor_study()
     risk_study()
-    print("Wrote app/frontend/data/factor-study.json and risk-study.json")
+    from prerender_frontend_research_data import prerender_frontend
+
+    prerender_frontend()
+    print("Wrote research JSON and prerendered the default evidence in the frontend")

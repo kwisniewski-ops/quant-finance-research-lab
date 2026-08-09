@@ -11,17 +11,56 @@
 <meta property="og:title" content="Research Log — Quantitative Markets Research Lab">
 <meta property="og:description" content="The public research ledger for Quantitative Markets Research Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/research-log.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Research Log — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="The public research ledger for Quantitative Markets Research Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Research Log",
+  "description": "A public ledger of quantitative research questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.",
+  "url": "https://kylewisniewski.com/lab/research-log.html",
+  "dateModified": "2026-08-08",
+  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab"}
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Research Log",
+      "item": "https://kylewisniewski.com/lab/research-log.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -29,19 +68,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a>
-      <a href="asset-pricing.html">Pricing</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a>
-      <a href="simulations.html">Simulation</a>
-      <a href="factors.html">Factors</a>
-      <a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a>
-      <a href="research-log.html" aria-current="page">Log</a>
-      <a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html" aria-current="page">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -132,6 +164,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>MVO Sharpe fell from about 1.12 in sample to 0.44 out of sample. Risk-based portfolios ran at roughly half the volatility and two-thirds the drawdown of optimized books, but did not reliably win on return. Sharpe differences of ±0.2 are well inside an estimated sampling error near 0.5 for this 4.5-year window. The broad claim was narrowed: risk-based methods delivered risk shape, not superior return.</dd></div>
           <div><dt>Failure modes</dt><dd>One evaluation window; survivorship-tilted universe; no rolling-origin test; frozen weights; raw rather than shrunk covariance; robust MVO preserved a concentrated ranking and benefited from a specific mega-cap regime.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Decision brief</dt><dd><a href="finding-portfolio-estimation.html">Why “optimal” portfolios fail out of sample</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
       </article>
@@ -154,6 +187,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The claim was rejected. Realized volatility ranged from roughly 3% to 93%; excess kurtosis was about 14; the worst day was near 10σ under a Gaussian yardstick; lag-1 absolute-return autocorrelation was about 0.35 and persisted. An equity-like Heston specification generated a short-dated skew near 25% to 16%. The empirical rejection is sample-specific; the Heston surface demonstrates mechanism, not a live market calibration.</dd></div>
           <div><dt>Failure modes</dt><dd>One underlying and one historical window; close-to-close returns omit intraday structure; parameters treated as constants still drift in practice; Heston omits jumps and rough volatility; simulation discretization carries bias.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Decision brief</dt><dd><a href="finding-volatility-smile.html">Why one volatility number cannot price every strike</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
       </article>
@@ -176,6 +210,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The N⁻¹ᐟ² law was recovered within replication noise; exact GBM remained unbiased across step counts; Euler bias contracted with Δt; antithetic pairing cut empirical standard error by about 30% at the same path budget. Every Monte Carlo estimate retains its reported sampling error.</dd></div>
           <div><dt>Failure modes</dt><dd>CIR and Heston discretization bias was not fully budgeted by step-halving; regime parameters were chosen rather than estimated; antithetics are weak for some payoff shapes; all results share one pseudorandom generator family.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/04_monte_carlo_simulation.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Decision brief</dt><dd><a href="finding-monte-carlo-error.html">How many simulations are enough?</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
       </article>
@@ -198,6 +233,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The advertised exposures were recovered. QQQ's +3.29% annualized alpha has a raw HAC p-value of 0.024, but its Benjamini–Hochberg q-value is 0.147; no alpha survives the 5% false-discovery threshold. Frozen-coefficient holdout R² decays by 0.4 to 29.6 percentage points across ETFs, with USMV showing the largest decay. Confidence intervals and adjusted p-values are published on the factor page.</dd></div>
           <div><dt>Failure modes</dt><dd>The factor menu defines the alpha left behind; factor portfolios are not costless tradables; eleven years is one regime; the 50/50 split is only one holdout path; HAC lag choice and vendor price adjustments can move inference.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/05_factor_investing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Decision brief</dt><dd><a href="finding-factor-etfs.html">Do factor ETFs deliver their advertised exposures?</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
         </dl>
       </article>
@@ -220,6 +256,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>Rejected. The model records 135 breaches versus 107 expected (6.31%); Kupiec p = 0.0075, independence p = 0.00025, and conditional-coverage p = 0.000035. VaR95 is 1.079% with a block-bootstrap 95% interval of 0.930%–1.219%; ES95 is 1.718% with interval 1.421%–2.126%. The failure is both excess breach frequency and clustering.</dd></div>
           <div><dt>Failure modes</dt><dd>The bootstrap conditions on one realized history; block length is judgmental; empirical quantiles adapt slowly after regime changes; historical scenarios replay known crises; the fixed portfolio and close-to-close prices omit intraday liquidity and dynamic de-risking.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
+          <div><dt>Decision briefs</dt><dd><a href="finding-var-backtest.html">When a 95% VaR model fails its own backtest</a><br><a href="finding-diversification-regimes.html">Why diversification can disappear when it is needed</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
         </dl>
       </article>
@@ -244,12 +281,8 @@ jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
   </div>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Quantitative Markets Research Lab · MMXXVI</span>
-    <span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span>
-  </div>
-</footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 
+<script src="js/engagement.js"></script>
 </body>
 </html>

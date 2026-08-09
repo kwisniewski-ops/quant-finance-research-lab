@@ -11,18 +11,72 @@
 <meta property="og:title" content="Empirical Factor Research — Quantitative Markets Research Lab">
 <meta property="og:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/factors.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
-<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Empirical Factor Research — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab.jpg">
+<meta name="twitter:url" content="https://kylewisniewski.com/lab/factors.html">
+<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Do Factor ETFs Deliver Their Advertised Exposures?",
+  "description": "Reproducible ETF factor regressions with confidence intervals, rolling betas, chronological holdouts, and multiple-testing corrections.",
+  "url": "https://kylewisniewski.com/lab/factors.html",
+  "dateModified": "2026-08-03",
+  "author": {
+    "@type": "Person",
+    "name": "Kyle Wisniewski",
+    "url": "https://kylewisniewski.com/"
+  },
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Quantitative Markets Research Lab",
+    "url": "https://kylewisniewski.com/lab/"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/main.css">
 <script src="js/plotly-loader.js"></script>
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Kyle Wisniewski",
+      "item": "https://kylewisniewski.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Research Lab",
+      "item": "https://kylewisniewski.com/lab"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tools",
+      "item": "https://kylewisniewski.com/lab/tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Factor exposures, tested against frozen data",
+      "item": "https://kylewisniewski.com/lab/factors.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -30,13 +84,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="index.html">Home</a><a href="asset-pricing.html">Pricing</a><a href="portfolio.html">Portfolio</a>
-      <a href="risk.html">Risk</a><a href="simulations.html">Simulation</a>
-      <a href="factors.html" aria-current="page">Factors</a><a href="math-notes.html">Notes</a>
-      <a href="case-study.html">Case Study</a><a href="research-log.html">Log</a><a href="about.html">About</a>
-    </nav>
+    <div class="identity-lockup" aria-label="Site identity">
+      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
+      <span class="identity-separator" aria-hidden="true">/</span>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+    </div>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
   </div>
 </header>
 
@@ -52,12 +105,21 @@
       <a href="research-log.html#factor-exposures">research record</a></p>
     </div>
 
+    <section class="decision-summary" aria-labelledby="factor-decision-title">
+      <p class="kicker">Decision summary</p>
+      <h2 id="factor-decision-title">The labels were informative; the apparent alpha was not robust</h2>
+      <div class="decision-grid">
+        <div><h3>Bottom line</h3><p>The advertised factor exposures were recovered, but no ETF alpha survived a 5% false-discovery threshold after six simultaneous tests.</p></div>
+        <div><h3>Decision affected</h3><p>Evaluate a style fund by measured exposures, uncertainty, stability, and implementation—not by branding or one unadjusted alpha result.</p></div>
+        <div><h3>Who should care</h3><p>Fund selectors, portfolio analysts, wealth and asset-management teams, quantitative researchers, and model reviewers.</p></div>
+        <div><h3>Caveat</h3><p>The conclusion is conditional on six ETFs, the selected factor menu, one 2015–2026 vintage, and one chronological split. Exposure estimates can change across regimes and specifications.</p></div>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="factor-provenance-title">
       <p class="kicker">Data provenance</p>
       <h2 id="factor-provenance-title">A dated sample with a pinned vintage</h2>
-      <dl class="provenance-grid" id="factor-provenance">
-        <div><dt>Status</dt><dd>Loading frozen research artifact…</dd></div>
-      </dl>
+      <dl class="provenance-grid" id="factor-provenance"><!-- research-data:factor-provenance:start --><div><dt>Aligned sample</dt><dd>2015-01-05 – 2026-05-29</dd></div><div><dt>Factor vintage</dt><dd>2026-05-29 · sha256:6a8853963fab…</dd></div><div><dt>Price vintage</dt><dd>2026-07-06 · sha256:5dc8433e1c99…</dd></div><div><dt>Pinned source</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/05_factor_investing.ipynb"><code>ad24c4999583</code></a></dd></div><div><dt>Observations</dt><dd>2,867 daily rows</dd></div><div><dt>Estimator</dt><dd>OLS · Newey–West HAC(5) intervals</dd></div><!-- research-data:factor-provenance:end --></dl>
       <p class="figure-note">Factor returns come directly from the
       <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Kenneth R. French Data Library</a>.
       Prices are adjusted-close snapshots stored in this repository. SHA-256 hashes below identify the exact files.</p>
@@ -74,14 +136,14 @@
       </div>
       <div class="panel compact-panel">
         <label class="select-label" for="factor-etf">ETF to inspect</label>
-        <select id="factor-etf" aria-describedby="factor-selector-note"></select>
+        <select id="factor-etf" aria-describedby="factor-selector-note"><!-- research-data:factor-selector:start --><option value="QQQ" selected>QQQ</option><option value="USMV">USMV</option><option value="MTUM">MTUM</option><option value="VLUE">VLUE</option><option value="QUAL">QUAL</option><option value="IWM">IWM</option><!-- research-data:factor-selector:end --></select>
         <span id="factor-selector-note" class="figure-note">The chart and table update together.</span>
       </div>
       <figure class="chart-figure">
         <div id="chart-factor-exposures" class="chart tall" role="img" aria-label="ETF factor beta estimates with 95 percent HAC confidence intervals" aria-describedby="factor-exposure-caption"></div>
         <figcaption class="chart-caption" id="factor-exposure-caption">Point estimates and 95% HAC intervals. Positive and negative estimates use different marker symbols as well as color.</figcaption>
       </figure>
-      <div class="table-scroll" id="factor-regression-table" tabindex="0" role="region" aria-label="Factor regression estimates table"></div>
+      <div class="table-scroll" id="factor-regression-table" tabindex="0" role="region" aria-label="Factor regression estimates table"><!-- research-data:factor-regression-table:start --><table><caption>QQQ factor estimates; alpha 3.29% annualized; R² 95.0%</caption><thead><tr><th scope="col">Factor</th><th scope="col">Beta</th><th scope="col">95% CI</th><th scope="col">HAC t</th></tr></thead><tbody><tr><th scope="row">Market</th><td>1.106</td><td>[1.076, 1.135]</td><td>73.80</td></tr><tr><th scope="row">Size</th><td>-0.122</td><td>[-0.150, -0.094]</td><td>-8.58</td></tr><tr><th scope="row">Value</th><td>-0.306</td><td>[-0.343, -0.270]</td><td>-16.37</td></tr><tr><th scope="row">Profitability</th><td>0.051</td><td>[0.017, 0.084]</td><td>2.94</td></tr><tr><th scope="row">Investment</th><td>-0.186</td><td>[-0.238, -0.134]</td><td>-7.01</td></tr><tr><th scope="row">Momentum</th><td>0.041</td><td>[0.025, 0.058]</td><td>5.00</td></tr></tbody></table><!-- research-data:factor-regression-table:end --></div>
     </section>
 
     <section class="section" aria-labelledby="rolling-title">
@@ -107,7 +169,7 @@
         <div id="chart-factor-oos" class="chart" role="img" aria-label="In-sample and out-of-sample R squared for six ETF factor regressions" aria-describedby="oos-caption"></div>
         <figcaption class="chart-caption" id="oos-caption">Training and holdout R² by ETF. Fill patterns distinguish sample roles without relying on color.</figcaption>
       </figure>
-      <div class="table-scroll" id="factor-oos-table" tabindex="0" role="region" aria-label="Out-of-sample results table"></div>
+      <div class="table-scroll" id="factor-oos-table" tabindex="0" role="region" aria-label="Out-of-sample results table"><!-- research-data:factor-oos-table:start --><table><caption>Chronological holdout results; coefficients fitted only on the first half</caption><thead><tr><th scope="col">ETF</th><th scope="col">Training R²</th><th scope="col">Holdout R²</th><th scope="col">Change</th><th scope="col">Holdout dates</th></tr></thead><tbody><tr><th scope="row">QQQ</th><td>95.1%</td><td>92.9%</td><td>-2.1%</td><td>2020-09-14 – 2026-05-29</td></tr><tr><th scope="row">USMV</th><td>89.6%</td><td>60.0%</td><td>-29.6%</td><td>2020-09-14 – 2026-05-29</td></tr><tr><th scope="row">MTUM</th><td>95.2%</td><td>86.4%</td><td>-8.8%</td><td>2020-09-14 – 2026-05-29</td></tr><tr><th scope="row">VLUE</th><td>94.5%</td><td>82.5%</td><td>-12.1%</td><td>2020-09-14 – 2026-05-29</td></tr><tr><th scope="row">QUAL</th><td>97.5%</td><td>95.3%</td><td>-2.2%</td><td>2020-09-14 – 2026-05-29</td></tr><tr><th scope="row">IWM</th><td>98.5%</td><td>98.0%</td><td>-0.4%</td><td>2020-09-14 – 2026-05-29</td></tr></tbody></table><!-- research-data:factor-oos-table:end --></div>
     </section>
 
     <section class="section" aria-labelledby="multiplicity-title">
@@ -117,7 +179,7 @@
       p-values, Holm family-wise adjusted p-values, and Benjamini–Hochberg q-values. On this snapshot,
       no ETF alpha survives a 5% false-discovery threshold—an important correction to the tempting
       standalone QQQ result.<sup><a href="#factor-ref-2" id="factor-cite-2">2</a></sup></p>
-      <div class="table-scroll" id="factor-multiple-table" tabindex="0" role="region" aria-label="Multiple testing results table"></div>
+      <div class="table-scroll" id="factor-multiple-table" tabindex="0" role="region" aria-label="Multiple testing results table"><!-- research-data:factor-multiple-table:start --><table><caption>ETF alpha tests with family-wise and false-discovery corrections</caption><thead><tr><th scope="col">ETF</th><th scope="col">Annualized alpha</th><th scope="col">Raw p</th><th scope="col">Holm adjusted p</th><th scope="col">BH q</th><th scope="col">BH 5% decision</th></tr></thead><tbody><tr><th scope="row">QQQ</th><td>3.29%</td><td>0.0245</td><td>0.1467</td><td>0.1467</td><td>Does not survive</td></tr><tr><th scope="row">USMV</th><td>-1.23%</td><td>0.5189</td><td>1.0000</td><td>0.7784</td><td>Does not survive</td></tr><tr><th scope="row">MTUM</th><td>0.02%</td><td>0.9902</td><td>1.0000</td><td>0.9902</td><td>Does not survive</td></tr><tr><th scope="row">VLUE</th><td>0.49%</td><td>0.7738</td><td>1.0000</td><td>0.9285</td><td>Does not survive</td></tr><tr><th scope="row">QUAL</th><td>-0.74%</td><td>0.4177</td><td>1.0000</td><td>0.7784</td><td>Does not survive</td></tr><tr><th scope="row">IWM</th><td>-1.14%</td><td>0.1100</td><td>0.5500</td><td>0.3300</td><td>Does not survive</td></tr></tbody></table><!-- research-data:factor-multiple-table:end --></div>
     </section>
 
     <section class="section" aria-labelledby="factor-reproduce-title">
@@ -143,12 +205,24 @@
         <a href="https://doi.org/10.1093/rfs/hhv059">doi:10.1093/rfs/hhv059</a></li>
       </ol>
     </section>
+    <section class="section related-section" aria-labelledby="factor-related-title">
+      <p class="kicker">Continue exploring</p>
+      <h2 id="factor-related-title">Move from regression output to fund-selection evidence</h2>
+      <div class="related-grid">
+        <a class="related-card" href="finding-factor-etfs.html"><span>Finding</span><strong>Do factor ETFs deliver the exposures in their labels?</strong><em>Read the decision brief on advertised tilts, disappearing alpha, and holdout decay.</em></a>
+        <a class="related-card" href="findings.html"><span>Findings</span><strong>Compare the lab’s strongest conclusions</strong><em>Browse practical briefs across factor investing, portfolio construction, risk, pricing, and simulation.</em></a>
+        <a class="related-card" href="method.html"><span>Method</span><strong>How the lab controls false confidence</strong><em>Review the role of confidence intervals, holdouts, multiplicity, provenance, and limitations.</em></a>
+        <a class="related-card" href="research-log.html#factor-exposures"><span>Research record</span><strong>Audit the complete factor investigation</strong><em>Inspect the dated sample, estimator, falsification rule, uncertainty, failure modes, and source.</em></a>
+        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how the study demonstrates statistical research, data engineering, and analytical communication.</em></a>
+      </div>
+    </section>
     <output id="factor-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="research-log.html">Research Log</a> · <a href="about.html">About</a> · <a href="https://kylewisniewski.com">kylewisniewski.com</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
 <script src="js/common.js"></script>
 <script src="js/factors.js"></script>
+<script src="js/engagement.js"></script>
 </body>
 </html>
