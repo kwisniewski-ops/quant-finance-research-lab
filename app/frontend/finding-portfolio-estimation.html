@@ -31,7 +31,7 @@
   "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-08",
-  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-portfolio-estimation.html",
   "about": ["portfolio optimization", "estimation error", "risk parity", "hierarchical risk parity"],
@@ -48,24 +48,18 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Findings",
+      "position": 2,
+      "name": "Questions",
       "item": "https://kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
+      "position": 3,
       "name": "Why “optimal” portfolios fail out of sample",
       "item": "https://kylewisniewski.com/lab/finding-portfolio-estimation.html"
     }
@@ -80,11 +74,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -94,13 +86,23 @@
       <header class="page-head">
         <p class="kicker">Decision brief · Portfolio construction</p>
         <h1>Why “optimal” portfolios fail out of sample</h1>
-        <p class="lede">An optimizer can be mathematically exact and decision-fragile. In this
-        frozen-window study, the in-sample winner degraded sharply when its estimated returns met a
-        different market regime.</p>
+        <p class="lede">In this frozen-window study, the maximum-Sharpe portfolio’s performance
+        declined when fixed weights were evaluated on later data.</p>
       </header>
 
+      <nav class="depth-nav" aria-label="Research depth">
+        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <ol class="depth-path">
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+        </ol>
+      </nav>
+
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Bottom line</p>
+        <p class="kicker">Depth 1 · Answer</p>
         <h2 id="bottom-line">Risk-based methods delivered a more stable risk shape—not a reliable return advantage.</h2>
         <p>Maximum-Sharpe mean–variance optimization fell from a Sharpe ratio of about 1.12 in the
         2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk parity and hierarchical
@@ -118,7 +120,7 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Who should care</p>
+          <p class="kicker">Why it matters</p>
           <h3>Allocators, risk committees, and model reviewers</h3>
           <p>The result matters to anyone using an optimizer to convert noisy expected returns and
           covariances into precise weights—and to anyone evaluating whether an analytical system
@@ -134,7 +136,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Evidence</p>
+        <p class="kicker">Depth 2 · Evidence</p>
         <h2 id="evidence">The ranking changed when the estimates left the fit window</h2>
         <p>The experiment used 2,891 daily observations for 15 liquid ETFs from a frozen adjusted-close
         snapshot. Maximum-Sharpe MVO, box-uncertainty robust MVO, equal-risk-contribution risk parity,
@@ -151,7 +153,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">What changes in practice</p>
+        <p class="kicker">Depth 3 · Application</p>
         <h2 id="practice">Treat optimization as an assumption-sensitive proposal</h2>
         <ul class="refs">
           <li>Separate the return objective from the risk-budget objective before comparing methods.</li>
@@ -163,7 +165,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Limitations</p>
+        <p class="kicker">Depth 4 · Limits</p>
         <h2 id="limitations">What this result does not establish</h2>
         <ul class="refs">
           <li>There is one sealed evaluation window, not a distribution of rolling-origin outcomes.</li>
@@ -175,7 +177,7 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Explore and reproduce</p>
+        <p class="kicker">Depth 5 · Method and code</p>
         <h2 id="explore">Move from the implication to the implementation</h2>
         <div class="hero-actions">
           <a class="primary-action" href="portfolio.html">Explore the portfolio tool <span aria-hidden="true">→</span></a>
@@ -193,23 +195,11 @@
         </div>
       </section>
 
-      <section class="cta-band" aria-labelledby="professional-cta">
-        <div>
-          <p class="kicker">Professional relevance</p>
-          <h2 id="professional-cta">This is model governance expressed as working research.</h2>
-          <p>The study demonstrates falsifiable design, frozen data, sealed evaluation, comparative
-          modeling, explicit uncertainty, and the willingness to narrow a claim when the evidence does.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
-        </div>
-      </section>
     </article>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

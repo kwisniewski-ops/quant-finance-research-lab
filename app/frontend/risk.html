@@ -15,13 +15,13 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Empirical Risk Analytics — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta name="twitter:url" content="https://kylewisniewski.com/lab/risk.html">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,11 +30,7 @@
   "description": "A reproducible multi-asset portfolio study with VaR and Expected Shortfall uncertainty, coverage tests, and historical stress windows.",
   "url": "https://kylewisniewski.com/lab/risk.html",
   "dateModified": "2026-08-03",
-  "author": {
-    "@type": "Person",
-    "name": "Kyle Wisniewski",
-    "url": "https://kylewisniewski.com/"
-  },
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
     "name": "Quantitative Markets Research Lab",
@@ -53,25 +49,19 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Tools",
+      "position": 2,
+      "name": "Models",
       "item": "https://kylewisniewski.com/lab/tools.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
-      "name": "A risk model that can fail in public",
+      "position": 3,
+      "name": "Historical VaR Backtest",
       "item": "https://kylewisniewski.com/lab/risk.html"
     }
   ]
@@ -84,21 +74,18 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1"><div class="wrap">
   <div class="page-head">
     <p class="kicker">Module 03 · Empirical risk analytics</p>
-    <h1>A risk model that can fail in public</h1>
-    <p class="lede">A monthly rebalanced multi-asset portfolio, built from frozen adjusted-close
-    snapshots with transaction costs. Historical VaR and Expected Shortfall are shown with bootstrap
-    uncertainty, rolling forecast tests, and named market stress windows.</p>
+    <h1>Historical VaR Backtest</h1>
+    <p class="lede">Test a multi-asset risk forecast against later observations, estimate sampling
+    uncertainty, and examine three dated stress periods.</p>
     <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
     <a href="research-log.html#market-risk">research record</a></p>
   </div>
@@ -137,7 +124,7 @@
   </section>
 
   <section class="section" aria-labelledby="uncertainty-title">
-    <p class="kicker">Sampling uncertainty</p><h2 id="uncertainty-title">Tail estimates are intervals, not talismans</h2>
+    <p class="kicker">Sampling uncertainty</p><h2 id="uncertainty-title">Bootstrap intervals for VaR and Expected Shortfall</h2>
     <p class="prose-col">The point estimates are recomputed across 2,000 moving-block bootstrap
     samples, using 21-day blocks and seed <code>20260803</code>. Blocks preserve some local dependence;
     the percentile interval still describes uncertainty conditional on this observed history and
@@ -194,13 +181,12 @@
       <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>See why risk estimates can break precisely when portfolio relationships shift.</em></a>
       <a class="related-card" href="method.html"><span>Method</span><strong>How the lab tests model claims</strong><em>Review holdouts, uncertainty reporting, falsification rules, and reproducibility standards.</em></a>
       <a class="related-card" href="research-log.html#market-risk"><span>Research record</span><strong>Audit the complete VaR investigation</strong><em>Inspect the dated data, pre-declared criterion, test statistics, limitations, and source.</em></a>
-      <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how this study demonstrates model governance, data engineering, and research communication.</em></a>
     </div>
   </section>
   <output id="risk-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
 </div></main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 <script src="js/common.js"></script><script src="js/risk.js"></script>
 <script src="js/engagement.js"></script>
 </body>

@@ -8,8 +8,8 @@
 <link rel="canonical" href="https://kylewisniewski.com/lab">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets Research Lab">
-<meta property="og:title" content="I test the models people use to make decisions under uncertainty">
-<meta property="og:description" content="See the findings, explore the models, and audit the evidence behind an open quantitative finance research program.">
+<meta property="og:title" content="How much should an investor trust a quantitative model?">
+<meta property="og:description" content="Begin with a practical question, then follow the answer into evidence, limitations, mathematics, and reproducible code.">
 <meta property="og:url" content="https://kylewisniewski.com/lab">
 <meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta property="og:image:type" content="image/png">
@@ -17,8 +17,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Quantitative Markets Research Lab: evidence for decisions under uncertainty.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="I test the models people use to make decisions under uncertainty">
-<meta name="twitter:description" content="Findings, interactive models, and reproducible evidence from the Quantitative Markets Research Lab.">
+<meta name="twitter:title" content="How much should an investor trust a quantitative model?">
+<meta name="twitter:description" content="Begin with a practical question, then follow the answer into evidence, limitations, mathematics, and reproducible code.">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta name="twitter:image:alt" content="Quantitative Markets Research Lab: evidence for decisions under uncertainty.">
 <link rel="stylesheet" href="css/main.css">
@@ -27,11 +27,10 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://kylewisniewski.com/#person",
-      "name": "Kyle Wisniewski",
-      "url": "https://kylewisniewski.com",
-      "sameAs": ["https://github.com/kwisniewski-ops"]
+      "@type": "Organization",
+      "@id": "https://kylewisniewski.com/lab#organization",
+      "name": "Quantitative Markets Research Lab",
+      "url": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "CreativeWork",
@@ -40,7 +39,7 @@
       "url": "https://kylewisniewski.com/lab",
       "description": "An evidence-led research program testing quantitative finance models against data, numerical theory, and explicit falsification criteria.",
       "dateModified": "2026-08-08",
-      "author": {"@id": "https://kylewisniewski.com/#person"},
+      "author": {"@id": "https://kylewisniewski.com/lab#organization"},
       "license": "https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/LICENSE"
     },
     {
@@ -49,7 +48,7 @@
       "name": "Quantitative Markets Research Lab source",
       "codeRepository": "https://github.com/kwisniewski-ops/quant-finance-research-lab",
       "programmingLanguage": ["Python", "JavaScript", "HTML", "CSS"],
-      "author": {"@id": "https://kylewisniewski.com/#person"},
+      "author": {"@id": "https://kylewisniewski.com/lab#organization"},
       "isPartOf": {"@id": "https://kylewisniewski.com/lab#lab"}
     }
   ]
@@ -64,25 +63,23 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html" aria-current="page">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <section class="hero hero-reframed">
     <div class="wrap">
-      <p class="kicker">Quantitative research, engineered for scrutiny</p>
-      <h1>I test the models people use to make decisions under uncertainty.</h1>
-      <p class="lede">This public research lab combines quantitative modeling, data engineering,
-      software validation, and interactive communication to show what financial models explain,
-      where they fail, and what changes in practice.</p>
+      <p class="kicker">Questions before models</p>
+      <h1>How much should an investor trust the models behind a decision?</h1>
+      <p class="lede">Start with practical questions about portfolios, risk, diversification,
+      factor funds, volatility, and simulation. Each answer opens into evidence, limitations,
+      mathematics, and reproducible code.</p>
       <div class="hero-actions" aria-label="Start exploring">
-        <a class="primary-action" href="findings.html">See the strongest findings <span aria-hidden="true">→</span></a>
-        <a class="secondary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">Evaluate how I work <span aria-hidden="true">→</span></a>
+        <a class="primary-action" href="findings.html">Start with a question <span aria-hidden="true">→</span></a>
+        <a class="secondary-action" href="tools.html">Explore the models <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -96,86 +93,68 @@
     </dl>
 
     <section class="section" aria-labelledby="start-result">
-      <p class="kicker">Start with a result</p>
+      <p class="kicker">Start with a question</p>
       <div class="section-heading-row">
-        <h2 id="start-result">Three findings with decisions attached</h2>
-        <a class="text-link" href="findings.html">View all findings →</a>
+        <h2 id="start-result">Three useful answers in plain language</h2>
+        <a class="text-link" href="findings.html">View all six questions →</a>
       </div>
       <div class="finding-card-grid featured-findings">
         <a class="finding-card" href="finding-portfolio-estimation.html">
-          <span class="finding-status status status-revised">Revised</span>
           <p class="finding-question">Portfolio construction</p>
-          <h3>Why “optimal” portfolios fail out of sample</h3>
+          <h3>Can an “optimal” portfolio stay optimal?</h3>
+          <p class="finding-answer-label">Short answer</p>
+          <p class="finding-answer">Not reliably in this test. The fitted winner weakened sharply when evaluated on later data.</p>
           <p class="finding-metric">Sharpe 1.12 → 0.44</p>
-          <p>Estimated returns created a precise in-sample answer that did not survive forward data.
-          Risk-based portfolios delivered a more stable risk shape, not guaranteed excess return.</p>
-          <span class="finding-link">Read the evidence →</span>
+          <span class="finding-link">Follow the answer →</span>
         </a>
         <a class="finding-card" href="finding-var-backtest.html">
-          <span class="finding-status status status-rejected">Rejected</span>
           <p class="finding-question">Model validation</p>
-          <h3>When a 95% VaR model fails its own backtest</h3>
+          <h3>Does a 95% risk estimate fail only 5% of the time?</h3>
+          <p class="finding-answer-label">Short answer</p>
+          <p class="finding-answer">No. Breaches were too frequent and clustered, so the forecast failed its calibration tests.</p>
           <p class="finding-metric">135 breaches · 107 expected</p>
-          <p>The model missed too often and its failures clustered. A familiar confidence label did
-          not make the risk forecast calibrated.</p>
-          <span class="finding-link">Read the evidence →</span>
+          <span class="finding-link">Follow the answer →</span>
         </a>
-        <a class="finding-card" href="finding-diversification-regimes.html">
-          <span class="finding-status status status-revised">Regime shift</span>
-          <p class="finding-question">Diversification</p>
-          <h3>When diversification stops diversifying</h3>
-          <p class="finding-metric">SPY–TLT −0.35 → +0.37</p>
-          <p>Correlation changed sign across regimes. Portfolio stress tests must challenge
-          relationships between assets, not only shock each asset’s volatility.</p>
-          <span class="finding-link">Read the evidence →</span>
+        <a class="finding-card" href="finding-volatility-smile.html">
+          <p class="finding-question">Options and volatility</p>
+          <h3>Can one volatility number describe every option?</h3>
+          <p class="finding-answer-label">Short answer</p>
+          <p class="finding-answer">No. Observed volatility, tail behavior, and option prices contradicted the tested constant-volatility model.</p>
+          <p class="finding-metric">≈3% → 93% realized volatility</p>
+          <span class="finding-link">Follow the answer →</span>
         </a>
       </div>
     </section>
 
     <section class="section" aria-labelledby="choose-path">
-      <p class="kicker">Choose your depth</p>
-      <h2 id="choose-path">Understand the consequence in two minutes. Reproduce it in an afternoon.</h2>
-      <div class="route-grid">
-        <a class="route-card" href="findings.html">
-          <span class="route-no">01</span>
-          <h3>Understand a finding</h3>
-          <p>Begin with the result, the decision it affects, the evidence, and the boundary of the claim.</p>
-          <span>Browse decision briefs →</span>
-        </a>
-        <a class="route-card" href="tools.html">
-          <span class="route-no">02</span>
-          <h3>Explore a scenario</h3>
-          <p>Change assumptions in pricing, portfolio, risk, factor, and stochastic-process tools.</p>
-          <span>Use the tools →</span>
-        </a>
-        <a class="route-card" href="method.html">
-          <span class="route-no">03</span>
-          <h3>Audit the method</h3>
-          <p>Inspect the validation protocol, reusable checklists, tests, assumptions, and source code.</p>
-          <span>Follow the evidence →</span>
-        </a>
-      </div>
+      <p class="kicker">One path, five depths</p>
+      <h2 id="choose-path">Stop when the answer is sufficient. Continue when the decision requires more.</h2>
+      <p class="lede">Every question follows the same sequence, so technical depth never blocks the first useful conclusion.</p>
+      <ol class="depth-path" aria-label="Research depth sequence">
+        <li><span class="depth-step"><span class="depth-no">01 · 30 seconds</span><strong>Answer</strong><small>The conclusion in plain language.</small></span></li>
+        <li><span class="depth-step"><span class="depth-no">02 · 5 minutes</span><strong>Evidence</strong><small>Data, estimates, and uncertainty.</small></span></li>
+        <li><span class="depth-step"><span class="depth-no">03 · Practical</span><strong>Application</strong><small>What changes in a decision.</small></span></li>
+        <li><span class="depth-step"><span class="depth-no">04 · Critical</span><strong>Limits</strong><small>What the result does not prove.</small></span></li>
+        <li><span class="depth-step"><span class="depth-no">05 · Technical</span><strong>Method and code</strong><small>Tests, mathematics, data, and source.</small></span></li>
+      </ol>
     </section>
 
-    <section class="section" aria-labelledby="capability-map">
-      <p class="kicker">Capabilities demonstrated</p>
+    <section class="section" aria-labelledby="more-questions">
+      <p class="kicker">Continue by question</p>
       <div class="section-heading-row">
-        <h2 id="capability-map">One research system, six transferable disciplines</h2>
-        <a class="text-link" href="method.html#capabilities">Inspect the method →</a>
+        <h2 id="more-questions">Three more assumptions worth testing</h2>
+        <a class="text-link" href="findings.html">See every question →</a>
       </div>
-      <div class="capability-grid">
-        <article><h3>Research design</h3><p>Predeclared claims, falsification criteria, chronological holdouts, and a public revision ledger.</p></article>
-        <article><h3>Data engineering</h3><p>Cache-first loaders, validation rules, frozen snapshots, hashes, and explicit data vintages.</p></article>
-        <article><h3>Quantitative modeling</h3><p>Pricing, stochastic volatility, portfolio construction, factor attribution, simulation, and tail risk.</p></article>
-        <article><h3>Software engineering</h3><p>Cross-model anchors, convergence tests, numerical error budgets, and verified no-look-ahead behavior.</p></article>
-        <article><h3>Model governance</h3><p>Coverage testing, uncertainty intervals, multiplicity correction, limitations, and failure reporting.</p></article>
-        <article><h3>Analytical communication</h3><p>Interactive instruments, decision briefs, accessible tables, technical notes, and reproducible conclusions.</p></article>
+      <div class="finding-card-grid">
+        <a class="finding-card" href="finding-diversification-regimes.html"><p class="finding-question">Diversification</p><h3>Will bonds diversify stocks in the next stress?</h3><p class="finding-answer-label">Short answer</p><p class="finding-answer">Not necessarily. The stock–bond relationship changed sign across the studied regimes.</p><p class="finding-metric">−0.35 → +0.37 correlation</p><span class="finding-link">Follow the answer →</span></a>
+        <a class="finding-card" href="finding-factor-etfs.html"><p class="finding-question">Factor products</p><h3>Does a factor fund deliver the exposure on its label?</h3><p class="finding-answer-label">Short answer</p><p class="finding-answer">The advertised exposures appeared, but no tested alpha survived multiple-testing correction.</p><p class="finding-metric">0 alphas at 5% FDR</p><span class="finding-link">Follow the answer →</span></a>
+        <a class="finding-card" href="finding-monte-carlo-error.html"><p class="finding-question">Simulation</p><h3>How many simulations are enough?</h3><p class="finding-answer-label">Short answer</p><p class="finding-answer">Enough is defined by the decision’s error tolerance, not by a conventional path count.</p><p class="finding-metric">Error ∝ N⁻¹ᐟ²</p><span class="finding-link">Follow the answer →</span></a>
       </div>
     </section>
 
     <section class="section" aria-labelledby="active-program">
-      <p class="kicker">The live program</p>
-      <h2 id="active-program">Research does not end when the chart renders</h2>
+      <p class="kicker">Research in progress</p>
+      <h2 id="active-program">Current questions and revisions</h2>
       <div class="arrival-grid">
         <article class="arrival-item arrival-new">
           <p class="kicker">Current question</p>
@@ -199,30 +178,29 @@
     </section>
 
     <div class="thesis">
-      <p class="kicker">Central thesis</p>
+      <p class="kicker">Interpretation standard</p>
       <blockquote>
-        Models clarify uncertainty; they do not eliminate it. The useful question is not whether a
-        model is elegant, but whether its assumptions, errors, and failure modes are visible enough
-        to support a defensible decision.
+        Every conclusion is conditional on a model, a data vintage, an evaluation design, and an
+        estimated error. Those conditions determine how much confidence a decision can support.
       </blockquote>
     </div>
 
-    <section class="cta-band" aria-labelledby="professional-proof">
+    <section class="cta-band" aria-labelledby="research-standard">
       <div>
-        <p class="kicker">Professional proof</p>
-        <h2 id="professional-proof">The lab is also evidence of how I build analytical systems.</h2>
-        <p>See how the research design, data pipeline, software validation, and communication layer
-        compose into one auditable product—and how the same discipline transfers beyond finance.</p>
+        <p class="kicker">Research standard</p>
+        <h2 id="research-standard">A result is published with the evidence required to challenge it.</h2>
+        <p>Questions, assumptions, data vintages, uncertainty estimates, failure criteria,
+        limitations, and source artifacts remain connected throughout the research record.</p>
       </div>
       <div class="cta-actions">
-        <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">View the capability case study <span aria-hidden="true">→</span></a>
-        <a class="secondary-action" href="https://kylewisniewski.com/contact">Discuss a relevant problem <span aria-hidden="true">→</span></a>
+        <a class="primary-action" href="method.html">Review the method <span aria-hidden="true">→</span></a>
+        <a class="secondary-action" href="research-log.html">Open the research record <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

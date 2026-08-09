@@ -31,7 +31,7 @@
     var year = button.getAttribute("data-cite-year") || "2026";
     var target = button.getAttribute("data-cite-target");
     var url = window.location.href.split("#")[0] + (target ? "#" + target : "");
-    return 'Wisniewski, Kyle. "' + title + '." Quantitative Markets Research Lab, ' + year + ". " + url;
+    return 'Quantitative Markets Research Lab. "' + title + '." ' + year + ". " + url;
   }
 
   function announce(message) {

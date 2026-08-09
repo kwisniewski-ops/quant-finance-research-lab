@@ -66,7 +66,7 @@
     Plotly.react("chart-diff", [{
       x: STRIKES, y: diff, type: "bar", name: "BS − Heston",
       marker: {
-        color: diff.map(function (d) { return d >= 0 ? "rgba(62,92,118,0.7)" : "rgba(138,48,51,0.7)"; }),
+        color: diff.map(function (d) { return d >= 0 ? "rgba(62,92,118,0.7)" : "rgba(140,58,52,0.7)"; }),
         pattern: { shape: diff.map(function (d) { return d >= 0 ? "/" : "x"; }) }
       }
     }], QL.layout({
@@ -118,7 +118,7 @@
         '<td class="num" data-label="Heston implied volatility">' + QL.pct(HESTON_IVS[i], 2) + "</td>" +
         '<td class="num" data-label="Black-Scholes call">' + QL.fmt(bs[i], 4) + "</td>" +
         '<td class="num" data-label="Implied volatility residual">' + (state.flatVol - HESTON_IVS[i] >= 0 ? "+" : "") + QL.pct(state.flatVol - HESTON_IVS[i], 2) + "</td>" +
-        '<td class="num" data-label="BS minus Heston" style="color:' + (Math.abs(d) > 0.15 ? "#8a3033" : "inherit") + '">' +
+        '<td class="num" data-label="BS minus Heston" style="color:' + (Math.abs(d) > 0.15 ? "#8c3a34" : "inherit") + '">' +
         (d >= 0 ? "+" : "") + QL.fmt(d, 4) + "</td></tr>";
     });
     html += "</tbody></table>";

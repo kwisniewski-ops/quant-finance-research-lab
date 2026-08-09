@@ -31,7 +31,7 @@
   "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-08",
-  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-volatility-smile.html",
   "about": ["Black-Scholes", "stochastic volatility", "Heston model", "implied volatility skew"],
@@ -48,24 +48,18 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Findings",
+      "position": 2,
+      "name": "Questions",
       "item": "https://kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
+      "position": 3,
       "name": "Why one volatility number cannot price every strike",
       "item": "https://kylewisniewski.com/lab/finding-volatility-smile.html"
     }
@@ -80,11 +74,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -94,13 +86,23 @@
       <header class="page-head">
         <p class="kicker">Decision brief · Derivatives and model risk</p>
         <h1>Why one volatility number cannot price every strike</h1>
-        <p class="lede">Black–Scholes is a powerful baseline. Its constant-volatility and Gaussian
-        fingerprints are also testable—and this study shows where observed equity-index behavior
-        departed from them.</p>
+        <p class="lede">Observed volatility variation, tail behavior, and return dependence were
+        inconsistent with the tested constant-volatility model.</p>
       </header>
 
+      <nav class="depth-nav" aria-label="Research depth">
+        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <ol class="depth-path">
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+        </ol>
+      </nav>
+
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Bottom line</p>
+        <p class="kicker">Depth 1 · Answer</p>
         <h2 id="bottom-line">The tested Black–Scholes dynamics were inconsistent with the observed sample.</h2>
         <p>SPY 21-day realized volatility ranged from roughly 3% to 93%, daily excess kurtosis was
         about 14, the worst day was near a 10σ event under a Gaussian yardstick, and lag-1 absolute-
@@ -118,7 +120,7 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Who should care</p>
+          <p class="kicker">Why it matters</p>
           <h3>Derivatives users, risk teams, and model validators</h3>
           <p>The result matters wherever one volatility estimate drives option prices, Greeks,
           hedges, scenario losses, or claims about the likelihood of extreme market moves.</p>
@@ -133,7 +135,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Evidence</p>
+        <p class="kicker">Depth 2 · Evidence</p>
         <h2 id="evidence">The rejection came from several independent fingerprints</h2>
         <p>The study measured a frozen SPY adjusted-close sample from January 2015 through July 2026.
         Under constant-volatility geometric Brownian motion, rolling volatility should fluctuate
@@ -149,7 +151,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">What changes in practice</p>
+        <p class="kicker">Depth 3 · Application</p>
         <h2 id="practice">Separate a useful quoting convention from a claim about market dynamics</h2>
         <ul class="refs">
           <li>Inspect implied volatility across both strike and maturity instead of applying one volatility to every contract.</li>
@@ -161,7 +163,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Limitations</p>
+        <p class="kicker">Depth 4 · Limits</p>
         <h2 id="limitations">The evidence rejects fingerprints; it does not crown a true model</h2>
         <ul class="refs">
           <li>The empirical study covers one underlying and one historical window.</li>
@@ -173,7 +175,7 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Explore and reproduce</p>
+        <p class="kicker">Depth 5 · Method and code</p>
         <h2 id="explore">Follow the model from closed form to empirical rejection</h2>
         <div class="hero-actions">
           <a class="primary-action" href="case-study.html">Read the full case study <span aria-hidden="true">→</span></a>
@@ -192,23 +194,11 @@
         </div>
       </section>
 
-      <section class="cta-band" aria-labelledby="professional-cta">
-        <div>
-          <p class="kicker">Professional relevance</p>
-          <h2 id="professional-cta">Model sophistication matters less than knowing what evidence could reject it.</h2>
-          <p>The case study combines empirical diagnostics, analytical pricing, stochastic simulation,
-          calibration discipline, cross-model validation, and accessible explanation of specification risk.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
-        </div>
-      </section>
     </article>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

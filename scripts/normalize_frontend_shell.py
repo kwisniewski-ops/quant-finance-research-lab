@@ -15,25 +15,24 @@ FRONTEND = ROOT / "app" / "frontend"
 def section_for(page: Path) -> str | None:
     name = page.name
     if name == "index.html":
-        return "Overview"
+        return "Start"
     if name == "findings.html" or name.startswith("finding-") or name == "case-study.html":
-        return "Findings"
+        return "Questions"
     if name in {"tools.html", "asset-pricing.html", "portfolio.html", "risk.html", "simulations.html", "factors.html"}:
-        return "Tools"
+        return "Models"
     if name in {"method.html", "math-notes.html", "about.html"}:
         return "Method"
     if name == "research-log.html":
-        return "Log"
+        return "Research record"
     return None
 
 
 def header(active: str | None) -> str:
     links = [
-        ("Overview", "index.html"),
-        ("Findings", "findings.html"),
-        ("Tools", "tools.html"),
+        ("Start", "index.html"),
+        ("Questions", "findings.html"),
+        ("Models", "tools.html"),
         ("Method", "method.html"),
-        ("Log", "research-log.html"),
     ]
     navigation = "".join(
         f'<a href="{href}"{" aria-current=\"page\"" if label == active else ""}>{label}</a>'
@@ -43,12 +42,10 @@ def header(active: str | None) -> str:
         '<header class="site-header">\n'
         '  <div class="wrap">\n'
         '    <div class="identity-lockup" aria-label="Site identity">\n'
-        '      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>\n'
-        '      <span class="identity-separator" aria-hidden="true">/</span>\n'
-        '      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>\n'
+        '      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>\n'
         '    </div>\n'
         '    <nav class="site-nav" aria-label="Primary navigation">'
-        f'{navigation}<a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a>'
+        f'{navigation}'
         '</nav>\n'
         '  </div>\n'
         '</header>'
@@ -57,11 +54,12 @@ def header(active: str | None) -> str:
 
 FOOTER = (
     '<footer class="site-footer"><div class="wrap">'
-    '<span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span>'
-    '<span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · '
-    '<a href="method.html">Method</a> · <a href="about.html">About</a> · '
-    '<a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · '
-    '<a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span>'
+    '<span>Quantitative Markets Research Lab · MMXXVI</span>'
+    '<span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · '
+    '<a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · '
+    '<a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · '
+    '<a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · '
+    '<a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span>'
     '</div></footer>'
 )
 
@@ -86,10 +84,28 @@ def normalize(page: Path) -> None:
         raise RuntimeError(f"Expected one global header and footer in {page}")
 
     source = re.sub(
+        r'"author"\s*:\s*\{\s*"@type"\s*:\s*"Person"\s*,\s*'
+        r'"name"\s*:\s*"Kyle Wisniewski"\s*,\s*'
+        r'"url"\s*:\s*"https://kylewisniewski\.com/?"\s*\}',
+        '"author": {"@id": "https://kylewisniewski.com/lab#organization"}',
+        source,
+        flags=re.DOTALL,
+    )
+    source = re.sub(
+        r'"author"\s*:\s*\{\s*"@type"\s*:\s*"Organization"\s*,\s*'
+        r'"name"\s*:\s*"Quantitative Markets Research Lab"\s*,\s*'
+        r'"url"\s*:\s*"https://kylewisniewski\.com/lab/?"\s*\}',
+        '"author": {"@id": "https://kylewisniewski.com/lab#organization"}',
+        source,
+        flags=re.DOTALL,
+    )
+
+    source = re.sub(
         r'https://kylewisniewski\.com/lab/(?:images/og-[^"<]+\.jpg|og-lab\.jpg)',
         "https://kylewisniewski.com/lab/og-lab-v2.png",
         source,
     )
+    source = source.replace("warm paper", "ivory research paper")
     source = source.replace('<meta property="og:image:type" content="image/jpeg">', '<meta property="og:image:type" content="image/png">')
     if '<meta property="og:image"' in source and '<meta property="og:image:type"' not in source:
         source = source.replace(
@@ -103,7 +119,7 @@ def normalize(page: Path) -> None:
             '<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">\n</head>',
             1,
         )
-    if page.name not in {"index.html", "404.html"} and 'id="breadcrumb-schema"' not in source:
+    if page.name not in {"index.html", "404.html"}:
         canonical_match = re.search(r'<link rel="canonical" href="([^"]+)">', source)
         title_match = re.search(r"<h1[^>]*>(.*?)</h1>", source, re.DOTALL)
         if not canonical_match or not title_match:
@@ -111,15 +127,12 @@ def normalize(page: Path) -> None:
         page_title = html.unescape(re.sub(r"<[^>]+>", "", title_match.group(1))).strip()
         active = section_for(page)
         group_urls = {
-            "Findings": "https://kylewisniewski.com/lab/findings.html",
-            "Tools": "https://kylewisniewski.com/lab/tools.html",
+            "Questions": "https://kylewisniewski.com/lab/findings.html",
+            "Models": "https://kylewisniewski.com/lab/tools.html",
             "Method": "https://kylewisniewski.com/lab/method.html",
-            "Log": "https://kylewisniewski.com/lab/research-log.html",
+            "Research record": "https://kylewisniewski.com/lab/research-log.html",
         }
-        crumbs = [
-            ("Kyle Wisniewski", "https://kylewisniewski.com"),
-            ("Research Lab", "https://kylewisniewski.com/lab"),
-        ]
+        crumbs = [("Research Lab", "https://kylewisniewski.com/lab")]
         group_url = group_urls.get(active or "")
         canonical = canonical_match.group(1)
         if active and group_url and canonical != group_url:
@@ -138,13 +151,21 @@ def normalize(page: Path) -> None:
                 for index, (name, url) in enumerate(crumbs, start=1)
             ],
         }
-        source = source.replace(
-            "</head>",
+        breadcrumb_block = (
             '<script id="breadcrumb-schema" type="application/ld+json">\n'
             + json.dumps(schema, ensure_ascii=False, indent=2)
-            + "\n</script>\n</head>",
-            1,
+            + "\n</script>"
         )
+        if 'id="breadcrumb-schema"' in source:
+            source = re.sub(
+                r'<script id="breadcrumb-schema" type="application/ld\+json">.*?</script>',
+                breadcrumb_block,
+                source,
+                count=1,
+                flags=re.DOTALL,
+            )
+        else:
+            source = source.replace("</head>", breadcrumb_block + "\n</head>", 1)
     if 'src="js/engagement.js"' not in source:
         source = source.replace("</body>", '<script src="js/engagement.js"></script>\n</body>', 1)
     page.write_text(source, encoding="utf-8")

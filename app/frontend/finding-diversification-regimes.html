@@ -31,7 +31,7 @@
   "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-08",
-  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-diversification-regimes.html",
   "about": ["portfolio diversification", "stock bond correlation", "regime risk", "stress testing"],
@@ -48,24 +48,18 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Findings",
+      "position": 2,
+      "name": "Questions",
       "item": "https://kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
+      "position": 3,
       "name": "Why diversification can disappear when it is needed",
       "item": "https://kylewisniewski.com/lab/finding-diversification-regimes.html"
     }
@@ -80,11 +74,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -94,13 +86,23 @@
       <header class="page-head">
         <p class="kicker">Decision brief · Regime risk</p>
         <h1>Why diversification can disappear when it is needed</h1>
-        <p class="lede">Diversification is not a permanent property of asset labels. It is an
-        empirical relationship among returns—and the relationship can change when a common macro
-        factor begins moving assets together.</p>
+        <p class="lede">Stock–bond correlation changed from negative to positive in the studied
+        sample, reducing the protection expected from a balanced allocation.</p>
       </header>
 
+      <nav class="depth-nav" aria-label="Research depth">
+        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <ol class="depth-path">
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+        </ol>
+      </nav>
+
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Bottom line</p>
+        <p class="kicker">Depth 1 · Answer</p>
         <h2 id="bottom-line">A balanced portfolio's protection depended on a correlation regime that changed sign.</h2>
         <p>In the frozen sample, 126-day SPY–TLT correlation averaged −0.35 during 2015–2019,
         reached +0.37 during 2022–2023, and remained positive at +0.31 at the sample end. In a
@@ -118,7 +120,7 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Who should care</p>
+          <p class="kicker">Why it matters</p>
           <h3>Multi-asset allocators and enterprise risk teams</h3>
           <p>The finding matters wherever historical correlations determine risk budgets, hedges,
           capital allocation, retirement glide paths, or the expected protection of a balanced portfolio.</p>
@@ -132,7 +134,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Evidence</p>
+        <p class="kicker">Depth 2 · Evidence</p>
         <h2 id="evidence">Two views expose the same hidden assumption</h2>
         <p>The first view is historical. A rolling 126-trading-day correlation between SPY and TLT
         captured the negative stock–bond relationship of 2015–2019 and its reversal during the
@@ -148,7 +150,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">What changes in practice</p>
+        <p class="kicker">Depth 3 · Application</p>
         <h2 id="practice">Budget for the failure of relationships, not only assets</h2>
         <ul class="refs">
           <li>Show portfolio risk across a range of correlation states instead of one point estimate.</li>
@@ -160,7 +162,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Limitations</p>
+        <p class="kicker">Depth 4 · Limits</p>
         <h2 id="limitations">A stress surface is not a timing model</h2>
         <ul class="refs">
           <li>The SPY–TLT result comes from one historical sample and one 126-day rolling-window choice.</li>
@@ -172,7 +174,7 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Explore and reproduce</p>
+        <p class="kicker">Depth 5 · Method and code</p>
         <h2 id="explore">Interrogate the portfolio through several non-overlapping lenses</h2>
         <div class="hero-actions">
           <a class="primary-action" href="risk.html">Explore the risk dashboard <span aria-hidden="true">→</span></a>
@@ -190,23 +192,11 @@
         </div>
       </section>
 
-      <section class="cta-band" aria-labelledby="professional-cta">
-        <div>
-          <p class="kicker">Professional relevance</p>
-          <h2 id="professional-cta">The practical skill is finding the assumption the dashboard hides.</h2>
-          <p>This work connects empirical monitoring, covariance engineering, mathematically valid
-          stress transformations, portfolio interpretation, and plain-language model limitations.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
-        </div>
-      </section>
     </article>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

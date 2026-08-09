@@ -23,7 +23,7 @@
   "description":"A practical protocol and reusable checklists for producing defensible quantitative evidence.",
   "url":"https://kylewisniewski.com/lab/method.html",
   "dateModified":"2026-08-08",
-  "author":{"@type":"Person","name":"Kyle Wisniewski","url":"https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf":{"@type":"CreativeWork","name":"Quantitative Markets Research Lab","url":"https://kylewisniewski.com/lab"}
 }
 </script>
@@ -36,19 +36,13 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "How evidence becomes a defensible conclusion",
+      "position": 2,
+      "name": "How each answer earns its confidence",
       "item": "https://kylewisniewski.com/lab/method.html"
     }
   ]
@@ -60,22 +54,20 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html" aria-current="page">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html" aria-current="page">Method</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1"><div class="wrap">
-  <div class="page-head"><p class="kicker">Audit the method</p><h1>How evidence becomes a defensible conclusion</h1><p class="lede">The lab follows one discipline from question to published artifact: state the claim precisely, engineer the evidence, implement the model faithfully, try to break it, and preserve the boundary between what the result supports and what it does not.</p></div>
+  <div class="page-head"><p class="kicker">Research method</p><h1>How each answer earns its confidence</h1><p class="lede">Each investigation specifies the question, data, validation tests, uncertainty, failure criteria, and reproducible artifacts before a conclusion is accepted.</p></div>
 
-  <section class="decision-summary" aria-labelledby="method-bottom-line"><p class="kicker">Bottom line</p><h2 id="method-bottom-line">A model is not validated because it runs. It is validated against declared behavior and still remains conditional.</h2><div class="decision-grid"><div><h3>Decision affected</h3><p>Whether an analytical result is reliable enough to inform a real allocation, risk, pricing, or governance decision.</p></div><div><h3>Evidence standard</h3><p>Known theoretical anchors, untouched data, uncertainty estimates, failure criteria, versioned artifacts, and reproducible execution.</p></div><div><h3>Who should care</h3><p>Model owners, risk leaders, data and AI teams, investment researchers, reviewers, and anyone asked to defend an analytical claim.</p></div><div><h3>Boundary</h3><p>Passing validation supports a scoped claim. It never proves that the model is the market or that the future will resemble the test.</p></div></div></section>
+  <section class="decision-summary" aria-labelledby="method-bottom-line"><p class="kicker">Short answer</p><h2 id="method-bottom-line">Validation compares a model with pre-specified theoretical and empirical criteria; every conclusion remains conditional on the test design.</h2><div class="decision-grid"><div><h3>Purpose</h3><p>Determine whether a result is reliable enough to inform a scoped allocation, risk, pricing, or governance decision.</p></div><div><h3>Evidence required</h3><p>Theoretical anchors, untouched data, uncertainty estimates, failure criteria, versioned artifacts, and reproducible execution.</p></div><div><h3>Result</h3><p>A supported, rejected, or revised claim with the reason and decision consequence stated explicitly.</p></div><div><h3>Boundary</h3><p>Passing validation does not prove that the model is the market or that future data will resemble the test.</p></div></div></section>
 
-  <section class="section" aria-labelledby="protocol"><p class="kicker">The protocol</p><h2 id="protocol">Five gates between an idea and a published result</h2><ol class="protocol-list"><li><span>01</span><div><h3>Frame a falsifiable question</h3><p>Name the decision, state the claim, and define in advance what evidence would count against it. “Explore the data” is not a falsification criterion.</p></div></li><li><span>02</span><div><h3>Engineer the evidence</h3><p>Document selection, dates, transformations, missingness, hashes, and provenance. Separate refreshing data from reproducing an existing experiment.</p></div></li><li><span>03</span><div><h3>Implement against anchors</h3><p>Test numerical code against identities, limiting cases, convergence behavior, and independent methods—not merely stored fixtures.</p></div></li><li><span>04</span><div><h3>Confront the model</h3><p>Use chronological holdouts, calibration tests, stress scenarios, uncertainty intervals, and multiplicity controls appropriate to the claim.</p></div></li><li><span>05</span><div><h3>Publish the boundary</h3><p>Report the result, uncertainty, failure modes, data vintage, source commit, and what decision changes. Preserve rejections and revisions.</p></div></li></ol></section>
+  <section class="section" aria-labelledby="protocol"><p class="kicker">Validation protocol</p><h2 id="protocol">Five stages from question to published result</h2><ol class="protocol-list"><li><span>01</span><div><h3>Frame a falsifiable question</h3><p>Name the decision, state the claim, and define in advance what evidence would count against it. “Explore the data” is not a falsification criterion.</p></div></li><li><span>02</span><div><h3>Engineer the evidence</h3><p>Document selection, dates, transformations, missingness, hashes, and provenance. Separate refreshing data from reproducing an existing experiment.</p></div></li><li><span>03</span><div><h3>Implement against anchors</h3><p>Test numerical code against identities, limiting cases, convergence behavior, and independent methods—not merely stored fixtures.</p></div></li><li><span>04</span><div><h3>Test the model</h3><p>Use chronological holdouts, calibration tests, stress scenarios, uncertainty intervals, and multiplicity controls appropriate to the claim.</p></div></li><li><span>05</span><div><h3>Publish the boundary</h3><p>Report the result, uncertainty, failure modes, data vintage, source commit, and what decision changes. Preserve rejections and revisions.</p></div></li></ol></section>
 
-  <section class="section" id="capabilities" aria-labelledby="capability-evidence"><p class="kicker">Capability map</p><h2 id="capability-evidence">What the lab demonstrates—and why it transfers</h2><div class="table-scroll"><table class="data capability-table"><caption>Transferable capability, lab evidence, and marketplace relevance</caption><thead><tr><th>Capability</th><th>Evidence in the lab</th><th>Transferable relevance</th></tr></thead><tbody><tr><th scope="row">Research design</th><td>Predeclared claims, holdouts, falsification criteria, revision log</td><td>Experiments and decision-support systems that can be audited</td></tr><tr><th scope="row">Data engineering</th><td>Cache-first loaders, frozen snapshots, hashes, validation</td><td>Governed pipelines with lineage and repeatable outputs</td></tr><tr><th scope="row">Quantitative modeling</th><td>Pricing, factors, optimization, stochastic processes, tail risk</td><td>Model development, comparison, and validation</td></tr><tr><th scope="row">Software engineering</th><td>204 tests, convergence checks, cross-model anchors, no-look-ahead proof</td><td>Reliable analytical products rather than fragile notebooks</td></tr><tr><th scope="row">Model governance</th><td>Coverage tests, uncertainty, multiplicity, limitations</td><td>Controls for financial, statistical, and AI model risk</td></tr><tr><th scope="row">Communication</th><td>Decision briefs, interactive tools, accessible evidence, citations</td><td>Translation from technical output to accountable action</td></tr></tbody></table></div><div class="note"><span class="note-label">Beyond finance</span>Leakage prevention, calibration, drift, holdout design, uncertainty, monitoring, reproducibility, and documented failure are also core disciplines for governing AI and institutional analytics.</div></section>
+  <section class="section" id="standards" aria-labelledby="evidence-standards"><p class="kicker">Evidence standards</p><h2 id="evidence-standards">Three conditions for an inspectable result</h2><div class="capability-grid"><article><h3>Traceable data</h3><p>Sources, dates, transformations, missingness, hashes, and frozen vintages remain attached to the result.</p></article><article><h3>Testable models</h3><p>Theoretical identities, limiting cases, convergence behavior, holdouts, calibration, and stress tests define what can fail.</p></article><article><h3>Bounded conclusions</h3><p>Uncertainty, limitations, rejected claims, revisions, and the affected decision are reported together.</p></article></div></section>
 
   <section class="section" aria-labelledby="checklists"><p class="kicker">Reusable resources</p><div class="section-heading-row"><h2 id="checklists">Three checklists for analytical work</h2><button class="print-button" type="button" onclick="window.print()">Print or save these checklists</button></div><div class="checklist-grid">
     <article class="checklist" id="model-validation-checklist"><h3>Model-validation checklist</h3><p>Use before approving a model for decision support.</p><ul><li>Is the decision and model owner named?</li><li>Are assumptions explicit and testable?</li><li>Is there an independent theoretical or numerical anchor?</li><li>Is leakage prevented by construction?</li><li>Are calibration and residual behavior tested?</li><li>Is uncertainty attached to the reported result?</li><li>Are stress conditions and boundary cases included?</li><li>Are failure criteria declared before comparison?</li><li>Are limitations written in decision language?</li><li>Is monitoring or revalidation defined?</li></ul></article>
@@ -85,10 +77,10 @@
 
   <section class="section" aria-labelledby="inspect-record"><p class="kicker">Inspect the record</p><h2 id="inspect-record">Go from principle to implementation</h2><div class="related-grid"><a href="research-log.html"><span>Public record</span><strong>Questions, failures, and version-pinned artifacts</strong><em>Open the research log →</em></a><a href="math-notes.html"><span>Foundations</span><strong>Six derivations carrying the mathematical load</strong><em>Read the notes →</em></a><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab"><span>Source</span><strong>Python library, notebooks, tests, and documentation</strong><em>Audit the repository →</em></a><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/docs/limitations.md"><span>Boundaries</span><strong>Known limitations collected in one place</strong><em>Read limitations →</em></a></div></section>
 
-  <section class="cta-band" aria-labelledby="apply-method"><div><p class="kicker">Apply the discipline</p><h2 id="apply-method">The method is the transferable product.</h2><p>The domain here is finance. The underlying work—governed data, evaluation design, software validation, uncertainty, and accountable communication—applies anywhere analytical systems shape decisions.</p></div><div class="cta-actions"><a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See the professional case study <span aria-hidden="true">→</span></a><a class="secondary-action" href="https://kylewisniewski.com/contact">Discuss a relevant system <span aria-hidden="true">→</span></a></div></section>
+  <section class="cta-band" aria-labelledby="apply-method"><div><p class="kicker">Full audit trail</p><h2 id="apply-method">The research record preserves how each conclusion changed.</h2><p>Questions, rejected claims, revisions, data versions, source commits, notebooks, and known limitations remain available for inspection.</p></div><div class="cta-actions"><a class="primary-action" href="research-log.html">Open the research record <span aria-hidden="true">→</span></a><a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab">View the source code <span aria-hidden="true">↗</span></a></div></section>
 </div></main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 <script src="js/engagement.js"></script>
 </body>
 </html>

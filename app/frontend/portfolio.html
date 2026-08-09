@@ -16,13 +16,13 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio Optimization — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
 <meta name="twitter:url" content="https://kylewisniewski.com/lab/portfolio.html">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,11 +33,7 @@
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "isAccessibleForFree": true,
-  "author": {
-    "@type": "Person",
-    "name": "Kyle Wisniewski",
-    "url": "https://kylewisniewski.com/"
-  },
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
     "name": "Quantitative Markets Research Lab",
@@ -59,25 +55,19 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Tools",
+      "position": 2,
+      "name": "Models",
       "item": "https://kylewisniewski.com/lab/tools.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
-      "name": "Efficient Frontier Explorer",
+      "position": 3,
+      "name": "Efficient Frontier Simulation",
       "item": "https://kylewisniewski.com/lab/portfolio.html"
     }
   ]
@@ -91,11 +81,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -103,10 +91,9 @@
   <div class="wrap">
     <div class="page-head">
       <p class="kicker">Module 02 · Portfolio Theory</p>
-      <h1>Efficient Frontier Explorer</h1>
-      <p class="lede">Twenty thousand long-only portfolios over six asset classes, sampled from a
-      Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper
-      edge of the cloud; the assumptions that drew it are the real subject.
+      <h1>Efficient Frontier Simulation</h1>
+      <p class="lede">Explore how expected returns, volatility, correlations, and constraints
+      determine which portfolios appear efficient. Inputs are illustrative, not forecasts.
       <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
     </div>
 
@@ -164,7 +151,7 @@
         <figure class="chart-figure">
           <h2 class="sr-only" id="weights-chart-title">Highlighted portfolio weights</h2>
           <div id="chart-weights" class="chart short" role="img" aria-labelledby="weights-chart-title" aria-describedby="weights-chart-caption"></div>
-          <figcaption class="chart-caption" id="weights-chart-caption">Weights of the highlighted portfolios use both color and distinct fill patterns. Note how concentrated the max-Sharpe solution tends to be relative to minimum variance — optimizers amplify whatever the inputs whisper.</figcaption>
+          <figcaption class="chart-caption" id="weights-chart-caption">Weights of the highlighted portfolios use both color and distinct fill patterns. Under these inputs, the maximum-Sharpe solution is more concentrated than the minimum-variance solution.</figcaption>
           <details class="chart-data">
             <summary>View portfolio weight data</summary>
             <div class="table-scroll" id="weights-data-table"></div>
@@ -186,31 +173,28 @@
 
       <div class="rq">
         <p class="kicker">Research question</p>
-        <p>How does portfolio construction change when we move from classical return optimization
+        <p>How does portfolio construction change when the objective moves from classical return optimization
         to uncertainty-aware risk allocation?</p>
       </div>
 
       <h3>Three answers to the same problem</h3>
       <p><strong>Mean-variance optimization</strong> (Markowitz, 1952) solves
       \( \min_w \; w^\top \Sigma w \) subject to a target return \( w^\top \mu = \bar\mu \). It is
-      the intellectual foundation of everything else, and in raw form it is an
-      <em>error-maximizing</em> machine: it takes the noisiest inputs — expected returns — and
-      loads onto whichever asset's estimation error happens to look most attractive. Small input
-      perturbations produce violently different weights.</p>
+      the intellectual foundation of the comparison. The solution is highly sensitive to estimated
+      expected returns, so small input perturbations can produce materially different weights.</p>
       <p><strong>Risk parity</strong> abandons return forecasts entirely and equalizes each asset's
       contribution to portfolio risk, \( w_i (\Sigma w)_i = w_j (\Sigma w)_j \). It answers
-      uncertainty about \(\mu\) by refusing to estimate it — an epistemically humble move that
-      implicitly bets risk premia per unit of risk are roughly comparable across assets, and that
+      uncertainty about \(\mu\) by removing it from the objective. This implicitly assumes risk
+      premia per unit of risk are roughly comparable across assets, and it
       typically requires leverage on low-vol assets to reach equity-like returns.</p>
       <p><strong>Hierarchical risk parity</strong> (López de Prado, 2016) attacks a different
       weakness: inverting an estimated covariance matrix. HRP clusters assets by correlation
       distance, then allocates down the resulting tree by inverse variance — no matrix inversion,
-      no return forecasts. It sacrifices in-sample optimality for out-of-sample robustness, and in
-      many horse races that trade is a good one.</p>
-      <p>The progression MVO → risk parity → HRP is a progression in <em>what you admit you do not
-      know</em>. Each method encodes a different level of confidence in the inputs, and the
-      portfolios differ accordingly: more diversified, less leveraged on estimation error, less
-      spectacular in backtests, and more likely to survive contact with the future.</p>
+      no return forecasts. It sacrifices in-sample optimality in pursuit of greater stability under
+      covariance-estimation error.</p>
+      <p>MVO, risk parity, and HRP encode different assumptions about expected returns and covariance
+      estimates. Their allocations therefore differ in concentration, sensitivity to estimation
+      error, leverage requirements, and dependence on the realized market regime.</p>
 
       <div class="note">
         <span class="note-label">On the sampling method</span>
@@ -229,13 +213,12 @@
         <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>Examine the practical consequence of correlations moving when protection is needed.</em></a>
         <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Compare this illustrative frontier with pricing and simulation instruments.</em></a>
         <a class="related-card" href="research-log.html#portfolio-construction"><span>Research record</span><strong>From return forecasts to risk budgets</strong><em>Inspect the claim, frozen holdout, uncertainty, failure modes, and source notebook.</em></a>
-        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See the analytical, engineering, and communication capabilities behind the lab.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/portfolio.js"></script>

@@ -3,39 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>From Black-Scholes to Stochastic Volatility — Quantitative Markets Research Lab</title>
+<title>Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<meta name="description" content="A study in how a beautiful model fails, what the failure teaches, and what a disciplined repair looks like: from Black-Scholes to Heston stochastic volatility, ending in calibrated humility.">
+<meta name="description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
 <link rel="canonical" href="https://kylewisniewski.com/lab/case-study.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets Research Lab">
-<meta property="og:title" content="From Black-Scholes to Stochastic Volatility — Quantitative Markets Research Lab">
-<meta property="og:description" content="A study in how a beautiful model fails, what the failure teaches, and what a disciplined repair looks like: from Black-Scholes to Heston stochastic volatility, ending in calibrated humility.">
+<meta property="og:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab">
+<meta property="og:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
 <meta property="og:url" content="https://kylewisniewski.com/lab/case-study.html">
 <meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="From Black-Scholes to Stochastic Volatility — Quantitative Markets Research Lab">
-<meta name="twitter:description" content="A study in how a beautiful model fails, what the failure teaches, and what a disciplined repair looks like: from Black-Scholes to Heston stochastic volatility, ending in calibrated humility.">
+<meta name="twitter:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets Research Lab">
+<meta name="twitter:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
 <meta name="twitter:url" content="https://kylewisniewski.com/lab/case-study.html">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models",
+  "headline": "Black–Scholes Assumptions and Stochastic-Volatility Alternatives",
   "description": "A technical study of the constant-volatility model's testable failures and the partial repair offered by Heston stochastic volatility.",
   "url": "https://kylewisniewski.com/lab/case-study.html",
   "dateModified": "2026-08-03",
-  "author": {
-    "@type": "Person",
-    "name": "Kyle Wisniewski",
-    "url": "https://kylewisniewski.com/"
-  },
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
     "name": "Quantitative Markets Research Lab",
@@ -57,25 +53,19 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Findings",
+      "position": 2,
+      "name": "Questions",
       "item": "https://kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
-      "name": "From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models",
+      "position": 3,
+      "name": "Black–Scholes Assumptions and Stochastic-Volatility Alternatives",
       "item": "https://kylewisniewski.com/lab/case-study.html"
     }
   ]
@@ -89,11 +79,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -101,9 +89,9 @@
   <div class="wrap narrow">
     <div class="page-head">
       <p class="kicker">Module 07 · Flagship Study</p>
-      <h1 id="black-scholes-to-stochastic-volatility">From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models</h1>
-      <p class="lede">A study in how a beautiful model fails, what the failure teaches, and what a
-      disciplined repair looks like — ending where all good modeling ends, in calibrated humility.</p>
+      <h1 id="black-scholes-to-stochastic-volatility">Black–Scholes Assumptions and Stochastic-Volatility Alternatives</h1>
+      <p class="lede">Compare constant-volatility model implications with observed equity behavior
+      and evaluate the changes introduced by stochastic volatility.</p>
       <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
       numerical recovery study, not a market calibration</p>
       <dl class="reading-meta">
@@ -111,7 +99,7 @@
         <dt>Prerequisites</dt><dd><a href="asset-pricing.html">Option pricing fundamentals</a>, implied volatility, and stochastic-process notation</dd>
       </dl>
       <div class="reading-actions">
-        <button class="cite-button" type="button" data-cite-title="From Black-Scholes to Stochastic Volatility: Why Market Reality Requires Better Models" data-cite-target="black-scholes-to-stochastic-volatility">Cite this study</button>
+        <button class="cite-button" type="button" data-cite-title="Black–Scholes Assumptions and Stochastic-Volatility Alternatives" data-cite-target="black-scholes-to-stochastic-volatility">Cite this study</button>
       </div>
     </div>
 
@@ -130,19 +118,19 @@
       <summary>Contents · six sections</summary>
       <nav aria-label="Case study contents">
         <ol>
-          <li><a href="#case-model">I · What Black-Scholes claims</a></li>
-          <li><a href="#case-refutation">II · What market data violates</a></li>
-          <li><a href="#case-repair">III · Heston's repair</a></li>
-          <li><a href="#case-comparison">IV · Strike-by-strike comparison</a></li>
-          <li><a href="#case-residue">V · What Heston still misses</a></li>
-          <li><a href="#case-conclusion">VI · Model risk and humility</a></li>
+          <li><a href="#case-model">01 · Black–Scholes assumptions</a></li>
+          <li><a href="#case-refutation">02 · Empirical contradictions</a></li>
+          <li><a href="#case-repair">03 · Heston stochastic volatility</a></li>
+          <li><a href="#case-comparison">04 · Strike-by-strike comparison</a></li>
+          <li><a href="#case-residue">05 · Residual limitations</a></li>
+          <li><a href="#case-conclusion">06 · Model-risk interpretation</a></li>
         </ol>
       </nav>
     </details>
     <output id="reading-tools-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
 
     <section class="section" aria-labelledby="case-model">
-      <p class="kicker">I · The model</p>
+      <p class="kicker">01 · The model</p>
       <h2 id="case-model" class="reference-heading">What Black-Scholes claims<a class="heading-link" href="#case-model" aria-label="Permalink to What Black-Scholes claims">#</a></h2>
       <p>The 1973 model makes one structural bet: that a single number, \(\sigma\), describes the
       randomness of an asset for the life of an option. Under geometric Brownian motion with
@@ -155,14 +143,14 @@
       S&amp;P 500 option study documents a pronounced and persistent post-crash skew in the 1987–1992
       sample, while emphasizing that the observed surface is inconsistent with the constant-
       volatility model.<sup><a href="#case-ref-2" id="case-cite-2">2</a></sup></p>
-      <nav class="section-nav" aria-label="Case study section I navigation">
+      <nav class="section-nav" aria-label="Case study section 1 navigation">
         <a href="#black-scholes-to-stochastic-volatility">↑ Study overview</a>
         <a href="#case-refutation">Next · The refutation →</a>
       </nav>
     </section>
 
     <section class="section" aria-labelledby="case-refutation">
-      <p class="kicker">II · The refutation</p>
+      <p class="kicker">02 · Empirical test</p>
       <h2 id="case-refutation" class="reference-heading">What any trading day violates<a class="heading-link" href="#case-refutation" aria-label="Permalink to What any trading day violates">#</a></h2>
       <p>Take the model's assumptions in order and hold them against an ordinary day of market
       data. <strong>Returns are not Gaussian:</strong> daily index returns show excess kurtosis and
@@ -182,14 +170,14 @@
       quoting that premium <em>through</em> the Black-Scholes formula, using implied volatility as
       the unit. The smile is the market's standing annotation on the model: <em>your Gaussian is
       too thin on the left, and your constant σ is not constant.</em></p>
-      <nav class="section-nav" aria-label="Case study section II navigation">
+      <nav class="section-nav" aria-label="Case study section 2 navigation">
         <a href="#case-model">← Previous · The model</a>
         <a href="#case-repair">Next · The repair →</a>
       </nav>
     </section>
 
     <section class="section" aria-labelledby="case-repair">
-      <p class="kicker">III · The repair</p>
+      <p class="kicker">03 · Stochastic volatility</p>
       <h2 id="case-repair" class="reference-heading">Heston's intuition: let variance breathe<a class="heading-link" href="#case-repair" aria-label="Permalink to Heston's intuition: let variance breathe">#</a></h2>
       <p>Heston (1993) promotes variance from parameter to process:<sup><a href="#case-ref-1" id="case-cite-1">1</a></sup></p>
       <div class="math-block">$$dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S, \qquad
@@ -204,16 +192,16 @@
       with rising variance, skewing the distribution left and tilting the smile downward toward
       high strikes. With \(\rho\) near \(-0.7\), the model generates the equity index skew almost
       as a matter of course. And because the model has a closed-form characteristic function,
-      whole volatility surfaces can be calibrated in seconds — a large part of why Heston, and not
-      a dozen worthier candidates, became the industry workhorse.</p>
-      <nav class="section-nav" aria-label="Case study section III navigation">
+      whole volatility surfaces can be calibrated quickly, which contributed to the model's broad
+      use in derivatives practice.</p>
+      <nav class="section-nav" aria-label="Case study section 3 navigation">
         <a href="#case-refutation">← Previous · The refutation</a>
         <a href="#case-comparison">Next · The comparison →</a>
       </nav>
     </section>
 
     <section class="section" aria-labelledby="case-comparison">
-      <p class="kicker">IV · The comparison</p>
+      <p class="kicker">04 · Model comparison</p>
       <h2 id="case-comparison" class="reference-heading">Black-Scholes vs. Heston, strike by strike<a class="heading-link" href="#case-comparison" aria-label="Permalink to Black-Scholes versus Heston, strike by strike">#</a></h2>
       <p>Below, the flat-σ model meets Heston-generated target prices. The Heston call values are
       <strong>precomputed offline</strong> from the Heston characteristic function (Heston 1993,
@@ -265,52 +253,46 @@
       4,000 nodes on [0, 200]) and hardcoded; implied vols recovered by bisection. Inspect the
       <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/src/models/heston_model.py">Heston implementation at commit <code>ad24c499958</code></a>
       and the <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">derivatives notebook at the same commit</a>.</p>
-      <nav class="section-nav" aria-label="Case study section IV navigation">
+      <nav class="section-nav" aria-label="Case study section 4 navigation">
         <a href="#case-repair">← Previous · The repair</a>
         <a href="#case-residue">Next · The residue →</a>
       </nav>
     </section>
 
     <section class="section" aria-labelledby="case-residue">
-      <p class="kicker">V · The residue</p>
+      <p class="kicker">05 · Residual limitations</p>
       <h2 id="case-residue" class="reference-heading">What stochastic volatility still misses<a class="heading-link" href="#case-residue" aria-label="Permalink to What stochastic volatility still misses">#</a></h2>
       <p>Heston is a better description, not a true one. Its diffusive variance cannot move fast
       enough to explain the <strong>steep smiles of short-dated options</strong> — a market
       pricing overnight jump risk needs jumps, which is why practice moved to Bates (Heston plus
       Merton jumps) and beyond. Its <strong>single variance factor</strong> forces the whole term
       structure of skew to move in lockstep, while real surfaces twist. Its calibrated parameters,
-      re-fit each morning, <strong>drift in ways the model says they should not</strong> — a
-      slow-motion confession that the model is a curve-fit to a deeper process. And the modern
+      re-fit each morning, <strong>drift in ways the model says they should not</strong>, indicating
+      residual misspecification. The modern
       frontier (rough volatility, with Hurst exponents near 0.1) suggests volatility's memory is
-      structurally unlike anything a Markovian diffusion can produce. Each generation of models
-      recapitulates the same pattern: capture the last generation's known failure, inherit an
-      unknown one.</p>
-      <nav class="section-nav" aria-label="Case study section V navigation">
+      structurally unlike anything a Markovian diffusion can produce. These limitations motivate
+      jump-diffusion, multifactor, and rough-volatility alternatives.</p>
+      <nav class="section-nav" aria-label="Case study section 5 navigation">
         <a href="#case-comparison">← Previous · The comparison</a>
         <a href="#case-conclusion">Next · Conclusion →</a>
       </nav>
     </section>
 
     <section class="section" aria-labelledby="case-conclusion">
-      <p class="kicker">VI · Conclusion</p>
-      <h2 id="case-conclusion" class="reference-heading">Model risk and epistemic humility<a class="heading-link" href="#case-conclusion" aria-label="Permalink to Model risk and epistemic humility">#</a></h2>
-      <p>The deepest lesson of the smile is not that Black-Scholes is wrong — every model is wrong
-      — but that markets <em>metabolized</em> its wrongness. The formula survived its own
-      refutation by becoming a quoting convention: implied volatility is the market's chosen
-      coordinate system for expressing exactly how non-Black-Scholes the world is. That is the
-      relationship with models this lab advocates. A model is an instrument for locating structure
-      in uncertainty — for saying precisely <em>where</em> reality diverges from an idealization,
-      and by how much. Used that way, Black-Scholes remains among the most useful wrong ideas ever
-      written down. Used as prophecy — as a claim that the tails are thin because the formula
-      needs them to be — the same equation has helped sink funds and banks. The mathematics did
-      not change between those two uses. The humility did.</p>
+      <p class="kicker">06 · Interpretation</p>
+      <h2 id="case-conclusion" class="reference-heading">Model-risk interpretation<a class="heading-link" href="#case-conclusion" aria-label="Permalink to Model-risk interpretation">#</a></h2>
+      <p>Black–Scholes remains useful as a quoting convention even though its literal market
+      dynamics are rejected. Implied volatility expresses observed prices relative to the
+      constant-volatility baseline and makes deviations across strike and maturity comparable.</p>
+      <p>The distinction is operational: the formula can organize prices and sensitivities without
+      establishing that returns are Gaussian, volatility is constant, or hedging is continuous.
+      Those assumptions require separate empirical tests, monitoring, and model-risk controls.</p>
       <div class="note">
-        <span class="note-label">Credo</span>
-        Models clarify uncertainty. They do not eliminate it. The moment a model's user forgets
-        the second clause, the model stops being an instrument and becomes a liability with
-        excellent typography.
+        <span class="note-label">Interpretation</span>
+        Model output is conditional on the assumptions, calibration data, numerical method, and
+        market regime used to produce it.
       </div>
-      <nav class="section-nav" aria-label="Case study section VI navigation">
+      <nav class="section-nav" aria-label="Case study section 6 navigation">
         <a href="#case-residue">← Previous · The residue</a>
         <a href="#black-scholes-to-stochastic-volatility">↑ Study overview</a>
       </nav>
@@ -334,13 +316,12 @@
         <a class="related-card" href="asset-pricing.html"><span>Tool</span><strong>Compare the closed form and lattice</strong><em>Use the pricing laboratory to see convergence, sensitivities, and early-exercise value.</em></a>
         <a class="related-card" href="method.html"><span>Method</span><strong>How the lab separates validation from realism</strong><em>Review falsification, uncertainty, provenance, reproduction, and failure reporting.</em></a>
         <a class="related-card" href="research-log.html#stochastic-volatility"><span>Research record</span><strong>Constant volatility meets market data</strong><em>Inspect the dated evidence, claim, rejection criterion, limitations, and source notebook.</em></a>
-        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how this work demonstrates model development, validation, and technical communication.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/case-study.js"></script>

@@ -15,12 +15,12 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Research Log — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="The public research ledger for Quantitative Markets Research Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,7 +29,7 @@
   "description": "A public ledger of quantitative research questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.",
   "url": "https://kylewisniewski.com/lab/research-log.html",
   "dateModified": "2026-08-08",
-  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab"}
 }
 </script>
@@ -43,19 +43,13 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Research Log",
+      "position": 2,
+      "name": "Research Record",
       "item": "https://kylewisniewski.com/lab/research-log.html"
     }
   ]
@@ -69,11 +63,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html" aria-current="page">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -81,10 +73,9 @@
   <div class="wrap">
     <div class="page-head ledger-head">
       <p class="kicker">The public record</p>
-      <h1>Research Log</h1>
-      <p class="lede">Questions before conclusions. Assumptions beside results. Failures preserved
-      rather than edited away. This ledger records what the lab has tested, what the evidence says,
-      how uncertain the answer remains, and the exact artifact from which it can be reproduced.</p>
+      <h1>Research Record</h1>
+      <p class="lede">A versioned record of each research question, assumption, method, result,
+      uncertainty estimate, limitation, revision, and reproducible artifact.</p>
     </div>
 
     <section class="ledger-preface" aria-labelledby="ledger-rule">
@@ -281,7 +272,7 @@ jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

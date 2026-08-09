@@ -15,25 +15,21 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="An open-source research project on the mathematical structure of financial markets: assumptions stated before results, code published beside conclusions, and model failures documented with the same care as model successes.">
 <meta name="twitter:url" content="https://kylewisniewski.com/lab/about.html">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About the Quantitative Markets Research Lab",
-  "description": "An open-source research project by Kyle Wisniewski focused on falsifiable quantitative finance, reproducible evidence, and documented model limitations.",
+  "description": "An open-source research program focused on falsifiable quantitative finance, reproducible evidence, and documented model limitations.",
   "url": "https://kylewisniewski.com/lab/about.html",
-  "author": {
-    "@type": "Person",
-    "name": "Kyle Wisniewski",
-    "url": "https://kylewisniewski.com/"
-  },
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
     "name": "Quantitative Markets Research Lab",
@@ -51,25 +47,19 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
+      "position": 2,
       "name": "Method",
       "item": "https://kylewisniewski.com/lab/method.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
-      "name": "About",
+      "position": 3,
+      "name": "About the lab",
       "item": "https://kylewisniewski.com/lab/about.html"
     }
   ]
@@ -83,11 +73,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html">Tools</a><a href="method.html" aria-current="page">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html" aria-current="page">Method</a></nav>
   </div>
 </header>
 
@@ -95,55 +83,43 @@
   <div class="wrap narrow">
     <div class="page-head">
       <p class="kicker">The Lab</p>
-      <h1>About</h1>
+      <h1>About the lab</h1>
     </div>
 
     <section class="decision-summary" aria-labelledby="about-decision-title">
-      <p class="kicker">Executive view</p>
-      <h2 id="about-decision-title">A public proof-of-work system for decisions under uncertainty</h2>
+      <p class="kicker">Research scope</p>
+      <h2 id="about-decision-title">A public research system for quantitative decisions under uncertainty</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>The lab shows an end-to-end research practice: frame a falsifiable question, build an auditable data and software pipeline, quantify uncertainty, publish failure, and explain the consequence.</p></div>
-        <div><h3>Why it matters</h3><p>The work provides concrete evidence of quantitative modeling, data engineering, statistical research, software validation, model governance, and technical communication.</p></div>
-        <div><h3>Who should care</h3><p>Technical hiring managers, prospective analytical-product clients, research collaborators, finance practitioners, and learners who want inspectable work rather than unsupported claims.</p></div>
-        <div><h3>Caveat</h3><p>The site is educational. Empirical studies use dated frozen snapshots; interactive demonstrations use synthetic or illustrative inputs; nothing here is investment advice.</p></div>
+        <div><h3>Questions</h3><p>Portfolio construction, market risk, diversification, factor exposure, derivatives, stochastic processes, and numerical error.</p></div>
+        <div><h3>Outputs</h3><p>Plain-language answers, empirical studies, interactive models, mathematical notes, frozen datasets, and reproducible source artifacts.</p></div>
+        <div><h3>Evidence standard</h3><p>Falsifiable claims, versioned data, theoretical anchors, uncertainty estimates, failure criteria, limitations, and public revisions.</p></div>
+        <div><h3>Boundary</h3><p>The site is educational. Frozen histories do not bound future markets, illustrative inputs are not forecasts, and nothing is investment advice.</p></div>
       </div>
     </section>
 
     <section class="section">
-      <p class="kicker">The project</p>
-      <p>Quantitative Markets Research Lab is an open-source research project on the mathematical
-      structure of financial markets. It exists to do quantitative finance the way it should be
-      done in public: assumptions stated before results, code published beside conclusions, and
-      model failures documented with the same care as model successes. The interactive instruments
-      on this site are the front of house; the Python research library and notebooks in the
-      <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">repository</a> are the
-      workshop.</p>
+      <p class="kicker">Publication model</p>
+      <p>Quantitative Markets Research Lab publishes financial-model research in layers. Each topic
+      begins with a question and a short answer. Evidence, decision implications, limitations,
+      mathematical foundations, datasets, tests, and source code follow in increasing technical depth.</p>
     </section>
 
     <section class="section">
-      <p class="kicker">The author</p>
-      <p>The lab is built and maintained by <strong>Kyle Wisniewski</strong> — a data and AI
-      strategist and a graduate student in applied quantitative finance and global economic
-      affairs at the University of Denver. His working life has been spent building data
-      architecture and research tooling; this project is where that engineering meets the
-      mathematics it was always circling.</p>
-      <p>He has been an investor since age eleven, which means compounding is not an abstraction
-      to him but a lived experience — including the parts the formulas gloss over: the drawdowns
-      that test conviction, the returns that arrive on no schedule, and the long stretches where
-      discipline is the only input you control. That early education in uncertainty is, more than
-      any curriculum, the origin of this lab's temperament.</p>
+      <p class="kicker">Scientific voice</p>
+      <p>Claims are stated impersonally and evaluated against declared criteria. Supported,
+      rejected, and revised results receive the same provenance standard. Interpretation remains
+      conditional on the model, data vintage, test design, and estimated error.</p>
     </section>
 
     <div class="credo">
-      Models clarify uncertainty; they do not eliminate it. The lab's work is to know, as
-      precisely as possible, which is which.
+      All conclusions are conditional on stated models, data vintages, and evaluation designs.
     </div>
 
     <section class="section">
-      <p class="kicker">Correspondence</p>
+      <p class="kicker">Source and reuse</p>
       <p style="font-family:var(--mono);font-size:0.85rem;line-height:2.1">
-        <a href="mailto:hello@kylewisniewski.com">hello@kylewisniewski.com</a><br>
-        <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">github.com/kwisniewski-ops/quant-finance-research-lab</a>
+        <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source repository</a><br>
+        <a href="feed.xml">Research feed</a>
       </p>
       <p style="font-size:0.9rem;color:var(--muted)">Everything on this site is educational.
       Empirical studies publish dated snapshots and reproduction links; demonstrations are labeled
@@ -158,13 +134,13 @@
         <a class="related-card" href="tools.html"><span>Tools</span><strong>Use the interactive models</strong><em>Explore pricing, portfolio geometry, and stochastic processes in the browser.</em></a>
         <a class="related-card" href="method.html"><span>Method</span><strong>Inspect the research standard</strong><em>Review how the lab handles data provenance, validation, uncertainty, and reproducibility.</em></a>
         <a class="related-card" href="research-log.html"><span>Research log</span><strong>Audit the complete ledger</strong><em>See every claim, result, revision, failure mode, and reproduction link.</em></a>
-        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>See what the lab demonstrates</strong><em>Connect the research artifacts to Kyle’s broader professional capabilities and work.</em></a>
+        <a class="related-card" href="math-notes.html"><span>Mathematics</span><strong>Read the technical foundations</strong><em>Follow the derivations used throughout the models and studies.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

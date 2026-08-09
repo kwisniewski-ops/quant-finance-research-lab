@@ -16,13 +16,13 @@
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta property="og:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stochastic Simulation — Quantitative Markets Research Lab">
 <meta name="twitter:description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
 <meta name="twitter:url" content="https://kylewisniewski.com/lab/simulations.html">
 <meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on warm paper.">
+<meta name="twitter:image:alt" content="An ink-drawn market series with uncertainty bands beside an open research ledger on ivory research paper.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,11 +33,7 @@
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "isAccessibleForFree": true,
-  "author": {
-    "@type": "Person",
-    "name": "Kyle Wisniewski",
-    "url": "https://kylewisniewski.com/"
-  },
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
     "name": "Quantitative Markets Research Lab",
@@ -59,25 +55,19 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Tools",
+      "position": 2,
+      "name": "Models",
       "item": "https://kylewisniewski.com/lab/tools.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
-      "name": "Stochastic Process Explorer",
+      "position": 3,
+      "name": "Stochastic Process Simulation",
       "item": "https://kylewisniewski.com/lab/simulations.html"
     }
   ]
@@ -91,11 +81,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="tools.html" aria-current="page">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -103,10 +91,9 @@
   <div class="wrap">
     <div class="page-head">
       <p class="kicker">Module 04 · Stochastic Processes</p>
-      <h1>Stochastic Process Explorer</h1>
-      <p class="lede">Five canonical models of randomness in markets, simulated live with a seeded
-      generator. Each process is a hypothesis about how uncertainty moves — pick one, perturb its
-      parameters, and watch the hypothesis draw itself.</p>
+      <h1>Stochastic Process Simulation</h1>
+      <p class="lede">Compare five models for diffusion, mean reversion, jumps, stochastic
+      volatility, and regime changes under a common one-year setup.</p>
     </div>
 
     <section class="decision-summary" aria-labelledby="simulation-decision-title">
@@ -243,7 +230,7 @@
       discretized variance cannot go negative.</p>
       <p><strong>What it misses.</strong> No jumps, so very short-dated smiles are too flat; a
       single volatility factor, so the term structure of skew is too rigid; and calibrated
-      parameters drift over time, quietly confessing misspecification. The
+      parameters drift over time, indicating residual misspecification. The
       <a href="case-study.html">case study</a> treats this in depth.</p>
     </section>
 
@@ -254,15 +241,14 @@
       \qquad Z_t \in \{\text{calm}, \text{stress}\}\ \text{a 2-state Markov chain}$$</div>
       <p><strong>Where it is used.</strong> Tactical allocation, risk-regime dashboards, and
       econometric business-cycle work in the Hamilton (1989) tradition.</p>
-      <p><strong>What it captures.</strong> The blunt empirical fact that markets have moods:
-      long quiet stretches with drift, punctuated by high-volatility episodes with poor returns.
-      Even this two-state caricature reproduces fat tails and clustering as an
+      <p><strong>What it captures.</strong> Long low-volatility intervals with positive drift,
+      interrupted by high-volatility intervals with weaker returns. The two-state model reproduces
+      fat tails and clustering as an
       <em>emergent mixture</em> — no exotic distributions required; each path carries its own
       hidden regime sequence.</p>
       <p><strong>What it misses.</strong> The chain's transition probabilities are fixed and the
       regimes are labeled in hindsight; real regime identification is only obvious after the fact.
-      The model describes the moods without explaining the psychology — which is, candidly, most of
-      financial modeling in one sentence.</p>
+      The model represents regime-dependent return behavior without identifying a causal mechanism.</p>
     </section>
 
     <section class="section related-section" aria-labelledby="simulation-related-title">
@@ -273,13 +259,12 @@
         <a class="related-card" href="finding-volatility-smile.html"><span>Finding</span><strong>Why one volatility number cannot price every option</strong><em>See how stochastic volatility addresses a measurable failure of constant-volatility dynamics.</em></a>
         <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Move from stochastic paths to pricing and portfolio experiments.</em></a>
         <a class="related-card" href="research-log.html#monte-carlo"><span>Research record</span><strong>Simulation as a numerical instrument</strong><em>Inspect the convergence claims, experimental design, uncertainty, limitations, and source.</em></a>
-        <a class="related-card" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab"><span>Professional case study</span><strong>Evaluate the complete project</strong><em>See how the lab joins quantitative modeling with validated software and clear communication.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/simulations.js"></script>

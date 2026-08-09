@@ -219,7 +219,7 @@
     });
     Plotly.react("chart-terminal", [{
       x: binCenters, y: binCounts, type: "bar",
-      marker: { color: "rgba(138,48,51,0.5)", pattern: { shape: "/" }, line: { width: 0 } }
+      marker: { color: "rgba(140,58,52,0.5)", pattern: { shape: "/" }, line: { width: 0 } }
     }], QL.layout({
       title: { text: "TERMINAL VALUES AT T = 1", font: { size: 11 }, x: 0 },
       xaxis: { title: { text: proc.yTitle + " at T" } },

@@ -114,9 +114,9 @@ var QL = (function () {
 
   /* ---------- Plotly theming ---------- */
   var colors = {
-    ink: "#1c1a17", accent: "#8a3033", slate: "#3e5c76",
-    ochre: "#a07c33", moss: "#5c6e4e", plum: "#6b4a6e",
-    faint: "#9a938a", grid: "#e7e1d4"
+    ink: "#1c2430", accent: "#7e6238", slate: "#3e5c76",
+    ochre: "#9c7c46", moss: "#5c6e4e", plum: "#6b4a6e",
+    faint: "#626c77", grid: "#e4dfd3"
   };
   var series = [colors.accent, colors.slate, colors.ochre, colors.moss, colors.plum, colors.ink];
 
@@ -124,14 +124,14 @@ var QL = (function () {
     var base = {
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
-      font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#6d675e" },
+      font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#5c6672" },
       margin: { l: 58, r: 20, t: 42, b: 46 },
-      xaxis: { gridcolor: colors.grid, zerolinecolor: "#ddd6c8", linecolor: "#ddd6c8" },
-      yaxis: { gridcolor: colors.grid, zerolinecolor: "#ddd6c8", linecolor: "#ddd6c8" },
+      xaxis: { gridcolor: colors.grid, zerolinecolor: "#e4dfd3", linecolor: "#e4dfd3" },
+      yaxis: { gridcolor: colors.grid, zerolinecolor: "#e4dfd3", linecolor: "#e4dfd3" },
       colorway: series,
       hoverlabel: {
-        bgcolor: "#1c1a17", bordercolor: "#1c1a17",
-        font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#f7f4ee" }
+        bgcolor: "#14202e", bordercolor: "#14202e",
+        font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#faf8f4" }
       },
       legend: { orientation: "h", y: 1.08, x: 0, font: { size: 10 } }
     };

@@ -31,7 +31,7 @@
   "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-08",
-  "author": {"@type": "Person", "name": "Kyle Wisniewski", "url": "https://kylewisniewski.com"},
+  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-var-backtest.html",
   "about": ["historical value at risk", "Kupiec test", "Christoffersen test", "model calibration"],
@@ -48,24 +48,18 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Kyle Wisniewski",
-      "item": "https://kylewisniewski.com"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "name": "Research Lab",
       "item": "https://kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Findings",
+      "position": 2,
+      "name": "Questions",
       "item": "https://kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
-      "position": 4,
+      "position": 3,
       "name": "When a 95% VaR model fails its own backtest",
       "item": "https://kylewisniewski.com/lab/finding-var-backtest.html"
     }
@@ -80,11 +74,9 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="identity-parent" href="https://kylewisniewski.com">Kyle Wisniewski</a>
-      <span class="identity-separator" aria-hidden="true">/</span>
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="tools.html">Tools</a><a href="method.html">Method</a><a href="research-log.html">Log</a><a class="nav-professional" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">How I work</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
 </header>
 
@@ -94,13 +86,23 @@
       <header class="page-head">
         <p class="kicker">Decision brief · Market risk</p>
         <h1>When a 95% VaR model fails its own backtest</h1>
-        <p class="lede">A risk estimate is not calibrated merely because it is computed correctly.
-        The forecast must produce the right frequency of exceptions—and those exceptions must not
-        arrive in clusters the model treats as independent.</p>
+        <p class="lede">A historical 95% VaR forecast produced too many breaches, and the breaches
+        clustered instead of arriving independently.</p>
       </header>
 
+      <nav class="depth-nav" aria-label="Research depth">
+        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <ol class="depth-path">
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+        </ol>
+      </nav>
+
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Bottom line</p>
+        <p class="kicker">Depth 1 · Answer</p>
         <h2 id="bottom-line">The historical VaR forecast failed on both breach frequency and breach timing.</h2>
         <p>Across 2,140 one-step forecasts, the rolling 500-observation historical 95% VaR model
         recorded 135 breaches versus 107 expected: a 6.31% breach rate. Kupiec coverage and
@@ -118,7 +120,7 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Who should care</p>
+          <p class="kicker">Why it matters</p>
           <h3>Risk owners, model validators, and control functions</h3>
           <p>Anyone setting limits, capital buffers, or escalation thresholds from historical VaR
           should care whether a model's exceptions match its stated confidence level and arrive
@@ -134,7 +136,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Evidence</p>
+        <p class="kicker">Depth 2 · Evidence</p>
         <h2 id="evidence">Three tests separate frequency error from clustered failure</h2>
         <p>The study used a look-ahead-free, monthly rebalanced strategic ETF portfolio with 10 basis
         points of proportional turnover cost. After warm-up, it produced 2,640 net daily returns and
@@ -150,7 +152,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">What changes in practice</p>
+        <p class="kicker">Depth 3 · Application</p>
         <h2 id="practice">Backtest the forecast process, not just the latest risk number</h2>
         <ul class="refs">
           <li>Test unconditional coverage and exception independence separately; a correct average rate can still hide clustering.</li>
@@ -162,7 +164,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Limitations</p>
+        <p class="kicker">Depth 4 · Limits</p>
         <h2 id="limitations">A rejection is specific evidence, not a universal verdict on VaR</h2>
         <ul class="refs">
           <li>The bootstrap conditions on one realized history, and the 21-day block length is judgmental.</li>
@@ -174,7 +176,7 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Explore and reproduce</p>
+        <p class="kicker">Depth 5 · Method and code</p>
         <h2 id="explore">Inspect the forecasts, tests, data version, and code</h2>
         <div class="hero-actions">
           <a class="primary-action" href="risk.html">Explore the risk dashboard <span aria-hidden="true">→</span></a>
@@ -192,24 +194,11 @@
         </div>
       </section>
 
-      <section class="cta-band" aria-labelledby="professional-cta">
-        <div>
-          <p class="kicker">Professional relevance</p>
-          <h2 id="professional-cta">A model is governed by the tests it can fail.</h2>
-          <p>This investigation connects data lineage, a no-look-ahead engine, realistic costs,
-          estimator uncertainty, formal calibration tests, and clear escalation language in one
-          auditable analytical workflow.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="primary-action" href="https://kylewisniewski.com/projects/quantitative-markets-research-lab">See how I built the lab <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="findings.html">Browse all findings <span aria-hidden="true">→</span></a>
-        </div>
-      </section>
     </article>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span><a href="https://kylewisniewski.com">Kyle Wisniewski</a> · Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Findings</a> · <a href="tools.html">Tools</a> · <a href="method.html">Method</a> · <a href="about.html">About</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">GitHub</a> · <a href="https://kylewisniewski.com/contact">Contact</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

@@ -126,7 +126,7 @@
   }
 
   var sharpeScale = [
-    [0.0, "#c9c2b4"], [0.4, "#a89a86"], [0.7, "#3e5c76"], [1.0, "#8a3033"]
+    [0.0, "#d8d2c7"], [0.4, "#9ba3aa"], [0.7, "#3e5c76"], [1.0, "#7e6238"]
   ];
 
   function drawFrontier(vols, rets, sharpes, minv, best, ewSt, idx) {
@@ -151,23 +151,23 @@
       y: idx.map(function (i) { return 100 * ASSETS[i].mu; }),
       text: idx.map(function (i) { return ASSETS[i].name; }),
       mode: "markers+text", name: "assets", textposition: "top center",
-      textfont: { size: 9, color: "#6d675e" },
-      marker: { symbol: "diamond", size: 8, color: "#1c1a17" }
+      textfont: { size: 9, color: "#5c6672" },
+      marker: { symbol: "diamond", size: 8, color: "#14202e" }
     }, {
       x: [100 * minv.s.vol], y: [100 * minv.s.mu], mode: "markers", name: "min variance",
       marker: { size: 12, symbol: "circle-open", color: "#3e5c76", line: { width: 2.5 } }
     }, {
       x: [100 * best.s.vol], y: [100 * best.s.mu], mode: "markers", name: "max Sharpe",
-      marker: { size: 12, symbol: "x", color: "#8a3033", line: { width: 2.5 } }
+      marker: { size: 12, symbol: "x", color: "#7e6238", line: { width: 2.5 } }
     }, {
       x: [100 * ewSt.vol], y: [100 * ewSt.mu], mode: "markers", name: "equal weight",
-      marker: { size: 12, symbol: "triangle-up-open", color: "#1c1a17", line: { width: 2.5 } }
+      marker: { size: 12, symbol: "triangle-up-open", color: "#14202e", line: { width: 2.5 } }
     }, {
       /* capital market line */
       x: [0, 100 * best.s.vol * 1.6],
       y: [100 * state.rf, 100 * (state.rf + (best.s.mu - state.rf) * 1.6)],
       mode: "lines", name: "CML",
-      line: { width: 1, color: "#9a938a", dash: "dot" }
+      line: { width: 1, color: "#626c77", dash: "dot" }
     }];
     Plotly.react("chart-frontier", traces, QL.layout({
       title: { text: "RISK-RETURN SPACE · " + vols.length.toLocaleString("en-US") + " SAMPLED · " + displayVols.length.toLocaleString("en-US") + " SHOWN", font: { size: 11 }, x: 0 },
@@ -187,7 +187,7 @@
     }
     var traces = [
       bar(wMin, "min variance", "#3e5c76", "/"),
-      bar(wMax, "max Sharpe", "#8a3033", "x"),
+      bar(wMax, "max Sharpe", "#7e6238", "x"),
       bar(wEw, "equal weight", "#c9c2b4", ".")
     ];
     Plotly.react("chart-weights", traces, QL.layout({
