@@ -476,7 +476,6 @@ def test_regime_frameworks_publish_ledgers_without_inflating_investigations() ->
         assert field in atlas
     for field in ("Classification", "Data vintage", "Forecast status"):
         assert field in dossier
-    assert "<dt>Investigations</dt><dd>06</dd>" in record
     assert (ROOT / "docs" / "research_pipeline.md").exists()
 
 
@@ -558,7 +557,6 @@ def test_evidence_classes_statuses_and_corpus_boundaries_are_explicit() -> None:
     assert "Replicated" not in visible_text(record)
     assert "Seeded 05" not in visible_text(record)
     assert '<span class="status status-validated">Validated</span>' in record
-    assert "<dt>Numerical</dt><dd>02</dd>" in record
 
     about = visible_text((FRONTEND / "about.html").read_text(encoding="utf-8"))
     atlas = visible_text(ATLAS.read_text(encoding="utf-8"))

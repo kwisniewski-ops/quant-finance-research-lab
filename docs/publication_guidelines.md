@@ -43,8 +43,8 @@ page, and a skeptic should be able to find the boundary of every claim.
     response alter how shocks propagate through asset prices and portfolios."
     → *Anchored:* "Shocks do not travel one fixed road; activity, inflation,
     liquidity, and institutional response reroute them."
-  - *The house standard, already in the record:* "A result that cannot be
-    reproduced from a clean clone is an anecdote."
+  - *The house standard (internal; see `docs/research_methodology.md`):*
+    "A result that cannot be reproduced from a clean clone is an anecdote."
 - Never market the simplicity ("plain-language", "simple first", "short
   answer" are prohibited strings — test-enforced). The lab is allowed to BE
   simple; it is not allowed to advertise it.
