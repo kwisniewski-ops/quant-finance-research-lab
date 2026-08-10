@@ -1093,7 +1093,9 @@ sup, sub { line-height: 0; }
 .status-list .status { min-width: 6.3rem; margin-right: 0.35rem; text-align: center; }
 .status-proposed { color: var(--muted); }
 .status-running { color: var(--slate); }
-.status-replicated { color: var(--moss); }
+.status-replicated,
+.status-validated,
+.status-supported { color: var(--moss); }
 .status-rejected { color: var(--negative); }
 .status-revised { color: #73571f; }
 
@@ -1345,7 +1347,7 @@ sup, sub { line-height: 0; }
     linear-gradient(180deg, rgba(255,255,255,0.22), transparent);
 }
 
-.hero-reframed h1 { max-width: 17em; font-size: clamp(2.55rem, 5.7vw, 4.8rem); line-height: 1.04; }
+.hero-reframed h1 { max-width: 20em; font-size: clamp(2.35rem, 4.8vw, 4.3rem); line-height: 1.04; }
 .hero-reframed .lede { max-width: 42em; }
 .hero-context {
   max-width: 48em;
@@ -1414,6 +1416,7 @@ sup, sub { line-height: 0; }
   color: var(--ink);
   text-decoration: none;
 }
+.finding-card--validation { grid-column: 1 / -1; min-height: 0; }
 
 .finding-card:hover { background: var(--paper-deep); color: var(--ink); }
 .finding-card .finding-status { align-self: flex-start; margin-bottom: 1.1rem; }
@@ -1609,6 +1612,7 @@ sup, sub { line-height: 0; }
 }
 .evidence-taxonomy article { min-width: 0; padding: 1.1rem 1.15rem; background: var(--paper); }
 .evidence-taxonomy article p:last-child { margin: 0; color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+.evidence-taxonomy--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .evidence-label {
   margin: 0 0 0.45rem;
   color: var(--accent);
@@ -1682,8 +1686,7 @@ sup, sub { line-height: 0; }
 .evidence-taxonomy--extended {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
-.evidence-taxonomy--extended > article:nth-child(-n+3) { grid-column: span 2; }
-.evidence-taxonomy--extended > article:nth-child(n+4) { grid-column: span 3; }
+.evidence-taxonomy--extended > article { grid-column: span 2; }
 
 .atlas-workbench {
   margin: 2.2rem 0;

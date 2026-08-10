@@ -12,34 +12,35 @@ FRONTEND = ROOT / "app" / "frontend"
 PUBLIC_HTML_NAME = re.compile(r"^[a-z0-9-]+\.html$")
 BRAND_NAME = "Quantitative Markets & Institutions Lab"
 BRAND_NAME_HTML = html.escape(BRAND_NAME)
-SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v3.png"
+SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v4.png"
 SOCIAL_IMAGE_ALT = (
-    "Quantitative Markets & Institutions Lab: evidence for decisions under uncertainty, "
-    "shown beside a market chart and open research ledger."
+    "Quantitative Markets & Institutions Lab: independent research on models, regimes, "
+    "and institutions, shown beside a market chart and open research notebook."
 )
 
 
 def section_for(page: Path) -> str | None:
     name = page.name
-    if name == "index.html":
-        return "Start"
+    if name in {"index.html", "about.html"}:
+        return "Overview"
     if name == "findings.html" or name.startswith("finding-") or name in {"case-study.html", "stock-bond-regime-dossier.html", "regime-atlas.html"}:
-        return "Questions"
+        return "Research"
     if name in {"tools.html", "asset-pricing.html", "portfolio.html", "risk.html", "simulations.html", "factors.html"}:
         return "Models"
-    if name in {"method.html", "math-notes.html", "about.html"}:
-        return "Method"
+    if name in {"method.html", "math-notes.html"}:
+        return "Methods"
     if name == "research-log.html":
-        return "Research record"
+        return "Record"
     return None
 
 
 def header(active: str | None) -> str:
     links = [
-        ("Start", "index.html"),
-        ("Questions", "findings.html"),
+        ("Overview", "index.html"),
+        ("Research", "findings.html"),
         ("Models", "tools.html"),
-        ("Method", "method.html"),
+        ("Methods", "method.html"),
+        ("Record", "research-log.html"),
     ]
     navigation_parts = []
     for label, href in links:
@@ -63,11 +64,12 @@ def header(active: str | None) -> str:
 FOOTER = (
     '<footer class="site-footer"><div class="wrap">'
     f'<span>{BRAND_NAME_HTML} · 2026</span>'
-    '<span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · '
-    '<a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · '
-    '<a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · '
+    '<span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · '
+    '<a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · '
+    '<a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · '
+    '<a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · '
     '<a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · '
-    '<a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span>'
+    '<a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span>'
     '</div></footer>'
 )
 
@@ -120,7 +122,7 @@ def normalize(page: Path) -> None:
     )
 
     source = re.sub(
-        r'https://(?:www\.)?kylewisniewski\.com/lab/(?:images/og-[^"<]+\.(?:jpg|png)|og-lab(?:-v2|-v3)?\.(?:jpg|png))',
+        r'https://(?:www\.)?kylewisniewski\.com/lab/(?:images/og-[^"<]+\.(?:jpg|png)|og-lab(?:-v[234])?\.(?:jpg|png))',
         SOCIAL_IMAGE_URL,
         source,
     )
@@ -160,10 +162,10 @@ def normalize(page: Path) -> None:
         page_title = html.unescape(re.sub(r"<[^>]+>", "", title_match.group(1))).strip()
         active = section_for(page)
         group_urls = {
-            "Questions": "https://www.kylewisniewski.com/lab/findings.html",
+            "Research": "https://www.kylewisniewski.com/lab/findings.html",
             "Models": "https://www.kylewisniewski.com/lab/tools.html",
-            "Method": "https://www.kylewisniewski.com/lab/method.html",
-            "Research record": "https://www.kylewisniewski.com/lab/research-log.html",
+            "Methods": "https://www.kylewisniewski.com/lab/method.html",
+            "Record": "https://www.kylewisniewski.com/lab/research-log.html",
         }
         crumbs = [(BRAND_NAME, "https://www.kylewisniewski.com/lab")]
         group_url = group_urls.get(active or "")

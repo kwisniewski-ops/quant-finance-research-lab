@@ -3,32 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Research Log — Quantitative Markets &amp; Institutions Lab</title>
+<title>Research Record and Reproducibility Ledger — Quantitative Markets &amp; Institutions Lab</title>
 <meta name="description" content="The public research ledger for Quantitative Markets &amp; Institutions Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/research-log.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Research Log — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Research Record and Reproducibility Ledger">
 <meta property="og:description" content="The public research ledger for Quantitative Markets &amp; Institutions Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/research-log.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Research Log — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Research Record and Reproducibility Ledger">
 <meta name="twitter:description" content="The public research ledger for Quantitative Markets &amp; Institutions Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Research Log",
+  "name": "Research Record and Reproducibility Ledger",
   "description": "A public ledger of quantitative research questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.",
   "url": "https://www.kylewisniewski.com/lab/research-log.html",
-  "dateModified": "2026-08-09",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab"}
 }
@@ -49,7 +49,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Research Record",
+      "name": "Research record and reproducibility ledger",
       "item": "https://www.kylewisniewski.com/lab/research-log.html"
     }
   ]
@@ -65,15 +65,15 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html">Models</a><a href="method.html">Methods</a><a href="research-log.html" aria-current="page">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head ledger-head">
-      <p class="kicker">The public record</p>
-      <h1>Research Record</h1>
+      <p class="kicker">Versioned research ledger</p>
+      <h1>Research record and reproducibility ledger</h1>
       <p class="lede">A versioned record of each research question, assumption, method, result,
       uncertainty estimate, limitation, revision, and reproducible artifact.</p>
     </div>
@@ -86,7 +86,7 @@
       <dl class="ledger-summary">
         <div><dt>Investigations</dt><dd>06</dd></div>
         <div><dt>Empirical</dt><dd>04</dd></div>
-        <div><dt>Seeded</dt><dd>05</dd></div>
+        <div><dt>Numerical</dt><dd>02</dd></div>
         <div><dt>Artifact commit</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a"><code>ad24c4999583</code></a></dd></div>
       </dl>
     </section>
@@ -96,7 +96,8 @@
       <div class="status-list">
         <span><span class="status status-proposed">Proposed</span> question registered; test not begun</span>
         <span><span class="status status-running">Running</span> evidence being produced</span>
-        <span><span class="status status-replicated">Replicated</span> result survived an independent or theoretical check</span>
+        <span><span class="status status-validated">Validated</span> numerical result survived a theoretical identity, limiting case, convergence test, or independent implementation</span>
+        <span><span class="status status-supported">Supported</span> empirical claim met its pre-declared criterion within the stated design</span>
         <span><span class="status status-rejected">Rejected</span> stated claim failed its criterion</span>
         <span><span class="status status-revised">Revised</span> evidence required a narrower claim</span>
       </div>
@@ -104,13 +105,14 @@
 
     <section class="section research-pipeline" id="research-pipeline" aria-labelledby="research-pipeline-title">
       <p class="kicker">Registered before testing</p>
-      <h2 id="research-pipeline-title">Four regime questions define the next empirical program</h2>
+      <h2 id="research-pipeline-title">Registered program on regime transmission and model failure</h2>
       <p class="lede">Each item is proposed, not supported. The question, baseline, competing
       explanation, and publication gate are recorded before data selection or model comparison.</p>
       <div class="tool-card-grid pipeline-grid">
         <article class="tool-card">
           <div class="tool-card-meta"><span>Program A · Valuation</span><span class="status status-proposed">Proposed</span></div>
-          <h3>When does discount-rate repricing dominate improving cash flows?</h3>
+          <h3>Discount-rate repricing versus cash-flow improvement</h3>
+          <p><strong>Research question:</strong> When does discount-rate repricing dominate improving cash flows?</p>
           <dl>
             <div><dt>Candidate evidence</dt><dd>Real-time activity and inflation releases, expectations, real and nominal yields, valuation duration, and dated policy decisions.</dd></div>
             <div><dt>Baseline</dt><dd>A chronological model using market and yield inputs without regime labels.</dd></div>
@@ -120,7 +122,8 @@
         </article>
         <article class="tool-card">
           <div class="tool-card-meta"><span>Program B · Liquidity</span><span class="status status-proposed">Proposed</span></div>
-          <h3>Do liquidity measures explain risk-forecast failures beyond volatility filtering?</h3>
+          <h3>Liquidity conditions and residual risk-forecast failure</h3>
+          <p><strong>Research question:</strong> Do liquidity measures explain risk-forecast failures beyond volatility filtering?</p>
           <dl>
             <div><dt>Candidate evidence</dt><dd>Market depth and funding proxies, spreads, financial-stress measures, volatility states, and the existing breach sequence.</dd></div>
             <div><dt>Baseline</dt><dd>The rejected rolling historical VaR model and a pre-specified volatility-filtered replacement.</dd></div>
@@ -130,7 +133,8 @@
         </article>
         <article class="tool-card">
           <div class="tool-card-meta"><span>Program C · Policy transmission</span><span class="status status-proposed">Proposed</span></div>
-          <h3>Can policy constraints improve forecasts of stock–bond correlation sign?</h3>
+          <h3>Policy constraints and stock–bond correlation regimes</h3>
+          <p><strong>Research question:</strong> Can policy constraints improve forecasts of stock–bond correlation sign?</p>
           <dl>
             <div><dt>Candidate evidence</dt><dd>Inflation and growth surprises, policy expectations, term-premium estimates, debt supply, communication, and duration-consistent total returns.</dd></div>
             <div><dt>Baseline</dt><dd>Rolling historical correlation with no macroeconomic classifier.</dd></div>
@@ -140,7 +144,8 @@
         </article>
         <article class="tool-card">
           <div class="tool-card-meta"><span>Program D · Institutions &amp; capital flows</span><span class="status status-proposed">Proposed</span></div>
-          <h3>When do institutional constraints alter currency and funding transmission?</h3>
+          <h3>Institutional constraints in currency and funding transmission</h3>
+          <p><strong>Research question:</strong> When do institutional constraints alter currency and funding transmission?</p>
           <dl>
             <div><dt>Candidate evidence</dt><dd>Foreign-currency liabilities, maturity structure, reserves, cross-border flows, exchange-rate design, legal authority, and dated program records.</dd></div>
             <div><dt>Baseline</dt><dd>Country-specific market and balance-sheet variables without a composite institutional score.</dd></div>
@@ -155,12 +160,12 @@
     <nav class="ledger-index" aria-label="Research log entries">
       <p class="kicker">Ledger index</p>
       <ol>
-        <li><a href="#pricing-validation"><span>01</span> Four roads to one price <span class="status status-replicated">Replicated</span></a></li>
-        <li><a href="#portfolio-construction"><span>02</span> Return forecasts to risk budgets <span class="status status-revised">Revised</span></a></li>
-        <li><a href="#stochastic-volatility"><span>03</span> Constant volatility meets market data <span class="status status-rejected">Rejected</span></a></li>
-        <li><a href="#monte-carlo"><span>04</span> Simulation as a numerical instrument <span class="status status-replicated">Replicated</span></a></li>
-        <li><a href="#factor-exposures"><span>05</span> Do factor ETFs own what they promise? <span class="status status-revised">Revised</span></a></li>
-        <li><a href="#market-risk"><span>06</span> Does historical VaR survive its own backtest? <span class="status status-rejected">Rejected</span></a></li>
+        <li><a href="#pricing-validation"><span>01</span> Cross-method option-pricing validation <span class="status status-validated">Validated</span></a></li>
+        <li><a href="#portfolio-construction"><span>02</span> Portfolio construction under estimation error <span class="status status-revised">Revised</span></a></li>
+        <li><a href="#stochastic-volatility"><span>03</span> Empirical evaluation of constant-volatility dynamics <span class="status status-rejected">Rejected</span></a></li>
+        <li><a href="#monte-carlo"><span>04</span> Monte Carlo convergence and numerical error <span class="status status-validated">Validated</span></a></li>
+        <li><a href="#factor-exposures"><span>05</span> ETF factor attribution and multiple-testing control <span class="status status-revised">Revised</span></a></li>
+        <li><a href="#market-risk"><span>06</span> Historical VaR coverage and independence backtest <span class="status status-rejected">Rejected</span></a></li>
       </ol>
     </nav>
 
@@ -169,9 +174,9 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 01 · Numerical validation</span>
-            <h2>Four roads to one price</h2>
+            <h2>Cross-method option-pricing validation</h2>
           </div>
-          <span class="status status-replicated">Replicated</span>
+          <span class="status status-validated">Validated</span>
         </header>
         <dl class="ledger-record">
           <div class="ledger-wide"><dt>Research question</dt><dd>Do four independent implementations of European option pricing agree within their distinct, pre-declared numerical error budgets?</dd></div>
@@ -191,7 +196,7 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 02 · Portfolio construction</span>
-            <h2>From return forecasts to risk budgets</h2>
+            <h2>Portfolio construction under estimation error</h2>
           </div>
           <span class="status status-revised">Revised</span>
         </header>
@@ -205,7 +210,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>MVO Sharpe fell from about 1.12 in sample to 0.44 out of sample. Risk-based portfolios ran at roughly half the volatility and two-thirds the drawdown of optimized books, but did not reliably win on return. Sharpe differences of ±0.2 are well inside an estimated sampling error near 0.5 for this 4.5-year window. The broad claim was narrowed: risk-based methods delivered risk shape, not superior return.</dd></div>
           <div><dt>Failure modes</dt><dd>One evaluation window; survivorship-tilted universe; no rolling-origin test; frozen weights; raw rather than shrunk covariance; robust MVO preserved a concentrated ranking and benefited from a specific mega-cap regime.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
-          <div><dt>Decision brief</dt><dd><a href="finding-portfolio-estimation.html">Why “optimal” portfolios fail out of sample</a></dd></div>
+          <div><dt>Empirical finding</dt><dd><a href="finding-portfolio-estimation.html">Portfolio optimization under estimation error and out-of-sample evaluation</a></dd></div>
           <div><dt>Synthesis</dt><dd><a href="stock-bond-regime-dossier.html#dossier-allocation">Stock–bond regime consequences for portfolio construction</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
@@ -215,7 +220,7 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 03 · Flagship derivatives study</span>
-            <h2>Constant volatility meets market data</h2>
+            <h2>Empirical evaluation of constant-volatility dynamics</h2>
           </div>
           <span class="status status-rejected">Rejected</span>
         </header>
@@ -229,7 +234,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The claim was rejected. Realized volatility ranged from roughly 3% to 93%; excess kurtosis was about 14; the worst day was near 10σ under a Gaussian yardstick; lag-1 absolute-return autocorrelation was about 0.35 and persisted. An equity-like Heston specification generated a short-dated skew near 25% to 16%. The empirical rejection is sample-specific; the Heston surface demonstrates mechanism, not a live market calibration.</dd></div>
           <div><dt>Failure modes</dt><dd>One underlying and one historical window; close-to-close returns omit intraday structure; parameters treated as constants still drift in practice; Heston omits jumps and rough volatility; simulation discretization carries bias.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/03_derivatives_pricing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
-          <div><dt>Decision brief</dt><dd><a href="finding-volatility-smile.html">Why one volatility number cannot price every strike</a></dd></div>
+          <div><dt>Empirical finding</dt><dd><a href="finding-volatility-smile.html">Constant-volatility pricing under empirical market behavior</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
       </article>
@@ -238,9 +243,9 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 04 · Numerical simulation</span>
-            <h2>Simulation as a numerical instrument</h2>
+            <h2>Monte Carlo convergence and numerical error</h2>
           </div>
-          <span class="status status-replicated">Replicated</span>
+          <span class="status status-validated">Validated</span>
         </header>
         <dl class="ledger-record">
           <div class="ledger-wide"><dt>Research question</dt><dd>Do the simulation library's errors behave as theory requires, and when does Monte Carlo earn its computational cost?</dd></div>
@@ -252,7 +257,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The N⁻¹ᐟ² law was recovered within replication noise; exact GBM remained unbiased across step counts; Euler bias contracted with Δt; antithetic pairing cut empirical standard error by about 30% at the same path budget. Every Monte Carlo estimate retains its reported sampling error.</dd></div>
           <div><dt>Failure modes</dt><dd>CIR and Heston discretization bias was not fully budgeted by step-halving; regime parameters were chosen rather than estimated; antithetics are weak for some payoff shapes; all results share one pseudorandom generator family.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/04_monte_carlo_simulation.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
-          <div><dt>Decision brief</dt><dd><a href="finding-monte-carlo-error.html">How many simulations are enough?</a></dd></div>
+          <div><dt>Numerical finding</dt><dd><a href="finding-monte-carlo-error.html">Monte Carlo convergence, discretization bias, and variance reduction</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-07-06">6 July 2026</time></dd></div>
         </dl>
       </article>
@@ -261,7 +266,7 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 05 · Factor research</span>
-            <h2>Do factor ETFs own what they promise?</h2>
+            <h2>ETF factor attribution and multiple-testing control</h2>
           </div>
           <span class="status status-revised">Revised</span>
         </header>
@@ -275,7 +280,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>The advertised exposures were recovered. QQQ's +3.29% annualized alpha has a raw HAC p-value of 0.024, but its Benjamini–Hochberg q-value is 0.147; no alpha survives the 5% false-discovery threshold. Frozen-coefficient holdout R² decays by 0.4 to 29.6 percentage points across ETFs, with USMV showing the largest decay. Confidence intervals and adjusted p-values are published on the factor page.</dd></div>
           <div><dt>Failure modes</dt><dd>The factor menu defines the alpha left behind; factor portfolios are not costless tradables; eleven years is one historical sample; the 50/50 split is only one holdout path; HAC lag choice and vendor price adjustments can move inference.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/05_factor_investing.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
-          <div><dt>Decision brief</dt><dd><a href="finding-factor-etfs.html">Do factor ETFs deliver their advertised exposures?</a></dd></div>
+          <div><dt>Empirical finding</dt><dd><a href="finding-factor-etfs.html">ETF factor exposure, alpha, and multiple-testing control</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
         </dl>
       </article>
@@ -284,7 +289,7 @@
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 06 · Market risk</span>
-            <h2>Does historical VaR survive its own backtest?</h2>
+            <h2>Historical VaR coverage and independence backtest</h2>
           </div>
           <span class="status status-rejected">Rejected</span>
         </header>
@@ -298,7 +303,7 @@
           <div class="ledger-wide"><dt>Result and uncertainty</dt><dd>Rejected. The model records 135 breaches versus 107 expected (6.31%); Kupiec p = 0.0075, independence p = 0.00025, and conditional-coverage p = 0.000035. VaR95 is 1.079% with a block-bootstrap 95% interval of 0.930%–1.219%; ES95 is 1.718% with interval 1.421%–2.126%. The failure is both excess breach frequency and clustering.</dd></div>
           <div><dt>Failure modes</dt><dd>The bootstrap conditions on one realized history; block length is judgmental; empirical quantiles adapt slowly after regime changes; historical scenarios replay known crises; the fixed portfolio and close-to-close prices omit intraday liquidity and dynamic de-risking.</dd></div>
           <div><dt>Reproduction</dt><dd><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Open executed notebook</a><br><a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/commit/ad24c49995832f84ebeceb2f8243011463591a4a">Commit <code>ad24c4999583</code></a></dd></div>
-          <div><dt>Decision briefs</dt><dd><a href="finding-var-backtest.html">When a 95% VaR model fails its own backtest</a><br><a href="finding-diversification-regimes.html">Why diversification can disappear when it is needed</a></dd></div>
+          <div><dt>Empirical findings</dt><dd><a href="finding-var-backtest.html">Historical VaR under coverage and independence tests</a><br><a href="finding-diversification-regimes.html">Stock–bond diversification across changing correlation environments</a></dd></div>
           <div><dt>Synthesis</dt><dd><a href="stock-bond-regime-dossier.html">Stock–bond regimes across diversification and risk calibration</a></dd></div>
           <div><dt>Last updated</dt><dd><time datetime="2026-08-03">3 August 2026</time></dd></div>
         </dl>
@@ -324,7 +329,7 @@ jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

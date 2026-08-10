@@ -3,33 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio Optimization — Quantitative Markets &amp; Institutions Lab</title>
+<title>Efficient-Frontier Geometry Under Uncertain Inputs — Quantitative Markets &amp; Institutions Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <meta name="description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/portfolio.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Portfolio Optimization — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Efficient-Frontier Geometry Under Uncertain Inputs">
 <meta property="og:description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/portfolio.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Portfolio Optimization — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Efficient-Frontier Geometry Under Uncertain Inputs">
 <meta name="twitter:description" content="Twenty thousand long-only portfolios over six asset classes, sampled from a Dirichlet distribution and mapped into risk-return space. The frontier emerges as the upper edge of the cloud; the assumptions that drew it are the real subject.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/portfolio.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Efficient Frontier Explorer",
+  "name": "Efficient-Frontier Geometry Under Uncertain Inputs",
   "description": "An interactive long-only efficient-frontier explorer for comparing minimum-variance, maximum-Sharpe, and equal-weight portfolios under illustrative assumptions.",
   "url": "https://www.kylewisniewski.com/lab/portfolio.html",
+  "dateModified": "2026-08-10",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "isAccessibleForFree": true,
@@ -67,7 +68,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Efficient Frontier Simulation",
+      "name": "Efficient-frontier geometry under uncertain inputs",
       "item": "https://www.kylewisniewski.com/lab/portfolio.html"
     }
   ]
@@ -83,17 +84,17 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
-      <p class="kicker">Module 02 · Portfolio Theory</p>
-      <h1>Efficient Frontier Simulation</h1>
-      <p class="lede">Explore how expected returns, volatility, correlations, and constraints
-      determine which portfolios appear efficient. Inputs are illustrative, not forecasts.
+      <p class="kicker">Quantitative model · Portfolio construction</p>
+      <h1>Efficient-frontier geometry under uncertain inputs</h1>
+      <p class="lede">Expected returns, volatility, correlations, and constraints determine which
+      portfolios appear efficient. All inputs are illustrative rather than forecasts.
       <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
     </div>
 
@@ -101,10 +102,10 @@
       <p class="kicker">Decision summary</p>
       <h2 id="portfolio-decision-title">An efficient portfolio is only as stable as its inputs</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>The efficient frontier is conditional on expected returns and covariances that are not known in advance. A precise optimizer can amplify small estimation errors into concentrated allocations.</p></div>
-        <div><h3>Decision affected</h3><p>Choose an allocation method according to confidence in the inputs. In the lab’s locked test, risk-based portfolios reduced out-of-sample volatility and drawdown, but did not reliably deliver higher returns.</p></div>
-        <div><h3>Who should care</h3><p>Asset allocators, investment committees, model validators, and analysts comparing optimization with risk-budgeting approaches.</p></div>
-        <div><h3>Caveat</h3><p>This explorer uses illustrative capital-market assumptions. The empirical result comes from one frozen 2015–2026 ETF sample and one sealed evaluation window.</p></div>
+        <div><h3>Interpretation</h3><p>The efficient frontier is conditional on expected returns and covariances that are not known in advance. A precise optimizer can amplify small estimation errors into concentrated allocations.</p></div>
+        <div><h3>Decision context</h3><p>Choose an allocation method according to confidence in the inputs. In the lab’s locked test, risk-based portfolios reduced out-of-sample volatility and drawdown, but did not reliably deliver higher returns.</p></div>
+        <div><h3>Intended analytical use</h3><p>Asset allocators, investment committees, model validators, and analysts comparing optimization with risk-budgeting approaches.</p></div>
+        <div><h3>Principal limitation</h3><p>This explorer uses illustrative capital-market assumptions. The empirical result comes from one frozen 2015–2026 ETF sample and one sealed evaluation window.</p></div>
       </div>
     </section>
 
@@ -206,19 +207,19 @@
     </section>
 
     <section class="section related-section" aria-labelledby="portfolio-related-title">
-      <p class="kicker">Continue exploring</p>
-      <h2 id="portfolio-related-title">Move from frontier geometry to allocation consequences</h2>
+      <p class="kicker">Related research</p>
+      <h2 id="portfolio-related-title">Related findings and validation record</h2>
       <div class="related-grid">
-        <a class="related-card" href="finding-portfolio-estimation.html"><span>Finding</span><strong>Why “optimal” portfolios fail out of sample</strong><em>See how estimation error changed Sharpe, volatility, drawdown, and concentration in a locked test.</em></a>
-        <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>Examine the practical consequence of correlations moving when protection is needed.</em></a>
-        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Compare this illustrative frontier with pricing and simulation instruments.</em></a>
-        <a class="related-card" href="research-log.html#portfolio-construction"><span>Research record</span><strong>From return forecasts to risk budgets</strong><em>Inspect the claim, frozen holdout, uncertainty, failure modes, and source notebook.</em></a>
+        <a class="related-card" href="finding-portfolio-estimation.html"><span>Empirical finding</span><strong>Out-of-sample instability in optimized portfolios</strong><em>Inspect how estimation error changed Sharpe, volatility, drawdown, and concentration in a locked test.</em></a>
+        <a class="related-card" href="finding-diversification-regimes.html"><span>Empirical finding</span><strong>Correlation-regime dependence in diversification</strong><em>Examine the portfolio consequences of unstable cross-asset relationships.</em></a>
+        <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models across financial decisions</strong><em>Compare the illustrative frontier with pricing and simulation instruments.</em></a>
+        <a class="related-card" href="research-log.html#portfolio-construction"><span>Research record</span><strong>Portfolio construction under estimation error</strong><em>Inspect the claim, frozen holdout, uncertainty, failure modes, and source notebook.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/portfolio.js"></script>

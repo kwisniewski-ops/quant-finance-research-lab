@@ -3,33 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Empirical Factor Research — Quantitative Markets &amp; Institutions Lab</title>
+<title>ETF Factor Exposure and Alpha Inference — Quantitative Markets &amp; Institutions Lab</title>
 <meta name="description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/factors.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Empirical Factor Research — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="ETF Factor Exposures, Alpha, and Out-of-Sample Stability">
 <meta property="og:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/factors.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Empirical Factor Research — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="ETF Factor Exposures, Alpha, and Out-of-Sample Stability">
 <meta name="twitter:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/factors.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Do Factor ETFs Deliver Their Advertised Exposures?",
+  "headline": "ETF Factor Exposures, Alpha, and Out-of-Sample Stability",
   "description": "Reproducible ETF factor regressions with confidence intervals, rolling betas, chronological holdouts, and multiple-testing corrections.",
   "url": "https://www.kylewisniewski.com/lab/factors.html",
-  "dateModified": "2026-08-03",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
@@ -61,7 +61,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "ETF Factor Exposure Study",
+      "name": "ETF factor exposures, alpha, and out-of-sample stability",
       "item": "https://www.kylewisniewski.com/lab/factors.html"
     }
   ]
@@ -77,17 +77,17 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
-      <p class="kicker">Module 05 · Empirical research</p>
-      <h1>ETF Factor Exposure Study</h1>
-      <p class="lede">Test whether six style ETFs exhibit their advertised exposures and whether
-      statistically significant alpha remains after multiple-testing correction.</p>
+      <p class="kicker">Empirical investigation · Factor attribution</p>
+      <h1>ETF factor exposures, alpha, and out-of-sample stability</h1>
+      <p class="lede">Six style ETFs are evaluated for advertised factor exposure, alpha after
+      multiple-testing correction, rolling parameter stability, and out-of-sample explanatory power.</p>
       <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
       <a href="research-log.html#factor-exposures">research record</a></p>
     </div>
@@ -96,10 +96,10 @@
       <p class="kicker">Decision summary</p>
       <h2 id="factor-decision-title">The labels were informative; the apparent alpha was not robust</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>The advertised factor exposures were recovered, but no ETF alpha survived a 5% false-discovery threshold after six simultaneous tests.</p></div>
-        <div><h3>Decision affected</h3><p>Evaluate a style fund by measured exposures, uncertainty, stability, and implementation—not by branding or one unadjusted alpha result.</p></div>
-        <div><h3>Who should care</h3><p>Fund selectors, portfolio analysts, wealth and asset-management teams, quantitative researchers, and model reviewers.</p></div>
-        <div><h3>Caveat</h3><p>The conclusion is conditional on six ETFs, the selected factor menu, one 2015–2026 vintage, and one chronological split. Exposure estimates can change across regimes and specifications.</p></div>
+        <div><h3>Interpretation</h3><p>The advertised factor exposures were recovered, but no ETF alpha survived a 5% false-discovery threshold after six simultaneous tests.</p></div>
+        <div><h3>Decision context</h3><p>Evaluate a style fund by measured exposures, uncertainty, stability, and implementation—not by branding or one unadjusted alpha result.</p></div>
+        <div><h3>Intended analytical use</h3><p>Fund selectors, portfolio analysts, wealth and asset-management teams, quantitative researchers, and model reviewers.</p></div>
+        <div><h3>Principal limitation</h3><p>The conclusion is conditional on six ETFs, the selected factor menu, one 2015–2026 vintage, and one chronological split. Exposure estimates can change across regimes and specifications.</p></div>
       </div>
     </section>
 
@@ -161,7 +161,7 @@
 
     <section class="section" aria-labelledby="multiplicity-title">
       <p class="kicker">Multiplicity audit</p>
-      <h2 id="multiplicity-title">What survives six simultaneous alpha tests?</h2>
+      <h2 id="multiplicity-title">Multiple-testing correction across six simultaneous alpha hypotheses</h2>
       <p class="prose-col">Raw significance is not a research conclusion. The table reports unadjusted
       p-values, Holm family-wise adjusted p-values, and Benjamini–Hochberg q-values. On this snapshot,
       no ETF alpha survives a 5% false-discovery threshold—an important correction to the tempting
@@ -193,12 +193,12 @@
       </ol>
     </section>
     <section class="section related-section" aria-labelledby="factor-related-title">
-      <p class="kicker">Continue exploring</p>
-      <h2 id="factor-related-title">Move from regression output to fund-selection evidence</h2>
+      <p class="kicker">Related research</p>
+      <h2 id="factor-related-title">Related findings, methods, and reproduction</h2>
       <div class="related-grid">
-        <a class="related-card" href="finding-factor-etfs.html"><span>Finding</span><strong>Do factor ETFs deliver the exposures in their labels?</strong><em>Read the decision brief on advertised tilts, disappearing alpha, and holdout decay.</em></a>
-        <a class="related-card" href="findings.html"><span>Findings</span><strong>Compare the lab’s strongest conclusions</strong><em>Browse practical briefs across factor investing, portfolio construction, risk, pricing, and simulation.</em></a>
-        <a class="related-card" href="method.html"><span>Method</span><strong>How the lab controls false confidence</strong><em>Review the role of confidence intervals, holdouts, multiplicity, provenance, and limitations.</em></a>
+        <a class="related-card" href="finding-factor-etfs.html"><span>Empirical finding</span><strong>Factor exposure and alpha after multiplicity control</strong><em>Inspect advertised tilts, disappearing alpha, and holdout decay.</em></a>
+        <a class="related-card" href="findings.html"><span>Research</span><strong>Comparative model-validation corpus</strong><em>Review investigations across factor investing, portfolio construction, risk, pricing, and simulation.</em></a>
+        <a class="related-card" href="method.html"><span>Methods</span><strong>Multiplicity control and bounded inference</strong><em>Review confidence intervals, holdouts, multiplicity, provenance, and limitations.</em></a>
         <a class="related-card" href="research-log.html#factor-exposures"><span>Research record</span><strong>Audit the complete factor investigation</strong><em>Inspect the dated sample, estimator, falsification rule, uncertainty, failure modes, and source.</em></a>
       </div>
     </section>
@@ -206,7 +206,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 <script src="js/common.js"></script>
 <script src="js/factors.js"></script>
 

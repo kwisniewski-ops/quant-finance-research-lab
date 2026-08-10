@@ -3,39 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why Portfolio Diversification Disappears Across Regimes</title>
-<meta name="description" content="SPY–TLT rolling correlation moved from −0.35 to +0.37, while a correlation stress raised portfolio volatility from 11.6% to 15.8%. See the implications and limits.">
+<title>Stock–Bond Diversification Across Changing Correlation Environments — Quantitative Markets &amp; Institutions Lab</title>
+<meta name="description" content="SPY–TLT rolling correlation moved from −0.35 to +0.37, while a correlation stress raised portfolio volatility from 11.6% to 15.8%.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/finding-diversification-regimes.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Why Portfolio Diversification Disappears Across Regimes">
+<meta property="og:title" content="Stock–Bond Diversification Across Changing Correlation Environments">
 <meta property="og:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-diversification-regimes.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Why Portfolio Diversification Disappears Across Regimes">
+<meta name="twitter:title" content="Stock–Bond Diversification Across Changing Correlation Environments">
 <meta name="twitter:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Why Portfolio Diversification Disappears Across Regimes",
-  "description": "A decision brief on stock–bond correlation regime change and correlation-stress effects on a diversified portfolio.",
+  "headline": "Stock–Bond Diversification Across Changing Correlation Environments",
+  "description": "An empirical investigation of stock–bond correlation regime change and correlation-stress effects on a diversified portfolio.",
   "url": "https://www.kylewisniewski.com/lab/finding-diversification-regimes.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
   "datePublished": "2026-08-08",
-  "dateModified": "2026-08-09",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://www.kylewisniewski.com/lab/finding-diversification-regimes.html",
-  "about": ["portfolio diversification", "stock bond correlation", "regime risk", "stress testing"],
-  "proficiencyLevel": "Intermediate"
+  "about": ["portfolio diversification", "stock bond correlation", "regime risk", "stress testing"]
 }
 </script>
 <link rel="stylesheet" href="css/main.css">
@@ -54,13 +53,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Questions",
+      "name": "Research",
       "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Why diversification can disappear when it is needed",
+      "name": "Stock–bond diversification across changing correlation environments",
       "item": "https://www.kylewisniewski.com/lab/finding-diversification-regimes.html"
     }
   ]
@@ -76,7 +75,7 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a><a href="tools.html">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
@@ -84,31 +83,31 @@
   <div class="wrap">
     <article>
       <header class="page-head">
-        <p class="kicker">Decision brief · Regime risk</p>
-        <h1>Why diversification can disappear when it is needed</h1>
+        <p class="kicker">Empirical finding · Regime-dependent diversification</p>
+        <h1>Stock–bond diversification across changing correlation environments</h1>
         <p class="lede">Stock–bond correlation changed from negative to positive in the studied
         sample, reducing the protection expected from a balanced allocation.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
-        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <p>The principal finding appears first; every layer remains available for scrutiny.</p>
         <ol class="depth-path">
-          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Conclusion</strong><small>Concise bounded result</small></a></li>
           <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
-          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
-          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
-          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Decision consequences</strong><small>Scope of model use</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Identification and limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method, mathematics, and code</strong><small>Tests and source artifacts</small></a></li>
         </ol>
       </nav>
 
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Depth 1 · Answer</p>
+        <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">A balanced portfolio's protection depended on a correlation regime that changed sign.</h2>
         <p>In the frozen sample, 126-day SPY–TLT correlation averaged −0.35 during 2015–2019,
         reached +0.37 during 2022–2023, and remained positive at +0.31 at the sample end. In a
         separate static stress, pushing all asset correlations toward one raised the studied
         60/40-plus-alternatives portfolio's annualized volatility from 11.6% to 15.8%.</p>
-        <p><small>Published 8 August 2026 · Brief revised 9 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
+        <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
       </section>
 
       <dl class="proof-strip ledger-summary" aria-label="Diversification evidence">
@@ -120,13 +119,13 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Why it matters</p>
+          <p class="kicker">Research significance</p>
           <h3>Multi-asset allocators and enterprise risk teams</h3>
           <p>The finding matters wherever historical correlations determine risk budgets, hedges,
           capital allocation, retirement glide paths, or the expected protection of a balanced portfolio.</p>
         </div>
         <div>
-          <p class="kicker">Decision affected</p>
+          <p class="kicker">Decision context</p>
           <h3>Whether historical diversification deserves to be treated as insurance</h3>
           <p>Do not size protection from one estimated covariance matrix alone. Ask what happens if
           the macro driver changes and historically distinct sleeves begin sharing the same loss factor.</p>
@@ -134,7 +133,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Depth 2 · Evidence</p>
+        <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">Two views expose the same hidden assumption</h2>
         <p>The first view is historical. A rolling 126-trading-day correlation between SPY and TLT
         captured the negative stock–bond relationship of 2015–2019 and its reversal during the
@@ -150,7 +149,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">Depth 3 · Application</p>
+        <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Budget for the failure of relationships, not only assets</h2>
         <ul class="refs">
           <li>Show portfolio risk across a range of correlation states instead of one point estimate.</li>
@@ -162,7 +161,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Depth 4 · Limits</p>
+        <p class="kicker">04 · Identification and limits</p>
         <h2 id="limitations">A stress surface is not a timing model</h2>
         <ul class="refs">
           <li>The SPY–TLT result comes from one historical sample and one 126-day rolling-window choice.</li>
@@ -174,12 +173,12 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Depth 5 · Method and code</p>
+        <p class="kicker">05 · Methods and reproduction</p>
         <h2 id="explore">Interrogate the portfolio through several non-overlapping lenses</h2>
         <div class="hero-actions">
-          <a class="primary-action" href="risk.html">Explore the risk dashboard <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="research-log.html#market-risk">Audit the ledger entry <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Open the executed notebook <span aria-hidden="true">↗</span></a>
+          <a class="primary-action" href="risk.html">Inspect correlation stress <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="research-log.html#market-risk">Inspect the research record <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/06_market_risk_dashboard.ipynb">Reproduce from the executed notebook <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -187,9 +186,9 @@
         <p class="kicker">Regime lens · Stock–bond relationship</p>
         <h2 id="regime-lens-diversification">The hedge was conditional on the shock regime</h2>
         <dl class="regime-lens__evidence">
-          <div><dt>Measured here</dt><dd>SPY–TLT correlation moved from an average of −0.35 during 2015–2019 to a later rolling correlation that reached +0.37 during 2022–2023. Separately, an all-asset correlation stress increased annualized portfolio volatility from 11.6% to 15.8%.</dd></div>
-          <div><dt>Established context</dt><dd>Federal Reserve and BIS evidence document an environment of elevated inflation, expected tightening, rising Treasury yields, and falling equity prices. Inflation news became more important to stock–bond co-movement after mid-2021.</dd></div>
-          <div><dt>Interpretive implication</dt><dd>Nominal duration is protection against particular shocks, not universal portfolio insurance. Inflation can constrain monetary easing and expose both sleeves to a common discount-rate channel.</dd></div>
+          <div><dt>Lab measurement</dt><dd>SPY–TLT correlation moved from an average of −0.35 during 2015–2019 to a later rolling correlation that reached +0.37 during 2022–2023. Separately, an all-asset correlation stress increased annualized portfolio volatility from 11.6% to 15.8%.</dd></div>
+          <div><dt>External empirical evidence</dt><dd>Federal Reserve and BIS evidence document an environment of elevated inflation, expected tightening, rising Treasury yields, and falling equity prices. Inflation news became more important to stock–bond co-movement after mid-2021.</dd></div>
+          <div><dt>Interpretive synthesis</dt><dd>Nominal duration is protection against particular shocks, not universal portfolio insurance. Inflation can constrain monetary easing and expose both sleeves to a common discount-rate channel.</dd></div>
         </dl>
         <p class="regime-lens__boundary">Causal boundary: the lab measures a sign change and a portfolio stress. It does not attribute the change to one macroeconomic cause or forecast how long the positive relationship will persist.</p>
         <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-diversification" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:diversification">Examine the diversification regime <span aria-hidden="true">→</span></a>
@@ -197,10 +196,10 @@
 
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
-        <h2 id="related">What the regime change does downstream</h2>
+        <h2 id="related">Downstream consequences of correlation-regime change</h2>
         <div class="related-grid">
-          <a href="finding-portfolio-estimation.html"><span>Portfolio construction</span><strong>Why optimized weights degrade</strong><em>Every construction method embeds an assumption about the regime it will face.</em></a>
-          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Why risk breaches cluster</strong><em>A slowly adapting historical forecast can fail when the return process changes.</em></a>
+          <a href="finding-portfolio-estimation.html"><span>Portfolio construction</span><strong>Portfolio optimization under estimation error and out-of-sample evaluation</strong><em>Every construction method embeds assumptions about the environment it will face.</em></a>
+          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>A slowly adapting historical forecast can fail when the return process changes.</em></a>
         </div>
       </section>
 
@@ -208,7 +207,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

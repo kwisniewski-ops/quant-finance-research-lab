@@ -4,30 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Interactive Financial Models — Quantitative Markets &amp; Institutions Lab</title>
-<meta name="description" content="Explore how option-pricing, portfolio, risk, factor, and stochastic-process results change when their assumptions change.">
+<meta name="description" content="Interactive models and diagnostics for option valuation, portfolio construction, market risk, factor attribution, and stochastic-process analysis.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/tools.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Interactive Financial Models">
-<meta property="og:description" content="Explore what changes when a model assumption changes.">
+<meta property="og:title" content="Interactive models for assumption sensitivity and model behavior">
+<meta property="og:description" content="Pricing, portfolio, risk, factor, and stochastic-process implementations with explicit assumptions and analytical boundaries.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/tools.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Interactive Financial Models">
-<meta name="twitter:description" content="Explore what changes when a model assumption changes.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:title" content="Interactive models for assumption sensitivity and model behavior">
+<meta name="twitter:description" content="Pricing, portfolio, risk, factor, and stochastic-process implementations with explicit assumptions and analytical boundaries.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <link rel="stylesheet" href="css/main.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Interactive Financial Models",
+  "name": "Interactive Models for Assumption Sensitivity and Model Behavior",
   "url": "https://www.kylewisniewski.com/lab/tools.html",
-  "description": "Interactive option-pricing, portfolio, risk, factor, and stochastic-process models with stated assumptions and limitations.",
+  "description": "Interactive option-pricing, portfolio, risk, factor, and stochastic-process models with stated assumptions, validation links, and limitations.",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab"}
 }
@@ -47,7 +48,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Explore what changes when an assumption changes",
+      "name": "Interactive models for pricing, portfolio construction, risk, factor attribution, and simulation",
       "item": "https://www.kylewisniewski.com/lab/tools.html"
     }
   ]
@@ -63,74 +64,75 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
-      <p class="kicker">Interactive models</p>
-      <h1>Explore what changes when an assumption changes</h1>
-      <p class="lede">Each model connects an input to an output and states what the result can—and
-      cannot—support. Use the linked research question when empirical validation is available.</p>
+      <p class="kicker">Quantitative models and diagnostics</p>
+      <h1>Interactive models for pricing, portfolio construction, risk, factor attribution, and simulation</h1>
+      <p class="lede">Each implementation exposes the assumptions connecting inputs to outputs and
+      distinguishes numerical behavior from empirical validation. Supporting findings and research
+      records are linked where evidence is available.</p>
     </div>
 
     <section class="section" aria-labelledby="tool-collection">
-      <p class="kicker">Choose a model</p>
-      <h2 id="tool-collection">Five questions that can be explored directly</h2>
+      <p class="kicker">Model suite</p>
+      <h2 id="tool-collection">Five implementations for assumption sensitivity and diagnostic analysis</h2>
       <div class="tool-card-grid">
         <article class="tool-card">
-          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
-          <h3>What drives an option’s value?</h3>
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>Numerical model</span></div>
+          <h3>Option valuation under model and parameter variation</h3>
           <p>The option-pricing model runs Black–Scholes–Merton and a Cox–Ross–Rubinstein tree side by side. Change spot,
           strike, maturity, rate, dividend yield, and volatility; observe price and Greek sensitivity.</p>
           <dl><div><dt>Use it to</dt><dd>Inspect no-arbitrage pricing, sensitivity, and numerical convergence</dd></div><div><dt>Do not use it to</dt><dd>Represent every exercise feature or observed market dynamic</dd></div></dl>
-          <a class="primary-action" href="asset-pricing.html">Use the pricer <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="asset-pricing.html">Open the pricing model <span aria-hidden="true">→</span></a>
         </article>
         <article class="tool-card">
-          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
-          <h3>How sensitive is an allocation to its inputs?</h3>
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>Illustrative model</span></div>
+          <h3>Portfolio geometry under uncertain inputs</h3>
           <p>The efficient-frontier model samples twenty thousand long-only portfolios over six illustrative asset classes and
           compares minimum-variance, maximum-Sharpe, and equal-weight answers.</p>
           <dl><div><dt>Use it to</dt><dd>Inspect risk–return geometry, constraints, and assumption sensitivity</dd></div><div><dt>Do not use it to</dt><dd>Treat illustrative moments as forecasts or recommendations</dd></div></dl>
-          <a class="primary-action" href="portfolio.html">Explore the frontier <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="portfolio.html">Analyze allocation sensitivity <span aria-hidden="true">→</span></a>
         </article>
         <article class="tool-card">
-          <div class="tool-card-meta"><span class="tag">Empirical</span><span>10–15 minutes</span></div>
-          <h3>Does a risk model survive backtesting?</h3>
+          <div class="tool-card-meta"><span class="tag">Empirical</span><span>Executed study</span></div>
+          <h3>Historical VaR under empirical backtesting</h3>
           <p>The market-risk study provides a cost-aware, leak-free portfolio path, block-bootstrap intervals, formal VaR
           coverage tests, and dated stress windows.</p>
           <dl><div><dt>Use it to</dt><dd>Inspect risk-model validation, calibration, and stress design</dd></div><div><dt>Do not use it to</dt><dd>Treat one frozen history as a bound on future losses</dd></div></dl>
-          <a class="primary-action" href="risk.html">Inspect the backtest <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="risk.html">Inspect the VaR backtest <span aria-hidden="true">→</span></a>
         </article>
         <article class="tool-card">
-          <div class="tool-card-meta"><span class="tag">Empirical</span><span>10–15 minutes</span></div>
-          <h3>What exposure is a factor fund actually delivering?</h3>
+          <div class="tool-card-meta"><span class="tag">Empirical</span><span>Executed study</span></div>
+          <h3>Factor exposure estimation and inference</h3>
           <p>The factor study compares six-factor ETF regressions, HAC intervals, rolling exposure, chronological
           holdouts, and false-discovery corrections.</p>
           <dl><div><dt>Use it to</dt><dd>Inspect attribution, product-label verification, and statistical governance</dd></div><div><dt>Do not use it to</dt><dd>Interpret alpha independently of the selected factor model</dd></div></dl>
-          <a class="primary-action" href="factors.html">Inspect factor evidence <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="factors.html">Review factor estimates <span aria-hidden="true">→</span></a>
         </article>
         <article class="tool-card">
-          <div class="tool-card-meta"><span class="tag">Interactive</span><span>5–10 minutes</span></div>
-          <h3>What market behavior can a process represent?</h3>
+          <div class="tool-card-meta"><span class="tag">Interactive</span><span>Scenario model</span></div>
+          <h3>Stochastic-process behavior and scenario capacity</h3>
           <p>The stochastic-process model simulates GBM, Ornstein–Uhlenbeck, Merton jumps, Heston stochastic volatility, and a
           regime-switching process with a seeded generator.</p>
           <dl><div><dt>Use it to</dt><dd>Inspect path behavior, distribution shape, and model differences</dd></div><div><dt>Do not use it to</dt><dd>Treat a simulated process as a market forecast</dd></div></dl>
-          <a class="primary-action" href="simulations.html">Simulate a process <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="simulations.html">Run stochastic simulations <span aria-hidden="true">→</span></a>
         </article>
       </div>
     </section>
 
     <section class="cta-band" aria-labelledby="tools-next-step">
-      <div><p class="kicker">Interpretation</p><h2 id="tools-next-step">Review assumptions and error estimates before interpreting output.</h2><p>Each linked question connects the model to empirical evidence, uncertainty, limitations, and a reproducible implementation.</p></div>
-      <div class="cta-actions"><a class="primary-action" href="findings.html">Start with a question <span aria-hidden="true">→</span></a><a class="secondary-action" href="method.html">Review the method <span aria-hidden="true">→</span></a></div>
+      <div><p class="kicker">Interpretation standard</p><h2 id="tools-next-step">Review assumptions, calibration, numerical error, and identification limits before drawing an inference.</h2><p>Each linked investigation connects model behavior to empirical evidence, uncertainty, limitations, and a reproducible implementation.</p></div>
+      <div class="cta-actions"><a class="primary-action" href="findings.html">Review published research <span aria-hidden="true">→</span></a><a class="secondary-action" href="method.html">Review the methods <span aria-hidden="true">→</span></a></div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

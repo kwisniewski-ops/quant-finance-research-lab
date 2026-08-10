@@ -21,15 +21,20 @@ ATLAS = FRONTEND / "regime-atlas.html"
 BRAND_NAME = "Quantitative Markets & Institutions Lab"
 BRAND_NAME_HTML = "Quantitative Markets &amp; Institutions Lab"
 OLD_BRAND_NAME = "Quantitative Markets Research Lab"
-SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v3.png"
+SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v4.png"
 SOCIAL_IMAGE_ALT_HTML = (
-    "Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, "
-    "shown beside a market chart and open research ledger."
+    "Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, "
+    "and institutions, shown beside a market chart and open research notebook."
 )
 REGIME_LENSES = {
     "finding-diversification-regimes.html": "#dossier-diversification",
     "finding-portfolio-estimation.html": "#dossier-allocation",
     "finding-var-backtest.html": "#dossier-risk",
+}
+REGIME_LENS_CONTEXT_LABELS = {
+    "finding-diversification-regimes.html": "External empirical evidence",
+    "finding-portfolio-estimation.html": "Institutional record",
+    "finding-var-backtest.html": "Institutional record",
 }
 
 
@@ -55,11 +60,11 @@ class _VisibleTextParser(HTMLParser):
 def visible_text(source: str) -> str:
     parser = _VisibleTextParser()
     parser.feed(source)
-    return " ".join(parser.parts)
+    return " ".join(" ".join(parser.parts).split())
 
 
-def test_global_navigation_is_reduced_to_four_reader_routes() -> None:
-    expected = ["Start", "Questions", "Models", "Method"]
+def test_global_navigation_exposes_the_research_program_and_record() -> None:
+    expected = ["Overview", "Research", "Models", "Methods", "Record"]
     for page in PUBLIC_PAGES:
         source = page.read_text(encoding="utf-8")
         nav = re.search(r'<nav class="site-nav".*?</nav>', source, flags=re.DOTALL)
@@ -96,7 +101,7 @@ def test_approved_lab_identity_is_consistent_across_public_surfaces() -> None:
             assert f'<meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT_HTML}">' in source, page.name
             assert f'<meta name="twitter:image:alt" content="{SOCIAL_IMAGE_ALT_HTML}">' in source, page.name
 
-    image = FRONTEND / "og-lab-v3.png"
+    image = FRONTEND / "og-lab-v4.png"
     header = image.read_bytes()[:24]
     assert header[:8] == b"\x89PNG\r\n\x1a\n"
     assert int.from_bytes(header[16:20], "big") == 1200
@@ -158,15 +163,71 @@ def test_indexable_metadata_is_complete_and_structured_data_is_parseable() -> No
             json.loads(schema)
 
 
-def test_question_hub_leads_with_six_plain_language_answers() -> None:
+def test_research_hub_maps_seven_results_to_six_investigations() -> None:
     source = (FRONTEND / "findings.html").read_text(encoding="utf-8")
-    assert source.count('class="finding-answer"') == 6
-    assert "Six questions investors should ask quantitative models" in source
+    assert source.count('class="finding-answer"') == 7
+    assert "Quantitative investigations of model risk, market regimes, and institutional transmission" in source
+    assert source.count("Empirical finding") == 5
+    assert source.count("Numerical validation") >= 2
+    assert "Seven published results from six executed investigations" in source
+    assert "market-risk investigation supports separate public findings" in source
+    assert "Six questions investors should ask quantitative models" not in source
+
+
+def test_public_titles_are_declarative_and_consumer_wrappers_are_absent() -> None:
+    prohibited = (
+        "Questions before models",
+        "plain-language",
+        "Simple first",
+        "Short answer",
+        "Start with a question",
+        "Start simpler",
+        "Start narrower",
+        "Continue exploring",
+        "Follow the answer",
+        "Stop when the answer is sufficient",
+        "Read only as far as the decision requires",
+    )
+    for page in PUBLIC_PAGES:
+        source = page.read_text(encoding="utf-8")
+        text = visible_text(source)
+        assert not any(phrase.casefold() in text.casefold() for phrase in prohibited), page.name
+        assert "Decision brief" not in text, page.name
+        assert '"proficiencyLevel"' not in source, page.name
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", source, flags=re.DOTALL)
+        assert h1, page.name
+        assert "?" not in visible_text(h1.group(0)), page.name
+        if page.name != "404.html":
+            title = re.search(r"<title>(.*?)</title>", source, flags=re.DOTALL)
+            social_title = re.search(r'<meta property="og:title" content="([^"]+)">', source)
+            assert title and "?" not in visible_text(title.group(0)), page.name
+            assert social_title and "?" not in social_title.group(1), page.name
+
+
+def test_feed_and_breadcrumbs_preserve_the_declarative_taxonomy() -> None:
+    root = ET.parse(FRONTEND / "feed.xml").getroot()
+    namespace = {"atom": "http://www.w3.org/2005/Atom"}
+    for entry in root.findall("atom:entry", namespace):
+        title = entry.findtext("atom:title", namespaces=namespace)
+        assert title and "?" not in title
+
+    for page in (page for page in PUBLIC_PAGES if page.name not in {"404.html", "index.html"}):
+        source = page.read_text(encoding="utf-8")
+        breadcrumb_match = re.search(
+            r'<script id="breadcrumb-schema" type="application/ld\+json">(.*?)</script>',
+            source,
+            flags=re.DOTALL,
+        )
+        assert breadcrumb_match, page.name
+        breadcrumb = json.loads(breadcrumb_match.group(1))
+        names = [item["name"] for item in breadcrumb["itemListElement"]]
+        assert "Questions" not in names, page.name
+        assert not any("?" in name for name in names), page.name
 
 
 def test_every_finding_uses_the_same_progressive_depth_path() -> None:
     anchors = ["#bottom-line", "#evidence", "#practice", "#limitations", "#explore"]
-    labels = ["Answer", "Evidence", "Application", "Limits", "Method and code"]
+    labels = ["Conclusion", "Evidence", "Decision consequences", "Identification and limits", "Method, mathematics, and code"]
     assert len(FINDING_PAGES) == 6
     for page in FINDING_PAGES:
         source = page.read_text(encoding="utf-8")
@@ -177,16 +238,16 @@ def test_every_finding_uses_the_same_progressive_depth_path() -> None:
             assert f"<strong>{label}</strong>" in depth_nav.group(0), page.name
 
 
-def test_regime_dossier_is_a_questions_synthesis_not_a_seventh_brief() -> None:
+def test_regime_dossier_is_a_research_synthesis_not_a_seventh_brief() -> None:
     source = DOSSIER.read_text(encoding="utf-8")
-    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a>' in source
+    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a>' in source
     assert 'class="depth-nav"' not in source
     assert '<link rel="canonical" href="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html">' in source
     assert '"@type": "TechArticle"' in source
     assert '"author": {"@id": "https://www.kylewisniewski.com/lab#organization"}' in source
     assert '"mainEntityOfPage": "https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html"' in source
     assert '"datePublished": "2026-08-09"' in source
-    assert '"dateModified": "2026-08-09"' in source
+    assert '"dateModified": "2026-08-10"' in source
     assert source.index('<script src="js/common.js"></script>') < source.index(
         '<script src="js/reading.js"></script>'
     )
@@ -216,9 +277,9 @@ def test_only_three_findings_receive_one_bounded_regime_lens() -> None:
             lens_index = source.index('class="regime-lens"')
             assert source.index('id="explore"') < lens_index < source.index('id="related"')
             assert f'stock-bond-regime-dossier.html{REGIME_LENSES[page.name]}' in source
-            assert "Measured here" in source[lens_index:]
-            assert "Established context" in source[lens_index:]
-            assert "Interpretive implication" in source[lens_index:]
+            assert "Lab measurement" in source[lens_index:]
+            assert REGIME_LENS_CONTEXT_LABELS[page.name] in source[lens_index:]
+            assert "Interpretive synthesis" in source[lens_index:]
             assert "Causal boundary:" in source[lens_index:]
             assert 'data-analytics-event="research_engagement"' in source[lens_index:]
         else:
@@ -242,13 +303,15 @@ def test_regime_dossier_is_discoverable_and_returns_to_the_record() -> None:
         assert f'href="{href}"' in source
 
     record = (FRONTEND / "research-log.html").read_text(encoding="utf-8")
-    assert record.count("stock-bond-regime-dossier.html") == 2
+    record_main = re.search(r"<main.*?</main>", record, flags=re.DOTALL)
+    assert record_main
+    assert record_main.group(0).count("stock-bond-regime-dossier.html") == 2
 
 
-def test_regime_atlas_is_a_bounded_questions_framework() -> None:
+def test_regime_atlas_is_a_bounded_research_framework() -> None:
     source = ATLAS.read_text(encoding="utf-8")
     assert '<link rel="canonical" href="https://www.kylewisniewski.com/lab/regime-atlas.html">' in source
-    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a>' in source
+    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a>' in source
     assert 'class="depth-nav"' not in source
     assert ATLAS not in FINDING_PAGES
 
@@ -261,15 +324,15 @@ def test_regime_atlas_is_a_bounded_questions_framework() -> None:
     article = next(schema for schema in parsed if schema.get("@type") == "TechArticle")
     assert article["author"] == {"@id": "https://www.kylewisniewski.com/lab#organization"}
     assert article["datePublished"] == "2026-08-09"
-    assert article["dateModified"] == "2026-08-09"
+    assert article["dateModified"] == "2026-08-10"
     breadcrumb = next(schema for schema in parsed if schema.get("@type") == "BreadcrumbList")
     assert [item["name"] for item in breadcrumb["itemListElement"][:2]] == [
         BRAND_NAME,
-        "Questions",
+        "Research",
     ]
 
     for phrase in (
-        "does not classify the present",
+        "without classifying the present",
         "Scenario, not forecast",
         "No live data",
         "Forecast status",
@@ -311,11 +374,12 @@ def test_regime_atlas_progressively_enhances_static_scenarios() -> None:
     assert source.count('<details class="episode-card">') == 6
     assert source.count("<strong>What this does not establish:</strong>") == 6
     for label in (
-        "Measured here",
-        "Established context",
-        "Interpretive implication",
+        "Lab measurement",
+        "Institutional record",
+        "External empirical evidence",
+        "Interpretive synthesis",
         "Scenario, not forecast",
-        "Open question",
+        "Proposed research",
     ):
         assert label in source
 
@@ -399,8 +463,8 @@ def test_regime_atlas_is_discoverable_across_the_lab() -> None:
     for source in (index, findings):
         assert 'href="regime-atlas.html"' in source
         assert 'href="stock-bond-regime-dossier.html"' in source
-        assert "Broad map · Historical framework" in source
-        assert "Focused synthesis · Measured evidence" in source
+        assert "Historical framework · Scenario design" in source
+        assert "Empirical dossier · Measured relationship" in source
 
 
 def test_regime_frameworks_publish_ledgers_without_inflating_investigations() -> None:
@@ -415,7 +479,7 @@ def test_regime_frameworks_publish_ledgers_without_inflating_investigations() ->
         assert field in dossier
     assert 'id="research-pipeline"' in record
     assert record.count('class="status status-proposed">Proposed</span>') >= 5
-    assert "Four regime questions define the next empirical program" in record
+    assert "Registered program on regime transmission and model failure" in record
     assert "<dt>Investigations</dt><dd>06</dd>" in record
     assert (ROOT / "docs" / "research_pipeline.md").exists()
 
@@ -431,7 +495,7 @@ def test_regime_atlas_has_one_research_feed_entry() -> None:
     ]
     assert len(matching) == 1
     assert matching[0].findtext("atom:published", namespaces=namespace).startswith("2026-08-09")
-    assert matching[0].findtext("atom:updated", namespaces=namespace).startswith("2026-08-09")
+    assert matching[0].findtext("atom:updated", namespaces=namespace).startswith("2026-08-10")
 
 
 def test_measured_periods_are_not_labeled_as_formal_regimes() -> None:
@@ -470,33 +534,42 @@ def test_research_feed_discovery_and_revision_dates_are_consistent() -> None:
         href = "/lab/feed.xml" if page.name == "404.html" else "feed.xml"
         assert f'title="{BRAND_NAME_HTML} research" href="{href}"' in source
 
-    revised_pages = (
-        "index.html",
-        "findings.html",
-        "finding-diversification-regimes.html",
-        "finding-portfolio-estimation.html",
-        "finding-var-backtest.html",
-        "research-log.html",
-    )
-    for page_name in revised_pages:
-        source = (FRONTEND / page_name).read_text(encoding="utf-8")
-        assert '"dateModified": "2026-08-09"' in source, page_name
+    for page in (page for page in PUBLIC_PAGES if page.name != "404.html"):
+        source = page.read_text(encoding="utf-8")
+        assert re.search(r'"dateModified"\s*:\s*"2026-08-10"', source), page.name
 
     root = ET.parse(FRONTEND / "feed.xml").getroot()
     namespace = {"atom": "http://www.w3.org/2005/Atom"}
-    revised_urls = {
-        f"https://www.kylewisniewski.com/lab/{page_name}"
-        for page_name in (
-            "finding-diversification-regimes.html",
-            "finding-portfolio-estimation.html",
-            "finding-var-backtest.html",
-        )
-    }
     for entry in root.findall("atom:entry", namespace):
-        if entry.findtext("atom:id", namespaces=namespace) in revised_urls:
-            updated = entry.findtext("atom:updated", namespaces=namespace)
-            assert updated is not None
-            assert updated.startswith("2026-08-09")
+        updated = entry.findtext("atom:updated", namespaces=namespace)
+        assert updated is not None
+        assert updated.startswith("2026-08-10")
+
+
+def test_evidence_classes_statuses_and_corpus_boundaries_are_explicit() -> None:
+    method = (FRONTEND / "method.html").read_text(encoding="utf-8")
+    for label in (
+        "Lab measurement",
+        "Numerical validation",
+        "External empirical evidence",
+        "Institutional record",
+        "Interpretive synthesis",
+        "Proposed research",
+    ):
+        assert label in method
+
+    record = (FRONTEND / "research-log.html").read_text(encoding="utf-8")
+    assert "Replicated" not in visible_text(record)
+    assert "Seeded 05" not in visible_text(record)
+    assert '<span class="status status-validated">Validated</span>' in record
+    assert "<dt>Numerical</dt><dd>02</dd>" in record
+
+    about = visible_text((FRONTEND / "about.html").read_text(encoding="utf-8"))
+    atlas = visible_text(ATLAS.read_text(encoding="utf-8"))
+    dossier = visible_text(DOSSIER.read_text(encoding="utf-8"))
+    assert "not a live classifier, probability model, or forecast" in about
+    assert "without classifying the present or forecasting the next state" in atlas
+    assert "No present-state classification, regime probability, or return forecast" in dossier
 
 
 def test_lab_palette_uses_the_parent_brand_foundation() -> None:

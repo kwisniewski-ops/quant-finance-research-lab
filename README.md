@@ -1,8 +1,9 @@
 # Quantitative Markets & Institutions Lab
 
-Independent, evidence-led research on financial models, market regimes, and investor
-decisions. The lab investigates how models, institutions, and history condition market
-relationships, publishing plain-language conclusions with reproducible evidence,
+Independent, evidence-led research on financial models, market regimes, institutions,
+and investor decisions. The lab investigates how quantitative conclusions change when
+estimates leave sample, relationships shift, liquidity deteriorates, and institutional
+constraints alter market transmission. Results are published with reproducible evidence,
 explicit uncertainty, and strict causal boundaries.
 
 > Financial markets can be studied as complex adaptive systems where uncertainty,
@@ -10,10 +11,10 @@ explicit uncertainty, and strict causal boundaries.
 > This project explores how quantitative models can clarify market behavior while
 > remaining honest about the limits of prediction.
 
-**Simple at the surface. Rigorous at depth. Honest about uncertainty.** Every module ships with
-its assumptions documented, its limitations stated, and tests that anchor it to known
-results. The companion website turns the research into decision briefs, interactive
-tools, and an auditable validation method:
+**Conclusions first; evidence remains fully auditable.** Every module ships with documented
+assumptions, explicit limitations, and tests anchored to theoretical or empirical criteria.
+The companion website organizes executed investigations, historical frameworks, interactive
+models, methods, and a versioned research record:
 **[kylewisniewski.com/lab](https://www.kylewisniewski.com/lab/)** (source in
 [`app/frontend/`](app/frontend/), integrated into the main site — see [DEPLOY.md](DEPLOY.md)).
 
@@ -30,8 +31,8 @@ tools, and an auditable validation method:
 | **Numerical methods** (`src/math/`) | Monte Carlo (GBM, OU, CIR, regime-switching, antithetic variates), Crank–Nicolson PDE solver with Rannacher start-up, PSD repair, Ledoit–Wolf shrinkage — plus [stochastic calculus notes](src/math/stochastic_calculus_notes.md) |
 | **Data** (`src/data/`) | Cache-first loaders (15-ETF universe 2015→present, Fama–French 5 factors + momentum), data validation with outlier/staleness detection |
 | **Research notebooks** (`notebooks/`) | Six executed notebooks — pricing model cross-validation, optimization under estimation error, the flagship Black-Scholes→Heston case study, Monte Carlo methods, factor regressions on real ETFs, a full market-risk workup |
-| **Documentation** (`docs/`) | [Mathematical foundations](docs/mathematical_foundations.md) · [Model assumptions](docs/model_assumptions.md) · [Research methodology](docs/research_methodology.md) · [Limitations](docs/limitations.md) · [API contract](docs/api_contract.md) |
-| **Website** (`app/frontend/`) | Static research interface: practical finding briefs, the Markets & Institutions Regime Atlas, the stock–bond regime dossier, interactive models, mathematical notes, validation checklists, and the public research record |
+| **Documentation** (`docs/`) | [Editorial architecture](docs/editorial_architecture.md) · [Mathematical foundations](docs/mathematical_foundations.md) · [Model assumptions](docs/model_assumptions.md) · [Research methodology](docs/research_methodology.md) · [Limitations](docs/limitations.md) · [API contract](docs/api_contract.md) |
+| **Website** (`app/frontend/`) | Static research interface: empirical findings, numerical validations, the Market Regime Atlas, the stock–bond regime dossier, interactive models, mathematical notes, validation checklists, and the public research record |
 
 ## Selected findings from the notebooks
 
@@ -57,7 +58,7 @@ tools, and an auditable validation method:
 git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
 cd quant-finance-research-lab
 pip install -e ".[all]"
-pytest            # 226 tests: 204 quantitative + 22 publishing regressions
+pytest            # 229 tests: 204 quantitative + 25 publishing regressions
 ```
 
 Cached market-data snapshots ship with the repo (`data/snapshots/`), so every notebook
@@ -100,7 +101,7 @@ do not bound future ones.
 quant-research-lab/
 ├── src/                  # library code (models, portfolio, risk, backtesting, math, data, visualization)
 ├── notebooks/            # six executed research notebooks + build scripts
-├── tests/                # 226 tests: 204 quantitative anchors + 22 publishing regressions
+├── tests/                # 229 tests: 204 quantitative anchors + 25 publishing regressions
 ├── docs/                 # foundations, assumptions, methodology, limitations, API contract
 ├── app/frontend/         # static research website (GitHub Pages ready)
 └── data/snapshots/       # cached market data for offline reproducibility

@@ -3,34 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mathematical Notes — Quantitative Markets &amp; Institutions Lab</title>
+<title>Mathematical Foundations for Pricing, Simulation, and Tail Risk — Quantitative Markets &amp; Institutions Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <meta name="description" content="Six derivations that carry most of the weight in quantitative finance, written to be read rather than merely cited. Each states its assumptions, does the calculation, and says what the result is actually worth.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/math-notes.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Mathematical Notes — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Mathematical Foundations for Pricing, Simulation, and Tail Risk">
 <meta property="og:description" content="Six derivations that carry most of the weight in quantitative finance, written to be read rather than merely cited. Each states its assumptions, does the calculation, and says what the result is actually worth.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/math-notes.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathematical Notes — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Mathematical Foundations for Pricing, Simulation, and Tail Risk">
 <meta name="twitter:description" content="Six derivations that carry most of the weight in quantitative finance, written to be read rather than merely cited. Each states its assumptions, does the calculation, and says what the result is actually worth.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/math-notes.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Mathematical Notes for Quantitative Finance",
+  "headline": "Mathematical Foundations for Pricing, Simulation, and Tail Risk",
   "description": "Six assumption-aware derivations covering Itô calculus, geometric Brownian motion, risk-neutral pricing, Feynman-Kac, Monte Carlo error, and fat-tailed risk.",
   "url": "https://www.kylewisniewski.com/lab/math-notes.html",
-  "dateModified": "2026-08-03",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
@@ -58,13 +58,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Method",
+      "name": "Methods",
       "item": "https://www.kylewisniewski.com/lab/method.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Mathematical Foundations",
+      "name": "Mathematical foundations for pricing, simulation, and tail risk",
       "item": "https://www.kylewisniewski.com/lab/math-notes.html"
     }
   ]
@@ -80,15 +80,15 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html">Models</a><a href="method.html" aria-current="page">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html">Models</a><a href="method.html" aria-current="page">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap narrow">
     <div class="page-head">
-      <p class="kicker">Module 06 · Working Notes</p>
-      <h1 id="mathematical-notes">Mathematical Foundations</h1>
+      <p class="kicker">Technical foundations · Mathematical notes</p>
+      <h1 id="mathematical-notes">Mathematical foundations for pricing, simulation, and tail risk</h1>
       <p class="lede">Six concise derivations covering the stochastic calculus, pricing,
       simulation-error, and tail-risk concepts used throughout the lab.</p>
       <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> · citations refer to the editions listed below</p>
@@ -102,9 +102,9 @@
       <p class="kicker">Decision summary</p>
       <h2 id="notes-decision-title">Use the mathematics to expose assumptions, not conceal them</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>These six notes connect stochastic calculus, pricing, simulation, and tail risk into one chain: every useful result depends on a stated probability model and an error budget.</p></div>
-        <div><h3>Decision affected</h3><p>The derivations help determine when a pricing identity, simulation estimate, or risk metric is appropriate—and which assumption or approximation limits the conclusion.</p></div>
-        <div><h3>Who should care</h3><p>Quantitative-finance students, analysts moving into model work, technical reviewers, and practitioners who need an auditable conceptual reference.</p></div>
+        <div><h3>Interpretation</h3><p>These six notes connect stochastic calculus, pricing, simulation, and tail risk into one chain: every useful result depends on a stated probability model and an error budget.</p></div>
+        <div><h3>Decision context</h3><p>The derivations help determine when a pricing identity, simulation estimate, or risk metric is appropriate—and which assumption or approximation limits the conclusion.</p></div>
+        <div><h3>Intended analytical use</h3><p>Quantitative-finance students, analysts moving into model work, technical reviewers, and practitioners who need an auditable conceptual reference.</p></div>
         <div><h3>Prerequisites</h3><p>The collection assumes calculus, probability, and basic derivative pricing. It is a compact working reference, not a substitute for the cited full treatments.</p></div>
       </div>
     </section>
@@ -288,7 +288,7 @@
 
     <section class="section note-section" aria-labelledby="note-fat-tail-var">
       <p class="kicker">Note 06</p>
-      <h2 id="note-fat-tail-var" class="reference-heading">Why Fat Tails Break Normal VaR<a class="heading-link" href="#note-fat-tail-var" aria-label="Permalink to Why Fat Tails Break Normal VaR">#</a></h2>
+      <h2 id="note-fat-tail-var" class="reference-heading">Fat tails and the failure of normal VaR<a class="heading-link" href="#note-fat-tail-var" aria-label="Permalink to Fat tails and the failure of normal VaR">#</a></h2>
       <p class="note-meta">5 min · Prerequisites: quantiles, moments, and basic risk metrics</p>
       <p>Parametric-normal VaR takes a mean and standard deviation and reads the quantile off the
       Gaussian: \( \mathrm{VaR}_\alpha = -( \mu + z_{1-\alpha}\,\sigma )\). The procedure is exact
@@ -300,8 +300,8 @@
       should occur, under normality, about once per 14,000 years. The realized record produces
       them every few years; October 19, 1987 was, on a Gaussian yardstick, roughly a 20σ event —
       a probability so small it has no physical interpretation. The model is not slightly wrong in
-      the tail; it is wrong by factors of \(10^{3}\) to \(10^{50}\), depending how far out you
-      look.</p>
+      the tail; it is wrong by factors of \(10^{3}\) to \(10^{50}\), depending on the tail
+      threshold.</p>
       <p><strong>The moment argument.</strong> Excess kurtosis of daily index returns is far above
       the Gaussian's zero. Since sample variance is dominated by the very observations the
       Gaussian deems nearly impossible, \(\hat\sigma\) is inflated by past crises while the normal
@@ -339,19 +339,19 @@
     </section>
 
     <section class="section related-section" aria-labelledby="notes-related-title">
-      <p class="kicker">Continue exploring</p>
-      <h2 id="notes-related-title">Take the derivations into tested decisions</h2>
+      <p class="kicker">Related research</p>
+      <h2 id="notes-related-title">Applications in empirical studies and models</h2>
       <div class="related-grid">
-        <a class="related-card" href="finding-monte-carlo-error.html"><span>Finding</span><strong>How many simulations are enough?</strong><em>See the square-root error law recovered experimentally and what variance reduction changed.</em></a>
-        <a class="related-card" href="finding-var-backtest.html"><span>Finding</span><strong>When a 95% VaR model fails its own backtest</strong><em>Move from the tail-risk derivation to a dated empirical falsification test.</em></a>
-        <a class="related-card" href="tools.html"><span>Tools</span><strong>Manipulate the models directly</strong><em>Use the pricing, portfolio, and stochastic-process explorers built from these foundations.</em></a>
-        <a class="related-card" href="research-log.html"><span>Research log</span><strong>Audit every investigation</strong><em>Review the claims, methods, results, uncertainty, revisions, and source artifacts.</em></a>
+        <a class="related-card" href="finding-monte-carlo-error.html"><span>Numerical finding</span><strong>Monte Carlo convergence and variance reduction</strong><em>Inspect the experimentally recovered square-root error law and the effect of variance reduction.</em></a>
+        <a class="related-card" href="finding-var-backtest.html"><span>Empirical finding</span><strong>Historical VaR coverage and independence failure</strong><em>Move from the tail-risk derivation to a dated empirical falsification test.</em></a>
+        <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive implementations of the mathematical foundations</strong><em>Use the pricing, portfolio, and stochastic-process models built from these foundations.</em></a>
+        <a class="related-card" href="research-log.html"><span>Research record</span><strong>Versioned investigations and source artifacts</strong><em>Review claims, methods, results, uncertainty, revisions, and source artifacts.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/reading.js"></script>

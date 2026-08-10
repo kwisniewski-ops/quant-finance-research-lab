@@ -1,6 +1,6 @@
 # Limitations
 
-This is the honest page. Everything in this repository works as specified — 226
+This is the honest page. Everything in this repository works as specified — 229
 tests pass, including 204 quantitative anchors; four pricing methods agree to
 fractions of a cent; the backtester provably cannot peek — and none of that makes
 the outputs *true*. Below are the limitations that matter, stated specifically

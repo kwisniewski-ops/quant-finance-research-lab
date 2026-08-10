@@ -3,33 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Empirical Risk Analytics — Quantitative Markets &amp; Institutions Lab</title>
+<title>Historical VaR Backtesting — Quantitative Markets &amp; Institutions Lab</title>
 <meta name="description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/risk.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Empirical Risk Analytics — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta property="og:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/risk.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Empirical Risk Analytics — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta name="twitter:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/risk.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Does Historical VaR Survive Its Own Backtest?",
+  "headline": "Historical VaR Under Coverage and Independence Tests",
   "description": "A reproducible multi-asset portfolio study with VaR and Expected Shortfall uncertainty, coverage tests, and historical stress windows.",
   "url": "https://www.kylewisniewski.com/lab/risk.html",
-  "dateModified": "2026-08-03",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {
     "@type": "CreativeWork",
@@ -61,7 +61,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Historical VaR Backtest",
+      "name": "Historical VaR backtesting under coverage, independence, and stress-window analysis",
       "item": "https://www.kylewisniewski.com/lab/risk.html"
     }
   ]
@@ -76,16 +76,16 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1"><div class="wrap">
   <div class="page-head">
-    <p class="kicker">Module 03 · Empirical risk analytics</p>
-    <h1>Historical VaR Backtest</h1>
-    <p class="lede">Test a multi-asset risk forecast against later observations, estimate sampling
-    uncertainty, and examine three dated stress periods.</p>
+    <p class="kicker">Empirical model validation · Market risk</p>
+    <h1>Historical VaR backtesting under coverage, independence, and stress-window analysis</h1>
+    <p class="lede">A multi-asset risk forecast is tested against later observations, with sampling
+    uncertainty and three dated stress periods reported separately.</p>
     <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
     <a href="research-log.html#market-risk">research record</a></p>
   </div>
@@ -94,10 +94,10 @@
     <p class="kicker">Decision summary</p>
     <h2 id="risk-decision-title">A plausible risk number failed when its forecasts met the future</h2>
     <div class="decision-grid">
-      <div><h3>Bottom line</h3><p>The rolling 95% historical VaR model was rejected: 135 breaches occurred versus 107 expected, and the breaches clustered rather than arriving independently.</p></div>
-      <div><h3>Decision affected</h3><p>Historical quantiles should be backtested and monitored as forecasts, not accepted as fixed capital or limit inputs. Slow adaptation to regime changes is part of the model risk.</p></div>
-      <div><h3>Who should care</h3><p>Risk managers, portfolio teams, model validators, audit and governance functions, and analysts responsible for limit frameworks.</p></div>
-      <div><h3>Caveat</h3><p>This rejection applies to one fixed multi-asset portfolio, dated daily data, and a 500-observation window. It does not establish that every alternative risk model is better.</p></div>
+      <div><h3>Interpretation</h3><p>The rolling 95% historical VaR model was rejected: 135 breaches occurred versus 107 expected, and the breaches clustered rather than arriving independently.</p></div>
+      <div><h3>Decision context</h3><p>Historical quantiles should be backtested and monitored as forecasts, not accepted as fixed capital or limit inputs. Slow adaptation to regime changes is part of the model risk.</p></div>
+      <div><h3>Intended analytical use</h3><p>Risk managers, portfolio teams, model validators, audit and governance functions, and analysts responsible for limit frameworks.</p></div>
+      <div><h3>Principal limitation</h3><p>This rejection applies to one fixed multi-asset portfolio, dated daily data, and a 500-observation window. It does not establish that every alternative risk model is better.</p></div>
     </div>
   </section>
 
@@ -150,7 +150,7 @@
   </section>
 
   <section class="section" aria-labelledby="risk-interpret-title">
-    <p class="kicker">Interpretation</p><h2 id="risk-interpret-title">What the rejection means</h2>
+    <p class="kicker">Interpretation</p><h2 id="risk-interpret-title">Implications of coverage and independence rejection</h2>
     <div class="prose-col">
       <p>VaR marks a quantile; Expected Shortfall averages the losses beyond it. Neither becomes a
       law of nature because it has three decimal places. The rejected coverage tests say that a
@@ -174,19 +174,19 @@
     </ol>
   </section>
   <section class="section related-section" aria-labelledby="risk-related-title">
-    <p class="kicker">Continue exploring</p>
-    <h2 id="risk-related-title">Turn the rejected forecast into a better decision process</h2>
+    <p class="kicker">Related research</p>
+    <h2 id="risk-related-title">Related calibration evidence and methods</h2>
     <div class="related-grid">
-      <a class="related-card" href="finding-var-backtest.html"><span>Finding</span><strong>When a 95% VaR model fails its own backtest</strong><em>Read the decision brief on breach frequency, clustering, and monitoring implications.</em></a>
-      <a class="related-card" href="finding-diversification-regimes.html"><span>Finding</span><strong>Why diversification weakens during regime changes</strong><em>See why risk estimates can break precisely when portfolio relationships shift.</em></a>
-      <a class="related-card" href="method.html"><span>Method</span><strong>How the lab tests model claims</strong><em>Review holdouts, uncertainty reporting, falsification rules, and reproducibility standards.</em></a>
+      <a class="related-card" href="finding-var-backtest.html"><span>Empirical finding</span><strong>Historical VaR coverage and independence failure</strong><em>Inspect breach frequency, exception clustering, and monitoring implications.</em></a>
+      <a class="related-card" href="finding-diversification-regimes.html"><span>Empirical finding</span><strong>Correlation-regime dependence in diversification</strong><em>Review how risk estimates can fail when portfolio relationships shift.</em></a>
+      <a class="related-card" href="method.html"><span>Methods</span><strong>Research validation and falsification standards</strong><em>Review holdouts, uncertainty reporting, falsification rules, and reproducibility standards.</em></a>
       <a class="related-card" href="research-log.html#market-risk"><span>Research record</span><strong>Audit the complete VaR investigation</strong><em>Inspect the dated data, pre-declared criterion, test statistics, limitations, and source.</em></a>
     </div>
   </section>
   <output id="risk-status" class="sr-only" aria-live="polite" aria-atomic="true"></output>
 </div></main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 <script src="js/common.js"></script><script src="js/risk.js"></script>
 
 <script src="js/engagement.js"></script>

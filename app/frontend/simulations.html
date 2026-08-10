@@ -3,33 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stochastic Simulation — Quantitative Markets &amp; Institutions Lab</title>
+<title>Stochastic-Process Simulation — Quantitative Markets &amp; Institutions Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <meta name="description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/simulations.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Stochastic Simulation — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Stochastic-Process Simulation Across Five Model Classes">
 <meta property="og:description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/simulations.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stochastic Simulation — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Stochastic-Process Simulation Across Five Model Classes">
 <meta name="twitter:description" content="Five canonical models of randomness in markets, simulated live with a seeded generator. Each process is a hypothesis about how uncertainty moves.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/simulations.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Stochastic Process Explorer",
+  "name": "Stochastic-Process Simulation Across Five Model Classes",
   "description": "An interactive seeded simulator for geometric Brownian motion, Ornstein-Uhlenbeck, Merton jump-diffusion, Heston stochastic volatility, and regime-switching dynamics.",
   "url": "https://www.kylewisniewski.com/lab/simulations.html",
+  "dateModified": "2026-08-10",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "isAccessibleForFree": true,
@@ -67,7 +68,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Stochastic Process Simulation",
+      "name": "Stochastic-process simulation across diffusion, jumps, volatility, and regime switching",
       "item": "https://www.kylewisniewski.com/lab/simulations.html"
     }
   ]
@@ -83,27 +84,27 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
-      <p class="kicker">Module 04 · Stochastic Processes</p>
-      <h1>Stochastic Process Simulation</h1>
-      <p class="lede">Compare five models for diffusion, mean reversion, jumps, stochastic
-      volatility, and regime changes under a common one-year setup.</p>
+      <p class="kicker">Quantitative model · Stochastic processes</p>
+      <h1>Stochastic-process simulation across diffusion, jumps, volatility, and regime switching</h1>
+      <p class="lede">Five model classes are compared under a common one-year setup to identify
+      which forms of market behavior each specification can and cannot represent.</p>
     </div>
 
     <section class="decision-summary" aria-labelledby="simulation-decision-title">
       <p class="kicker">Decision summary</p>
-      <h2 id="simulation-decision-title">The process determines which risks your scenarios can contain</h2>
+      <h2 id="simulation-decision-title">The process determines which risks a scenario set can represent</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>A simulation is a conditional experiment, not a forecast. GBM, jumps, stochastic volatility, mean reversion, and regimes produce different tails and dependencies because they encode different hypotheses.</p></div>
-        <div><h3>Decision affected</h3><p>Select the process according to the risk being evaluated, then budget sampling and discretization error before using simulated outcomes for pricing, stress, or allocation.</p></div>
-        <div><h3>Who should care</h3><p>Quantitative developers, risk and derivatives analysts, model validators, and learners building intuition about stochastic dynamics.</p></div>
-        <div><h3>Caveat</h3><p>The browser explorer uses 50 one-year paths and Euler-type discretization with illustrative parameters. A fixed seed makes a run repeatable; it does not make the scenario representative.</p></div>
+        <div><h3>Interpretation</h3><p>A simulation is a conditional experiment, not a forecast. GBM, jumps, stochastic volatility, mean reversion, and regimes produce different tails and dependencies because they encode different hypotheses.</p></div>
+        <div><h3>Decision context</h3><p>Select the process according to the risk being evaluated, then budget sampling and discretization error before using simulated outcomes for pricing, stress, or allocation.</p></div>
+        <div><h3>Intended analytical use</h3><p>Quantitative developers, risk and derivatives analysts, model validators, and quantitative-finance researchers studying stochastic dynamics.</p></div>
+        <div><h3>Principal limitation</h3><p>The browser explorer uses 50 one-year paths and Euler-type discretization with illustrative parameters. A fixed seed makes a run repeatable; it does not make the scenario representative.</p></div>
       </div>
     </section>
 
@@ -172,12 +173,12 @@
       <h2>Geometric Brownian motion</h2>
       <div class="math-block">$$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
       \qquad\Longrightarrow\qquad S_t = S_0 \exp\!\left[\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right]$$</div>
-      <p><strong>Where it is used.</strong> The default model for equity prices; the substrate of
+      <p><strong>Applications.</strong> The default model for equity prices; the substrate of
       Black-Scholes and of most textbook portfolio mathematics.</p>
-      <p><strong>What it captures.</strong> Proportional randomness (returns, not price changes, are
+      <p><strong>Captured dynamics.</strong> Proportional randomness (returns, not price changes, are
       the natural unit), positivity of prices, and compounding — including the subtle
       \(-\tfrac{1}{2}\sigma^2\) drag that separates median from mean growth.</p>
-      <p><strong>What it misses.</strong> Everything the rest of this page exists for: volatility is
+      <p><strong>Omitted dynamics.</strong> Everything the rest of this page exists for: volatility is
       constant, returns are Gaussian and independent, and nothing ever jumps. Real markets violate
       all three, persistently.</p>
     </section>
@@ -186,12 +187,12 @@
       <p class="kicker">Process notes</p>
       <h2>Ornstein-Uhlenbeck</h2>
       <div class="math-block">$$dX_t = \kappa(\theta - X_t)\,dt + \sigma\,dW_t$$</div>
-      <p><strong>Where it is used.</strong> Short-rate models (Vasicek), commodity convenience
+      <p><strong>Applications.</strong> Short-rate models (Vasicek), commodity convenience
       yields, volatility itself, and the spread dynamics behind statistical arbitrage.</p>
-      <p><strong>What it captures.</strong> Mean reversion — the pull toward \(\theta\) at speed
+      <p><strong>Captured dynamics.</strong> Mean reversion — the pull toward \(\theta\) at speed
       \(\kappa\), with a stationary distribution \(\mathcal{N}(\theta, \sigma^2/2\kappa)\). The
       half-life of a shock is \(\ln 2 / \kappa\), a genuinely useful number in trading.</p>
-      <p><strong>What it misses.</strong> Gaussian increments allow negative values (fatal for
+      <p><strong>Omitted dynamics.</strong> Gaussian increments allow negative values (fatal for
       nominal rates near zero, tolerable for spreads), the reversion speed is assumed constant, and
       the level it reverts to must actually exist — many "mean-reverting" spreads are regimes in
       disguise, and OU is silent about the regime change that ends the trade.</p>
@@ -202,13 +203,13 @@
       <h2>Merton jump-diffusion</h2>
       <div class="math-block">$$\frac{dS_t}{S_{t^-}} = (\mu - \lambda \bar{k})\,dt + \sigma\,dW_t + (J-1)\,dN_t,
       \qquad \ln J \sim \mathcal{N}(\mu_J, \sigma_J^2)$$</div>
-      <p><strong>Where it is used.</strong> Pricing short-dated options where crash risk dominates;
+      <p><strong>Applications.</strong> Pricing short-dated options where crash risk dominates;
       credit and event-risk modeling; any setting where the smile is steep at short maturities.</p>
-      <p><strong>What it captures.</strong> Discontinuity. A Poisson process \(N_t\) with intensity
+      <p><strong>Captured dynamics.</strong> Discontinuity. A Poisson process \(N_t\) with intensity
       \(\lambda\) fires jumps of lognormal size \(J\), producing genuine fat tails and — with
       \(\mu_J < 0\) — the negative skew that equity markets exhibit. It explains why deep
       out-of-the-money puts cost "too much" under Black-Scholes.</p>
-      <p><strong>What it misses.</strong> Jump risk here is diversifiable and independent of the
+      <p><strong>Omitted dynamics.</strong> Jump risk here is diversifiable and independent of the
       diffusion; in reality crashes arrive precisely when volatility is already elevated, and jump
       intensity is anything but constant. Volatility between jumps is still flat — Merton fixes the
       tails while leaving clustering unexplained.</p>
@@ -220,15 +221,15 @@
       <div class="math-block">$$dS_t = \mu S_t\,dt + \sqrt{v_t}\,S_t\,dW_t^S, \qquad
       dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v, \qquad
       d\langle W^S, W^v\rangle_t = \rho\,dt$$</div>
-      <p><strong>Where it is used.</strong> The workhorse stochastic-volatility model for equity
+      <p><strong>Applications.</strong> The workhorse stochastic-volatility model for equity
       index options, chosen largely because its characteristic function is known in closed form and
       whole smiles can be calibrated quickly.</p>
-      <p><strong>What it captures.</strong> Variance as a mean-reverting random process (CIR
+      <p><strong>Captured dynamics.</strong> Variance as a mean-reverting random process (CIR
       dynamics), volatility clustering, and — through \(\rho &lt; 0\) — the leverage effect: prices
       fall as volatility rises, generating the implied-vol skew. Simulated here with a
       full-truncation Euler scheme, which floors \(v_t\) at zero inside the square roots so the
       discretized variance cannot go negative.</p>
-      <p><strong>What it misses.</strong> No jumps, so very short-dated smiles are too flat; a
+      <p><strong>Omitted dynamics.</strong> No jumps, so very short-dated smiles are too flat; a
       single volatility factor, so the term structure of skew is too rigid; and calibrated
       parameters drift over time, indicating residual misspecification. The
       <a href="case-study.html">case study</a> treats this in depth.</p>
@@ -239,32 +240,32 @@
       <h2>Regime-switching GBM</h2>
       <div class="math-block">$$dS_t = \mu_{Z_t} S_t\,dt + \sigma_{Z_t} S_t\,dW_t,
       \qquad Z_t \in \{\text{calm}, \text{stress}\}\ \text{a 2-state Markov chain}$$</div>
-      <p><strong>Where it is used.</strong> Tactical allocation, risk-regime dashboards, and
+      <p><strong>Applications.</strong> Tactical allocation, risk-regime dashboards, and
       econometric business-cycle work in the Hamilton (1989) tradition.</p>
-      <p><strong>What it captures.</strong> Long low-volatility intervals with positive drift,
+      <p><strong>Captured dynamics.</strong> Long low-volatility intervals with positive drift,
       interrupted by high-volatility intervals with weaker returns. The two-state model reproduces
       fat tails and clustering as an
       <em>emergent mixture</em> — no exotic distributions required; each path carries its own
       hidden regime sequence.</p>
-      <p><strong>What it misses.</strong> The chain's transition probabilities are fixed and the
+      <p><strong>Omitted dynamics.</strong> The chain's transition probabilities are fixed and the
       regimes are labeled in hindsight; real regime identification is only obvious after the fact.
       The model represents regime-dependent return behavior without identifying a causal mechanism.</p>
     </section>
 
     <section class="section related-section" aria-labelledby="simulation-related-title">
-      <p class="kicker">Continue exploring</p>
-      <h2 id="simulation-related-title">Connect simulated paths to numerical evidence</h2>
+      <p class="kicker">Related research</p>
+      <h2 id="simulation-related-title">Related numerical evidence and model risk</h2>
       <div class="related-grid">
-        <a class="related-card" href="finding-monte-carlo-error.html"><span>Finding</span><strong>How many simulations are enough for a defensible decision?</strong><em>See the measured square-root convergence rate, discretization bias, and variance reduction.</em></a>
-        <a class="related-card" href="finding-volatility-smile.html"><span>Finding</span><strong>Why one volatility number cannot price every option</strong><em>See how stochastic volatility addresses a measurable failure of constant-volatility dynamics.</em></a>
-        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Move from stochastic paths to pricing and portfolio experiments.</em></a>
-        <a class="related-card" href="research-log.html#monte-carlo"><span>Research record</span><strong>Simulation as a numerical instrument</strong><em>Inspect the convergence claims, experimental design, uncertainty, limitations, and source.</em></a>
+        <a class="related-card" href="finding-monte-carlo-error.html"><span>Numerical finding</span><strong>Monte Carlo convergence, bias, and error budgets</strong><em>Inspect the measured square-root convergence rate, discretization bias, and variance reduction.</em></a>
+        <a class="related-card" href="finding-volatility-smile.html"><span>Empirical finding</span><strong>Constant-volatility failure and stochastic-volatility response</strong><em>Examine how stochastic volatility addresses a measured failure of constant-volatility dynamics.</em></a>
+        <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models for comparative sensitivity analysis</strong><em>Move from stochastic paths to pricing and portfolio experiments.</em></a>
+        <a class="related-card" href="research-log.html#monte-carlo"><span>Research record</span><strong>Monte Carlo numerical validation</strong><em>Inspect the convergence claims, experimental design, uncertainty, limitations, and source.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/simulations.js"></script>

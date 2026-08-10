@@ -3,33 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Asset Pricing — Quantitative Markets &amp; Institutions Lab</title>
+<title>Option Valuation Models — Quantitative Markets &amp; Institutions Lab</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <meta name="description" content="Two canonical routes to the arbitrage-free price of a European option — the Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented side by side, with every Greek computed live in the browser.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/asset-pricing.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Asset Pricing — Quantitative Markets &amp; Institutions Lab">
+<meta property="og:title" content="Option Valuation Under Black–Scholes–Merton and Cox–Ross–Rubinstein">
 <meta property="og:description" content="Two canonical routes to the arbitrage-free price of a European option — the Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented side by side, with every Greek computed live in the browser.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/asset-pricing.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Asset Pricing — Quantitative Markets &amp; Institutions Lab">
+<meta name="twitter:title" content="Option Valuation Under Black–Scholes–Merton and Cox–Ross–Rubinstein">
 <meta name="twitter:description" content="Two canonical routes to the arbitrage-free price of a European option — the Black-Scholes-Merton closed form and the Cox-Ross-Rubinstein binomial lattice — implemented side by side, with every Greek computed live in the browser.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/asset-pricing.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Option Pricing Laboratory",
+  "name": "Option Valuation Laboratory",
   "description": "An interactive comparison of Black-Scholes-Merton and Cox-Ross-Rubinstein option pricing with live Greeks.",
   "url": "https://www.kylewisniewski.com/lab/asset-pricing.html",
+  "dateModified": "2026-08-10",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "isAccessibleForFree": true,
@@ -67,7 +68,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Option Pricing Comparison",
+      "name": "Option valuation under Black–Scholes–Merton and Cox–Ross–Rubinstein",
       "item": "https://www.kylewisniewski.com/lab/asset-pricing.html"
     }
   ]
@@ -83,27 +84,28 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html">Questions</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html">Research</a><a href="tools.html" aria-current="page">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
     <div class="page-head">
-      <p class="kicker">Module 01 · Derivatives</p>
-      <h1>Option Pricing Comparison</h1>
-      <p class="lede">Compare Black–Scholes and binomial-tree values, sensitivities, convergence,
-      and early-exercise effects under common inputs.</p>
+      <p class="kicker">Quantitative model · Derivatives</p>
+      <h1>Option valuation under Black–Scholes–Merton and Cox–Ross–Rubinstein</h1>
+      <p class="lede">Closed-form and binomial-lattice values, sensitivities, convergence, and
+      early-exercise effects are compared under common inputs. Agreement tests implementation
+      consistency; it does not establish market realism.</p>
     </div>
 
     <section class="decision-summary" aria-labelledby="pricing-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="pricing-decision-title">Use agreement to validate the implementation—not the market model</h2>
       <div class="decision-grid">
-        <div><h3>Bottom line</h3><p>For European options, Black–Scholes and a sufficiently fine CRR tree should converge. For American exercise, the lattice also represents early-exercise value that the closed form omits.</p></div>
-        <div><h3>Decision affected</h3><p>Cross-method agreement is evidence that a pricing implementation is numerically coherent. It does not establish that constant volatility, continuous hedging, or Gaussian returns describe the market.</p></div>
-        <div><h3>Who should care</h3><p>Derivatives practitioners, quantitative developers, model validators, and learners who need to separate numerical error from model risk.</p></div>
-        <div><h3>Caveat</h3><p>This educational tool uses user-selected inputs rather than a live option chain. Its outputs are model values, not executable prices or investment advice.</p></div>
+        <div><h3>Interpretation</h3><p>For European options, Black–Scholes and a sufficiently fine CRR tree should converge. For American exercise, the lattice also represents early-exercise value that the closed form omits.</p></div>
+        <div><h3>Decision context</h3><p>Cross-method agreement is evidence that a pricing implementation is numerically coherent. It does not establish that constant volatility, continuous hedging, or Gaussian returns describe the market.</p></div>
+        <div><h3>Intended analytical use</h3><p>Derivatives practitioners, quantitative developers, model validators, and quantitative-finance researchers separating numerical error from model risk.</p></div>
+        <div><h3>Principal limitation</h3><p>This educational tool uses user-selected inputs rather than a live option chain. Its outputs are model values, not executable prices or investment advice.</p></div>
       </div>
     </section>
 
@@ -224,7 +226,7 @@
         <dt>Constant rate, no arbitrage</dt>
         <dd>A single risk-free rate for borrowing and lending, with no arbitrage. Reasonable at
         short horizons; strained across regimes.</dd>
-        <dt>Why it survives anyway</dt>
+        <dt>Continuing analytical utility</dt>
         <dd>Because the market uses it in reverse: quote the price, invert for implied volatility.
         The formula became a coordinate system rather than a forecast — a theme the
         <a href="case-study.html">case study</a> takes up in full.</dd>
@@ -241,8 +243,8 @@
       <p>Prices are computed by backward induction from the terminal payoffs, discounting the
       expected value one step at a time. Two properties make the lattice more than a numerical
       curiosity. First, as \(N \to \infty\) the CRR price converges to Black-Scholes — the tree
-      <em>is</em> the binomial construction of Brownian motion, and watching the two prices agree
-      as you raise \(N\) above is convergence made visible (the oscillation you see at low \(N\) is
+      <em>is</em> the binomial construction of Brownian motion, and agreement between the two prices
+      as \(N\) increases makes convergence visible (the oscillation at low \(N\) is
       the tree's discrete strikes straddling the true value). Second, the lattice handles what the
       closed form cannot: <strong>early exercise</strong>. At each node an American option is worth
       the greater of continuation value and immediate exercise, a free-boundary problem with no
@@ -260,19 +262,19 @@
     </section>
 
     <section class="section related-section" aria-labelledby="pricing-related-title">
-      <p class="kicker">Continue exploring</p>
-      <h2 id="pricing-related-title">Connect the pricing tool to evidence and practice</h2>
+      <p class="kicker">Related research</p>
+      <h2 id="pricing-related-title">Related evidence, methods, and research record</h2>
       <div class="related-grid">
-        <a class="related-card" href="finding-volatility-smile.html"><span>Finding</span><strong>Why one volatility number cannot price every option</strong><em>See the empirical fingerprints that reject constant-volatility market dynamics.</em></a>
-        <a class="related-card" href="tools.html"><span>Tools</span><strong>Explore every interactive model</strong><em>Move from option pricing to portfolio construction and stochastic processes.</em></a>
-        <a class="related-card" href="method.html"><span>Method</span><strong>How the lab validates models</strong><em>Review the standards for assumptions, falsification, uncertainty, and reproduction.</em></a>
-        <a class="related-card" href="research-log.html#pricing-validation"><span>Research record</span><strong>Four roads to one price</strong><em>Inspect the pre-declared test, numerical evidence, limitations, and source notebook.</em></a>
+        <a class="related-card" href="finding-volatility-smile.html"><span>Empirical finding</span><strong>Constant-volatility dynamics under empirical rejection</strong><em>Inspect the market fingerprints that contradict constant-volatility dynamics.</em></a>
+        <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models for comparative sensitivity analysis</strong><em>Move from option pricing to portfolio construction and stochastic processes.</em></a>
+        <a class="related-card" href="method.html"><span>Methods</span><strong>Research design and model-validation standards</strong><em>Review assumptions, falsification, uncertainty, and reproduction.</em></a>
+        <a class="related-card" href="research-log.html#pricing-validation"><span>Research record</span><strong>Cross-method option-pricing validation</strong><em>Inspect the pre-declared test, numerical evidence, limitations, and source notebook.</em></a>
       </div>
     </section>
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/common.js"></script>
 <script src="js/pricing.js"></script>

@@ -3,39 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why “Optimal” Portfolios Fail Out of Sample — Evidence</title>
-<meta name="description" content="A max-Sharpe portfolio fell from 1.12 in sample to 0.44 out of sample. See what estimation error changed, what risk-based methods preserved, and the study's limits.">
+<title>Portfolio Optimization Under Estimation Error — Quantitative Markets &amp; Institutions Lab</title>
+<meta name="description" content="A max-Sharpe portfolio fell from 1.12 in sample to 0.44 out of sample; risk-based methods preserved risk shape without establishing a return advantage.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="Why “Optimal” Portfolios Fail Out of Sample">
+<meta property="og:title" content="Portfolio Optimization Under Estimation Error">
 <meta property="og:description" content="Max-Sharpe MVO fell from 1.12 to 0.44 out of sample. Risk-based methods preserved risk shape, not superior return.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Why “Optimal” Portfolios Fail Out of Sample">
+<meta name="twitter:title" content="Portfolio Optimization Under Estimation Error">
 <meta name="twitter:description" content="Max-Sharpe MVO fell from 1.12 to 0.44 out of sample. Risk-based methods preserved risk shape, not superior return.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Why “Optimal” Portfolios Fail Out of Sample",
-  "description": "A decision brief on portfolio estimation error, out-of-sample degradation, and what risk-based allocations actually preserve.",
+  "headline": "Portfolio Optimization Under Estimation Error",
+  "description": "An empirical investigation of portfolio estimation error, out-of-sample degradation, and the stability preserved by risk-based allocations.",
   "url": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
   "datePublished": "2026-08-08",
-  "dateModified": "2026-08-09",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html",
-  "about": ["portfolio optimization", "estimation error", "risk parity", "hierarchical risk parity"],
-  "proficiencyLevel": "Intermediate"
+  "about": ["portfolio optimization", "estimation error", "risk parity", "hierarchical risk parity"]
 }
 </script>
 <link rel="stylesheet" href="css/main.css">
@@ -54,13 +53,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Questions",
+      "name": "Research",
       "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Why “optimal” portfolios fail out of sample",
+      "name": "Portfolio optimization under estimation error and out-of-sample evaluation",
       "item": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html"
     }
   ]
@@ -76,7 +75,7 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a><a href="tools.html">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
@@ -84,31 +83,31 @@
   <div class="wrap">
     <article>
       <header class="page-head">
-        <p class="kicker">Decision brief · Portfolio construction</p>
-        <h1>Why “optimal” portfolios fail out of sample</h1>
+        <p class="kicker">Empirical finding · Portfolio construction</p>
+        <h1>Portfolio optimization under estimation error and out-of-sample evaluation</h1>
         <p class="lede">In this frozen-window study, the maximum-Sharpe portfolio’s performance
         declined when fixed weights were evaluated on later data.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
-        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <p>The principal finding appears first; every layer remains available for scrutiny.</p>
         <ol class="depth-path">
-          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Conclusion</strong><small>Concise bounded result</small></a></li>
           <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
-          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
-          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
-          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Decision consequences</strong><small>Scope of model use</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Identification and limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method, mathematics, and code</strong><small>Tests and source artifacts</small></a></li>
         </ol>
       </nav>
 
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Depth 1 · Answer</p>
+        <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">Risk-based methods delivered a more stable risk shape—not a reliable return advantage.</h2>
         <p>Maximum-Sharpe mean–variance optimization fell from a Sharpe ratio of about 1.12 in the
         2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk parity and hierarchical
         risk parity ran at roughly half the volatility and two-thirds the drawdown of the optimized
         books, but they did not reliably win on return. That narrower claim is what the evidence supports.</p>
-        <p><small>Published 8 August 2026 · Brief revised 9 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
+        <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
       <dl class="proof-strip ledger-summary" aria-label="Principal evidence">
@@ -120,15 +119,15 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Why it matters</p>
+          <p class="kicker">Research significance</p>
           <h3>Allocators, risk committees, and model reviewers</h3>
-          <p>The result matters to anyone using an optimizer to convert noisy expected returns and
-          covariances into precise weights—and to anyone evaluating whether an analytical system
-          distinguishes numerical sophistication from decision reliability.</p>
+          <p>Portfolio managers, asset allocators, investment committees, and model validators use
+          optimizers to convert noisy expected returns and covariances into precise weights. The
+          evidence distinguishes numerical sophistication from decision reliability.</p>
         </div>
         <div>
-          <p class="kicker">Decision affected</p>
-          <h3>How much authority to give an optimized allocation</h3>
+          <p class="kicker">Decision context</p>
+          <h3>Authority assigned to an optimized allocation</h3>
           <p>Do not interpret an in-sample efficient frontier or Sharpe ranking as a forecast. Decide
           first whether the mandate is return maximization, concentration control, or a stable risk
           budget, then evaluate the construction method against that stated objective.</p>
@@ -136,7 +135,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Depth 2 · Evidence</p>
+        <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">The ranking changed when the estimates left the fit window</h2>
         <p>The experiment used 2,891 daily observations for 15 liquid ETFs from a frozen adjusted-close
         snapshot. Maximum-Sharpe MVO, box-uncertainty robust MVO, equal-risk-contribution risk parity,
@@ -153,7 +152,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">Depth 3 · Application</p>
+        <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Treat optimization as an assumption-sensitive proposal</h2>
         <ul class="refs">
           <li>Separate the return objective from the risk-budget objective before comparing methods.</li>
@@ -165,8 +164,8 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Depth 4 · Limits</p>
-        <h2 id="limitations">What this result does not establish</h2>
+        <p class="kicker">04 · Identification and limits</p>
+        <h2 id="limitations">Identification boundary for the comparative result</h2>
         <ul class="refs">
           <li>There is one sealed evaluation window, not a distribution of rolling-origin outcomes.</li>
           <li>The 15-ETF universe was selected in 2026 and is therefore survivorship-tilted.</li>
@@ -177,12 +176,12 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Depth 5 · Method and code</p>
-        <h2 id="explore">Move from the implication to the implementation</h2>
+        <p class="kicker">05 · Methods and reproduction</p>
+        <h2 id="explore">Implementation and reproduction path</h2>
         <div class="hero-actions">
-          <a class="primary-action" href="portfolio.html">Explore the portfolio tool <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="research-log.html#portfolio-construction">Audit the ledger entry <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Open the executed notebook <span aria-hidden="true">↗</span></a>
+          <a class="primary-action" href="portfolio.html">Analyze allocation sensitivity <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="research-log.html#portfolio-construction">Inspect the research record <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/02_portfolio_optimization.ipynb">Reproduce from the executed notebook <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -190,9 +189,9 @@
         <p class="kicker">Regime lens · Portfolio construction</p>
         <h2 id="regime-lens-portfolio">Fitted return and covariance relationships entered a different observed environment</h2>
         <dl class="regime-lens__evidence">
-          <div><dt>Measured here</dt><dd>Maximum-Sharpe optimization fell from approximately 1.12 in the 2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk-based methods produced a more stable risk shape without establishing a return advantage.</dd></div>
-          <div><dt>Established context</dt><dd>The fit and evaluation windows straddle a documented change in stock–bond correlation and monetary conditions, including inflation pressure, rapid tightening, and simultaneous weakness in equities and nominal bonds.</dd></div>
-          <div><dt>Interpretive implication</dt><dd>An optimized portfolio implicitly assumes its fitted return and covariance relationships remain decision-relevant. Precise weights can transport relationships measured in one observed environment into a different one.</dd></div>
+          <div><dt>Lab measurement</dt><dd>Maximum-Sharpe optimization fell from approximately 1.12 in the 2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk-based methods produced a more stable risk shape without establishing a return advantage.</dd></div>
+          <div><dt>Institutional record</dt><dd>The fit and evaluation windows straddle a documented change in stock–bond correlation and monetary conditions, including inflation pressure, rapid tightening, and simultaneous weakness in equities and nominal bonds.</dd></div>
+          <div><dt>Interpretive synthesis</dt><dd>An optimized portfolio implicitly assumes its fitted return and covariance relationships remain decision-relevant. Precise weights can transport relationships measured in one observed environment into a different one.</dd></div>
         </dl>
         <p class="regime-lens__boundary">Causal boundary: the experiment does not identify regime change as the cause of the performance ranking. Correlation, estimation error, concentration, asset selection, and the realized equity path can all affect the result.</p>
         <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-allocation" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:allocation">Examine the allocation regime <span aria-hidden="true">→</span></a>
@@ -202,8 +201,8 @@
         <p class="kicker">Related research</p>
         <h2 id="related">The regime assumptions inside the allocation</h2>
         <div class="related-grid">
-          <a href="finding-diversification-regimes.html"><span>Regime risk</span><strong>Why diversification can disappear</strong><em>The stock–bond correlation assumption that 2022 called into question.</em></a>
-          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>When VaR fails its own backtest</strong><em>How to test a portfolio risk forecast instead of trusting the estimate.</em></a>
+          <a href="finding-diversification-regimes.html"><span>Regime risk</span><strong>Stock–bond diversification across changing correlation environments</strong><em>The stock–bond correlation assumption that 2022 called into question.</em></a>
+          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>Inspect the calibration tests applied to a portfolio risk forecast.</em></a>
         </div>
       </section>
 
@@ -211,7 +210,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

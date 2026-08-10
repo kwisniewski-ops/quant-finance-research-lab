@@ -3,39 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How Many Monte Carlo Simulations Are Enough?</title>
-<meta name="description" content="Monte Carlo error followed the N⁻¹ᐟ² law, while antithetic sampling cut empirical standard error by about 30%. Learn how tolerance, bias, and variance set path count.">
+<title>Monte Carlo Convergence, Bias, and Variance Reduction — Quantitative Markets &amp; Institutions Lab</title>
+<meta name="description" content="Monte Carlo error followed the N⁻¹ᐟ² law, while antithetic sampling cut empirical standard error by about 30%; tolerance, bias, and variance jointly determine path count.">
 <link rel="canonical" href="https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
-<meta property="og:title" content="How Many Monte Carlo Simulations Are Enough?">
+<meta property="og:title" content="Monte Carlo Convergence, Bias, and Variance Reduction">
 <meta property="og:description" content="There is no universal path count. Reported error tolerance, estimator variance, scheme bias, and variance reduction decide.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How Many Monte Carlo Simulations Are Enough?">
+<meta name="twitter:title" content="Monte Carlo Convergence, Bias, and Variance Reduction">
 <meta name="twitter:description" content="There is no universal path count. Reported error tolerance, estimator variance, scheme bias, and variance reduction decide.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "How Many Monte Carlo Simulations Are Enough?",
-  "description": "A decision brief on Monte Carlo convergence, discretization bias, reported sampling error, and variance reduction.",
+  "headline": "Monte Carlo Convergence, Bias, and Variance Reduction",
+  "description": "A numerical validation of Monte Carlo convergence, discretization bias, reported sampling error, and variance reduction.",
   "url": "https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
   "datePublished": "2026-08-08",
-  "dateModified": "2026-08-08",
+  "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
   "mainEntityOfPage": "https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html",
-  "about": ["Monte Carlo simulation", "numerical error", "variance reduction", "antithetic variates"],
-  "proficiencyLevel": "Intermediate"
+  "about": ["Monte Carlo simulation", "numerical error", "variance reduction", "antithetic variates"]
 }
 </script>
 <link rel="stylesheet" href="css/main.css">
@@ -54,13 +53,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Questions",
+      "name": "Research",
       "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "How many simulations are enough?",
+      "name": "Monte Carlo convergence, discretization bias, and variance reduction",
       "item": "https://www.kylewisniewski.com/lab/finding-monte-carlo-error.html"
     }
   ]
@@ -76,7 +75,7 @@
     <div class="identity-lockup" aria-label="Site identity">
       <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
-    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
+    <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a><a href="tools.html">Models</a><a href="method.html">Methods</a><a href="research-log.html">Record</a></nav>
   </div>
 </header>
 
@@ -84,31 +83,31 @@
   <div class="wrap">
     <article>
       <header class="page-head">
-        <p class="kicker">Decision brief · Numerical methods</p>
-        <h1>How many simulations are enough?</h1>
+        <p class="kicker">Numerical finding · Simulation methods</p>
+        <h1>Monte Carlo convergence, discretization bias, and variance reduction</h1>
         <p class="lede">Simulation quality depends on measured sampling error, discretization bias,
         and variance reduction—not path count alone.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
-        <p>Begin with the answer. Continue only as far as the decision requires.</p>
+        <p>The principal finding appears first; every layer remains available for scrutiny.</p>
         <ol class="depth-path">
-          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Answer</strong><small>Plain-language conclusion</small></a></li>
+          <li><a href="#bottom-line"><span class="depth-no">01</span><strong>Conclusion</strong><small>Concise bounded result</small></a></li>
           <li><a href="#evidence"><span class="depth-no">02</span><strong>Evidence</strong><small>Data and uncertainty</small></a></li>
-          <li><a href="#practice"><span class="depth-no">03</span><strong>Application</strong><small>Decision implications</small></a></li>
-          <li><a href="#limitations"><span class="depth-no">04</span><strong>Limits</strong><small>What remains unproved</small></a></li>
-          <li><a href="#explore"><span class="depth-no">05</span><strong>Method and code</strong><small>Tests and source artifacts</small></a></li>
+          <li><a href="#practice"><span class="depth-no">03</span><strong>Decision consequences</strong><small>Scope of model use</small></a></li>
+          <li><a href="#limitations"><span class="depth-no">04</span><strong>Identification and limits</strong><small>What remains unproved</small></a></li>
+          <li><a href="#explore"><span class="depth-no">05</span><strong>Method, mathematics, and code</strong><small>Tests and source artifacts</small></a></li>
         </ol>
       </nav>
 
       <section class="decision-summary" aria-labelledby="bottom-line">
-        <p class="kicker">Depth 1 · Answer</p>
+        <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">“Enough” means the reported error is small enough for the decision—not that a round path count was reached.</h2>
         <p>Independent replications recovered the theoretical N⁻¹ᐟ² error law within replication
         noise. Exact GBM transitions remained unbiased across step counts, Euler bias contracted as
         the time step shrank, and antithetic pairing reduced empirical standard error by about 30%
         at the same 20,000-path budget.</p>
-        <p><small>Published 8 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
+        <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
       <dl class="proof-strip ledger-summary" aria-label="Simulation evidence">
@@ -120,14 +119,14 @@
 
       <section class="section decision-grid" aria-label="Audience and decision">
         <div>
-          <p class="kicker">Why it matters</p>
+          <p class="kicker">Research significance</p>
           <h3>Pricing engineers, quantitative developers, and model reviewers</h3>
           <p>The result matters whenever simulation supports a valuation, risk threshold, capital
           estimate, stress result, or software acceptance test—especially for path-dependent problems.</p>
         </div>
         <div>
-          <p class="kicker">Decision affected</p>
-          <h3>When to stop computing and trust the numerical estimate</h3>
+          <p class="kicker">Decision context</p>
+          <h3>Numerical stopping criteria and economic error tolerance</h3>
           <p>Set the error tolerance from the economic decision, measure estimator variability, test
           discretization separately, and stop only when the combined numerical budget is visible and
           acceptable.</p>
@@ -135,7 +134,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="evidence">
-        <p class="kicker">Depth 2 · Evidence</p>
+        <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">Sampling error and scheme bias behaved as theory requires</h2>
         <p>The experiments were fully synthetic so known analytical moments and prices served as
         benchmarks. Independent replications at increasing path counts produced a log–log RMSE slope
@@ -151,7 +150,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
-        <p class="kicker">Depth 3 · Application</p>
+        <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Make the error budget part of the output contract</h2>
         <ul class="refs">
           <li>Report a standard error or confidence interval beside every Monte Carlo point estimate.</li>
@@ -163,7 +162,7 @@
       </section>
 
       <section class="section prose-col" aria-labelledby="limitations">
-        <p class="kicker">Depth 4 · Limits</p>
+        <p class="kicker">04 · Identification and limits</p>
         <h2 id="limitations">A reproduced convergence law does not validate every simulation</h2>
         <ul class="refs">
           <li>Every Monte Carlo estimate remains a random draw; reproducibility by seed does not eliminate uncertainty.</li>
@@ -175,13 +174,13 @@
       </section>
 
       <section class="section" aria-labelledby="explore">
-        <p class="kicker">Depth 5 · Method and code</p>
+        <p class="kicker">05 · Methods and reproduction</p>
         <h2 id="explore">See the processes, derive the error law, and rerun the study</h2>
         <div class="hero-actions">
-          <a class="primary-action" href="simulations.html">Explore stochastic processes <span aria-hidden="true">→</span></a>
+          <a class="primary-action" href="simulations.html">Run stochastic simulations <span aria-hidden="true">→</span></a>
           <a class="secondary-action" href="math-notes.html#note-monte-carlo-error">Read the derivation <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="research-log.html#monte-carlo">Audit the ledger entry <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/04_monte_carlo_simulation.ipynb">Open the executed notebook <span aria-hidden="true">↗</span></a>
+          <a class="secondary-action" href="research-log.html#monte-carlo">Inspect the research record <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/ad24c49995832f84ebeceb2f8243011463591a4a/notebooks/04_monte_carlo_simulation.ipynb">Reproduce from the executed notebook <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -189,8 +188,8 @@
         <p class="kicker">Related research</p>
         <h2 id="related">Where numerical and model uncertainty meet</h2>
         <div class="related-grid">
-          <a href="finding-volatility-smile.html"><span>Stochastic dynamics</span><strong>Why constant volatility fails</strong><em>Richer dynamics add both explanatory power and a discretization-error budget.</em></a>
-          <a href="finding-var-backtest.html"><span>Forecast validation</span><strong>When a computed risk number is miscalibrated</strong><em>Numerical precision cannot compensate for a forecast process that fails empirical tests.</em></a>
+          <a href="finding-volatility-smile.html"><span>Stochastic dynamics</span><strong>Constant-volatility pricing under empirical market behavior</strong><em>Richer dynamics add both explanatory power and a discretization-error budget.</em></a>
+          <a href="finding-var-backtest.html"><span>Forecast validation</span><strong>Historical VaR under coverage and independence tests</strong><em>Numerical precision cannot compensate for a forecast process that fails empirical tests.</em></a>
         </div>
       </section>
 
@@ -198,7 +197,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>
