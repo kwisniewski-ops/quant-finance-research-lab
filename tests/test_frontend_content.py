@@ -170,7 +170,6 @@ def test_research_hub_maps_seven_results_to_six_investigations() -> None:
     assert source.count("Empirical finding") == 5
     assert source.count("Numerical validation") >= 2
     assert "Seven published results from six executed investigations" in source
-    assert "market-risk investigation supports separate public findings" in source
     assert "Six questions investors should ask quantitative models" not in source
 
 

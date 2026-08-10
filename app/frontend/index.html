@@ -74,20 +74,11 @@
     <div class="hero-field" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap">
       <div class="hero-copy">
-        <p class="kicker">Independent research program</p>
-        <h1>Independent, evidence-led research on financial models, market regimes, institutions, and investor decisions.</h1>
-        <p class="lede">Models hold until conditions change. The lab measures when, how,
-        and what it costs a decision.</p>
+        <h1>Research on financial models, market regimes, institutions, and investor decisions.</h1>
         <div class="hero-actions" aria-label="Start exploring">
           <a class="primary-action" href="findings.html">Examine the research <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="method.html">Review the methodology <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="tools.html">Explore the models <span aria-hidden="true">→</span></a>
         </div>
-      </div>
-      <div class="hero-meter">
-        <span>Live demonstration · geometric Brownian motion</span>
-        <span class="meter-val"><span id="meter-paths">0</span> simulated paths · seed 20260810</span>
-        <span class="meter-val">standard error of terminal mean · <span id="meter-se">—</span></span>
-        <span class="meter-note">Error shrinks with the square root of the path count. Same seed, same fan, every visit—drawn live in the browser.</span>
       </div>
     </div>
   </section>
@@ -102,7 +93,7 @@
 
     <section class="section" aria-labelledby="research-program">
       <p class="kicker">Research program</p>
-      <h2 id="research-program">Four domains, one standard of evidence</h2>
+      <h2 id="research-program">Contents</h2>
       <ol class="domain-index" data-reveal>
         <li><a href="finding-portfolio-estimation.html"><span class="domain-no">01</span><span class="domain-name">Portfolio construction &amp; market risk</span><span class="domain-tag">Findings and their decision boundaries.</span></a></li>
         <li><a href="case-study.html"><span class="domain-no">02</span><span class="domain-name">Derivatives &amp; computational finance</span><span class="domain-tag">Validation studies and model alternatives.</span></a></li>
@@ -197,6 +188,20 @@
         <a class="finding-card" data-reveal href="finding-factor-etfs.html"><p class="finding-question">Factor models · Product inference</p><h3>ETF factor exposure and alpha after multiple testing</h3><p class="finding-answer-label">Empirical finding</p><p class="finding-answer">Advertised exposures appeared; no tested alpha survived multiple-testing correction.</p><span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false"><text x="10" y="11">estimated alphas with intervals</text><line class="spark-zero" x1="10" y1="33" x2="250" y2="33"/><line class="spark-ref" x1="42" y1="20" x2="42" y2="46"/><circle class="spark-dot-open" cx="42" cy="30" r="3.2"/><line class="spark-ref" x1="90" y1="22" x2="90" y2="47"/><circle class="spark-dot-open" cx="90" cy="35" r="3.2"/><line class="spark-ref" x1="138" y1="19" x2="138" y2="44"/><circle class="spark-dot-open" cx="138" cy="31" r="3.2"/><line class="spark-ref" x1="186" y1="23" x2="186" y2="48"/><circle class="spark-dot-open" cx="186" cy="36" r="3.2"/><line class="spark-ref" x1="234" y1="20" x2="234" y2="45"/><circle class="spark-dot-open" cx="234" cy="32" r="3.2"/><text x="10" y="55">every interval spans zero</text></svg></span><p class="finding-metric">0 alphas at 5% FDR</p><span class="finding-link">Inspect the investigation →</span></a>
         <a class="finding-card" data-reveal href="finding-monte-carlo-error.html"><p class="finding-question">Numerical methods · Simulation error</p><h3>Monte Carlo convergence, bias, and variance reduction</h3><p class="finding-answer-label">Numerical validation</p><p class="finding-answer">Sampling error followed the N⁻¹ᐟ² law; enough paths is defined by the decision's tolerance.</p><span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false"><text x="10" y="11">standard error by path count</text><path class="spark-line" d="M12,16 C50,34 90,42 140,46 C180,49 220,50 248,51"/><circle class="spark-dot" cx="12" cy="16" r="3"/><circle class="spark-dot" cx="96" cy="43" r="3"/><circle class="spark-dot" cx="248" cy="51" r="3"/><text x="146" y="30">error ∝ N⁻¹ᐟ²</text></svg></span><p class="finding-metric">Error ∝ N⁻¹ᐟ²</p><span class="finding-link">Inspect the investigation →</span></a>
       </div>
+    </section>
+
+    <section class="section models-invite" aria-labelledby="models-invite-title">
+      <p class="kicker">Working instruments</p>
+      <h2 id="models-invite-title">Interactive models</h2>
+      <p class="models-line">Five implementations run live in the browser. Change an assumption; watch the answer move.</p>
+      <nav class="models-links" data-reveal aria-label="Interactive models">
+        <a href="asset-pricing.html">Option valuation</a>
+        <a href="portfolio.html">Portfolio geometry</a>
+        <a href="risk.html">Risk backtest</a>
+        <a href="factors.html">Factor attribution</a>
+        <a href="simulations.html">Monte Carlo</a>
+      </nav>
+      <div class="models-cta"><a class="primary-action" href="tools.html">Open the model suite <span aria-hidden="true">→</span></a></div>
     </section>
 
     <section class="section" aria-labelledby="home-regime-research">

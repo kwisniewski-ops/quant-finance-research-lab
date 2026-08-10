@@ -591,6 +591,73 @@ hr {
 
 /* ---------- home: the luxury register — fewer things, more air ---------- */
 
+/* centered hero: one statement over the fan, two actions, nothing else */
+.home .hero-observatory .wrap {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  padding-top: clamp(4.5rem, 10vw, 8rem);
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+.home .hero-observatory .hero-copy { max-width: none; display: grid; justify-items: center; }
+.home .hero-observatory h1 {
+  max-width: 15.5em;
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
+  line-height: 1.1;
+}
+.home .hero-actions { justify-content: center; margin-top: 2.4rem; }
+.home .hero-field::after {
+  background:
+    radial-gradient(ellipse 62% 68% at 50% 42%,
+      color-mix(in srgb, var(--paper) 92%, transparent) 0%,
+      color-mix(in srgb, var(--paper) 72%, transparent) 55%,
+      color-mix(in srgb, var(--paper) 18%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper) 55%, transparent), transparent 30%);
+}
+
+/* centered reel heading */
+.home [data-reel] .section-heading-row { justify-content: center; }
+.home [data-reel] .section-heading-row h2 { margin-right: 0; text-align: center; }
+
+/* the models gateway */
+.models-invite { text-align: center; }
+.models-invite .kicker::before { display: none; }
+.models-invite h2 { margin-inline: auto; }
+.models-invite .models-line { max-width: 34em; margin: 0 auto 2.2rem; color: var(--muted); }
+.models-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem 2.6rem;
+  margin: 0 auto 2.6rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.models-links a {
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rule);
+  transition: color var(--speed) ease, border-color var(--speed) ease;
+}
+.models-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.models-cta { display: flex; justify-content: center; }
+.models-cta .primary-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  min-height: 48px;
+  padding: 0.72rem 1.4rem;
+  border: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .home .section { padding-top: clamp(5rem, 11vw, 8.5rem); }
 .home .section + .section { margin-top: clamp(5rem, 11vw, 8.5rem); }
 .home .proof-strip { padding: 3.2rem 0 1rem; }

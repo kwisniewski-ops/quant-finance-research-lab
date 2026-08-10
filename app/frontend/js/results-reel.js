@@ -67,6 +67,7 @@
     var pos = 1;          /* current position (may briefly be a clone) */
     var pending = null;
     var dragging = false;
+    var settleTimer = 0;
 
     function centerOf(slide) { return slide.offsetLeft + slide.offsetWidth / 2; }
 
@@ -134,7 +135,8 @@
     ["pointerup", "pointercancel", "touchend", "touchcancel"].forEach(function (ev) {
       window.addEventListener(ev, function () {
         dragging = false;
-        window.setTimeout(sync, 80);
+        window.clearTimeout(settleTimer);
+        settleTimer = window.setTimeout(onSettle, 160);
       }, { passive: true });
     });
 
@@ -162,24 +164,38 @@
         pos = best;
         paint(best);
       }
-      /* settled on a clone → jump to its real twin, invisibly */
-      if (!dragging && pending === null && bestDist < 6) {
-        if (best === 0) { pos = N; goToPos(N, "auto"); pending = null; }
-        else if (best === slides.length - 1) { pos = 1; goToPos(1, "auto"); pending = null; }
-      }
+    }
+
+    /* seam repair: once scrolling truly stops on a clone, jump to its
+       real twin in the same visual position */
+    function jumpTo(p) {
+      pos = p;
+      pending = null;
+      scroller.scrollLeft = centerOf(slides[p]) - scroller.clientWidth / 2;
+      paint(p);
+    }
+
+    function onSettle() {
+      if (dragging) return;
+      sync();
+      if (pos === 0) jumpTo(N);
+      else if (pos === slides.length - 1) jumpTo(1);
     }
 
     var ticking = false;
     scroller.addEventListener("scroll", function () {
-      if (ticking) return;
-      ticking = true;
-      var settle = function () {
-        if (!ticking) return;
-        ticking = false;
-        sync();
-      };
-      window.requestAnimationFrame(settle);
-      window.setTimeout(settle, 120);
+      if (!ticking) {
+        ticking = true;
+        var settle = function () {
+          if (!ticking) return;
+          ticking = false;
+          sync();
+        };
+        window.requestAnimationFrame(settle);
+        window.setTimeout(settle, 120);
+      }
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(onSettle, 110);
     }, { passive: true });
 
     scroller.addEventListener("keydown", function (e) {
