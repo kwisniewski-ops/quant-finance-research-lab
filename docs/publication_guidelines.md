@@ -124,8 +124,9 @@ Rules for both:
   `www.kylewisniewski.com/lab` is a vendored copy inside the
   `kyle-wisniewski-site` repository (`public/lab/`), refreshed by that repo's
   `npm run sync:lab` (schedule/dispatch workflow) and deployed by Vercel.
-- Merging to `main` here also auto-deploys the legacy GitHub Pages mirror
-  (`lab.kylewisniewski.com`) until that subdomain is retired per `DEPLOY.md`.
+- There is exactly one published address: `www.kylewisniewski.com/lab`. The
+  `lab.kylewisniewski.com` subdomain and its GitHub Pages deployment were retired
+  in August 2026 (see `DEPLOY.md`); do not reintroduce a second host.
 - **Social card:** one PNG, exactly 1200×630, named `og-lab-v<N>.png`. Its
   URL and alt text live in TWO places that must move together:
   `scripts/normalize_frontend_shell.py` (`SOCIAL_IMAGE_URL`,

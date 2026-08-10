@@ -31,17 +31,22 @@ All internal lab links are relative, so the same source can also be opened local
   adjust if your username/repo name differs (`grep -rn "kwisniewski-ops/quant-finance-research-lab" README.md app/frontend/`).
 - Optionally add the live Pages URL to the repo description and README.
 
-## 4. Legacy subdomain migration
+## 4. Retired: the lab.kylewisniewski.com subdomain
 
-`lab.kylewisniewski.com` remains a temporary GitHub Pages mirror while the canonical
-migration settles. Every mirrored page points to the apex `/lab` URL. Once the main-site
-copy and redirects are verified in production:
+`lab.kylewisniewski.com` was a temporary GitHub Pages mirror during the move to the
+canonical `/lab` path. It was retired in August 2026 and **must not be recreated**:
+the lab is published at one address only.
 
-1. Configure a permanent redirect from `lab.kylewisniewski.com/*` to
-   `www.kylewisniewski.com/lab/*`.
-2. Remove the custom domain from GitHub Pages and disable the `pages.yml` workflow.
-3. Remove `app/frontend/CNAME` after DNS no longer points at GitHub Pages.
-4. Recheck the main sitemap, canonical tags, and `/lab/index.html` redirect.
+What was removed, and where it lived, in case any of it resurfaces:
+
+- `app/frontend/CNAME` (claimed the subdomain for GitHub Pages)
+- `.github/workflows/pages.yml` (deployed the mirror on every push)
+- the GitHub Pages site and its custom domain, in this repository's Settings
+- the `lab` CNAME record in the domain's DNS
+
+No redirect was configured. The mirror was public only briefly, every page declared
+`www.kylewisniewski.com/lab` as canonical throughout, and nothing linked to the
+subdomain, so the address was removed outright rather than forwarded.
 
 ## 5. Refreshing data
 
