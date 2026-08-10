@@ -11,16 +11,16 @@
 <meta property="og:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta property="og:description" content="The 95% VaR model recorded 135 breaches versus 107 expected—and rejected both coverage and independence.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-var-backtest.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta name="twitter:description" content="The 95% VaR model recorded 135 breaches versus 107 expected—and rejected both coverage and independence.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,7 +28,7 @@
   "headline": "Historical VaR Under Coverage and Independence Tests",
   "description": "An empirical investigation of the rejected coverage and independence of a rolling 500-observation historical 95% VaR forecast.",
   "url": "https://www.kylewisniewski.com/lab/finding-var-backtest.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v5.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
@@ -37,7 +37,7 @@
   "about": ["historical value at risk", "Kupiec test", "Christoffersen test", "model calibration"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -81,7 +81,7 @@
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
-    <article>
+    <article class="finding-article">
       <header class="page-head">
         <p class="kicker">Empirical finding · Market-risk validation</p>
         <h1>Historical VaR under coverage and independence tests</h1>
@@ -117,7 +117,30 @@
         <div><dt>Forecast days</dt><dd>2,140</dd></div>
       </dl>
 
-      <section class="section decision-grid" aria-label="Audience and decision">
+<figure class="figure" id="breach-structure">
+  <p class="figure-title">Exception record · 2,140 forecast days</p>
+  <svg viewBox="0 0 720 208" role="img" aria-labelledby="breach-structure-title breach-structure-desc">
+    <title id="breach-structure-title">Breach sequence and clustering evidence for the 95 percent VaR forecast</title>
+    <desc id="breach-structure-desc">A timeline strip of 2,140 forecast days marks 135 VaR breaches: 99 isolated single days, 12 two-day runs, and 4 three-day runs. Below, a bar comparison shows 20 observed breach-follows-breach days against roughly 8.5 expected if exceptions arrived independently.</desc>
+    <g>
+      <line class="fig-axis" x1="20" y1="78" x2="700" y2="78"/>
+      <line class="run-mark" x1="20.6" y1="20" x2="20.6" y2="72"/><line class="run-mark" x1="21.0" y1="20" x2="21.0" y2="72"/><line class="solo-mark" x1="23.5" y1="20" x2="23.5" y2="72"/><line class="solo-mark" x1="24.8" y1="20" x2="24.8" y2="72"/><line class="run-mark" x1="25.7" y1="20" x2="25.7" y2="72"/><line class="run-mark" x1="26.0" y1="20" x2="26.0" y2="72"/><line class="run-mark" x1="26.4" y1="20" x2="26.4" y2="72"/><line class="solo-mark" x1="55.9" y1="20" x2="55.9" y2="72"/><line class="solo-mark" x1="77.2" y1="20" x2="77.2" y2="72"/><line class="run-mark" x1="78.1" y1="20" x2="78.1" y2="72"/><line class="run-mark" x1="78.5" y1="20" x2="78.5" y2="72"/><line class="run-mark" x1="83.2" y1="20" x2="83.2" y2="72"/><line class="run-mark" x1="83.6" y1="20" x2="83.6" y2="72"/><line class="run-mark" x1="83.9" y1="20" x2="83.9" y2="72"/><line class="run-mark" x1="90.2" y1="20" x2="90.2" y2="72"/><line class="run-mark" x1="90.5" y1="20" x2="90.5" y2="72"/><line class="solo-mark" x1="95.9" y1="20" x2="95.9" y2="72"/><line class="solo-mark" x1="105.2" y1="20" x2="105.2" y2="72"/><line class="solo-mark" x1="106.1" y1="20" x2="106.1" y2="72"/><line class="solo-mark" x1="127.1" y1="20" x2="127.1" y2="72"/><line class="solo-mark" x1="133.4" y1="20" x2="133.4" y2="72"/><line class="solo-mark" x1="137.6" y1="20" x2="137.6" y2="72"/><line class="run-mark" x1="144.2" y1="20" x2="144.2" y2="72"/><line class="run-mark" x1="144.6" y1="20" x2="144.6" y2="72"/><line class="solo-mark" x1="145.8" y1="20" x2="145.8" y2="72"/><line class="solo-mark" x1="154.7" y1="20" x2="154.7" y2="72"/><line class="run-mark" x1="162.4" y1="20" x2="162.4" y2="72"/><line class="run-mark" x1="162.7" y1="20" x2="162.7" y2="72"/><line class="solo-mark" x1="164.6" y1="20" x2="164.6" y2="72"/><line class="solo-mark" x1="169.7" y1="20" x2="169.7" y2="72"/><line class="solo-mark" x1="171.9" y1="20" x2="171.9" y2="72"/><line class="solo-mark" x1="173.8" y1="20" x2="173.8" y2="72"/><line class="solo-mark" x1="185.9" y1="20" x2="185.9" y2="72"/><line class="solo-mark" x1="189.0" y1="20" x2="189.0" y2="72"/><line class="solo-mark" x1="192.2" y1="20" x2="192.2" y2="72"/><line class="solo-mark" x1="197.6" y1="20" x2="197.6" y2="72"/><line class="solo-mark" x1="199.9" y1="20" x2="199.9" y2="72"/><line class="solo-mark" x1="204.6" y1="20" x2="204.6" y2="72"/><line class="solo-mark" x1="218.3" y1="20" x2="218.3" y2="72"/><line class="solo-mark" x1="230.0" y1="20" x2="230.0" y2="72"/><line class="solo-mark" x1="232.9" y1="20" x2="232.9" y2="72"/><line class="solo-mark" x1="237.3" y1="20" x2="237.3" y2="72"/><line class="solo-mark" x1="240.2" y1="20" x2="240.2" y2="72"/><line class="solo-mark" x1="258.0" y1="20" x2="258.0" y2="72"/><line class="solo-mark" x1="269.8" y1="20" x2="269.8" y2="72"/><line class="solo-mark" x1="275.8" y1="20" x2="275.8" y2="72"/><line class="solo-mark" x1="278.3" y1="20" x2="278.3" y2="72"/><line class="solo-mark" x1="288.2" y1="20" x2="288.2" y2="72"/><line class="solo-mark" x1="291.4" y1="20" x2="291.4" y2="72"/><line class="solo-mark" x1="303.1" y1="20" x2="303.1" y2="72"/><line class="solo-mark" x1="304.4" y1="20" x2="304.4" y2="72"/><line class="solo-mark" x1="305.3" y1="20" x2="305.3" y2="72"/><line class="solo-mark" x1="318.1" y1="20" x2="318.1" y2="72"/><line class="solo-mark" x1="326.6" y1="20" x2="326.6" y2="72"/><line class="solo-mark" x1="332.7" y1="20" x2="332.7" y2="72"/><line class="solo-mark" x1="334.9" y1="20" x2="334.9" y2="72"/><line class="solo-mark" x1="336.2" y1="20" x2="336.2" y2="72"/><line class="solo-mark" x1="338.4" y1="20" x2="338.4" y2="72"/><line class="solo-mark" x1="343.5" y1="20" x2="343.5" y2="72"/><line class="solo-mark" x1="353.3" y1="20" x2="353.3" y2="72"/><line class="solo-mark" x1="355.6" y1="20" x2="355.6" y2="72"/><line class="solo-mark" x1="364.8" y1="20" x2="364.8" y2="72"/><line class="solo-mark" x1="369.2" y1="20" x2="369.2" y2="72"/><line class="run-mark" x1="372.1" y1="20" x2="372.1" y2="72"/><line class="run-mark" x1="372.4" y1="20" x2="372.4" y2="72"/><line class="solo-mark" x1="377.2" y1="20" x2="377.2" y2="72"/><line class="solo-mark" x1="377.8" y1="20" x2="377.8" y2="72"/><line class="solo-mark" x1="391.1" y1="20" x2="391.1" y2="72"/><line class="solo-mark" x1="393.4" y1="20" x2="393.4" y2="72"/><line class="solo-mark" x1="394.0" y1="20" x2="394.0" y2="72"/><line class="solo-mark" x1="395.9" y1="20" x2="395.9" y2="72"/><line class="solo-mark" x1="399.7" y1="20" x2="399.7" y2="72"/><line class="solo-mark" x1="407.7" y1="20" x2="407.7" y2="72"/><line class="solo-mark" x1="408.3" y1="20" x2="408.3" y2="72"/><line class="solo-mark" x1="410.8" y1="20" x2="410.8" y2="72"/><line class="run-mark" x1="417.5" y1="20" x2="417.5" y2="72"/><line class="run-mark" x1="417.8" y1="20" x2="417.8" y2="72"/><line class="solo-mark" x1="423.9" y1="20" x2="423.9" y2="72"/><line class="solo-mark" x1="426.4" y1="20" x2="426.4" y2="72"/><line class="solo-mark" x1="429.3" y1="20" x2="429.3" y2="72"/><line class="solo-mark" x1="433.4" y1="20" x2="433.4" y2="72"/><line class="run-mark" x1="440.1" y1="20" x2="440.1" y2="72"/><line class="run-mark" x1="440.4" y1="20" x2="440.4" y2="72"/><line class="run-mark" x1="440.7" y1="20" x2="440.7" y2="72"/><line class="solo-mark" x1="446.1" y1="20" x2="446.1" y2="72"/><line class="solo-mark" x1="446.7" y1="20" x2="446.7" y2="72"/><line class="solo-mark" x1="465.2" y1="20" x2="465.2" y2="72"/><line class="solo-mark" x1="466.4" y1="20" x2="466.4" y2="72"/><line class="solo-mark" x1="480.7" y1="20" x2="480.7" y2="72"/><line class="run-mark" x1="481.7" y1="20" x2="481.7" y2="72"/><line class="run-mark" x1="482.0" y1="20" x2="482.0" y2="72"/><line class="run-mark" x1="482.3" y1="20" x2="482.3" y2="72"/><line class="solo-mark" x1="485.2" y1="20" x2="485.2" y2="72"/><line class="solo-mark" x1="499.2" y1="20" x2="499.2" y2="72"/><line class="solo-mark" x1="504.6" y1="20" x2="504.6" y2="72"/><line class="solo-mark" x1="514.1" y1="20" x2="514.1" y2="72"/><line class="run-mark" x1="519.5" y1="20" x2="519.5" y2="72"/><line class="run-mark" x1="519.8" y1="20" x2="519.8" y2="72"/><line class="solo-mark" x1="525.6" y1="20" x2="525.6" y2="72"/><line class="solo-mark" x1="527.1" y1="20" x2="527.1" y2="72"/><line class="solo-mark" x1="539.5" y1="20" x2="539.5" y2="72"/><line class="solo-mark" x1="548.4" y1="20" x2="548.4" y2="72"/><line class="solo-mark" x1="551.0" y1="20" x2="551.0" y2="72"/><line class="solo-mark" x1="554.1" y1="20" x2="554.1" y2="72"/><line class="run-mark" x1="563.4" y1="20" x2="563.4" y2="72"/><line class="run-mark" x1="563.7" y1="20" x2="563.7" y2="72"/><line class="solo-mark" x1="565.3" y1="20" x2="565.3" y2="72"/><line class="run-mark" x1="567.8" y1="20" x2="567.8" y2="72"/><line class="run-mark" x1="568.1" y1="20" x2="568.1" y2="72"/><line class="solo-mark" x1="571.3" y1="20" x2="571.3" y2="72"/><line class="solo-mark" x1="575.1" y1="20" x2="575.1" y2="72"/><line class="solo-mark" x1="580.2" y1="20" x2="580.2" y2="72"/><line class="solo-mark" x1="581.2" y1="20" x2="581.2" y2="72"/><line class="solo-mark" x1="588.5" y1="20" x2="588.5" y2="72"/><line class="solo-mark" x1="589.4" y1="20" x2="589.4" y2="72"/><line class="solo-mark" x1="596.4" y1="20" x2="596.4" y2="72"/><line class="solo-mark" x1="598.6" y1="20" x2="598.6" y2="72"/><line class="solo-mark" x1="603.1" y1="20" x2="603.1" y2="72"/><line class="solo-mark" x1="604.4" y1="20" x2="604.4" y2="72"/><line class="solo-mark" x1="605.9" y1="20" x2="605.9" y2="72"/><line class="solo-mark" x1="616.7" y1="20" x2="616.7" y2="72"/><line class="solo-mark" x1="621.2" y1="20" x2="621.2" y2="72"/><line class="solo-mark" x1="631.0" y1="20" x2="631.0" y2="72"/><line class="solo-mark" x1="633.6" y1="20" x2="633.6" y2="72"/><line class="solo-mark" x1="637.4" y1="20" x2="637.4" y2="72"/><line class="run-mark" x1="638.7" y1="20" x2="638.7" y2="72"/><line class="run-mark" x1="639.0" y1="20" x2="639.0" y2="72"/><line class="solo-mark" x1="640.3" y1="20" x2="640.3" y2="72"/><line class="solo-mark" x1="646.3" y1="20" x2="646.3" y2="72"/><line class="solo-mark" x1="657.1" y1="20" x2="657.1" y2="72"/><line class="solo-mark" x1="659.0" y1="20" x2="659.0" y2="72"/><line class="run-mark" x1="662.2" y1="20" x2="662.2" y2="72"/><line class="run-mark" x1="662.5" y1="20" x2="662.5" y2="72"/><line class="solo-mark" x1="670.4" y1="20" x2="670.4" y2="72"/><line class="solo-mark" x1="691.1" y1="20" x2="691.1" y2="72"/>
+      <text class="fig-label" x="84.8" y="92" text-anchor="middle">2017</text><text class="fig-label" x="214.3" y="92" text-anchor="middle">2019</text><text class="fig-label" x="343.8" y="92" text-anchor="middle">2021</text><text class="fig-label" x="473.3" y="92" text-anchor="middle">2023</text><text class="fig-label" x="602.9" y="92" text-anchor="middle">2025</text>
+      <text class="fig-label-strong" x="20" y="12">135 breaches · each mark one day beyond forecast VaR</text>
+    </g>
+    <g>
+      <text class="fig-label-strong" x="20" y="126">Breach follows breach · observed vs independent arrivals</text>
+      <rect class="fig-fill-3" x="20" y="138" width="300" height="14"/>
+      <text class="fig-label" x="328" y="149">20 observed</text>
+      <rect class="fig-fill-neutral" x="20" y="160" width="127" height="14"/>
+      <text class="fig-label" x="155" y="171">≈8.5 expected under independence</text>
+      <text class="fig-label" x="20" y="196">Christoffersen independence rejected · p = 0.00025</text>
+    </g>
+  </svg>
+  <figcaption>Run-length structure is exact from the recorded transition counts (99 single-day, 12 two-day, and 4 three-day exception runs; n11 = 20). Placement along the axis is schematic: the published record stores transition counts, not exception dates. Independence would imply ≈8.5 breach-follows-breach days.</figcaption>
+</figure>
+
+      <section class="section decision-grid" data-reveal aria-label="Audience and decision">
         <div>
           <p class="kicker">Research significance</p>
           <h3>Risk owners, model validators, and control functions</h3>
@@ -184,7 +207,7 @@
         </div>
       </section>
 
-      <aside class="regime-lens" aria-labelledby="regime-lens-var">
+      <aside class="regime-lens" data-reveal aria-labelledby="regime-lens-var">
         <p class="kicker">Regime lens · Forecast calibration</p>
         <h2 id="regime-lens-var">Clustered breaches establish calibration failure, not its cause</h2>
         <dl class="regime-lens__evidence">
@@ -199,7 +222,7 @@
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">Distributional and correlation implications of exception clustering</h2>
-        <div class="related-grid">
+        <div class="related-grid" data-reveal>
           <a href="finding-diversification-regimes.html"><span>Correlation stress</span><strong>Stock–bond diversification across changing correlation environments</strong><em>Inspect how a sign change in stock–bond correlation alters the portfolio's hidden assumption.</em></a>
           <a href="finding-volatility-smile.html"><span>Distribution risk</span><strong>Non-Gaussian returns and volatility clustering</strong><em>Observed tails and volatility clustering expose the fragility of stationary loss histories.</em></a>
         </div>
@@ -210,6 +233,8 @@
 </main>
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

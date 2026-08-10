@@ -11,17 +11,17 @@
 <meta property="og:title" content="ETF Factor Exposures, Alpha, and Out-of-Sample Stability">
 <meta property="og:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/factors.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ETF Factor Exposures, Alpha, and Out-of-Sample Stability">
 <meta name="twitter:description" content="Reproducible ETF factor regressions with confidence intervals, rolling betas, out-of-sample tests, and multiple-testing corrections.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/factors.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
@@ -92,7 +92,7 @@
       <a href="research-log.html#factor-exposures">research record</a></p>
     </div>
 
-    <section class="decision-summary" aria-labelledby="factor-decision-title">
+    <section class="decision-summary" data-reveal aria-labelledby="factor-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="factor-decision-title">The labels were informative; the apparent alpha was not robust</h2>
       <div class="decision-grid">
@@ -126,7 +126,7 @@
         <select id="factor-etf" aria-describedby="factor-selector-note"><!-- research-data:factor-selector:start --><option value="QQQ" selected>QQQ</option><option value="USMV">USMV</option><option value="MTUM">MTUM</option><option value="VLUE">VLUE</option><option value="QUAL">QUAL</option><option value="IWM">IWM</option><!-- research-data:factor-selector:end --></select>
         <span id="factor-selector-note" class="figure-note">The chart and table update together.</span>
       </div>
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-factor-exposures" class="chart tall" role="img" aria-label="ETF factor beta estimates with 95 percent HAC confidence intervals" aria-describedby="factor-exposure-caption"></div>
         <figcaption class="chart-caption" id="factor-exposure-caption">Point estimates and 95% HAC intervals. Positive and negative estimates use different marker symbols as well as color.</figcaption>
       </figure>
@@ -139,7 +139,7 @@
       <p class="prose-col">A full-sample beta compresses eleven years into one number. The lines below
       re-estimate QQQ on a trailing 252-observation window; dashed references show the corresponding
       full-sample estimates. Instability is evidence about model scope, not chart noise.</p>
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-factor-rolling" class="chart" role="img" aria-label="Rolling one-year QQQ factor betas compared with full-sample estimates" aria-describedby="rolling-caption"></div>
         <figcaption class="chart-caption" id="rolling-caption">Month-end observations of rolling market, value, and momentum loadings. Each series uses a distinct dash pattern.</figcaption>
       </figure>
@@ -152,7 +152,7 @@
       first half are frozen, then applied to the second. Predictive R² is benchmarked against the
       holdout mean. A lower bar in the holdout is the measured cost of transporting the exposure
       map through time.</p>
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-factor-oos" class="chart" role="img" aria-label="In-sample and out-of-sample R squared for six ETF factor regressions" aria-describedby="oos-caption"></div>
         <figcaption class="chart-caption" id="oos-caption">Training and holdout R² by ETF. Fill patterns distinguish sample roles without relying on color.</figcaption>
       </figure>
@@ -195,7 +195,7 @@
     <section class="section related-section" aria-labelledby="factor-related-title">
       <p class="kicker">Related research</p>
       <h2 id="factor-related-title">Related findings, methods, and reproduction</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-factor-etfs.html"><span>Empirical finding</span><strong>Factor exposure and alpha after multiplicity control</strong><em>Inspect advertised tilts, disappearing alpha, and holdout decay.</em></a>
         <a class="related-card" href="findings.html"><span>Research</span><strong>Comparative model-validation corpus</strong><em>Review investigations across factor investing, portfolio construction, risk, pricing, and simulation.</em></a>
         <a class="related-card" href="method.html"><span>Methods</span><strong>Multiplicity control and bounded inference</strong><em>Review confidence intervals, holdouts, multiplicity, provenance, and limitations.</em></a>
@@ -209,6 +209,8 @@
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 <script src="js/common.js"></script>
 <script src="js/factors.js"></script>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

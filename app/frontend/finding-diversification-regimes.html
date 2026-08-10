@@ -11,16 +11,16 @@
 <meta property="og:title" content="Stock–Bond Diversification Across Changing Correlation Environments">
 <meta property="og:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-diversification-regimes.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stock–Bond Diversification Across Changing Correlation Environments">
 <meta name="twitter:description" content="A stock–bond correlation sign change and a four-point volatility stress expose diversification's hidden regime assumption.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,7 +28,7 @@
   "headline": "Stock–Bond Diversification Across Changing Correlation Environments",
   "description": "An empirical investigation of stock–bond correlation regime change and correlation-stress effects on a diversified portfolio.",
   "url": "https://www.kylewisniewski.com/lab/finding-diversification-regimes.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v5.png",
   "datePublished": "2026-08-08",
   "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
@@ -37,7 +37,7 @@
   "about": ["portfolio diversification", "stock bond correlation", "regime risk", "stress testing"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -81,7 +81,7 @@
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
-    <article>
+    <article class="finding-article">
       <header class="page-head">
         <p class="kicker">Empirical finding · Regime-dependent diversification</p>
         <h1>Stock–bond diversification across changing correlation environments</h1>
@@ -117,7 +117,35 @@
         <div><dt>Portfolio vol · corr. → 1</dt><dd>15.8%</dd></div>
       </dl>
 
-      <section class="section decision-grid" aria-label="Audience and decision">
+<figure class="figure" id="correlation-sign-change">
+  <p class="figure-title">Correlation sign change · and the volatility it was holding down</p>
+  <svg viewBox="0 0 720 262" role="img" aria-labelledby="correlation-sign-change-title correlation-sign-change-desc">
+    <title id="correlation-sign-change-title">Stock and bond correlation levels and the effect of a correlation stress on portfolio volatility</title>
+    <desc id="correlation-sign-change-desc">Three published levels of the 126-day SPY and TLT correlation are plotted against a dashed zero line: an average of minus 0.35 across 2015 to 2019, a peak of plus 0.37 across 2022 to 2023, and plus 0.31 at the end of the sample. Below, two bars compare 11.6 percent annualized portfolio volatility at the observed correlation structure with 15.8 percent when every correlation is pushed toward one.</desc>
+    <g>
+      <text class="fig-label-strong" x="20" y="14">126-day SPY–TLT correlation · three published levels</text>
+      <line class="fig-ref" x1="70" y1="100" x2="700" y2="100"/>
+      <text class="fig-label" x="20" y="103">0.00</text>
+      <polyline class="fig-series-1" points="120,142 430,56 660,63"/>
+      <circle class="fig-fill-1" cx="120" cy="142" r="4"/>
+      <circle class="fig-fill-1" cx="430" cy="56" r="4"/>
+      <circle class="fig-fill-1" cx="660" cy="63" r="4"/>
+      <text class="fig-label" x="120" y="164" text-anchor="middle">−0.35 · 2015–2019 average</text>
+      <text class="fig-label" x="430" y="40" text-anchor="middle">+0.37 · 2022–2023 peak</text>
+      <text class="fig-label" x="700" y="40" text-anchor="end">+0.31 · sample end</text>
+    </g>
+    <g>
+      <text class="fig-label-strong" x="20" y="206">Strategic portfolio volatility · observed structure against correlations pushed toward one</text>
+      <rect class="fig-fill-2" x="20" y="218" width="294" height="14"/>
+      <text class="fig-label" x="322" y="229">11.6% · observed correlation structure</text>
+      <rect class="fig-fill-3" x="20" y="240" width="400" height="14"/>
+      <text class="fig-label" x="430" y="251">15.8% · correlations pushed toward one</text>
+    </g>
+  </svg>
+  <figcaption>The marked points are the published rolling-correlation levels: the 2015–2019 average, the 2022–2023 peak, and the level at the sample end. The connecting path is schematic, because the record stores those three levels rather than the full daily series. The two bars are drawn to scale from the published annualized volatilities of the same strategic portfolio under the static correlation stress.</figcaption>
+</figure>
+
+      <section class="section decision-grid" data-reveal aria-label="Audience and decision">
         <div>
           <p class="kicker">Research significance</p>
           <h3>Multi-asset allocators and enterprise risk teams</h3>
@@ -182,7 +210,7 @@
         </div>
       </section>
 
-      <aside class="regime-lens" aria-labelledby="regime-lens-diversification">
+      <aside class="regime-lens" data-reveal aria-labelledby="regime-lens-diversification">
         <p class="kicker">Regime lens · Stock–bond relationship</p>
         <h2 id="regime-lens-diversification">The hedge was conditional on the shock regime</h2>
         <dl class="regime-lens__evidence">
@@ -197,7 +225,7 @@
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">Downstream consequences of correlation-regime change</h2>
-        <div class="related-grid">
+        <div class="related-grid" data-reveal>
           <a href="finding-portfolio-estimation.html"><span>Portfolio construction</span><strong>Portfolio optimization under estimation error and out-of-sample evaluation</strong><em>Every construction method embeds assumptions about the environment it will face.</em></a>
           <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>A slowly adapting historical forecast can fail when the return process changes.</em></a>
         </div>
@@ -208,6 +236,8 @@
 </main>
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

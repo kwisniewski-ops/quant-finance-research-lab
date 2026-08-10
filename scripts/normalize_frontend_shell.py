@@ -12,10 +12,10 @@ FRONTEND = ROOT / "app" / "frontend"
 PUBLIC_HTML_NAME = re.compile(r"^[a-z0-9-]+\.html$")
 BRAND_NAME = "Quantitative Markets & Institutions Lab"
 BRAND_NAME_HTML = html.escape(BRAND_NAME)
-SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v4.png"
+SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v5.png"
 SOCIAL_IMAGE_ALT = (
-    "Quantitative Markets & Institutions Lab: independent research on models, regimes, "
-    "and institutions, shown beside a market chart and open research notebook."
+    "Quantitative Markets & Institutions Lab: a seeded Monte Carlo path fan "
+    "from the lab's simulation research beside the lab wordmark."
 )
 
 
@@ -122,7 +122,7 @@ def normalize(page: Path) -> None:
     )
 
     source = re.sub(
-        r'https://(?:www\.)?kylewisniewski\.com/lab/(?:images/og-[^"<]+\.(?:jpg|png)|og-lab(?:-v[234])?\.(?:jpg|png))',
+        r'https://(?:www\.)?kylewisniewski\.com/lab/(?:images/og-[^"<]+\.(?:jpg|png)|og-lab(?:-v[2345])?\.(?:jpg|png))',
         SOCIAL_IMAGE_URL,
         source,
     )

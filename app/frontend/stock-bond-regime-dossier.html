@@ -11,16 +11,16 @@
 <meta property="og:title" content="Stock–Bond Correlation Regimes and Conditional Diversification">
 <meta property="og:description" content="A changing stock–bond relationship alters diversification, portfolio construction, and risk-model calibration.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stock–Bond Correlation Regimes and Conditional Diversification">
 <meta name="twitter:description" content="A measured stock–bond correlation shift, its economic context, portfolio consequences, and model-monitoring boundary.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,7 +28,7 @@
   "headline": "Stock–Bond Correlation Regimes and the Conditional Structure of Diversification",
   "description": "A long-form synthesis examining stock–bond correlation regimes alongside diversification, portfolio construction, and historical risk-model monitoring.",
   "url": "https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v5.png",
   "datePublished": "2026-08-09",
   "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
@@ -37,7 +37,7 @@
   "about": ["stock bond correlation", "portfolio diversification", "inflation regimes", "portfolio construction", "value at risk", "model calibration"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -141,7 +141,7 @@
         <div><dt>Corr. → 1 vol</dt><dd>15.8%</dd></div>
       </dl>
 
-      <div class="evidence-taxonomy evidence-taxonomy--four" aria-label="Evidence labels used in this dossier">
+      <div class="evidence-taxonomy evidence-taxonomy--four" data-reveal aria-label="Evidence labels used in this dossier">
         <article><p class="evidence-label">Lab measurement</p><p>Values produced by the lab's frozen data, declared transformations, tests, and stress design.</p></article>
         <article><p class="evidence-label">External empirical evidence</p><p>Measured relationships reported by identified research outside the lab.</p></article>
         <article><p class="evidence-label">Institutional record</p><p>Dated policy actions and conditions documented by central banks and international institutions.</p></article>
@@ -158,6 +158,30 @@
         <div><dt>Forecast status</dt><dd>None. No present-state classification, regime probability, or return forecast.</dd></div>
         <div><dt>Identification limit</dt><dd>The observed relationships do not identify inflation, policy, fiscal, liquidity, or geopolitical causes.</dd></div>
       </dl>
+
+      <figure class="figure" id="dossier-correlation-figure" data-reveal>
+        <p class="figure-title">Measured endpoints · SPY–TLT rolling correlation</p>
+        <svg viewBox="0 0 720 240" role="img" aria-labelledby="dossier-correlation-figure-title dossier-correlation-figure-desc">
+          <title id="dossier-correlation-figure-title">Stock and bond correlation crossing zero between the two measured endpoints</title>
+          <desc id="dossier-correlation-figure-desc">A schematic line traces the rolling 126-trading-day SPY and TLT correlation from an average of negative 0.35 across 2015 to 2019, through a crossing of the dashed zero reference line, to a peak of positive 0.37 across 2022 to 2023, and it stays positive at the end of the frozen sample.</desc>
+          <text class="fig-label-strong" x="40" y="20">Rolling 126-trading-day correlation · frozen sample through 6 July 2026</text>
+          <line class="fig-ref" x1="40" y1="110" x2="700" y2="110"/>
+          <text class="fig-label" x="700" y="104" text-anchor="end">zero correlation</text>
+          <path class="fig-series-1" d="M60,166 C170,168 250,160 310,148 C370,136 400,92 470,52 C505,52 530,56 560,60 C610,66 650,66 690,64"/>
+          <circle class="fig-fill-1" cx="60" cy="166" r="4"/>
+          <circle class="fig-fill-1" cx="470" cy="52" r="4"/>
+          <text class="fig-label" x="60" y="186">−0.35 · 2015–19 average</text>
+          <text class="fig-label" x="470" y="40" text-anchor="middle">+0.37 · 2022–23 peak</text>
+          <line class="fig-axis" x1="40" y1="206" x2="700" y2="206"/>
+          <text class="fig-label" x="40" y="222" text-anchor="middle">2015</text>
+          <text class="fig-label" x="158" y="222" text-anchor="middle">2017</text>
+          <text class="fig-label" x="276" y="222" text-anchor="middle">2019</text>
+          <text class="fig-label" x="394" y="222" text-anchor="middle">2021</text>
+          <text class="fig-label" x="512" y="222" text-anchor="middle">2023</text>
+          <text class="fig-label" x="630" y="222" text-anchor="middle">2025</text>
+        </svg>
+        <figcaption>A schematic reading of the measured endpoints. The frozen record stores the 2015–2019 average of −0.35, the 2022–2023 peak of +0.37, and a positive value at the end of the sample; the intermediate path and the exact crossing date are drawn for orientation and are not published observations.</figcaption>
+      </figure>
 
       <div class="note">
         <span class="note-label">Causal boundary</span>
@@ -392,7 +416,7 @@
     <section class="section related-section" aria-labelledby="dossier-related-title">
       <p class="kicker">Related research</p>
       <h2 id="dossier-related-title">Regime context, measured findings, and registered tests</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="regime-atlas.html"><span>Historical framework</span><strong>Market regimes as transmission systems</strong><em>Construct a hypothetical scenario and compare dated historical lenses.</em></a>
         <a class="related-card" href="finding-diversification-regimes.html"><span>Diversification</span><strong>Stock–bond diversification across changing correlation environments</strong><em>Inspect the measured relationship, stress surface, application, and limitations.</em></a>
         <a class="related-card" href="finding-portfolio-estimation.html"><span>Allocation</span><strong>Portfolio optimization under estimation error and out-of-sample evaluation</strong><em>Inspect what survived when optimized allocations entered the sealed evaluation window.</em></a>
@@ -408,6 +432,8 @@
 
 <script src="js/common.js"></script>
 <script src="js/reading.js"></script>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

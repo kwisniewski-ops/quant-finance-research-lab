@@ -11,17 +11,17 @@
 <meta property="og:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta property="og:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/risk.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Historical VaR Under Coverage and Independence Tests">
 <meta name="twitter:description" content="A reproducible multi-asset portfolio backtest with VaR and ES uncertainty, coverage tests, and historical stress windows.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/risk.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
@@ -90,7 +90,7 @@
     <a href="research-log.html#market-risk">research record</a></p>
   </div>
 
-  <section class="decision-summary" aria-labelledby="risk-decision-title">
+  <section class="decision-summary" data-reveal aria-labelledby="risk-decision-title">
     <p class="kicker">Decision summary</p>
     <h2 id="risk-decision-title">A plausible risk number failed when its forecasts met the future</h2>
     <div class="decision-grid">
@@ -114,11 +114,11 @@
     <dl class="stat-grid" id="risk-stats"><!-- research-data:risk-stats:start --><div class="stat"><dt class="k">Ann. return</dt><dd class="v">10.14%</dd></div><div class="stat"><dt class="k">Ann. volatility</dt><dd class="v">11.50%</dd></div><div class="stat"><dt class="k">Sharpe (rf 3%)</dt><dd class="v">0.64</dd></div><div class="stat"><dt class="k">Max drawdown</dt><dd class="v accent">-24.3%</dd></div><div class="stat"><dt class="k">VaR 95 (1d)</dt><dd class="v accent">1.08%</dd></div><div class="stat"><dt class="k">ES 95 (1d)</dt><dd class="v accent">1.72%</dd></div><div class="stat"><dt class="k">Skewness</dt><dd class="v">-0.54</dd></div><div class="stat"><dt class="k">Excess kurtosis</dt><dd class="v">12.98</dd></div><!-- research-data:risk-stats:end --></dl>
     <p class="figure-note">Annualized where applicable. VaR and ES are one-day historical estimates
     at 95%; uncertainty intervals appear in the next section.</p>
-    <figure class="chart-figure"><div id="chart-equity" class="chart" role="img" aria-label="Cumulative growth of one dollar in the empirical portfolio backtest" aria-describedby="equity-chart-caption"></div><figcaption class="chart-caption" id="equity-chart-caption">Growth of $1 after modeled transaction costs. The horizontal axis uses calendar dates from the frozen price snapshot.</figcaption></figure>
-    <figure class="chart-figure"><div id="chart-dd" class="chart short" role="img" aria-label="Empirical portfolio drawdown from running peak" aria-describedby="drawdown-chart-caption"></div><figcaption class="chart-caption" id="drawdown-chart-caption">Drawdown from the portfolio’s running peak. Depth is encoded by position and a shaded area.</figcaption></figure>
+    <figure class="chart-figure" data-reveal><div id="chart-equity" class="chart" role="img" aria-label="Cumulative growth of one dollar in the empirical portfolio backtest" aria-describedby="equity-chart-caption"></div><figcaption class="chart-caption" id="equity-chart-caption">Growth of $1 after modeled transaction costs. The horizontal axis uses calendar dates from the frozen price snapshot.</figcaption></figure>
+    <figure class="chart-figure" data-reveal><div id="chart-dd" class="chart short" role="img" aria-label="Empirical portfolio drawdown from running peak" aria-describedby="drawdown-chart-caption"></div><figcaption class="chart-caption" id="drawdown-chart-caption">Drawdown from the portfolio’s running peak. Depth is encoded by position and a shaded area.</figcaption></figure>
     <div class="chart-pair">
-      <figure class="chart-figure"><div id="chart-vol" class="chart short" role="img" aria-label="Rolling 63-day annualized portfolio volatility" aria-describedby="risk-vol-caption"></div><figcaption class="chart-caption" id="risk-vol-caption">Rolling 63-observation annualized volatility.</figcaption></figure>
-      <figure class="chart-figure"><div id="chart-hist" class="chart short" role="img" aria-label="Binned distribution of empirical daily portfolio returns" aria-describedby="risk-hist-caption"></div><figcaption class="chart-caption" id="risk-hist-caption">Pre-binned daily returns with empirical VaR and ES thresholds; a matched Gaussian is overlaid only as a diagnostic reference.</figcaption></figure>
+      <figure class="chart-figure" data-reveal><div id="chart-vol" class="chart short" role="img" aria-label="Rolling 63-day annualized portfolio volatility" aria-describedby="risk-vol-caption"></div><figcaption class="chart-caption" id="risk-vol-caption">Rolling 63-observation annualized volatility.</figcaption></figure>
+      <figure class="chart-figure" data-reveal><div id="chart-hist" class="chart short" role="img" aria-label="Binned distribution of empirical daily portfolio returns" aria-describedby="risk-hist-caption"></div><figcaption class="chart-caption" id="risk-hist-caption">Pre-binned daily returns with empirical VaR and ES thresholds; a matched Gaussian is overlaid only as a diagnostic reference.</figcaption></figure>
     </div>
     <details class="chart-data"><summary>View key chart data</summary><div class="table-scroll" id="risk-data-table"><!-- research-data:risk-data-table:start --><table><caption>Key values represented in the empirical risk charts</caption><thead><tr><th scope="col">Measure</th><th scope="col">Value</th></tr></thead><tbody><tr><th scope="row">Ending value of $1</th><td>$2.750</td></tr><tr><th scope="row">Maximum drawdown</th><td>-24.33%</td></tr><tr><th scope="row">VaR 95, one day</th><td>1.08%</td></tr><tr><th scope="row">Expected Shortfall 95, one day</th><td>1.72%</td></tr><tr><th scope="row">Backtest observations</th><td>2,640</td></tr></tbody></table><!-- research-data:risk-data-table:end --></div></details>
   </section>
@@ -176,7 +176,7 @@
   <section class="section related-section" aria-labelledby="risk-related-title">
     <p class="kicker">Related research</p>
     <h2 id="risk-related-title">Related calibration evidence and methods</h2>
-    <div class="related-grid">
+    <div class="related-grid" data-reveal>
       <a class="related-card" href="finding-var-backtest.html"><span>Empirical finding</span><strong>Historical VaR coverage and independence failure</strong><em>Inspect breach frequency, exception clustering, and monitoring implications.</em></a>
       <a class="related-card" href="finding-diversification-regimes.html"><span>Empirical finding</span><strong>Correlation-regime dependence in diversification</strong><em>Review how risk estimates can fail when portfolio relationships shift.</em></a>
       <a class="related-card" href="method.html"><span>Methods</span><strong>Research validation and falsification standards</strong><em>Review holdouts, uncertainty reporting, falsification rules, and reproducibility standards.</em></a>
@@ -188,6 +188,8 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 <script src="js/common.js"></script><script src="js/risk.js"></script>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

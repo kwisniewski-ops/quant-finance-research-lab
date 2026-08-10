@@ -11,16 +11,16 @@
 <meta property="og:title" content="Market regimes as transmission systems">
 <meta property="og:description" content="A bounded historical framework connecting economic conditions, institutional response, market transmission, and fragile model assumptions.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/regime-atlas.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Market regimes as transmission systems">
 <meta name="twitter:description" content="A conditional historical framework for market transmission, institutional response, and model risk.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,7 +29,7 @@
   "alternativeHeadline": "Markets & Institutions Regime Atlas",
   "description": "A conditional historical framework for examining how activity, inflation, liquidity, and institutional response alter market transmission and model risk.",
   "url": "https://www.kylewisniewski.com/lab/regime-atlas.html",
-  "image": "https://www.kylewisniewski.com/lab/og-lab-v4.png",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v5.png",
   "datePublished": "2026-08-09",
   "dateModified": "2026-08-10",
   "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
@@ -38,7 +38,7 @@
   "about": ["economic regimes", "market liquidity", "institutional response", "model risk", "financial history"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -150,6 +150,40 @@
           </div>
           <p id="atlas-boundary">No option identifies the present state. Mixed or unclassified is a valid result whenever the evidence conflicts.</p>
         </div>
+
+
+        <figure class="atlas-plane-figure" id="transmission-plane">
+          <p class="figure-title">Transmission plane · six documented episodes placed by axis path</p>
+          <svg viewBox="0 0 720 430" role="img" aria-labelledby="plane-title plane-desc">
+            <title id="plane-title">Activity and inflation plane with six historical episodes</title>
+            <desc id="plane-desc">A two-axis plane: horizontal axis runs from activity weakening to activity strengthening, vertical axis from inflation pressure easing to inflation pressure building. Six dated episodes appear as marks; the 2020 to 2023 sequence appears as a trajectory moving from shutdown through reopening and inflation repricing into tightening. Positions are schematic readings of each episode's documented axis path.</desc>
+            <defs>
+              <marker id="plane-arrow" markerWidth="7" markerHeight="7" refX="5.4" refY="3.5" orient="auto"><path d="M0,0.6 L5.6,3.5 L0,6.4 Z" class="plane-arrow-head"/></marker>
+              <marker id="plane-arrow-warm" markerWidth="7" markerHeight="7" refX="5.4" refY="3.5" orient="auto"><path d="M0,0.6 L5.6,3.5 L0,6.4 Z" class="plane-arrow-head-warm"/></marker>
+            </defs>
+            <rect class="plane-quadrant" data-plane-state="weak-build" x="70" y="28" width="290" height="161"><title id="plane-quadrant-title-1">Activity weakens while inflation pressure builds</title></rect>
+            <rect class="plane-quadrant" data-plane-state="strong-build" x="360" y="28" width="290" height="161"><title id="plane-quadrant-title-2">Activity strengthens while inflation pressure builds</title></rect>
+            <rect class="plane-quadrant" data-plane-state="weak-ease" x="70" y="189" width="290" height="161"><title id="plane-quadrant-title-3">Activity weakens while inflation pressure eases</title></rect>
+            <rect class="plane-quadrant" data-plane-state="strong-ease" x="360" y="189" width="290" height="161"><title id="plane-quadrant-title-4">Activity strengthens while inflation pressure eases</title></rect>
+            <line class="plane-axis" x1="70" y1="350" x2="656" y2="350"/>
+            <line class="plane-axis" x1="70" y1="350" x2="70" y2="22"/>
+            <text class="plane-axis-label" x="656" y="372" text-anchor="end">activity strengthening</text>
+            <text class="plane-axis-label" x="70" y="372">activity weakening</text>
+            <text class="plane-axis-label" x="52" y="30" text-anchor="end" transform="rotate(-90 52 30)">inflation building</text>
+            <text class="plane-axis-label" x="52" y="350" transform="rotate(-90 52 350)">inflation easing</text>
+            <g class="plane-episode"><circle cx="345" cy="82" r="6"/><text x="335" y="70" text-anchor="end">1965–82 · persistent inflation</text></g>
+            <g class="plane-episode"><circle cx="505" cy="272" r="6"/><text x="516" y="290">1984–2007 · the long calm</text></g>
+            <g class="plane-episode"><circle cx="128" cy="208" r="6"/><text x="139" y="212">1997–99 · funding reversal</text></g>
+            <g class="plane-episode"><circle cx="118" cy="300" r="6"/><text x="129" y="318">2007–09 · balance-sheet crisis</text></g>
+            <g class="plane-episode"><circle cx="212" cy="262" r="6"/><text x="223" y="258">2010–12 · sovereign transmission</text></g>
+            <path class="plane-trajectory" d="M92,252 C260,238 470,240 552,212 C610,190 560,110 506,76 C470,54 420,84 388,112"/>
+            <g class="plane-episode is-hot"><circle cx="92" cy="252" r="5"/><text x="84" y="238">2020 shutdown</text></g>
+            <g class="plane-episode is-hot"><circle cx="552" cy="212" r="5"/><text x="562" y="228">reopening</text></g>
+            <g class="plane-episode is-hot"><circle cx="506" cy="76" r="5"/><text x="516" y="64">2021–22 repricing</text></g>
+            <g class="plane-episode is-hot"><circle cx="388" cy="112" r="5"/><text x="330" y="132">2022–23 tightening</text></g>
+            <text class="plane-note" x="656" y="404" text-anchor="end">Positions are schematic readings of each episode's documented axis path, not measured coordinates.</text>
+          </svg>
+        </figure>
 
         <div class="atlas-map" aria-describedby="atlas-map-help atlas-boundary">
           <p id="atlas-map-help" class="sr-only">Choose one activity and inflation combination, or leave the base state unclassified. Buttons are arranged with inflation building above inflation easing and activity weakening to the left of activity strengthening.</p>
@@ -299,7 +333,7 @@
       possible transmission channels, competing explanations, and a boundary. Episodes overlap
       because geographic and institutional questions do not share one universal clock.</p>
 
-      <div class="episode-list">
+      <div class="episode-list" data-reveal>
         <details class="episode-card">
           <summary><span><small>United States · 1965–1982</small><strong>What changes when inflation persists while policy faces conflicting objectives?</strong></span><span aria-hidden="true"></span></summary>
           <div class="episode-card__body">
@@ -511,6 +545,8 @@
 <script src="js/common.js"></script>
 <script src="js/reading.js"></script>
 <script src="js/regime-atlas.js"></script>
+<script src="js/atlas-plane.js"></script>
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

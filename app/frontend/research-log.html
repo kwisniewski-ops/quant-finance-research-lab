@@ -11,16 +11,16 @@
 <meta property="og:title" content="Research Record and Reproducibility Ledger">
 <meta property="og:description" content="The public research ledger for Quantitative Markets &amp; Institutions Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/research-log.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Research Record and Reproducibility Ledger">
 <meta name="twitter:description" content="The public research ledger for Quantitative Markets &amp; Institutions Lab: questions, claims, assumptions, evidence, failures, uncertainty, and reproducible artifacts.">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,7 +33,7 @@
   "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab"}
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -108,7 +108,7 @@
       <h2 id="research-pipeline-title">Registered program on regime transmission and model failure</h2>
       <p class="lede">Each item is proposed, not supported. The question, baseline, competing
       explanation, and publication gate are recorded before data selection or model comparison.</p>
-      <div class="tool-card-grid pipeline-grid">
+      <div class="tool-card-grid pipeline-grid" data-reveal>
         <article class="tool-card">
           <div class="tool-card-meta"><span>Program A · Valuation</span><span class="status status-proposed">Proposed</span></div>
           <h3>Discount-rate repricing versus cash-flow improvement</h3>
@@ -157,7 +157,7 @@
       <p class="pipeline-links"><a href="regime-atlas.html">Open the scenario framework</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab/blob/main/docs/research_pipeline.md">Read the complete pipeline specification</a></p>
     </section>
 
-    <nav class="ledger-index" aria-label="Research log entries">
+    <nav class="ledger-index" data-reveal aria-label="Research log entries">
       <p class="kicker">Ledger index</p>
       <ol>
         <li><a href="#pricing-validation"><span>01</span> Cross-method option-pricing validation <span class="status status-validated">Validated</span></a></li>
@@ -170,7 +170,7 @@
     </nav>
 
     <section class="ledger" aria-label="Research investigations">
-      <article class="ledger-entry" id="pricing-validation">
+      <article class="ledger-entry" data-reveal id="pricing-validation">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 01 · Numerical validation</span>
@@ -192,7 +192,7 @@
         </dl>
       </article>
 
-      <article class="ledger-entry" id="portfolio-construction">
+      <article class="ledger-entry" data-reveal id="portfolio-construction">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 02 · Portfolio construction</span>
@@ -216,7 +216,7 @@
         </dl>
       </article>
 
-      <article class="ledger-entry" id="stochastic-volatility">
+      <article class="ledger-entry" data-reveal id="stochastic-volatility">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 03 · Flagship derivatives study</span>
@@ -239,7 +239,7 @@
         </dl>
       </article>
 
-      <article class="ledger-entry" id="monte-carlo">
+      <article class="ledger-entry" data-reveal id="monte-carlo">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 04 · Numerical simulation</span>
@@ -262,7 +262,7 @@
         </dl>
       </article>
 
-      <article class="ledger-entry" id="factor-exposures">
+      <article class="ledger-entry" data-reveal id="factor-exposures">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 05 · Factor research</span>
@@ -285,7 +285,7 @@
         </dl>
       </article>
 
-      <article class="ledger-entry" id="market-risk">
+      <article class="ledger-entry" data-reveal id="market-risk">
         <header class="ledger-entry-head">
           <div>
             <span class="ledger-number">Investigation 06 · Market risk</span>
@@ -330,6 +330,8 @@ jupyter execute notebooks/01_asset_pricing_models.ipynb</code></pre>
 </main>
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

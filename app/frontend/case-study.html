@@ -12,17 +12,17 @@
 <meta property="og:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets &amp; Institutions Lab">
 <meta property="og:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
 <meta property="og:url" content="https://www.kylewisniewski.com/lab/case-study.html">
-<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Black–Scholes Assumptions and Stochastic Volatility — Quantitative Markets &amp; Institutions Lab">
 <meta name="twitter:description" content="Compare constant-volatility model implications with observed equity behavior and evaluate the changes introduced by stochastic volatility.">
 <meta name="twitter:url" content="https://www.kylewisniewski.com/lab/case-study.html">
-<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
-<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v5.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan from the lab&#x27;s simulation research beside the lab wordmark.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +39,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <section class="decision-summary" aria-labelledby="case-decision-title">
+    <section class="decision-summary" data-reveal aria-labelledby="case-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="case-decision-title">Treat Black–Scholes as a coordinate system, not a complete market description</h2>
       <div class="decision-grid">
@@ -161,7 +161,7 @@
       earnings, policy surprises, and liquidity spirals produce discontinuities no continuous
       diffusion generates. Each violation leaves a fingerprint in option prices, and the market,
       which prices repricing risk whether or not the model does, records them all in one curve:</p>
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-smile" class="chart" role="img" aria-label="Implied volatility skew compared with flat Black-Scholes volatility" aria-describedby="smile-chart-caption price-table"></div>
         <figcaption class="chart-caption" id="smile-chart-caption">Implied volatility across strikes for a 6-month option (S₀ = 100). The smile-consistent series uses points and a solid line; Black-Scholes uses a dashed flat line. The slider in section IV moves the dashed line, and the comparison table supplies the underlying values.</figcaption>
       </figure>
@@ -236,12 +236,12 @@
         19.2% is the ATM implied vol of the Heston surface — the "best single number" available.</p>
       </div>
 
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-prices" class="chart" role="img" aria-label="Black-Scholes and Heston call prices by strike" aria-describedby="price-chart-caption price-table"></div>
         <figcaption class="chart-caption" id="price-chart-caption">Six-month European call prices across strikes: precomputed Heston values shown as diamonds against live Black-Scholes at the chosen flat σ shown as a solid line.</figcaption>
       </figure>
 
-      <figure class="chart-figure">
+      <figure class="chart-figure" data-reveal>
         <div id="chart-diff" class="chart short" role="img" aria-label="Black-Scholes minus Heston pricing error by strike" aria-describedby="diff-chart-caption price-table"></div>
         <figcaption class="chart-caption" id="diff-chart-caption">Pricing error, BS minus Heston. Positive and negative bars use different fill patterns as well as different sides of zero. Matching at-the-money leaves the wings mispriced — cheap crash protection on the left, overpriced upside on the right.</figcaption>
       </figure>
@@ -311,7 +311,7 @@
     <section class="section related-section" aria-labelledby="case-related-title">
       <p class="kicker">Related research</p>
       <h2 id="case-related-title">Related empirical evidence and implementation</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-volatility-smile.html"><span>Empirical finding</span><strong>Constant-volatility dynamics under empirical rejection</strong><em>Inspect the volatility surface consequences for pricing and risk.</em></a>
         <a class="related-card" href="asset-pricing.html"><span>Model</span><strong>Closed-form and lattice valuation comparison</strong><em>Examine convergence, sensitivities, and early-exercise value.</em></a>
         <a class="related-card" href="method.html"><span>Methods</span><strong>Validation, realism, and model boundaries</strong><em>Review falsification, uncertainty, provenance, reproduction, and failure reporting.</em></a>
@@ -326,6 +326,8 @@
 <script src="js/common.js"></script>
 <script src="js/case-study.js"></script>
 <script src="js/reading.js"></script>
+
+<script src="js/reveal.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>
