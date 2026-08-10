@@ -85,8 +85,8 @@
       <header class="page-head">
         <p class="kicker">Empirical finding · Factor attribution</p>
         <h1>ETF factor exposures, alpha, and multiple-testing control</h1>
-        <p class="lede">Factor regressions test whether six style ETFs exhibit their advertised
-        exposures and whether unexplained return remains after multiple-testing correction.</p>
+        <p class="lede">Factor regressions tested six style ETFs for their advertised exposures. A
+        second stage asked what unexplained return survived multiple-testing correction.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
@@ -103,10 +103,10 @@
       <section class="decision-summary" aria-labelledby="bottom-line">
         <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">The advertised exposures were recovered; no alpha survived multiple-testing correction.</h2>
-        <p>MTUM loaded on momentum at β = 0.34 (<em>t</em> = 49), and VLUE loaded on value at
-        β = 0.31 (<em>t</em> = 29). QQQ's estimated +3.29% annualized alpha had a raw HAC
-        <em>p</em>-value of 0.024, but its Benjamini–Hochberg <em>q</em>-value was 0.147. Across the
-        six ETFs, no alpha survived the 5% false-discovery threshold.</p>
+        <p>MTUM loaded on momentum at β = 0.34 (<em>t</em> = 49). VLUE loaded on value at
+        β = 0.31 (<em>t</em> = 29). QQQ's estimated +3.29% annualized alpha carried a raw HAC
+        <em>p</em>-value of 0.024. Its Benjamini–Hochberg <em>q</em>-value was 0.147. Across the six
+        ETFs, no alpha survived the 5% false-discovery threshold.</p>
         <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
       </section>
 
@@ -175,28 +175,28 @@
       <section class="section prose-col" aria-labelledby="evidence">
         <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">The regression found product identity more clearly than unexplained return</h2>
-        <p>The study aligned 2,867 daily observations from 5 January 2015 through 29 May 2026. It
-        estimated six-factor time-series regressions for MTUM, VLUE, QUAL, IWM, USMV, and QQQ using
-        the Fama–French five factors plus momentum, with Newey–West HAC(5) intervals.</p>
-        <p>The named style loadings were economically meaningful and precisely estimated. The alpha
-        tests told a different story: after Holm and Benjamini–Hochberg corrections across six
-        simultaneous hypotheses, none met a 5% false-discovery threshold. This does not mean the
-        funds delivered nothing; it means the measured return was explained primarily as exposure
-        under this factor model.</p>
-        <p>A chronological 50/50 holdout froze first-half coefficients and applied them to the second
-        half. Holdout R² fell by 0.4 to 29.6 percentage points across the ETFs, with USMV showing the
-        largest decay. Exposure estimates can remain useful while still being state-dependent.</p>
+        <p>The study aligned 2,867 daily observations from 5 January 2015 through 29 May 2026. It ran
+        six-factor time-series regressions for MTUM, VLUE, QUAL, IWM, USMV, and QQQ. The factors were
+        the Fama–French five plus momentum, estimated with Newey–West HAC(5) intervals.</p>
+        <p>The named style loadings came out economically meaningful and precisely estimated. The
+        alpha tests went the other way. Holm and Benjamini–Hochberg corrections ran across six
+        simultaneous hypotheses, and none met a 5% false-discovery threshold. That does not mean the
+        funds delivered nothing. It means the measured return read mainly as exposure under this
+        factor model.</p>
+        <p>A chronological 50/50 holdout froze the first-half coefficients and applied them to the
+        second half. Holdout R² fell by 0.4 to 29.6 percentage points across the ETFs. USMV decayed
+        most. Exposure estimates can stay useful and still depend on the state.</p>
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
         <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Separate exposure, inference, and temporal stability</h2>
         <ul class="refs">
-          <li>Test whether a branded ETF has the intended sign and economically meaningful magnitude on its named factor.</li>
+          <li>Check the intended sign and an economically meaningful loading on a branded ETF's named factor.</li>
           <li>Correct alpha inference for the number of products or strategies searched.</li>
           <li>Use heteroskedasticity- and autocorrelation-consistent intervals for daily return regressions.</li>
           <li>Freeze coefficients into a chronological holdout instead of reporting full-sample fit alone.</li>
-          <li>Monitor rolling betas because a full-sample coefficient is a time average, not a permanent product identity.</li>
+          <li>Monitor rolling betas. A full-sample coefficient is a time average, not a permanent product identity.</li>
         </ul>
       </section>
 
@@ -204,7 +204,7 @@
         <p class="kicker">04 · Identification and limits</p>
         <h2 id="limitations">Alpha is always conditional on the model used to explain it</h2>
         <ul class="refs">
-          <li>The selected factor menu defines the alpha left behind; omitted technology, industry, or intangible-capital effects can matter.</li>
+          <li>The chosen factor menu defines the leftover alpha. Omitted technology, industry, or intangible-capital effects can matter.</li>
           <li>Fama–French factor portfolios are paper long–short portfolios, not costless tradable products.</li>
           <li>Eleven years remains one historical sample, including an unusual growth-over-value period.</li>
           <li>The chronological 50/50 split is one holdout path rather than repeated rolling-origin evaluation.</li>

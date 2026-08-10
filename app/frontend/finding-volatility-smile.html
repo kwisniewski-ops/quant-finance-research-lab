@@ -85,8 +85,8 @@
       <header class="page-head">
         <p class="kicker">Empirical finding · Derivatives and model risk</p>
         <h1>Constant-volatility pricing under empirical market behavior</h1>
-        <p class="lede">Observed volatility variation, tail behavior, and return dependence were
-        inconsistent with the tested constant-volatility model.</p>
+        <p class="lede">The tested constant-volatility model did not match the observed sample.
+        Volatility moved, tails ran fat, and return magnitudes persisted.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
@@ -103,10 +103,11 @@
       <section class="decision-summary" aria-labelledby="bottom-line">
         <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">The tested Black–Scholes dynamics were inconsistent with the observed sample.</h2>
-        <p>SPY 21-day realized volatility ranged from roughly 3% to 93%, daily excess kurtosis was
-        about 14, the worst day was near a 10σ event under a Gaussian yardstick, and lag-1 absolute-
-        return autocorrelation was about 0.35. An equity-like, Feller-satisfying Heston specification
-        generated a short-dated implied-volatility skew from roughly 25% to 16% across strikes.</p>
+        <p>SPY 21-day realized volatility ranged from roughly 3% to 93%. Daily excess kurtosis was
+        about 14. Under a Gaussian yardstick, the worst day sat near a 10σ event. Lag-1
+        absolute-return autocorrelation was about 0.35. An equity-like, Feller-satisfying Heston
+        specification generated a short-dated implied-volatility skew from roughly 25% to 16% across
+        strikes.</p>
         <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
@@ -161,27 +162,27 @@
         <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">The rejection came from several independent fingerprints</h2>
         <p>The study measured a frozen SPY adjusted-close sample from January 2015 through July 2026.
-        Under constant-volatility geometric Brownian motion, rolling volatility should fluctuate
-        around a stable level, standardized returns should be approximately Gaussian, and return
-        magnitudes should not remain autocorrelated. The sample contradicted each fingerprint.</p>
-        <p>Direction remained difficult to predict, but magnitude persisted: lag-1 autocorrelation
-        of absolute returns was about 0.35 and remained present at longer lags. Fat tails and a nearly
-        thirty-fold realized-volatility range made a single constant parameter an inadequate
-        description of the observed return process.</p>
-        <p>The Heston result is a mechanism demonstration. Negative price–volatility correlation and
-        stochastic variance can generate an equity-like strike skew that a single Black–Scholes
-        volatility cannot. The parameters were illustrative, not calibrated to a dated live option chain.</p>
+        Constant-volatility geometric Brownian motion leaves three fingerprints. Rolling volatility
+        should fluctuate around a stable level. Standardized returns should be approximately Gaussian.
+        Return magnitudes should not stay autocorrelated. The sample contradicted each one.</p>
+        <p>Direction stayed hard to predict, but magnitude persisted. Lag-1 autocorrelation of
+        absolute returns was about 0.35, and it survived at longer lags. Fat tails ran alongside a
+        nearly thirty-fold realized-volatility range. A single constant parameter describes that
+        observed return process poorly.</p>
+        <p>The Heston result demonstrates a mechanism. Negative price–volatility correlation and
+        stochastic variance can generate an equity-like strike skew. A single Black–Scholes volatility
+        cannot. The parameters were illustrative, not calibrated to a dated live option chain.</p>
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
         <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Separate a useful quoting convention from a claim about market dynamics</h2>
         <ul class="refs">
-          <li>Inspect implied volatility across both strike and maturity instead of applying one volatility to every contract.</li>
+          <li>Read implied volatility across strike and maturity instead of applying one number everywhere.</li>
           <li>Monitor realized volatility and return-magnitude persistence as state variables rather than constants.</li>
           <li>Stress hedge and valuation outputs to skew, term structure, jumps, and volatility-of-volatility.</li>
           <li>Validate a richer model against a dated option surface before treating its calibration as empirical evidence.</li>
-          <li>Keep model-risk language attached to Greeks and prices; parameter precision does not remove specification error.</li>
+          <li>Attach model-risk language to Greeks and prices. Parameter precision does not remove specification error.</li>
         </ul>
       </section>
 

@@ -85,8 +85,8 @@
       <header class="page-head">
         <p class="kicker">Numerical finding · Simulation methods</p>
         <h1>Monte Carlo convergence, discretization bias, and variance reduction</h1>
-        <p class="lede">Simulation quality depends on measured sampling error, discretization bias,
-        and variance reduction—not path count alone.</p>
+        <p class="lede">Path count alone does not settle simulation quality. Measured sampling error,
+        discretization bias, and variance reduction do.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
@@ -104,9 +104,9 @@
         <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">“Enough” means the reported error is small enough for the decision—not that a round path count was reached.</h2>
         <p>Independent replications recovered the theoretical N⁻¹ᐟ² error law within replication
-        noise. Exact GBM transitions remained unbiased across step counts, Euler bias contracted as
-        the time step shrank, and antithetic pairing reduced empirical standard error by about 30%
-        at the same 20,000-path budget.</p>
+        noise. Exact GBM transitions stayed unbiased across step counts. Euler bias contracted as the
+        time step shrank. Antithetic pairing cut empirical standard error by about 30% at the same
+        20,000-path budget.</p>
         <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
@@ -164,17 +164,18 @@
       <section class="section prose-col" aria-labelledby="evidence">
         <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">Sampling error and scheme bias behaved as theory requires</h2>
-        <p>The experiments were fully synthetic so known analytical moments and prices served as
+        <p>The experiments were fully synthetic, so known analytical moments and prices served as
         benchmarks. Independent replications at increasing path counts produced a log–log RMSE slope
-        within noise of −0.5. Reducing error by a factor of ten therefore requires roughly one hundred
-        times as many independent paths.</p>
-        <p>Exact transition schemes for GBM avoided time-step bias at observation points, while Euler
-        error shrank with Δt. This distinction is essential: adding paths reduces sampling error but
-        cannot repair a biased discretization scheme.</p>
-        <p>At an equal 20,000-path budget, antithetic normal draws reduced empirical standard error by
-        about 30% across 30 independent replications. The gain is payoff-dependent; it is not a
-        universal multiplier. The notebook then applies simulation where path dependence matters: a
-        discretely monitored barrier option whose value depends on monitoring frequency.</p>
+        within noise of −0.5. Cutting error tenfold therefore takes roughly one hundred times as many
+        independent paths.</p>
+        <p>Exact transition schemes for GBM avoided time-step bias at observation points. Euler error
+        shrank with Δt. That distinction matters. Adding paths reduces sampling error. It cannot
+        repair a biased discretization scheme.</p>
+        <p>At an equal 20,000-path budget, antithetic normal draws cut empirical standard error by
+        about 30%. The reduction held across 30 independent replications. The gain depends on the
+        payoff and is not a universal multiplier. The notebook then applies simulation where path
+        dependence matters. Its example is a discretely monitored barrier option, whose value moves
+        with monitoring frequency.</p>
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
@@ -183,9 +184,9 @@
         <ul class="refs">
           <li>Report a standard error or confidence interval beside every Monte Carlo point estimate.</li>
           <li>Test convergence across independent replications, not only with a single seeded run.</li>
-          <li>Budget discretization bias by step refinement separately from statistical error by path count.</li>
+          <li>Budget discretization bias by refining steps; budget statistical error by adding paths.</li>
           <li>Use exact transitions where available, and evaluate variance reduction before buying more compute.</li>
-          <li>Match the method to the contract: closed forms where they apply, simulation where path details change value.</li>
+          <li>Match the method to the contract: closed forms where they apply, simulation where paths change value.</li>
         </ul>
       </section>
 
@@ -193,7 +194,7 @@
         <p class="kicker">04 · Identification and limits</p>
         <h2 id="limitations">A reproduced convergence law does not validate every simulation</h2>
         <ul class="refs">
-          <li>Every Monte Carlo estimate remains a random draw; reproducibility by seed does not eliminate uncertainty.</li>
+          <li>Every Monte Carlo estimate is a random draw. A fixed seed reproduces it without removing uncertainty.</li>
           <li>CIR and Heston discretization bias was not fully budgeted by step-halving in this study.</li>
           <li>Antithetics can be weak for strongly convex or non-monotone payoffs.</li>
           <li>Regime-switching parameters were chosen rather than empirically estimated.</li>

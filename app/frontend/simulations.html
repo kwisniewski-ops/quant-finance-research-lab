@@ -93,18 +93,18 @@
     <div class="page-head">
       <p class="kicker">Quantitative model · Stochastic processes</p>
       <h1>Stochastic-process simulation across diffusion, jumps, volatility, and regime switching</h1>
-      <p class="lede">Five model classes are compared under a common one-year setup to identify
-      which forms of market behavior each specification can and cannot represent.</p>
+      <p class="lede">The model runs five process classes under a common one-year setup. The
+      comparison shows what each specification can and cannot represent.</p>
     </div>
 
     <section class="decision-summary" data-reveal aria-labelledby="simulation-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="simulation-decision-title">The process determines which risks a scenario set can represent</h2>
       <div class="decision-grid">
-        <div><h3>Interpretation</h3><p>A simulation is a conditional experiment, not a forecast. GBM, jumps, stochastic volatility, mean reversion, and regimes produce different tails and dependencies because they encode different hypotheses.</p></div>
-        <div><h3>Decision context</h3><p>Select the process according to the risk being evaluated, then budget sampling and discretization error before using simulated outcomes for pricing, stress, or allocation.</p></div>
-        <div><h3>Intended analytical use</h3><p>Quantitative developers, risk and derivatives analysts, model validators, and quantitative-finance researchers studying stochastic dynamics.</p></div>
-        <div><h3>Principal limitation</h3><p>The browser explorer uses 50 one-year paths and Euler-type discretization with illustrative parameters. A fixed seed makes a run repeatable; it does not make the scenario representative.</p></div>
+        <div><h3>Interpretation</h3><p>A simulation is a conditional experiment, not a forecast. GBM, jumps, stochastic volatility, mean reversion, and regimes encode different hypotheses. They therefore produce different tails and dependencies.</p></div>
+        <div><h3>Decision context</h3><p>Select the process according to the risk being evaluated. Budget sampling and discretization error before using simulated outcomes for pricing, stress, or allocation.</p></div>
+        <div><h3>Intended analytical use</h3><p>Quantitative developers, risk and derivatives analysts, model validators, and researchers use it to study stochastic dynamics.</p></div>
+        <div><h3>Principal limitation</h3><p>The browser explorer uses 50 one-year paths and Euler-type discretization with illustrative parameters. A fixed seed makes a run repeatable. It does not make the scenario representative.</p></div>
       </div>
     </section>
 
@@ -143,7 +143,7 @@
         <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="paths-chart-title">Simulated process paths</h2>
           <div id="chart-paths" class="chart tall" role="img" aria-labelledby="paths-chart-title" aria-describedby="paths-chart-caption"></div>
-          <figcaption class="chart-caption" id="paths-chart-caption">Fifty simulated paths. Individual paths use thin dotted lines; the cross-sectional mean uses a thick solid line.</figcaption>
+          <figcaption class="chart-caption" id="paths-chart-caption">Fifty simulated paths. Individual paths use thin dotted lines. The cross-sectional mean uses a thick solid line.</figcaption>
           <details class="chart-data">
             <summary>View representative mean-path data</summary>
             <div class="table-scroll" id="mean-path-data-table"></div>
@@ -173,11 +173,11 @@
       <h2>Geometric Brownian motion</h2>
       <div class="math-block">$$dS_t = \mu S_t\,dt + \sigma S_t\,dW_t
       \qquad\Longrightarrow\qquad S_t = S_0 \exp\!\left[\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right]$$</div>
-      <p><strong>Applications.</strong> The default model for equity prices; the substrate of
+      <p><strong>Applications.</strong> The default model for equity prices. It is the substrate of
       Black-Scholes and of most textbook portfolio mathematics.</p>
       <p><strong>Captured dynamics.</strong> Proportional randomness (returns, not price changes, are
-      the natural unit), positivity of prices, and compounding — including the subtle
-      \(-\tfrac{1}{2}\sigma^2\) drag that separates median from mean growth.</p>
+      the natural unit), positivity of prices, and compounding. That includes the subtle
+      \(-\tfrac{1}{2}\sigma^2\) drag separating median from mean growth.</p>
       <p><strong>Omitted dynamics.</strong> Everything the rest of this page exists for: volatility is
       constant, returns are Gaussian and independent, and nothing ever jumps. Real markets violate
       all three, persistently.</p>
@@ -192,9 +192,9 @@
       <p><strong>Captured dynamics.</strong> Mean reversion — the pull toward \(\theta\) at speed
       \(\kappa\), with a stationary distribution \(\mathcal{N}(\theta, \sigma^2/2\kappa)\). The
       half-life of a shock is \(\ln 2 / \kappa\), a genuinely useful number in trading.</p>
-      <p><strong>Omitted dynamics.</strong> Gaussian increments allow negative values (fatal for
-      nominal rates near zero, tolerable for spreads), the reversion speed is assumed constant, and
-      the level it reverts to must actually exist — many "mean-reverting" spreads are regimes in
+      <p><strong>Omitted dynamics.</strong> Gaussian increments allow negative values, fatal for
+      nominal rates near zero and tolerable for spreads. The reversion speed is assumed constant.
+      The level it reverts to must actually exist. Many "mean-reverting" spreads are regimes in
       disguise, and OU is silent about the regime change that ends the trade.</p>
     </section>
 
@@ -206,13 +206,13 @@
       <p><strong>Applications.</strong> Pricing short-dated options where crash risk dominates;
       credit and event-risk modeling; any setting where the smile is steep at short maturities.</p>
       <p><strong>Captured dynamics.</strong> Discontinuity. A Poisson process \(N_t\) with intensity
-      \(\lambda\) fires jumps of lognormal size \(J\), producing genuine fat tails and — with
-      \(\mu_J < 0\) — the negative skew that equity markets exhibit. It explains why deep
+      \(\lambda\) fires jumps of lognormal size \(J\). That produces genuine fat tails, and with
+      \(\mu_J < 0\) the negative skew that equity markets exhibit. It explains why deep
       out-of-the-money puts cost "too much" under Black-Scholes.</p>
       <p><strong>Omitted dynamics.</strong> Jump risk here is diversifiable and independent of the
-      diffusion; in reality crashes arrive precisely when volatility is already elevated, and jump
-      intensity is anything but constant. Volatility between jumps is still flat — Merton fixes the
-      tails while leaving clustering unexplained.</p>
+      diffusion. In reality crashes arrive precisely when volatility is already elevated, and jump
+      intensity is anything but constant. Volatility between jumps is still flat. Merton fixes the
+      tails and leaves clustering unexplained.</p>
     </section>
 
     <section class="section prose-col" id="prose-heston" hidden>
@@ -222,16 +222,16 @@
       dv_t = \kappa(\theta - v_t)\,dt + \xi\sqrt{v_t}\,dW_t^v, \qquad
       d\langle W^S, W^v\rangle_t = \rho\,dt$$</div>
       <p><strong>Applications.</strong> The workhorse stochastic-volatility model for equity
-      index options, chosen largely because its characteristic function is known in closed form and
-      whole smiles can be calibrated quickly.</p>
+      index options. Its characteristic function is known in closed form, so whole smiles calibrate
+      quickly.</p>
       <p><strong>Captured dynamics.</strong> Variance as a mean-reverting random process (CIR
-      dynamics), volatility clustering, and — through \(\rho &lt; 0\) — the leverage effect: prices
-      fall as volatility rises, generating the implied-vol skew. Simulated here with a
-      full-truncation Euler scheme, which floors \(v_t\) at zero inside the square roots so the
+      dynamics), volatility clustering, and the leverage effect through \(\rho &lt; 0\). Prices
+      fall as volatility rises, which generates the implied-vol skew. Simulation uses a
+      full-truncation Euler scheme. That scheme floors \(v_t\) at zero inside the square roots, so the
       discretized variance cannot go negative.</p>
-      <p><strong>Omitted dynamics.</strong> No jumps, so very short-dated smiles are too flat; a
-      single volatility factor, so the term structure of skew is too rigid; and calibrated
-      parameters drift over time, indicating residual misspecification. The
+      <p><strong>Omitted dynamics.</strong> No jumps, so very short-dated smiles are too flat. One
+      volatility factor, so the term structure of skew is too rigid. Calibrated
+      parameters also drift over time, which indicates residual misspecification. The
       <a href="case-study.html">case study</a> treats this in depth.</p>
     </section>
 
@@ -245,10 +245,10 @@
       <p><strong>Captured dynamics.</strong> Long low-volatility intervals with positive drift,
       interrupted by high-volatility intervals with weaker returns. The two-state model reproduces
       fat tails and clustering as an
-      <em>emergent mixture</em> — no exotic distributions required; each path carries its own
+      <em>emergent mixture</em>, with no exotic distributions required. Each path carries its own
       hidden regime sequence.</p>
-      <p><strong>Omitted dynamics.</strong> The chain's transition probabilities are fixed and the
-      regimes are labeled in hindsight; real regime identification is only obvious after the fact.
+      <p><strong>Omitted dynamics.</strong> The chain's transition probabilities are fixed, and the
+      regimes are labeled in hindsight. Real regime identification is only obvious after the fact.
       The model represents regime-dependent return behavior without identifying a causal mechanism.</p>
     </section>
 

@@ -85,7 +85,7 @@
       <header class="page-head">
         <p class="kicker">Empirical finding · Market-risk validation</p>
         <h1>Historical VaR under coverage and independence tests</h1>
-        <p class="lede">A historical 95% VaR forecast produced too many breaches, and the breaches
+        <p class="lede">A historical 95% VaR forecast produced too many breaches. The breaches also
         clustered instead of arriving independently.</p>
       </header>
 
@@ -103,10 +103,10 @@
       <section class="decision-summary" aria-labelledby="bottom-line">
         <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">The historical VaR forecast failed on both breach frequency and breach timing.</h2>
-        <p>Across 2,140 one-step forecasts, the rolling 500-observation historical 95% VaR model
-        recorded 135 breaches versus 107 expected: a 6.31% breach rate. Kupiec coverage and
-        Christoffersen independence and conditional-coverage tests all rejected calibration at the
-        5% level. The misses were too frequent and clustered.</p>
+        <p>The rolling 500-observation historical 95% VaR model made 2,140 one-step forecasts. It
+        recorded 135 breaches against 107 expected, a 6.31% breach rate. Kupiec coverage,
+        Christoffersen independence, and conditional-coverage tests all rejected calibration at the
+        5% level. The misses came too often, and they came together.</p>
         <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 3 August 2026</small></p>
       </section>
 
@@ -160,28 +160,29 @@
       <section class="section prose-col" aria-labelledby="evidence">
         <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">Three tests separate frequency error from clustered failure</h2>
-        <p>The study used a look-ahead-free, monthly rebalanced strategic ETF portfolio with 10 basis
-        points of proportional turnover cost. After warm-up, it produced 2,640 net daily returns and
-        2,140 forecasts. Each VaR estimate used only the preceding 500 observations.</p>
+        <p>The evidence comes from one forecast record. The portfolio was a strategic ETF book,
+        rebalanced monthly and built without look-ahead. It paid 10 basis points of proportional
+        turnover cost. After warm-up it produced 2,640 net daily returns and 2,140 forecasts. Each
+        VaR estimate used only the preceding 500 observations.</p>
         <p>The unconditional-coverage test rejected the stated 5% breach probability (Kupiec
         <em>p</em> = 0.0075). The independence test rejected non-clustered arrivals (Christoffersen
         <em>p</em> = 0.00025). The combined conditional-coverage test also rejected
-        (<em>p</em> = 0.000035). Reporting all three matters: the model failed both in how often and
-        in how consecutively losses crossed the threshold.</p>
-        <p>The study's full-sample historical VaR95 point estimate was 1.079%, with a 95% moving-block
-        bootstrap interval of 0.930%–1.219%. ES95 was 1.718%, with an interval of 1.421%–2.126%.
-        Those intervals quantify estimator uncertainty; they do not rescue a rejected forecast process.</p>
+        (<em>p</em> = 0.000035). All three belong in the report. The model missed too often, and its
+        misses ran back to back.</p>
+        <p>The full-sample historical VaR95 point estimate was 1.079%. Its 95% moving-block bootstrap
+        interval ran 0.930%–1.219%. ES95 was 1.718%, with an interval of 1.421%–2.126%. Those
+        intervals measure estimator uncertainty. They do not rescue a rejected forecast process.</p>
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
         <p class="kicker">03 · Decision consequences</p>
         <h2 id="practice">Backtest the forecast process, not just the latest risk number</h2>
         <ul class="refs">
-          <li>Test unconditional coverage and exception independence separately; a correct average rate can still hide clustering.</li>
-          <li>Treat an exception cluster as information about regime adaptation, not as a sequence of unrelated surprises.</li>
-          <li>Report expected shortfall beside VaR so the severity beyond the threshold remains visible.</li>
-          <li>Use date-fixed scenarios and correlation stresses for risks a rolling empirical quantile may adapt to slowly.</li>
-          <li>Preserve costs, timing, and no-look-ahead controls in the backtest that generates the evidence.</li>
+          <li>Test unconditional coverage and exception independence separately. A correct average rate can hide clustering.</li>
+          <li>Treat an exception cluster as information about regime adaptation, not as unrelated surprises.</li>
+          <li>Report expected shortfall beside VaR so the severity beyond the threshold stays visible.</li>
+          <li>Add date-fixed scenarios and correlation stresses for risks a rolling empirical quantile may adapt to slowly.</li>
+          <li>Keep costs, timing, and no-look-ahead controls inside the backtest that produces the evidence.</li>
         </ul>
       </section>
 
@@ -190,8 +191,8 @@
         <h2 id="limitations">A rejection is specific evidence, not a universal verdict on VaR</h2>
         <ul class="refs">
           <li>The bootstrap conditions on one realized history, and the 21-day block length is judgmental.</li>
-          <li>Historical quantiles can adapt slowly after regime changes; other windows and weighting schemes may behave differently.</li>
-          <li>The portfolio uses fixed strategic weights with monthly rebalancing; dynamic de-risking was not modeled.</li>
+          <li>Historical quantiles can adapt slowly after regime changes. Other windows and weightings may behave differently.</li>
+          <li>The portfolio holds fixed strategic weights and rebalances monthly. Dynamic de-risking was not modeled.</li>
           <li>Close-to-close ETF prices omit intraday liquidity and execution stress.</li>
           <li>Historical scenarios replay known crises and do not bound future loss paths.</li>
         </ul>
@@ -212,8 +213,8 @@
         <h2 id="regime-lens-var">Clustered breaches establish calibration failure, not its cause</h2>
         <dl class="regime-lens__evidence">
           <div><dt>Lab measurement</dt><dd>The rolling historical 95% VaR model produced 135 breaches against 107 expected across 2,140 forecasts. Coverage, independence, and conditional-coverage tests all rejected calibration. Its 500-observation window changes only as new returns enter it.</dd></div>
-          <div><dt>Institutional record</dt><dd>The sample contains a period in which inflation, policy rates, Treasury yields, equity valuations, and cross-asset correlation changed together.</dd></div>
-          <div><dt>Interpretive synthesis</dt><dd>An exception cluster should trigger a review of the return distribution, dependence structure, volatility process, and scenarios outside the window. Regime change is one possible explanation, not a state measured by the backtest.</dd></div>
+          <div><dt>Institutional record</dt><dd>The sample spans a period when inflation, policy rates, Treasury yields, equity valuations, and cross-asset correlation all changed together.</dd></div>
+          <div><dt>Interpretive synthesis</dt><dd>An exception cluster should prompt a review of the return distribution, dependence structure, and volatility process. It should also prompt scenarios drawn from outside the window. Regime change is one possible explanation, not a state the backtest measures.</dd></div>
         </dl>
         <p class="regime-lens__boundary">Causal boundary: the backtests identify frequency error and dependence among exceptions. They do not identify inflation, monetary policy, correlation reversal, or another macro factor as the cause.</p>
         <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-risk" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:risk">Examine the calibration regime <span aria-hidden="true">→</span></a>
@@ -223,7 +224,7 @@
         <p class="kicker">Related research</p>
         <h2 id="related">Distributional and correlation implications of exception clustering</h2>
         <div class="related-grid" data-reveal>
-          <a href="finding-diversification-regimes.html"><span>Correlation stress</span><strong>Stock–bond diversification across changing correlation environments</strong><em>Inspect how a sign change in stock–bond correlation alters the portfolio's hidden assumption.</em></a>
+          <a href="finding-diversification-regimes.html"><span>Correlation stress</span><strong>Stock–bond diversification across changing correlation environments</strong><em>A sign change in stock–bond correlation moves the portfolio's hidden assumption.</em></a>
           <a href="finding-volatility-smile.html"><span>Distribution risk</span><strong>Non-Gaussian returns and volatility clustering</strong><em>Observed tails and volatility clustering expose the fragility of stationary loss histories.</em></a>
         </div>
       </section>
