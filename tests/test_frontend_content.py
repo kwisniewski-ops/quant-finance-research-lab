@@ -21,10 +21,10 @@ ATLAS = FRONTEND / "regime-atlas.html"
 BRAND_NAME = "Quantitative Markets & Institutions Lab"
 BRAND_NAME_HTML = "Quantitative Markets &amp; Institutions Lab"
 OLD_BRAND_NAME = "Quantitative Markets Research Lab"
-SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v4.png"
+SOCIAL_IMAGE_URL = "https://www.kylewisniewski.com/lab/og-lab-v5.png"
 SOCIAL_IMAGE_ALT_HTML = (
-    "Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, "
-    "and institutions, shown beside a market chart and open research notebook."
+    "Quantitative Markets &amp; Institutions Lab: a seeded Monte Carlo path fan "
+    "from the lab&#x27;s simulation research beside the lab wordmark."
 )
 REGIME_LENSES = {
     "finding-diversification-regimes.html": "#dossier-diversification",
@@ -101,7 +101,7 @@ def test_approved_lab_identity_is_consistent_across_public_surfaces() -> None:
             assert f'<meta property="og:image:alt" content="{SOCIAL_IMAGE_ALT_HTML}">' in source, page.name
             assert f'<meta name="twitter:image:alt" content="{SOCIAL_IMAGE_ALT_HTML}">' in source, page.name
 
-    image = FRONTEND / "og-lab-v4.png"
+    image = FRONTEND / "og-lab-v5.png"
     header = image.read_bytes()[:24]
     assert header[:8] == b"\x89PNG\r\n\x1a\n"
     assert int.from_bytes(header[16:20], "big") == 1200
