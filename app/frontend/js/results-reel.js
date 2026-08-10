@@ -1,9 +1,12 @@
 /* ============================================================
-   Results reel — center stage.
-   The current study sits centered with its neighbors peeking,
-   dimmed, at both edges. Arrows flank the stage at mid-height;
-   a dash rail below shows one dash per study. Clicking a dimmed
-   neighbor brings it to center instead of following its link.
+   Results reel — center stage, circular.
+   The current study sits centered with neighbors peeking at both
+   edges. The reel loops: a clone of the last study sits before the
+   first and a clone of the first sits after the last; when the
+   scroller settles on a clone it teleports invisibly to the real
+   slide, so both directions scroll forever. Arrows flank the
+   stage; a dash rail below maps the set. Clicking a dimmed
+   neighbor centers it instead of following its link.
    Progressive enhancement: without JS the cards simply stack.
    Honors reduced motion (no scale, instant jumps).
    ============================================================ */
@@ -20,10 +23,10 @@
     if (!scroller) return;
     var cards = Array.prototype.slice.call(scroller.children);
     if (cards.length < 2) return;
+    var N = cards.length;
 
     root.classList.add("reel-ready");
 
-    /* stage wrapper so the arrows can overlay the scroller */
     var stage = document.createElement("div");
     stage.className = "reel-stage";
     scroller.parentNode.insertBefore(stage, scroller);
@@ -37,31 +40,50 @@
       card.classList.remove("reveal", "is-in");
       card.removeAttribute("data-reveal");
       card.setAttribute("aria-roledescription", "slide");
-      card.setAttribute("aria-label", "Result " + (i + 1) + " of " + cards.length);
+      card.setAttribute("aria-label", "Result " + (i + 1) + " of " + N);
     });
 
-    var index = 0;
-    var pending = null;
-
-    function centerOf(card) {
-      return card.offsetLeft + card.offsetWidth / 2;
+    /* circular seam: clone of the last study before the first,
+       clone of the first after the last */
+    function makeClone(source) {
+      var c = source.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      c.setAttribute("data-reel-clone", "");
+      c.removeAttribute("aria-label");
+      Array.prototype.forEach.call(c.querySelectorAll("a, button"), function (el) {
+        el.setAttribute("tabindex", "-1");
+      });
+      return c;
     }
+    var headClone = makeClone(cards[N - 1]);
+    var tailClone = makeClone(cards[0]);
+    scroller.insertBefore(headClone, cards[0]);
+    scroller.appendChild(tailClone);
 
-    function goTo(i, behavior) {
-      var target = Math.max(0, Math.min(cards.length - 1, i));
+    /* positions run 0..N+1; position p shows real study (p-1+N)%N */
+    var slides = [headClone].concat(cards, [tailClone]);
+    function realOf(pos) { return (pos - 1 + N) % N; }
+
+    var pos = 1;          /* current position (may briefly be a clone) */
+    var pending = null;
+    var dragging = false;
+
+    function centerOf(slide) { return slide.offsetLeft + slide.offsetWidth / 2; }
+
+    function goToPos(p, behavior) {
+      var target = Math.max(0, Math.min(slides.length - 1, p));
       pending = target;
       scroller.scrollTo({
-        left: centerOf(cards[target]) - scroller.clientWidth / 2,
+        left: centerOf(slides[target]) - scroller.clientWidth / 2,
         behavior: behavior || (reduced ? "auto" : "smooth")
       });
     }
 
     function step(dir) {
-      var from = pending === null ? index : pending;
-      goTo(from + dir);
+      var from = pending === null ? pos : pending;
+      goToPos(from + dir);
     }
 
-    /* flanking arrows */
     function makeFlank(dir, label, glyph, cls) {
       var b = document.createElement("button");
       b.type = "button";
@@ -72,10 +94,9 @@
       stage.appendChild(b);
       return b;
     }
-    var prev = makeFlank(-1, "Previous result", "←", "reel-flank--prev");
-    var next = makeFlank(1, "Next result", "→", "reel-flank--next");
+    makeFlank(-1, "Previous result", "←", "reel-flank--prev");
+    makeFlank(1, "Next result", "→", "reel-flank--next");
 
-    /* dash rail + counter */
     var rail = document.createElement("div");
     rail.className = "reel-rail";
     var dashes = cards.map(function (card, i) {
@@ -84,7 +105,7 @@
       d.className = "reel-dash";
       var title = card.querySelector("h3");
       d.setAttribute("aria-label", "Go to result " + (i + 1) + (title ? ": " + title.textContent : ""));
-      d.addEventListener("click", function () { goTo(i); });
+      d.addEventListener("click", function () { goToPos(i + 1); });
       rail.appendChild(d);
       return d;
     });
@@ -94,36 +115,57 @@
     rail.appendChild(counter);
     stage.parentNode.insertBefore(rail, stage.nextSibling);
 
-    /* a click on a dimmed neighbor centers it rather than leaving the page */
-    cards.forEach(function (card, i) {
-      card.addEventListener("click", function (e) {
-        if (i !== index) {
+    /* clicking anything not centered brings it to center; clones
+       always redirect the click into a recenter */
+    slides.forEach(function (slide, p) {
+      slide.addEventListener("click", function (e) {
+        var isClone = slide.hasAttribute("data-reel-clone");
+        if (p !== pos || isClone) {
           e.preventDefault();
-          goTo(i);
+          goToPos(p);
         }
       });
     });
+
+    /* never teleport mid-gesture */
+    ["pointerdown", "touchstart"].forEach(function (ev) {
+      scroller.addEventListener(ev, function () { dragging = true; }, { passive: true });
+    });
+    ["pointerup", "pointercancel", "touchend", "touchcancel"].forEach(function (ev) {
+      window.addEventListener(ev, function () {
+        dragging = false;
+        window.setTimeout(sync, 80);
+      }, { passive: true });
+    });
+
+    function paint(best) {
+      var real = realOf(best);
+      counter.textContent =
+        (real + 1 < 10 ? "0" : "") + (real + 1) + " / " + (N < 10 ? "0" : "") + N;
+      dashes.forEach(function (d, i) {
+        if (i === real) d.setAttribute("aria-current", "true");
+        else d.removeAttribute("aria-current");
+      });
+    }
 
     function sync() {
       var mid = scroller.scrollLeft + scroller.clientWidth / 2;
       var best = 0;
       var bestDist = Infinity;
-      cards.forEach(function (card, i) {
-        var dist = Math.abs(centerOf(card) - mid);
-        if (dist < bestDist) { bestDist = dist; best = i; }
-        card.classList.toggle("is-away", dist > card.offsetWidth * 0.25);
+      slides.forEach(function (slide, p) {
+        var dist = Math.abs(centerOf(slide) - mid);
+        if (dist < bestDist) { bestDist = dist; best = p; }
+        slide.classList.toggle("is-away", dist > slide.offsetWidth * 0.25);
       });
       if (pending === best) pending = null;
-      if (best !== index || !counter.textContent) {
-        index = best;
-        counter.textContent =
-          (index + 1 < 10 ? "0" : "") + (index + 1) + " / " + (cards.length < 10 ? "0" : "") + cards.length;
-        dashes.forEach(function (d, i) {
-          if (i === index) d.setAttribute("aria-current", "true");
-          else d.removeAttribute("aria-current");
-        });
-        prev.disabled = index === 0;
-        next.disabled = index === cards.length - 1;
+      if (best !== pos || !counter.textContent) {
+        pos = best;
+        paint(best);
+      }
+      /* settled on a clone → jump to its real twin, invisibly */
+      if (!dragging && pending === null && bestDist < 6) {
+        if (best === 0) { pos = N; goToPos(N, "auto"); pending = null; }
+        else if (best === slides.length - 1) { pos = 1; goToPos(1, "auto"); pending = null; }
       }
     }
 
@@ -131,8 +173,6 @@
     scroller.addEventListener("scroll", function () {
       if (ticking) return;
       ticking = true;
-      /* rAF for visible tabs; the timer covers hidden/throttled tabs where
-         rAF never fires (whichever runs first does the work) */
       var settle = function () {
         if (!ticking) return;
         ticking = false;
@@ -148,9 +188,10 @@
     });
 
     window.addEventListener("resize", function () {
-      goTo(index, "auto");
+      goToPos(pos, "auto");
     });
 
+    goToPos(1, "auto");
     sync();
   }
 

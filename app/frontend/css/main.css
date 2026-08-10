@@ -589,6 +589,64 @@ hr {
 .finding-card:hover .finding-spark .spark-line-accent,
 .finding-card:hover .finding-spark .spark-line-negative { stroke-width: 2.4; }
 
+/* ---------- home: the luxury register — fewer things, more air ---------- */
+
+.home .section { padding-top: clamp(5rem, 11vw, 8.5rem); }
+.home .section + .section { margin-top: clamp(5rem, 11vw, 8.5rem); }
+.home .proof-strip { padding: 3.2rem 0 1rem; }
+.home .thesis { margin: clamp(3.5rem, 8vw, 6rem) 0; }
+.home .cta-band { margin-top: clamp(4rem, 9vw, 7rem); }
+
+.domain-index {
+  margin: 2.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.domain-index li { border-top: 1px solid var(--rule); }
+.domain-index a {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr) auto;
+  gap: 1.6rem;
+  align-items: baseline;
+  padding: 1.7rem 0 1.6rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.domain-index .domain-no {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--accent-dim);
+}
+.domain-index .domain-name {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 1.9vw, 1.5rem);
+  color: var(--navy);
+  transition: color var(--speed) ease;
+}
+.domain-index .domain-tag {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  text-align: right;
+}
+.domain-index a:hover .domain-name { color: var(--accent); }
+
+.agenda-line {
+  margin: clamp(3.5rem, 8vw, 6rem) 0 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.agenda-line a { font-family: var(--mono); font-size: 0.68rem; text-decoration: none; margin-left: 0.6rem; }
+
+@media (max-width: 700px) {
+  .domain-index a { grid-template-columns: 2.6rem minmax(0, 1fr); }
+  .domain-index .domain-tag { grid-column: 2; text-align: left; margin-top: 0.2rem; }
+}
+
 /* ---------- results reel: center stage with peeking neighbors ---------- */
 
 .reel-ready { --reel-slide-w: min(720px, 74%); }
