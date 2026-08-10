@@ -33,6 +33,18 @@ page, and a skeptic should be able to find the boundary of every claim.
 - **Say it once.** One methodological commitment statement per page, maximum.
   The homepage carries exactly two flags: the thesis blockquote and the
   closing standard band headline. Do not add a third.
+- **Voice examples** (from the 2026-08 register pass — imitate these moves):
+  - *Dense only:* "The lab examines how quantitative methods behave when
+    estimates leave sample, correlations change sign, liquidity deteriorates,
+    and institutional constraints reshape market transmission."
+    → *Anchored:* "Models hold until conditions change. The lab measures when,
+    how, and what it costs a decision."
+  - *Dense only:* "Activity, inflation, market liquidity, and institutional
+    response alter how shocks propagate through asset prices and portfolios."
+    → *Anchored:* "Shocks do not travel one fixed road; activity, inflation,
+    liquidity, and institutional response reroute them."
+  - *The house standard, already in the record:* "A result that cannot be
+    reproduced from a clean clone is an anecdote."
 - Never market the simplicity ("plain-language", "simple first", "short
   answer" are prohibited strings — test-enforced). The lab is allowed to BE
   simple; it is not allowed to advertise it.
@@ -41,12 +53,16 @@ page, and a skeptic should be able to find the boundary of every claim.
 
 | Surface | Budget |
 |---|---|
-| Homepage, total visible text | ≤ 450 words |
+| Homepage prose (ledes, answers, headings, agenda bodies, the quote) | ≤ 250 words |
 | Hub-page lede (`findings`, `tools`, `method`, `research-log`) | 1 sentence |
 | Finding card answer (home + findings hub) | 1 sentence |
 | Finding page, depth 01 (Principal finding) | ≤ 120 words |
 | Finding page, depths 02–05 | as long as the evidence requires |
 | Figure caption | ≤ 60 words, and it must earn them (see §5) |
+
+Prose means sentences a visitor reads. Mono navigation labels, metrics,
+kickers, and card links are scannable structure and sit outside the budget —
+but they are not a loophole: a "label" long enough to read as a sentence is one.
 
 If new content pushes a surface over budget, something else on that surface
 moves down a level or is cut — the budget does not stretch.
