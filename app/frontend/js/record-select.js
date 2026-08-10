@@ -19,19 +19,47 @@
     var ledger = document.querySelector(".ledger");
     if (!index || !ledger) return;
     var entries = Array.prototype.slice.call(ledger.querySelectorAll(".ledger-entry[id]"));
-    var links = Array.prototype.slice.call(index.querySelectorAll('a[href^="#"]'));
-    if (entries.length < 2 || !links.length) return;
+    if (entries.length < 2) return;
 
     ledger.classList.add("record-focus");
-    index.classList.add("record-menu");
+
+    /* the index is the no-JS fallback; the tabs replace it visually */
+    index.hidden = true;
 
     var showingAll = false;
+
+    var tabs = document.createElement("nav");
+    tabs.className = "record-tabs";
+    tabs.setAttribute("aria-label", "Choose an investigation");
+    var tabButtons = entries.map(function (entry, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "record-tab";
+      var no = i + 1 < 10 ? "0" + (i + 1) : String(i + 1);
+      var title = entry.querySelector("h2");
+      var status = entry.querySelector(".ledger-entry-head .status");
+      b.innerHTML = '<span class="tab-kicker">Investigation</span><span class="tab-no">' + no + "</span>";
+      if (status) {
+        var chip = document.createElement("span");
+        chip.className = "tab-status " + status.className.replace(/\bstatus\b/, "").trim();
+        chip.textContent = status.textContent;
+        b.appendChild(chip);
+      }
+      if (title) b.setAttribute("title", title.textContent.trim());
+      b.setAttribute("aria-label", "Investigation " + (i + 1) + (title ? ": " + title.textContent.trim() : ""));
+      b.addEventListener("click", function () {
+        select(entry, { push: true, scroll: "smooth" });
+      });
+      tabs.appendChild(b);
+      return b;
+    });
+    index.parentNode.insertBefore(tabs, index);
 
     var toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "record-toggle";
     toggle.textContent = "View the complete ledger";
-    index.appendChild(toggle);
+    tabs.parentNode.insertBefore(toggle, index);
 
     function entryFor(hash) {
       if (!hash) return null;
@@ -48,9 +76,9 @@
     }
 
     function paint(activeId) {
-      links.forEach(function (a) {
-        if (!showingAll && a.getAttribute("href") === "#" + activeId) a.setAttribute("aria-current", "true");
-        else a.removeAttribute("aria-current");
+      entries.forEach(function (entry, i) {
+        if (!showingAll && entry.id === activeId) tabButtons[i].setAttribute("aria-current", "true");
+        else tabButtons[i].removeAttribute("aria-current");
       });
       toggle.textContent = showingAll ? "View one record at a time" : "View the complete ledger";
       toggle.setAttribute("aria-pressed", showingAll ? "true" : "false");
@@ -76,15 +104,6 @@
         window.scrollTo({ top: top, behavior: opts.scroll === "smooth" && !reduced ? "smooth" : "auto" });
       }
     }
-
-    links.forEach(function (a) {
-      a.addEventListener("click", function (e) {
-        var entry = entryFor(a.getAttribute("href"));
-        if (!entry) return;
-        e.preventDefault();
-        select(entry, { push: true, scroll: "smooth" });
-      });
-    });
 
     toggle.addEventListener("click", function () {
       if (showingAll) select(entries[0], { push: false });
