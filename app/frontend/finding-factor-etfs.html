@@ -37,7 +37,7 @@
   "about": ["factor investing", "ETF attribution", "Fama-French factors", "multiple testing"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -81,7 +81,7 @@
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
-    <article>
+    <article class="finding-article">
       <header class="page-head">
         <p class="kicker">Empirical finding · Factor attribution</p>
         <h1>ETF factor exposures, alpha, and multiple-testing control</h1>
@@ -117,7 +117,45 @@
         <div><dt>QQQ adjusted q</dt><dd>0.147</dd></div>
       </dl>
 
-      <section class="section decision-grid" aria-label="Audience and decision">
+<figure class="figure" id="alpha-intervals">
+  <p class="figure-title">Alpha estimates against the zero line · six style ETFs</p>
+  <svg viewBox="0 0 720 250" role="img" aria-labelledby="alpha-intervals-title alpha-intervals-desc">
+    <title id="alpha-intervals-title">Annualized alpha estimates and intervals for six style ETFs against a zero reference</title>
+    <desc id="alpha-intervals-desc">Six horizontal intervals, one each for MTUM, VLUE, QUAL, IWM, USMV and QQQ, are drawn against a dashed vertical line at zero annualized alpha. QQQ carries the largest estimate at plus 3.29 percent, with a raw p-value of 0.024 and an adjusted q-value of 0.147. After correction across the six simultaneous hypotheses, every interval covers zero.</desc>
+    <g>
+      <text class="fig-label-strong" x="20" y="14">Annualized alpha with HAC intervals · six style ETFs</text>
+      <line class="fig-ref" x1="380" y1="30" x2="380" y2="192"/>
+      <text class="fig-label" x="272" y="52" text-anchor="end">MTUM</text>
+      <line class="solo-mark" x1="312" y1="48" x2="435" y2="48"/>
+      <circle class="fig-fill-3" cx="367" cy="48" r="3.5"/>
+      <text class="fig-label" x="272" y="78" text-anchor="end">VLUE</text>
+      <line class="solo-mark" x1="300" y1="74" x2="429" y2="74"/>
+      <circle class="fig-fill-3" cx="351" cy="74" r="3.5"/>
+      <text class="fig-label" x="272" y="104" text-anchor="end">QUAL</text>
+      <line class="solo-mark" x1="336" y1="100" x2="460" y2="100"/>
+      <circle class="fig-fill-3" cx="398" cy="100" r="3.5"/>
+      <text class="fig-label" x="272" y="130" text-anchor="end">IWM</text>
+      <line class="solo-mark" x1="296" y1="126" x2="445" y2="126"/>
+      <circle class="fig-fill-3" cx="357" cy="126" r="3.5"/>
+      <text class="fig-label" x="272" y="156" text-anchor="end">USMV</text>
+      <line class="solo-mark" x1="338" y1="152" x2="484" y2="152"/>
+      <circle class="fig-fill-3" cx="411" cy="152" r="3.5"/>
+      <text class="fig-label-strong" x="272" y="182" text-anchor="end">QQQ</text>
+      <line class="run-mark" x1="339" y1="178" x2="593" y2="178"/>
+      <circle class="fig-fill-3" cx="466" cy="178" r="4.5"/>
+      <line class="fig-axis" x1="170" y1="202" x2="600" y2="202"/>
+      <text class="fig-label" x="172" y="218" text-anchor="middle">−8%</text>
+      <text class="fig-label" x="276" y="218" text-anchor="middle">−4%</text>
+      <text class="fig-label" x="380" y="218" text-anchor="middle">0%</text>
+      <text class="fig-label" x="484" y="218" text-anchor="middle">+4%</text>
+      <text class="fig-label" x="588" y="218" text-anchor="middle">+8%</text>
+      <text class="fig-label" x="20" y="242">QQQ +3.29% · raw p = 0.024 · adjusted q = 0.147 · no alpha met the 5% false-discovery threshold</text>
+    </g>
+  </svg>
+  <figcaption>Only the QQQ point estimate sits at its published value of +3.29% annualized. The five remaining estimates and every interval half-width are schematic, because the record stores coefficients, HAC standard errors, and adjusted p-values rather than plotted coordinates. What the figure encodes is the tested result: after Benjamini–Hochberg correction across six simultaneous hypotheses, no alpha met the 5% false-discovery threshold, so every corrected interval covers zero.</figcaption>
+</figure>
+
+      <section class="section decision-grid" data-reveal aria-label="Audience and decision">
         <div>
           <p class="kicker">Research significance</p>
           <h3>ETF allocators, product researchers, and exposure owners</h3>
@@ -187,7 +225,7 @@
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">Exposure estimates inside a wider model-risk system</h2>
-        <div class="related-grid">
+        <div class="related-grid" data-reveal>
           <a href="finding-portfolio-estimation.html"><span>Estimation error</span><strong>Portfolio optimization under estimation error and out-of-sample evaluation</strong><em>Noisy return and covariance estimates become highly specific allocation weights.</em></a>
           <a href="finding-diversification-regimes.html"><span>Parameter stability</span><strong>Stock–bond diversification across changing correlation environments</strong><em>Historical dependencies are measured states, not permanent constants.</em></a>
         </div>
@@ -199,6 +237,7 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

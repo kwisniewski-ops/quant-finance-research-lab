@@ -37,7 +37,7 @@
   "about": ["Monte Carlo simulation", "numerical error", "variance reduction", "antithetic variates"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -81,7 +81,7 @@
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
-    <article>
+    <article class="finding-article">
       <header class="page-head">
         <p class="kicker">Numerical finding · Simulation methods</p>
         <h1>Monte Carlo convergence, discretization bias, and variance reduction</h1>
@@ -117,7 +117,35 @@
         <div><dt>Primary seed</dt><dd>42</dd></div>
       </dl>
 
-      <section class="section decision-grid" aria-label="Audience and decision">
+<figure class="figure" id="error-decay">
+  <p class="figure-title">Sampling error against independent path count</p>
+  <svg viewBox="0 0 720 232" role="img" aria-labelledby="error-decay-title error-decay-desc">
+    <title id="error-decay-title">Monte Carlo sampling error decaying with the inverse square root of the independent path count</title>
+    <desc id="error-decay-desc">A curve of relative sampling error against path count on a logarithmic horizontal axis, normalized to 1.00 at one thousand paths. Marked points fall to 0.32 at ten thousand paths and 0.10 at one hundred thousand paths, so a ten-fold error reduction costs roughly one hundred times as many independent paths.</desc>
+    <g>
+      <text class="fig-label-strong" x="20" y="14">Relative sampling error · N⁻¹ᐟ² law, normalized at 10³ paths</text>
+      <line class="fig-axis" x1="70" y1="34" x2="70" y2="178"/>
+      <text class="fig-label" x="62" y="43" text-anchor="end">1.0</text>
+      <text class="fig-label" x="62" y="108" text-anchor="end">0.5</text>
+      <text class="fig-label" x="62" y="173" text-anchor="end">0</text>
+      <line class="fig-axis" x1="70" y1="178" x2="670" y2="178"/>
+      <polyline class="fig-series-1" points="90,40 160,72.5 230,96.9 300,115.2 370,128.9 440,139.2 510,146.9 580,152.7 650,157"/>
+      <circle class="fig-fill-1" cx="90" cy="40" r="4"/>
+      <circle class="fig-fill-1" cx="370" cy="128.9" r="4"/>
+      <circle class="fig-fill-1" cx="650" cy="157" r="4"/>
+      <text class="fig-label" x="104" y="44">1.00× reference error</text>
+      <text class="fig-label" x="384" y="116">0.32× · one decade of paths</text>
+      <text class="fig-label" x="646" y="140" text-anchor="end">0.10× · two decades of paths</text>
+      <text class="fig-label" x="90" y="194" text-anchor="middle">10³ paths</text>
+      <text class="fig-label" x="370" y="194" text-anchor="middle">10⁴ paths</text>
+      <text class="fig-label" x="650" y="194" text-anchor="middle">10⁵ paths</text>
+      <text class="fig-label" x="20" y="222">Ten-fold error reduction requires roughly one hundred times as many independent paths</text>
+    </g>
+  </svg>
+  <figcaption>The curve is the N⁻¹ᐟ² law itself, normalized to 1.00 at one thousand paths, with the horizontal axis on a log scale; the marked points are its values at 10³, 10⁴, and 10⁵ paths. Independent replications in the study recovered a log–log root-mean-square-error slope within noise of −0.5, which is the decay drawn here. Path count governs sampling error only; discretization bias is a separate budget.</figcaption>
+</figure>
+
+      <section class="section decision-grid" data-reveal aria-label="Audience and decision">
         <div>
           <p class="kicker">Research significance</p>
           <h3>Pricing engineers, quantitative developers, and model reviewers</h3>
@@ -187,7 +215,7 @@
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">Where numerical and model uncertainty meet</h2>
-        <div class="related-grid">
+        <div class="related-grid" data-reveal>
           <a href="finding-volatility-smile.html"><span>Stochastic dynamics</span><strong>Constant-volatility pricing under empirical market behavior</strong><em>Richer dynamics add both explanatory power and a discretization-error budget.</em></a>
           <a href="finding-var-backtest.html"><span>Forecast validation</span><strong>Historical VaR under coverage and independence tests</strong><em>Numerical precision cannot compensate for a forecast process that fails empirical tests.</em></a>
         </div>
@@ -199,6 +227,7 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -97,7 +97,7 @@
       which forms of market behavior each specification can and cannot represent.</p>
     </div>
 
-    <section class="decision-summary" aria-labelledby="simulation-decision-title">
+    <section class="decision-summary" data-reveal aria-labelledby="simulation-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="simulation-decision-title">The process determines which risks a scenario set can represent</h2>
       <div class="decision-grid">
@@ -140,7 +140,7 @@
       </div>
 
       <div>
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="paths-chart-title">Simulated process paths</h2>
           <div id="chart-paths" class="chart tall" role="img" aria-labelledby="paths-chart-title" aria-describedby="paths-chart-caption"></div>
           <figcaption class="chart-caption" id="paths-chart-caption">Fifty simulated paths. Individual paths use thin dotted lines; the cross-sectional mean uses a thick solid line.</figcaption>
@@ -149,7 +149,7 @@
             <div class="table-scroll" id="mean-path-data-table"></div>
           </details>
         </figure>
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="terminal-chart-title">Terminal-value distribution</h2>
           <div id="chart-terminal" class="chart short" role="img" aria-labelledby="terminal-chart-title" aria-describedby="terminal-chart-caption"></div>
           <figcaption class="chart-caption" id="terminal-chart-caption">Terminal-value distribution across paths, with the mean marked by a dashed vertical line.</figcaption>
@@ -255,7 +255,7 @@
     <section class="section related-section" aria-labelledby="simulation-related-title">
       <p class="kicker">Related research</p>
       <h2 id="simulation-related-title">Related numerical evidence and model risk</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-monte-carlo-error.html"><span>Numerical finding</span><strong>Monte Carlo convergence, bias, and error budgets</strong><em>Inspect the measured square-root convergence rate, discretization bias, and variance reduction.</em></a>
         <a class="related-card" href="finding-volatility-smile.html"><span>Empirical finding</span><strong>Constant-volatility failure and stochastic-volatility response</strong><em>Examine how stochastic volatility addresses a measured failure of constant-volatility dynamics.</em></a>
         <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models for comparative sensitivity analysis</strong><em>Move from stochastic paths to pricing and portfolio experiments.</em></a>
@@ -270,6 +270,7 @@
 <script src="js/common.js"></script>
 <script src="js/simulations.js"></script>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

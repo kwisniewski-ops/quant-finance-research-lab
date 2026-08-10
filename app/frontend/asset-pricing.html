@@ -42,7 +42,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -98,7 +98,7 @@
       consistency; it does not establish market realism.</p>
     </div>
 
-    <section class="decision-summary" aria-labelledby="pricing-decision-title">
+    <section class="decision-summary" data-reveal aria-labelledby="pricing-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="pricing-decision-title">Use agreement to validate the implementation—not the market model</h2>
       <div class="decision-grid">
@@ -180,7 +180,7 @@
         <output id="pricing-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></output>
         </div>
 
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="value-chart-title">Option value by underlying price</h2>
           <div id="chart-value" class="chart" role="img" aria-labelledby="value-chart-title" aria-describedby="value-chart-caption"></div>
           <figcaption class="chart-caption" id="value-chart-caption">Option value against the underlying price at several times to maturity,
@@ -191,7 +191,7 @@
           </details>
         </figure>
 
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="vol-chart-title">Option value by volatility</h2>
           <div id="chart-vol" class="chart short" role="img" aria-labelledby="vol-chart-title" aria-describedby="vol-chart-caption"></div>
           <figcaption class="chart-caption" id="vol-chart-caption">Price as a function of volatility (vega is the slope). The current volatility is marked by an open circle. Under these assumptions, option value generally increases with volatility.</figcaption>
@@ -264,7 +264,7 @@
     <section class="section related-section" aria-labelledby="pricing-related-title">
       <p class="kicker">Related research</p>
       <h2 id="pricing-related-title">Related evidence, methods, and research record</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-volatility-smile.html"><span>Empirical finding</span><strong>Constant-volatility dynamics under empirical rejection</strong><em>Inspect the market fingerprints that contradict constant-volatility dynamics.</em></a>
         <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models for comparative sensitivity analysis</strong><em>Move from option pricing to portfolio construction and stochastic processes.</em></a>
         <a class="related-card" href="method.html"><span>Methods</span><strong>Research design and model-validation standards</strong><em>Review assumptions, falsification, uncertainty, and reproduction.</em></a>
@@ -279,6 +279,7 @@
 <script src="js/common.js"></script>
 <script src="js/pricing.js"></script>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

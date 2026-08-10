@@ -20,7 +20,7 @@
 <meta name="twitter:description" content="Pricing, portfolio, risk, factor, and stochastic-process implementations with explicit assumptions and analytical boundaries.">
 <meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -82,7 +82,7 @@
       <p class="kicker">Model suite</p>
       <h2 id="tool-collection">Five implementations for assumption sensitivity and diagnostic analysis</h2>
       <div class="tool-card-grid">
-        <article class="tool-card">
+        <article class="tool-card" data-reveal>
           <div class="tool-card-meta"><span class="tag">Interactive</span><span>Numerical model</span></div>
           <h3>Option valuation under model and parameter variation</h3>
           <p>The option-pricing model runs Black–Scholes–Merton and a Cox–Ross–Rubinstein tree side by side. Change spot,
@@ -90,7 +90,7 @@
           <dl><div><dt>Use it to</dt><dd>Inspect no-arbitrage pricing, sensitivity, and numerical convergence</dd></div><div><dt>Do not use it to</dt><dd>Represent every exercise feature or observed market dynamic</dd></div></dl>
           <a class="primary-action" href="asset-pricing.html">Open the pricing model <span aria-hidden="true">→</span></a>
         </article>
-        <article class="tool-card">
+        <article class="tool-card" data-reveal>
           <div class="tool-card-meta"><span class="tag">Interactive</span><span>Illustrative model</span></div>
           <h3>Portfolio geometry under uncertain inputs</h3>
           <p>The efficient-frontier model samples twenty thousand long-only portfolios over six illustrative asset classes and
@@ -98,7 +98,7 @@
           <dl><div><dt>Use it to</dt><dd>Inspect risk–return geometry, constraints, and assumption sensitivity</dd></div><div><dt>Do not use it to</dt><dd>Treat illustrative moments as forecasts or recommendations</dd></div></dl>
           <a class="primary-action" href="portfolio.html">Analyze allocation sensitivity <span aria-hidden="true">→</span></a>
         </article>
-        <article class="tool-card">
+        <article class="tool-card" data-reveal>
           <div class="tool-card-meta"><span class="tag">Empirical</span><span>Executed study</span></div>
           <h3>Historical VaR under empirical backtesting</h3>
           <p>The market-risk study provides a cost-aware, leak-free portfolio path, block-bootstrap intervals, formal VaR
@@ -106,7 +106,7 @@
           <dl><div><dt>Use it to</dt><dd>Inspect risk-model validation, calibration, and stress design</dd></div><div><dt>Do not use it to</dt><dd>Treat one frozen history as a bound on future losses</dd></div></dl>
           <a class="primary-action" href="risk.html">Inspect the VaR backtest <span aria-hidden="true">→</span></a>
         </article>
-        <article class="tool-card">
+        <article class="tool-card" data-reveal>
           <div class="tool-card-meta"><span class="tag">Empirical</span><span>Executed study</span></div>
           <h3>Factor exposure estimation and inference</h3>
           <p>The factor study compares six-factor ETF regressions, HAC intervals, rolling exposure, chronological
@@ -114,7 +114,7 @@
           <dl><div><dt>Use it to</dt><dd>Inspect attribution, product-label verification, and statistical governance</dd></div><div><dt>Do not use it to</dt><dd>Interpret alpha independently of the selected factor model</dd></div></dl>
           <a class="primary-action" href="factors.html">Review factor estimates <span aria-hidden="true">→</span></a>
         </article>
-        <article class="tool-card">
+        <article class="tool-card" data-reveal>
           <div class="tool-card-meta"><span class="tag">Interactive</span><span>Scenario model</span></div>
           <h3>Stochastic-process behavior and scenario capacity</h3>
           <p>The stochastic-process model simulates GBM, Ornstein–Uhlenbeck, Merton jumps, Heston stochastic volatility, and a
@@ -134,6 +134,7 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

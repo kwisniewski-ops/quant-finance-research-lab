@@ -39,7 +39,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
@@ -101,7 +101,7 @@
     <section class="decision-summary" aria-labelledby="notes-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="notes-decision-title">Use the mathematics to expose assumptions, not conceal them</h2>
-      <div class="decision-grid">
+      <div class="decision-grid" data-reveal>
         <div><h3>Interpretation</h3><p>These six notes connect stochastic calculus, pricing, simulation, and tail risk into one chain: every useful result depends on a stated probability model and an error budget.</p></div>
         <div><h3>Decision context</h3><p>The derivations help determine when a pricing identity, simulation estimate, or risk metric is appropriate—and which assumption or approximation limits the conclusion.</p></div>
         <div><h3>Intended analytical use</h3><p>Quantitative-finance students, analysts moving into model work, technical reviewers, and practitioners who need an auditable conceptual reference.</p></div>
@@ -109,7 +109,7 @@
       </div>
     </section>
 
-    <details class="local-toc">
+    <details class="local-toc" data-reveal>
       <summary>Contents · six notes</summary>
       <nav aria-label="Mathematical notes contents">
         <ol>
@@ -330,7 +330,7 @@
     <section class="section" aria-labelledby="notes-references">
       <p class="kicker">Sources</p>
       <h2 id="notes-references" class="reference-heading">Standing references for these notes<a class="heading-link" href="#notes-references" aria-label="Permalink to standing references">#</a></h2>
-      <ol class="bibliography">
+      <ol class="bibliography" data-reveal>
         <li id="notes-ref-1">Øksendal, B. (2003), <i>Stochastic Differential Equations: An Introduction with Applications</i>, 6th ed., Springer, pp. 21–84 (Itô integrals, Itô formula, and SDEs). <a href="https://doi.org/10.1007/978-3-642-14394-6">doi:10.1007/978-3-642-14394-6</a> <a href="#notes-cite-1" aria-label="Return to citation 1">↩</a></li>
         <li id="notes-ref-2">Shreve, S. E. (2004), <i>Stochastic Calculus for Finance II: Continuous-Time Models</i>, 1st ed., Springer, chs. 4–6, pp. 131–339 (stochastic calculus, risk-neutral pricing, and PDE connections), ISBN 978-0-387-40101-0. <a href="https://link.springer.com/book/9780387401010">publisher record</a> <a href="#notes-cite-2" aria-label="Return to citation 2">↩</a></li>
         <li id="notes-ref-3">Glasserman, P. (2003), <i>Monte Carlo Methods in Financial Engineering</i>, Springer, pp. 1–38 and 185–337 (foundations, variance reduction, and quasi-Monte Carlo). <a href="https://doi.org/10.1007/978-0-387-21617-1">doi:10.1007/978-0-387-21617-1</a> <a href="#notes-cite-3" aria-label="Return to citation 3">↩</a></li>
@@ -341,7 +341,7 @@
     <section class="section related-section" aria-labelledby="notes-related-title">
       <p class="kicker">Related research</p>
       <h2 id="notes-related-title">Applications in empirical studies and models</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-monte-carlo-error.html"><span>Numerical finding</span><strong>Monte Carlo convergence and variance reduction</strong><em>Inspect the experimentally recovered square-root error law and the effect of variance reduction.</em></a>
         <a class="related-card" href="finding-var-backtest.html"><span>Empirical finding</span><strong>Historical VaR coverage and independence failure</strong><em>Move from the tail-risk derivation to a dated empirical falsification test.</em></a>
         <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive implementations of the mathematical foundations</strong><em>Use the pricing, portfolio, and stochastic-process models built from these foundations.</em></a>
@@ -356,6 +356,7 @@
 <script src="js/common.js"></script>
 <script src="js/reading.js"></script>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

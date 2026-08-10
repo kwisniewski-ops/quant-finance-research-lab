@@ -37,7 +37,7 @@
   "about": ["portfolio optimization", "estimation error", "risk parity", "hierarchical risk parity"]
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
@@ -81,7 +81,7 @@
 
 <main id="main-content" tabindex="-1">
   <div class="wrap">
-    <article>
+    <article class="finding-article">
       <header class="page-head">
         <p class="kicker">Empirical finding · Portfolio construction</p>
         <h1>Portfolio optimization under estimation error and out-of-sample evaluation</h1>
@@ -117,7 +117,30 @@
         <div><dt>Sealed evaluation</dt><dd>2022–2026</dd></div>
       </dl>
 
-      <section class="section decision-grid" aria-label="Audience and decision">
+<figure class="figure" id="sharpe-transfer">
+  <p class="figure-title">Maximum-Sharpe weights · fit window against sealed evaluation</p>
+  <svg viewBox="0 0 720 186" role="img" aria-labelledby="sharpe-transfer-title sharpe-transfer-desc">
+    <title id="sharpe-transfer-title">Sharpe ratio of the maximum-Sharpe portfolio in the fit window and in the sealed evaluation window</title>
+    <desc id="sharpe-transfer-desc">Two horizontal bars on a common scale. The 2015 to 2021 fit window records a Sharpe ratio of 1.12. The same frozen weight vector records 0.44 in the sealed 2022 to 2026 evaluation window, a gap of 0.68 against an estimated sampling error near 0.5.</desc>
+    <g>
+      <text class="fig-label-strong" x="20" y="14">Realized Sharpe ratio · one frozen weight vector</text>
+      <rect class="fig-fill-neutral" x="170" y="34" width="448" height="22"/>
+      <text class="fig-label" x="162" y="49" text-anchor="end">2015–2021 fit</text>
+      <text class="fig-label-strong" x="626" y="49">1.12</text>
+      <rect class="fig-fill-1" x="170" y="82" width="176" height="22"/>
+      <text class="fig-label" x="162" y="97" text-anchor="end">2022–2026 evaluation</text>
+      <text class="fig-label-strong" x="354" y="97">0.44</text>
+      <line class="fig-axis" x1="170" y1="122" x2="650" y2="122"/>
+      <text class="fig-label" x="170" y="138" text-anchor="middle">0</text>
+      <text class="fig-label" x="370" y="138" text-anchor="middle">0.5</text>
+      <text class="fig-label" x="570" y="138" text-anchor="middle">1.0</text>
+      <text class="fig-label" x="20" y="170">Gap 0.68 · estimated sampling error near 0.5 in Sharpe units for this window</text>
+    </g>
+  </svg>
+  <figcaption>Both bars describe the same maximum-Sharpe weight vector: estimated on 2015–2021 daily returns, then frozen and applied to the untouched 2022–2026 window. Bar lengths are drawn to scale from the two published Sharpe values. Estimated sampling error near 0.5 in Sharpe units makes this evidence about one sealed window rather than a general ranking of construction methods.</figcaption>
+</figure>
+
+      <section class="section decision-grid" data-reveal aria-label="Audience and decision">
         <div>
           <p class="kicker">Research significance</p>
           <h3>Allocators, risk committees, and model reviewers</h3>
@@ -185,7 +208,7 @@
         </div>
       </section>
 
-      <aside class="regime-lens" aria-labelledby="regime-lens-portfolio">
+      <aside class="regime-lens" data-reveal aria-labelledby="regime-lens-portfolio">
         <p class="kicker">Regime lens · Portfolio construction</p>
         <h2 id="regime-lens-portfolio">Fitted return and covariance relationships entered a different observed environment</h2>
         <dl class="regime-lens__evidence">
@@ -200,7 +223,7 @@
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">The regime assumptions inside the allocation</h2>
-        <div class="related-grid">
+        <div class="related-grid" data-reveal>
           <a href="finding-diversification-regimes.html"><span>Regime risk</span><strong>Stock–bond diversification across changing correlation environments</strong><em>The stock–bond correlation assumption that 2022 called into question.</em></a>
           <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>Inspect the calibration tests applied to a portfolio risk forecast.</em></a>
         </div>
@@ -212,6 +235,7 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

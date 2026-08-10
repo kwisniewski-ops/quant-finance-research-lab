@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Empirical investigations, historical regime analysis, quantitative models, and reproducible evidence for investment and risk-governance decisions.">
 <meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v4.png">
 <meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: independent research on models, regimes, and institutions, shown beside a market chart and open research notebook.">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,20 +70,29 @@
 </header>
 
 <main id="main-content" tabindex="-1">
-  <section class="hero hero-reframed">
+  <section class="hero hero-observatory">
+    <div class="hero-field" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap">
-      <p class="kicker">Independent research program</p>
-      <h1>Independent, evidence-led research on financial models, market regimes, institutions, and investor decisions.</h1>
-      <p class="lede">The lab examines how quantitative methods behave when estimates leave
-      sample, correlations change sign, liquidity deteriorates, and institutional constraints
-      reshape market transmission.</p>
-      <p class="hero-context">Empirical investigations, historical synthesis, mathematical notes,
-      and quantitative models connect every conclusion to its data vintage, uncertainty,
-      identification limits, and reproducible implementation. Market relationships are treated as
-      conditional structures—not permanent laws.</p>
-      <div class="hero-actions" aria-label="Start exploring">
-        <a class="primary-action" href="findings.html">Examine the research <span aria-hidden="true">→</span></a>
-        <a class="secondary-action" href="method.html">Review the methodology <span aria-hidden="true">→</span></a>
+      <div class="hero-copy">
+        <p class="kicker">Independent research program</p>
+        <h1>Independent, evidence-led research on financial models, market regimes, institutions, and investor decisions.</h1>
+        <p class="lede">The lab examines how quantitative methods behave when estimates leave
+        sample, correlations change sign, liquidity deteriorates, and institutional constraints
+        reshape market transmission.</p>
+        <p class="hero-context">Empirical investigations, historical synthesis, mathematical notes,
+        and quantitative models connect every conclusion to its data vintage, uncertainty,
+        identification limits, and reproducible implementation. Market relationships are treated as
+        conditional structures—not permanent laws.</p>
+        <div class="hero-actions" aria-label="Start exploring">
+          <a class="primary-action" href="findings.html">Examine the research <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="method.html">Review the methodology <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="hero-meter">
+        <span>Live demonstration · geometric Brownian motion</span>
+        <span class="meter-val"><span id="meter-paths">0</span> simulated paths · seed 20260810</span>
+        <span class="meter-val">standard error of terminal mean · <span id="meter-se">—</span></span>
+        <span class="meter-note">Sampling error contracts with the square root of the path count—the convergence law examined in the simulation research. Drawn in the browser at each visit; identical seed, identical fan.</span>
       </div>
     </div>
   </section>
@@ -102,7 +111,7 @@
       <p class="lede">The current corpus spans completed empirical studies, numerical validation,
       historical synthesis, interactive implementations, and proposed research. Artifact type and
       evidence status remain explicit.</p>
-      <div class="related-grid research-domain-grid">
+      <div class="related-grid research-domain-grid" data-reveal>
         <a href="finding-portfolio-estimation.html"><span>Portfolio construction &amp; market risk</span><strong>Estimation error, diversification, forecast calibration, and stress behavior</strong><em>Review empirical findings and their decision boundaries.</em></a>
         <a href="case-study.html"><span>Derivatives &amp; computational finance</span><strong>Pricing consistency, stochastic assumptions, and numerical convergence</strong><em>Inspect validation studies, mathematical foundations, and model alternatives.</em></a>
         <a href="finding-factor-etfs.html"><span>Factor exposure &amp; empirical attribution</span><strong>Product identity, parameter stability, alpha inference, and multiplicity</strong><em>Regression output, holdout stability, and model risk.</em></a>
@@ -120,41 +129,84 @@
       validations. The market-risk investigation supports separate findings on VaR calibration
       and cross-asset diversification.</p>
       <div class="finding-card-grid featured-findings">
-        <a class="finding-card finding-card--validation" href="research-log.html#pricing-validation">
+        <a class="finding-card finding-card--validation" data-reveal href="research-log.html#pricing-validation">
           <p class="finding-question">Asset pricing · Numerical verification</p>
           <h3>Cross-method option-pricing validation</h3>
           <p class="finding-answer-label">Numerical validation</p>
           <p class="finding-answer">Black–Scholes, CRR, PDE, and Monte Carlo prices agreed within declared numerical tolerances; parity and implied-volatility round trips passed.</p>
+          <span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false">
+            <text x="10" y="11">four methods · one tolerance band</text>
+            <rect class="spark-area" x="10" y="22" width="240" height="12"/>
+            <line class="spark-ref" x1="10" y1="28" x2="250" y2="28"/>
+            <circle class="spark-dot" cx="55" cy="26.8" r="3.4"/>
+            <circle class="spark-dot" cx="115" cy="29.1" r="3.4"/>
+            <circle class="spark-dot" cx="175" cy="27.4" r="3.4"/>
+            <circle class="spark-dot" cx="235" cy="28.6" r="3.4"/>
+            <text x="10" y="52">BS · CRR tree · PDE grid · MC</text>
+          </svg></span>
           <p class="finding-metric">≈10⁻³ tree/PDE error</p>
           <span class="finding-link">Inspect the validation record →</span>
         </a>
-        <a class="finding-card" href="finding-portfolio-estimation.html">
+        <a class="finding-card" data-reveal href="finding-portfolio-estimation.html">
           <p class="finding-question">Portfolio construction · Estimation risk</p>
           <h3>Portfolio optimization under estimation error</h3>
           <p class="finding-answer-label">Empirical finding</p>
           <p class="finding-answer">The fitted max-Sharpe portfolio weakened materially on later data; risk-based methods preserved risk shape, not a reliable return advantage.</p>
+          <span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false">
+            <line class="spark-zero" x1="10" y1="48" x2="250" y2="48"/>
+            <rect class="spark-bar" x="32" y="10.4" width="36" height="37.6"/>
+            <rect class="spark-bar-dim" x="152" y="33.2" width="36" height="14.8"/>
+            <line class="spark-line-negative" x1="68" y1="10.4" x2="152" y2="33.2"/>
+            <text x="32" y="8">1.12 fitted</text>
+            <text x="152" y="29">0.44 out of sample</text>
+          </svg></span>
           <p class="finding-metric">Sharpe 1.12 → 0.44</p>
           <span class="finding-link">Inspect the investigation →</span>
         </a>
-        <a class="finding-card" href="finding-var-backtest.html">
+        <a class="finding-card" data-reveal href="finding-var-backtest.html">
           <p class="finding-question">Market risk · Forecast calibration</p>
           <h3>Historical VaR under coverage and independence tests</h3>
           <p class="finding-answer-label">Empirical finding</p>
           <p class="finding-answer">Breaches were too frequent and clustered; the 95% forecast failed both coverage and independence criteria.</p>
+          <span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false">
+            <text x="10" y="11">breach days · clustered arrivals</text>
+            <line class="spark-zero" x1="10" y1="42" x2="250" y2="42"/>
+            <line class="spark-tick" x1="22" y1="26" x2="22" y2="42"/>
+            <line class="spark-tick" x1="47" y1="26" x2="47" y2="42"/>
+            <line class="spark-tick" x1="68" y1="26" x2="68" y2="42"/>
+            <line class="spark-tick" x1="73" y1="26" x2="73" y2="42"/>
+            <line class="spark-tick" x1="96" y1="26" x2="96" y2="42"/>
+            <line class="spark-tick" x1="128" y1="26" x2="128" y2="42"/>
+            <line class="spark-tick" x1="150" y1="26" x2="150" y2="42"/>
+            <line class="spark-tick" x1="155" y1="26" x2="155" y2="42"/>
+            <line class="spark-tick" x1="160" y1="26" x2="160" y2="42"/>
+            <line class="spark-tick" x1="185" y1="26" x2="185" y2="42"/>
+            <line class="spark-tick" x1="214" y1="26" x2="214" y2="42"/>
+            <line class="spark-tick" x1="219" y1="26" x2="219" y2="42"/>
+            <line class="spark-tick" x1="243" y1="26" x2="243" y2="42"/>
+            <text x="10" y="55">observed 6.31% · stated 5%</text>
+          </svg></span>
           <p class="finding-metric">135 breaches · 107 expected</p>
           <span class="finding-link">Inspect the investigation →</span>
         </a>
-        <a class="finding-card" href="finding-volatility-smile.html">
+        <a class="finding-card" data-reveal href="finding-volatility-smile.html">
           <p class="finding-question">Derivatives · Stochastic assumptions</p>
           <h3>Constant-volatility dynamics under empirical tests</h3>
           <p class="finding-answer-label">Empirical finding</p>
           <p class="finding-answer">Observed volatility, tail behavior, and option-price structure contradicted the tested constant-volatility dynamics.</p>
+          <span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false">
+            <text x="10" y="11">implied volatility by strike</text>
+            <line class="spark-ref" x1="10" y1="33" x2="250" y2="33"/>
+            <path class="spark-line" d="M12,17 Q130,56 248,13"/>
+            <text x="176" y="47">constant σ</text>
+            <text x="10" y="55">observed smile</text>
+          </svg></span>
           <p class="finding-metric">≈3% → 93% realized volatility</p>
           <span class="finding-link">Inspect the investigation →</span>
         </a>
-        <a class="finding-card" href="finding-diversification-regimes.html"><p class="finding-question">Cross-asset regimes · Diversification</p><h3>Stock–bond diversification across changing correlation environments</h3><p class="finding-answer-label">Empirical finding</p><p class="finding-answer">The measured relationship changed sign, exposing the instability of treating historical correlation as permanent protection.</p><p class="finding-metric">−0.35 → +0.37 correlation</p><span class="finding-link">Inspect the investigation →</span></a>
-        <a class="finding-card" href="finding-factor-etfs.html"><p class="finding-question">Factor models · Product inference</p><h3>ETF factor exposure and alpha after multiple testing</h3><p class="finding-answer-label">Empirical finding</p><p class="finding-answer">Advertised factor loadings appeared, but no tested alpha survived the 5% false-discovery threshold.</p><p class="finding-metric">0 alphas at 5% FDR</p><span class="finding-link">Inspect the investigation →</span></a>
-        <a class="finding-card" href="finding-monte-carlo-error.html"><p class="finding-question">Numerical methods · Simulation error</p><h3>Monte Carlo convergence, bias, and variance reduction</h3><p class="finding-answer-label">Numerical validation</p><p class="finding-answer">Sampling error followed N⁻¹ᐟ²; sufficient path count remained conditional on the error tolerance and estimator design.</p><p class="finding-metric">Error ∝ N⁻¹ᐟ²</p><span class="finding-link">Inspect the investigation →</span></a>
+        <a class="finding-card" data-reveal href="finding-diversification-regimes.html"><p class="finding-question">Cross-asset regimes · Diversification</p><h3>Stock–bond diversification across changing correlation environments</h3><p class="finding-answer-label">Empirical finding</p><p class="finding-answer">The measured relationship changed sign, exposing the instability of treating historical correlation as permanent protection.</p><span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false"><text x="10" y="11">rolling stock–bond correlation</text><line class="spark-zero" x1="10" y1="31" x2="250" y2="31"/><path class="spark-line-accent" d="M12,45 C70,44 130,40 178,31 C210,25 232,19 248,16"/><circle class="spark-dot-open" cx="12" cy="45" r="3.2"/><circle class="spark-dot-open" cx="248" cy="16" r="3.2"/><text x="22" y="49">−0.35</text><text x="204" y="12">+0.37</text></svg></span><p class="finding-metric">−0.35 → +0.37 correlation</p><span class="finding-link">Inspect the investigation →</span></a>
+        <a class="finding-card" data-reveal href="finding-factor-etfs.html"><p class="finding-question">Factor models · Product inference</p><h3>ETF factor exposure and alpha after multiple testing</h3><p class="finding-answer-label">Empirical finding</p><p class="finding-answer">Advertised factor loadings appeared, but no tested alpha survived the 5% false-discovery threshold.</p><span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false"><text x="10" y="11">estimated alphas with intervals</text><line class="spark-zero" x1="10" y1="33" x2="250" y2="33"/><line class="spark-ref" x1="42" y1="20" x2="42" y2="46"/><circle class="spark-dot-open" cx="42" cy="30" r="3.2"/><line class="spark-ref" x1="90" y1="22" x2="90" y2="47"/><circle class="spark-dot-open" cx="90" cy="35" r="3.2"/><line class="spark-ref" x1="138" y1="19" x2="138" y2="44"/><circle class="spark-dot-open" cx="138" cy="31" r="3.2"/><line class="spark-ref" x1="186" y1="23" x2="186" y2="48"/><circle class="spark-dot-open" cx="186" cy="36" r="3.2"/><line class="spark-ref" x1="234" y1="20" x2="234" y2="45"/><circle class="spark-dot-open" cx="234" cy="32" r="3.2"/><text x="10" y="55">every interval spans zero</text></svg></span><p class="finding-metric">0 alphas at 5% FDR</p><span class="finding-link">Inspect the investigation →</span></a>
+        <a class="finding-card" data-reveal href="finding-monte-carlo-error.html"><p class="finding-question">Numerical methods · Simulation error</p><h3>Monte Carlo convergence, bias, and variance reduction</h3><p class="finding-answer-label">Numerical validation</p><p class="finding-answer">Sampling error followed N⁻¹ᐟ²; sufficient path count remained conditional on the error tolerance and estimator design.</p><span class="finding-spark" aria-hidden="true"><svg viewBox="0 0 260 56" focusable="false"><text x="10" y="11">standard error by path count</text><path class="spark-line" d="M12,16 C50,34 90,42 140,46 C180,49 220,50 248,51"/><circle class="spark-dot" cx="12" cy="16" r="3"/><circle class="spark-dot" cx="96" cy="43" r="3"/><circle class="spark-dot" cx="248" cy="51" r="3"/><text x="146" y="30">error ∝ N⁻¹ᐟ²</text></svg></span><p class="finding-metric">Error ∝ N⁻¹ᐟ²</p><span class="finding-link">Inspect the investigation →</span></a>
       </div>
     </section>
 
@@ -162,7 +214,7 @@
       <p class="kicker">Publication architecture</p>
       <h2 id="choose-path">Conclusions precede methods; evidence remains fully auditable.</h2>
       <p class="lede">Each investigation supports progressively deeper scrutiny without reducing the precision of its opening claim.</p>
-      <ol class="depth-path" aria-label="Research depth sequence">
+      <ol class="depth-path" data-reveal aria-label="Research depth sequence">
         <li><span class="depth-step"><span class="depth-no">01</span><strong>Conclusion</strong><small>Bounded result and decision relevance.</small></span></li>
         <li><span class="depth-step"><span class="depth-no">02</span><strong>Evidence</strong><small>Data, estimates, tests, and uncertainty.</small></span></li>
         <li><span class="depth-step"><span class="depth-no">03</span><strong>Decision consequences</strong><small>Implications for allocation, governance, or model use.</small></span></li>
@@ -177,7 +229,7 @@
       <p class="lede">The Regime Atlas organizes activity, inflation, liquidity, and institutional
       response into a bounded historical framework. The stock–bond dossier then follows one
       measured cross-asset relationship into diversification, allocation, and risk calibration.</p>
-      <div class="related-grid regime-entry-grid">
+      <div class="related-grid regime-entry-grid" data-reveal>
         <a href="regime-atlas.html" data-analytics-event="research_engagement" data-analytics-target="regime-atlas"><span>Historical framework · Scenario design</span><strong>Regime Atlas: macroeconomic conditions, liquidity, and institutional response</strong><em>Trace conditional transmission channels across six dated historical lenses.</em></a>
         <a href="stock-bond-regime-dossier.html" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier"><span>Empirical dossier · Measured relationship</span><strong>Stock–bond correlation regimes and their portfolio consequences</strong><em>Trace the measured sign change through diversification, allocation, and risk calibration.</em></a>
       </div>
@@ -186,7 +238,7 @@
     <section class="section" aria-labelledby="active-program">
       <p class="kicker">Registered research agenda</p>
       <h2 id="active-program">Unresolved mechanisms and pre-declared empirical tests</h2>
-      <div class="arrival-grid">
+      <div class="arrival-grid" data-reveal>
         <article class="arrival-item arrival-new">
           <p class="kicker">Proposed program</p>
           <h3>Four mechanisms registered before testing</h3>
@@ -208,7 +260,7 @@
       </div>
     </section>
 
-    <div class="thesis">
+    <div class="thesis" data-reveal>
       <p class="kicker">Interpretation standard</p>
       <blockquote>
         A quantitative conclusion is inseparable from its model, data vintage, evaluation design,
@@ -216,7 +268,7 @@
       </blockquote>
     </div>
 
-    <section class="cta-band" aria-labelledby="research-standard">
+    <section class="cta-band" data-reveal aria-labelledby="research-standard">
       <div>
         <p class="kicker">Research standard</p>
         <h2 id="research-standard">Every published result includes the evidence required for independent scrutiny.</h2>
@@ -233,6 +285,9 @@
 
 <footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Research</a> · <a href="regime-atlas.html">Regime atlas</a> · <a href="stock-bond-regime-dossier.html">Stock–bond dossier</a> · <a href="tools.html">Models</a> · <a href="method.html">Methods</a> · <a href="research-log.html">Research record</a> · <a href="about.html">Mission</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Educational research; not investment advice</span></div></footer>
 
+<script src="js/common.js"></script>
+<script src="js/hero-field.js"></script>
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=obs1">
 <script src="js/plotly-loader.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
@@ -98,7 +98,7 @@
       <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
     </div>
 
-    <section class="decision-summary" aria-labelledby="portfolio-decision-title">
+    <section class="decision-summary" data-reveal aria-labelledby="portfolio-decision-title">
       <p class="kicker">Decision summary</p>
       <h2 id="portfolio-decision-title">An efficient portfolio is only as stable as its inputs</h2>
       <div class="decision-grid">
@@ -143,13 +143,13 @@
       </div>
 
       <div>
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="frontier-chart-title">Efficient frontier risk-return plot</h2>
           <div id="chart-frontier" class="chart tall" role="img" aria-labelledby="frontier-chart-title" aria-describedby="frontier-chart-caption"></div>
           <figcaption class="chart-caption" id="frontier-chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are individual assets; a circle marks minimum variance, an X marks maximum Sharpe, and an open triangle marks equal weight. The dotted line from the risk-free rate through the max-Sharpe portfolio is the capital market line. Exact highlighted values appear in the table beside the chart.</figcaption>
         </figure>
 
-        <figure class="chart-figure">
+        <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="weights-chart-title">Highlighted portfolio weights</h2>
           <div id="chart-weights" class="chart short" role="img" aria-labelledby="weights-chart-title" aria-describedby="weights-chart-caption"></div>
           <figcaption class="chart-caption" id="weights-chart-caption">Weights of the highlighted portfolios use both color and distinct fill patterns. Under these inputs, the maximum-Sharpe solution is more concentrated than the minimum-variance solution.</figcaption>
@@ -209,7 +209,7 @@
     <section class="section related-section" aria-labelledby="portfolio-related-title">
       <p class="kicker">Related research</p>
       <h2 id="portfolio-related-title">Related findings and validation record</h2>
-      <div class="related-grid">
+      <div class="related-grid" data-reveal>
         <a class="related-card" href="finding-portfolio-estimation.html"><span>Empirical finding</span><strong>Out-of-sample instability in optimized portfolios</strong><em>Inspect how estimation error changed Sharpe, volatility, drawdown, and concentration in a locked test.</em></a>
         <a class="related-card" href="finding-diversification-regimes.html"><span>Empirical finding</span><strong>Correlation-regime dependence in diversification</strong><em>Examine the portfolio consequences of unstable cross-asset relationships.</em></a>
         <a class="related-card" href="tools.html"><span>Models</span><strong>Interactive models across financial decisions</strong><em>Compare the illustrative frontier with pricing and simulation instruments.</em></a>
@@ -224,6 +224,7 @@
 <script src="js/common.js"></script>
 <script src="js/portfolio.js"></script>
 
+<script src="js/reveal.js"></script>
 <script src="js/engagement.js"></script>
 </body>
 </html>

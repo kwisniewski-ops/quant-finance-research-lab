@@ -113,6 +113,14 @@ var QL = (function () {
   }
 
   /* ---------- Plotly theming ---------- */
+  /* Colors resolve from the stylesheet at call time so charts follow the
+     active light or dark theme; hex fallbacks match the light palette. */
+  function themeVar(name, fallback) {
+    if (typeof document === "undefined") return fallback;
+    var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+
   var colors = {
     ink: "#1c2430", accent: "#7e6238", slate: "#3e5c76",
     ochre: "#9c7c46", moss: "#5c6e4e", plum: "#6b4a6e",
@@ -120,20 +128,36 @@ var QL = (function () {
   };
   var series = [colors.accent, colors.slate, colors.ochre, colors.moss, colors.plum, colors.ink];
 
+  function chartSeries() {
+    return [
+      themeVar("--chart-1", "#a06f1c"),
+      themeVar("--chart-2", "#2f5e93"),
+      themeVar("--chart-3", "#c05a33"),
+      themeVar("--chart-4", "#6e3d74"),
+      themeVar("--chart-5", "#5c7d2e")
+    ];
+  }
+
+  var monoStack = "'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace";
+
   function layout(overrides) {
+    var grid = themeVar("--chart-grid", "#e7e2d6");
     var base = {
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
-      font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#5c6672" },
-      margin: { l: 58, r: 20, t: 42, b: 46 },
-      xaxis: { gridcolor: colors.grid, zerolinecolor: "#e4dfd3", linecolor: "#e4dfd3" },
-      yaxis: { gridcolor: colors.grid, zerolinecolor: "#e4dfd3", linecolor: "#e4dfd3" },
-      colorway: series,
+      font: { family: monoStack, size: 11, color: themeVar("--muted", "#5c6672") },
+      xaxis: { gridcolor: grid, zerolinecolor: grid, linecolor: grid },
+      yaxis: { gridcolor: grid, zerolinecolor: grid, linecolor: grid },
+      colorway: chartSeries(),
       hoverlabel: {
-        bgcolor: "#14202e", bordercolor: "#14202e",
-        font: { family: "'IBM Plex Mono', Menlo, monospace", size: 11, color: "#faf8f4" }
+        bgcolor: themeVar("--navy", "#14202e"), bordercolor: themeVar("--navy", "#14202e"),
+        font: { family: monoStack, size: 11, color: themeVar("--paper", "#faf8f4") }
       },
-      legend: { orientation: "h", y: 1.08, x: 0, font: { size: 10 } }
+      /* anchor the legend to the plot top edge so its offset does not
+         scale with chart height (tall aspect-ratio charts lifted it
+         into the title band) */
+      legend: { orientation: "h", x: 0, y: 1, yanchor: "bottom", font: { size: 10 } },
+      margin: { l: 58, r: 20, t: 64, b: 46 }
     };
     overrides = overrides || {};
     for (var k in overrides) {
@@ -169,7 +193,7 @@ var QL = (function () {
     erf: erf, normCdf: normCdf, normPdf: normPdf,
     bsPrice: bsPrice, bsGreeks: bsGreeks,
     mean: mean, stdev: stdev, quantile: quantile,
-    colors: colors, series: series, layout: layout, plotConfig: plotConfig,
+    colors: colors, series: series, chartSeries: chartSeries, layout: layout, plotConfig: plotConfig,
     fmt: fmt, pct: pct, linspace: linspace
   };
 })();
