@@ -589,7 +589,11 @@ hr {
 .finding-card:hover .finding-spark .spark-line-accent,
 .finding-card:hover .finding-spark .spark-line-negative { stroke-width: 2.4; }
 
-/* ---------- results reel: one finding at a time ---------- */
+/* ---------- results reel: center stage with peeking neighbors ---------- */
+
+.reel-ready { --reel-slide-w: min(720px, 74%); }
+
+.reel-stage { position: relative; }
 
 .reel-ready .finding-card-grid {
   display: flex;
@@ -600,54 +604,98 @@ hr {
   overscroll-behavior-x: contain;
   scrollbar-width: none;
   border-top: 1px solid var(--rule);
+  /* lets the first and last slide reach dead center */
+  padding-inline: calc((100% - var(--reel-slide-w)) / 2);
 }
 .reel-ready .finding-card-grid::-webkit-scrollbar { display: none; }
 .reel-ready .finding-card-grid:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 
 .reel-ready .finding-card {
-  flex: 0 0 100%;
-  min-width: 100%;
-  scroll-snap-align: start;
+  flex: 0 0 var(--reel-slide-w);
+  min-width: var(--reel-slide-w);
+  scroll-snap-align: center;
   scroll-snap-stop: always;
   border-top: none;
-  padding: clamp(2.8rem, 5vw, 4.2rem) 0.2rem clamp(2.4rem, 4.5vw, 3.6rem);
+  padding: clamp(2.8rem, 5vw, 4rem) clamp(1rem, 3vw, 2.5rem) clamp(2.2rem, 4vw, 3.2rem);
+  align-items: center;
+  text-align: center;
+  transition: opacity 320ms ease, transform 320ms ease;
+  will-change: opacity, transform;
 }
 .reel-ready .finding-card::before { display: none; }
-.reel-ready .finding-card h3 { font-size: clamp(1.6rem, 2.6vw, 2.15rem); }
-.reel-ready .finding-spark { margin: 1.4rem 0 0.6rem; }
-.reel-ready .finding-spark svg { max-width: 560px; }
+.reel-ready .finding-card h3 { font-size: clamp(1.6rem, 2.6vw, 2.15rem); max-width: 18em; }
+.reel-ready .finding-card p:not(.finding-question):not(.finding-metric) { max-width: 36em; }
+.reel-ready .finding-spark { margin: 1.4rem auto 0.6rem; }
+.reel-ready .finding-spark svg { max-width: 560px; margin-inline: auto; }
 .reel-ready .finding-card .finding-metric { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+.reel-ready .finding-card .finding-link { margin-top: 1.2rem; }
+.reel-ready .finding-card.is-away { opacity: 0.28; transform: scale(0.955); }
+.reel-ready .finding-card.is-away:hover { opacity: 0.5; }
 
-.reel-ready .section-heading-row { justify-content: flex-start; gap: 1.2rem; }
-.reel-ready .section-heading-row h2 { margin-right: auto; }
-
-.reel-controls { display: inline-flex; flex: none; align-items: center; gap: 0.9rem; }
-.reel-counter {
+/* flanking arrows, mid-height over the peeking neighbors */
+.reel-flank {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--control-border);
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color var(--speed) ease, color var(--speed) ease, opacity var(--speed) ease;
+}
+.reel-flank:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.reel-flank:disabled { opacity: 0.25; cursor: default; }
+.reel-flank--prev { left: clamp(0.2rem, 2vw, 1.6rem); }
+.reel-flank--next { right: clamp(0.2rem, 2vw, 1.6rem); }
+
+/* progress rail: one dash per study */
+.reel-rail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.7rem;
+}
+.reel-dash {
+  width: 30px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  background: var(--rule);
+  cursor: pointer;
+  transition: background var(--speed) ease;
+}
+.reel-dash:hover { background: var(--control-border); }
+.reel-dash[aria-current="true"] { background: var(--accent); }
+.reel-rail .reel-counter {
+  margin-left: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
   letter-spacing: 0.14em;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
-.reel-arrow {
-  width: 46px;
-  height: 46px;
-  display: inline-grid;
-  place-items: center;
-  border: 1px solid var(--control-border);
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--mono);
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: border-color var(--speed) ease, color var(--speed) ease;
-}
-.reel-arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
-.reel-arrow:disabled { opacity: 0.35; cursor: default; }
 
 @media (max-width: 700px) {
-  .reel-ready .section-heading-row { flex-direction: row; flex-wrap: wrap; align-items: center; }
-  .reel-ready .section-heading-row h2 { flex-basis: 100%; }
+  .reel-ready { --reel-slide-w: 88%; }
+  .reel-flank { width: 44px; height: 44px; }
+  .reel-flank--prev { left: 0.15rem; }
+  .reel-flank--next { right: 0.15rem; }
+  .reel-dash { width: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-ready .finding-card { transition: none; }
+  .reel-ready .finding-card.is-away { transform: none; }
 }
 
 /* ---------- generic navigation cards → open ledger rows ---------- */
