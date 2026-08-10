@@ -589,6 +589,67 @@ hr {
 .finding-card:hover .finding-spark .spark-line-accent,
 .finding-card:hover .finding-spark .spark-line-negative { stroke-width: 2.4; }
 
+/* ---------- results reel: one finding at a time ---------- */
+
+.reel-ready .finding-card-grid {
+  display: flex;
+  gap: 0;
+  margin-top: 1.8rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-top: 1px solid var(--rule);
+}
+.reel-ready .finding-card-grid::-webkit-scrollbar { display: none; }
+.reel-ready .finding-card-grid:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+.reel-ready .finding-card {
+  flex: 0 0 100%;
+  min-width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  border-top: none;
+  padding: clamp(2.8rem, 5vw, 4.2rem) 0.2rem clamp(2.4rem, 4.5vw, 3.6rem);
+}
+.reel-ready .finding-card::before { display: none; }
+.reel-ready .finding-card h3 { font-size: clamp(1.6rem, 2.6vw, 2.15rem); }
+.reel-ready .finding-spark { margin: 1.4rem 0 0.6rem; }
+.reel-ready .finding-spark svg { max-width: 560px; }
+.reel-ready .finding-card .finding-metric { font-size: clamp(1.6rem, 2.4vw, 2rem); }
+
+.reel-ready .section-heading-row { justify-content: flex-start; gap: 1.2rem; }
+.reel-ready .section-heading-row h2 { margin-right: auto; }
+
+.reel-controls { display: inline-flex; flex: none; align-items: center; gap: 0.9rem; }
+.reel-counter {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.reel-arrow {
+  width: 46px;
+  height: 46px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--control-border);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: border-color var(--speed) ease, color var(--speed) ease;
+}
+.reel-arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.reel-arrow:disabled { opacity: 0.35; cursor: default; }
+
+@media (max-width: 700px) {
+  .reel-ready .section-heading-row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .reel-ready .section-heading-row h2 { flex-basis: 100%; }
+}
+
 /* ---------- generic navigation cards → open ledger rows ---------- */
 
 .arrival-grid {

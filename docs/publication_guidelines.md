@@ -49,6 +49,23 @@ page, and a skeptic should be able to find the boundary of every claim.
   answer" are prohibited strings — test-enforced). The lab is allowed to BE
   simple; it is not allowed to advertise it.
 
+### 2.1 Sentence doctrine (2026-08 simplification)
+
+- **One idea per sentence.** Typical sentence ≤ 20 words; hard cap 28. A
+  sentence carrying two ideas becomes two sentences.
+- **Verbs over noun chains.** "The lab measures X" — never "the measurement
+  of X is conducted." If three abstract nouns stack ("institutional
+  transmission mechanism heterogeneity"), rewrite around a verb.
+- **Terms of art stay; connective jargon goes.** Sharpe, VaR, FDR,
+  conditional coverage, bootstrap — these are the specialty and are kept.
+  Phrases like "remains conditional on the evaluation design" become
+  "depends on the test."
+- **Hedges that carry meaning survive.** "In this sample", "for this
+  portfolio", "no causal claim" are epistemic content, not padding. Compress
+  them; never delete them.
+- **Say it on one page.** The evidence standard lives on the method page.
+  Other pages reference it in one sentence at most; they do not restate it.
+
 ## 3. Word budgets
 
 | Surface | Budget |
