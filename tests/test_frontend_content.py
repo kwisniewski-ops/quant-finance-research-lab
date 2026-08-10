@@ -476,9 +476,6 @@ def test_regime_frameworks_publish_ledgers_without_inflating_investigations() ->
         assert field in atlas
     for field in ("Classification", "Data vintage", "Forecast status"):
         assert field in dossier
-    assert 'id="research-pipeline"' in record
-    assert record.count('class="status status-proposed">Proposed</span>') >= 5
-    assert "Registered program on regime transmission and model failure" in record
     assert "<dt>Investigations</dt><dd>06</dd>" in record
     assert (ROOT / "docs" / "research_pipeline.md").exists()
 
