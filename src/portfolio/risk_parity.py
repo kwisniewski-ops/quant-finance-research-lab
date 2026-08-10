@@ -11,8 +11,8 @@ so the *total* risk contribution is
 
 A risk-parity portfolio equalizes the fractional contributions
 :math:`RC_i / \\sigma_p` (or matches an arbitrary risk budget
-:math:`b_i`). We minimize the sum of squared deviations from the
-budget with SLSQP and polish the solution with the fixed-point
+:math:`b_i`). The implementation minimizes the sum of squared deviations from the
+budget with SLSQP and polishes the solution with the fixed-point
 iteration :math:`w_i \\propto b_i / (\\Sigma w)_i`.
 
 References

@@ -42,7 +42,7 @@ compustat_quarterly.parquet      comp.fundq                    Quarterly fundame
 ccm_links.parquet                crsp.ccmxpf_lnkhist           GVKEY↔PERMNO link table with validity
                                                                windows (LC/LU, primary links only)
 ff_factors_monthly.parquet       ff.factors_monthly            Published FF factors — validation target
-                                                               for our from-scratch replication
+                                                               for the from-scratch replication
 ===============================  ============================  ==========================================
 
 References
@@ -57,7 +57,6 @@ import argparse
 import logging
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 logger = logging.getLogger(__name__)

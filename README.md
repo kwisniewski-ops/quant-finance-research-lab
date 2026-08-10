@@ -1,19 +1,20 @@
-# Quantitative Markets Research Lab
+# Quantitative Markets & Institutions Lab
 
-A reproducible research engine for testing, visualizing, and explaining quantitative
-finance models across asset pricing, portfolio optimization, derivatives, risk, and
-market microstructure.
+Independent, evidence-led research on financial models, market regimes, and investor
+decisions. The lab investigates how models, institutions, and history condition market
+relationships, publishing plain-language conclusions with reproducible evidence,
+explicit uncertainty, and strict causal boundaries.
 
 > Financial markets can be studied as complex adaptive systems where uncertainty,
 > volatility, human behavior, capital allocation, and mathematical structure converge.
 > This project explores how quantitative models can clarify market behavior while
 > remaining honest about the limits of prediction.
 
-**Models clarify uncertainty; they do not eliminate it.** Every module here ships with
+**Simple at the surface. Rigorous at depth. Honest about uncertainty.** Every module ships with
 its assumptions documented, its limitations stated, and tests that anchor it to known
 results. The companion website turns the research into decision briefs, interactive
 tools, and an auditable validation method:
-**[kylewisniewski.com/lab](https://kylewisniewski.com/lab/)** (source in
+**[kylewisniewski.com/lab](https://www.kylewisniewski.com/lab/)** (source in
 [`app/frontend/`](app/frontend/), integrated into the main site — see [DEPLOY.md](DEPLOY.md)).
 
 ---
@@ -56,7 +57,7 @@ tools, and an auditable validation method:
 git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git
 cd quant-finance-research-lab
 pip install -e ".[all]"
-pytest            # 204 tests, ~1 minute
+pytest            # 220 tests: 204 quantitative + 16 publishing regressions
 ```
 
 Cached market-data snapshots ship with the repo (`data/snapshots/`), so every notebook
@@ -99,7 +100,7 @@ do not bound future ones.
 quant-research-lab/
 ├── src/                  # library code (models, portfolio, risk, backtesting, math, data, visualization)
 ├── notebooks/            # six executed research notebooks + build scripts
-├── tests/                # 204 tests: cross-model anchors, no-look-ahead proofs, analytic checks
+├── tests/                # 220 tests: 204 quantitative anchors + 16 publishing regressions
 ├── docs/                 # foundations, assumptions, methodology, limitations, API contract
 ├── app/frontend/         # static research website (GitHub Pages ready)
 └── data/snapshots/       # cached market data for offline reproducibility
@@ -110,11 +111,10 @@ quant-research-lab/
 This is research tooling for studying models, not investment advice. Nothing here
 constitutes a recommendation to buy or sell any security.
 
-## Author
+## Stewardship
 
-**Kyle Wisniewski** — data & AI strategist; graduate study in applied quantitative
-finance and global economic affairs, University of Denver.
-[hello@kylewisniewski.com](mailto:hello@kylewisniewski.com)
+The lab is maintained as an independent, open research program. Research correspondence:
+[hello@kylewisniewski.com](mailto:hello@kylewisniewski.com).
 
 ## License
 

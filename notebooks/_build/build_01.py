@@ -9,7 +9,7 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 01 — Four Roads to One Price: Cross-Method Validation of European Option Pricing
 
-**Quantitative Markets Research Lab** · pricing engine validation notebook
+**Quantitative Markets & Institutions Lab** · pricing engine validation notebook
 
 A European option on a non-dividend-paying stock has, under the Black–Scholes assumptions, exactly one arbitrage-free price. What makes this fact useful for *software* is that the price can be computed by four numerical philosophies that share almost no code:
 
@@ -20,7 +20,7 @@ A European option on a non-dividend-paying stock has, under the Black–Scholes 
 | Crank–Nicolson PDE | Finite-difference solution of the pricing PDE | $O(\Delta S^2 + \Delta t^2)$ |
 | Monte Carlo | Sample the risk-neutral terminal distribution | Statistical, $O(1/\sqrt{N})$ |
 
-If four independent implementations agree to within their own error budgets, we have strong evidence that each is *numerically* correct. (Whether the shared model is *economically* correct is a separate question — notebook 03 takes that one apart.)
+Agreement among four independent implementations within their respective error budgets provides strong evidence that each is *numerically* correct. Whether the shared model is *economically* correct is a separate question — notebook 03 examines that distinction.
 
 ## The mathematics being implemented four ways
 
@@ -66,7 +66,7 @@ md(r"""## 1. The benchmark contract
 
 Throughout: $S_0 = 100$, $r = 5\%$, $q = 0$, $\sigma = 20\%$, $T = 1$ year, strikes $K \in \{90, 100, 110\}$, both calls and puts.
 
-For Monte Carlo we simulate directly under $\mathbb{Q}$ (drift $r$). The library's GBM simulator uses the *exact* log-Euler scheme, so with a European payoff one time step suffices — the terminal distribution is sampled without discretization bias. We use 200,000 antithetic paths and report the estimator's standard error alongside the point estimate.""")
+For Monte Carlo, the analysis samples directly under $\mathbb{Q}$ (drift $r$). The library's GBM simulator uses the *exact* log-Euler scheme, so with a European payoff one time step suffices — the terminal distribution is sampled without discretization bias. The estimate uses 200,000 antithetic paths and reports the estimator's standard error alongside the point estimate.""")
 
 code("""S0, r, q, sigma, T = 100.0, 0.05, 0.0, 0.20, 1.0
 

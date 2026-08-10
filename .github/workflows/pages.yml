@@ -1,6 +1,6 @@
 name: deploy-website
 
-# The lab is published at https://kylewisniewski.com/lab, served from the main
+# The lab is published at https://www.kylewisniewski.com/lab, served from the main
 # site's repository, which vendors app/frontend via its scripts/sync-lab.mjs.
 # This workflow keeps lab.kylewisniewski.com serving during the migration:
 # every page here declares the new location canonical, so search engines

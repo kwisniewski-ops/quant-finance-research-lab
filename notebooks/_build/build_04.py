@@ -9,7 +9,7 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 04 — Monte Carlo Methods: Simulation as a Numerical Instrument
 
-**Quantitative Markets Research Lab** · stochastic simulation notebook
+**Quantitative Markets & Institutions Lab** · stochastic simulation notebook
 
 Monte Carlo pricing rests on two theorems and one uncomfortable constant. The strong law of large numbers says the discounted-payoff average converges to the price; the central limit theorem says the error is asymptotically Gaussian with standard deviation
 
@@ -49,7 +49,7 @@ GBM has the rare luxury of an exact solution: by Itô's lemma applied to $\ln S_
 
 $$S_{t+\Delta t} = S_t \exp\!\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \sigma\sqrt{\Delta t}\,Z\Big], \qquad Z \sim \mathcal N(0,1),$$
 
-which is exact *in distribution at the grid points for any step size* — the library's `simulate_gbm` uses it. The naive alternative, Euler–Maruyama on the level, $S_{t+\Delta t} = S_t(1 + \mu\Delta t + \sigma\sqrt{\Delta t}Z)$, carries a weak-order-1 bias of size $O(\Delta t)$. We measure both against the closed-form call price, using **common random numbers** so the comparison isolates the scheme, not the noise.""")
+which is exact *in distribution at the grid points for any step size* — the library's `simulate_gbm` uses it. The naive alternative, Euler–Maruyama on the level, $S_{t+\Delta t} = S_t(1 + \mu\Delta t + \sigma\sqrt{\Delta t}Z)$, carries a weak-order-1 bias of size $O(\Delta t)$. Both schemes are measured against the closed-form call price using **common random numbers**, so the comparison isolates the scheme rather than the noise.""")
 
 code("""S0, K, r, sigma, T = 100.0, 100.0, 0.05, 0.20, 1.0
 bs_ref = bs_price(S0, K, T, r, sigma)
@@ -231,7 +231,7 @@ ax.set_title("Monte Carlo error decays like $1/\\sqrt{N}$")
 ax.legend()
 plt.tight_layout()""")
 
-md(r"""The fitted slope sits within noise of $-0.5$. The economic reading of this chart: going from a penny of error to a tenth of a penny costs 100× the compute. That price tag is why the rest of this notebook's machinery (exact schemes, antithetics) exists, and why the *right* use of Monte Carlo is problems where no cheaper method applies — which brings us to the finale.
+md(r"""The fitted slope sits within noise of $-0.5$. The economic reading of this chart: going from a penny of error to a tenth of a penny costs 100× the compute. That price tag is why the rest of this notebook's machinery (exact schemes, antithetics) exists, and why the *right* use of Monte Carlo is problems where no cheaper method applies — which leads to the final experiment.
 
 ## 7. A payoff with no closed form: the discretely monitored barrier option
 
@@ -268,7 +268,7 @@ md(r"""**Interpretation.** The knockout feature destroys most of the vanilla's v
 ## Limitations
 
 - **Statistical error never disappears; it is only reported.** Every MC number above is a draw from a distribution — the standard-error column is part of the answer, not a footnote.
-- **Bias is scheme-dependent.** GBM and OU were simulated exactly; CIR (and Heston in notebook 03) carry $O(\Delta t)$-family bias that must be checked by step-halving, which we did not budget here.
+- **Bias is scheme-dependent.** GBM and OU were simulated exactly; CIR (and Heston in notebook 03) carry $O(\Delta t)$-family bias that must be checked by step-halving, which falls outside this study's computational budget.
 - **Antithetics are the weakest serious variance reduction.** Control variates, importance sampling (essential for deep-OTM barriers), and Sobol quasi-MC each buy more in the right setting.
 - **The regime model's parameters were chosen, not estimated** — a real application would fit the transition matrix by EM/Hamilton filtering and confront its considerable estimation uncertainty.
 - All experiments share one pseudorandom generator family (PCG64); results are reproducible by seed, which is a virtue for science and a reminder that "random" here means *deterministic given the seed*.

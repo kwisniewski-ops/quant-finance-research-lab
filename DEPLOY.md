@@ -18,7 +18,7 @@ Two GitHub Actions ship with the repo and run automatically on push:
 
 ## 2. Publish the canonical site
 
-The canonical publication lives at **https://kylewisniewski.com/lab/**. The personal-site
+The canonical publication lives at **https://www.kylewisniewski.com/lab/**. The personal-site
 repository vendors `app/frontend/` with `scripts/sync-lab.mjs`, publishes those files under
 `public/lab/`, and includes every lab page in the main sitemap. Run the personal site's lab
 sync before its production build whenever this repository changes.
@@ -38,7 +38,7 @@ migration settles. Every mirrored page points to the apex `/lab` URL. Once the m
 copy and redirects are verified in production:
 
 1. Configure a permanent redirect from `lab.kylewisniewski.com/*` to
-   `kylewisniewski.com/lab/*`.
+   `www.kylewisniewski.com/lab/*`.
 2. Remove the custom domain from GitHub Pages and disable the `pages.yml` workflow.
 3. Remove `app/frontend/CNAME` after DNS no longer points at GitHub Pages.
 4. Recheck the main sitemap, canonical tags, and `/lab/index.html` redirect.

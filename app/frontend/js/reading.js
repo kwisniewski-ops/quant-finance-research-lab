@@ -30,8 +30,12 @@
     var title = button.getAttribute("data-cite-title");
     var year = button.getAttribute("data-cite-year") || "2026";
     var target = button.getAttribute("data-cite-target");
-    var url = window.location.href.split("#")[0] + (target ? "#" + target : "");
-    return 'Quantitative Markets Research Lab. "' + title + '." ' + year + ". " + url;
+    var canonical = document.querySelector('link[rel="canonical"]');
+    var baseUrl = canonical && canonical.href
+      ? canonical.href
+      : window.location.origin + window.location.pathname;
+    var url = baseUrl.split("#")[0] + (target ? "#" + target : "");
+    return 'Quantitative Markets & Institutions Lab. "' + title + '." ' + year + ". " + url;
   }
 
   function announce(message) {
@@ -58,7 +62,13 @@
     Array.prototype.forEach.call(document.querySelectorAll(".local-toc a"), function (link) {
       link.addEventListener("click", function () {
         var contents = link.closest("details");
-        if (contents && window.matchMedia("(max-width: 760px)").matches) contents.open = false;
+        if (!contents) return;
+        window.setTimeout(function () {
+          contents.open = false;
+          var targetId = decodeURIComponent(link.hash.slice(1));
+          var target = targetId ? document.getElementById(targetId) : null;
+          if (target) target.scrollIntoView();
+        }, 0);
       });
     });
   }

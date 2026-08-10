@@ -5,41 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Why “Optimal” Portfolios Fail Out of Sample — Evidence</title>
 <meta name="description" content="A max-Sharpe portfolio fell from 1.12 in sample to 0.44 out of sample. See what estimation error changed, what risk-based methods preserved, and the study's limits.">
-<link rel="canonical" href="https://kylewisniewski.com/lab/finding-portfolio-estimation.html">
+<link rel="canonical" href="https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Quantitative Markets Research Lab">
+<meta property="og:site_name" content="Quantitative Markets &amp; Institutions Lab">
 <meta property="og:title" content="Why “Optimal” Portfolios Fail Out of Sample">
 <meta property="og:description" content="Max-Sharpe MVO fell from 1.12 to 0.44 out of sample. Risk-based methods preserved risk shape, not superior return.">
-<meta property="og:url" content="https://kylewisniewski.com/lab/finding-portfolio-estimation.html">
-<meta property="og:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
+<meta property="og:url" content="https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html">
+<meta property="og:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="An optimized portfolio's in-sample Sharpe of 1.12 falling to 0.44 out of sample.">
+<meta property="og:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Why “Optimal” Portfolios Fail Out of Sample">
 <meta name="twitter:description" content="Max-Sharpe MVO fell from 1.12 to 0.44 out of sample. Risk-based methods preserved risk shape, not superior return.">
-<meta name="twitter:image" content="https://kylewisniewski.com/lab/og-lab-v2.png">
-<meta name="twitter:image:alt" content="An optimized portfolio's in-sample Sharpe of 1.12 falling to 0.44 out of sample.">
+<meta name="twitter:image" content="https://www.kylewisniewski.com/lab/og-lab-v3.png">
+<meta name="twitter:image:alt" content="Quantitative Markets &amp; Institutions Lab: evidence for decisions under uncertainty, shown beside a market chart and open research ledger.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "Why “Optimal” Portfolios Fail Out of Sample",
   "description": "A decision brief on portfolio estimation error, out-of-sample degradation, and what risk-based allocations actually preserve.",
-  "url": "https://kylewisniewski.com/lab/finding-portfolio-estimation.html",
-  "image": "https://kylewisniewski.com/lab/og-lab-v2.png",
+  "url": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html",
+  "image": "https://www.kylewisniewski.com/lab/og-lab-v3.png",
   "datePublished": "2026-08-08",
-  "dateModified": "2026-08-08",
-  "author": {"@id": "https://kylewisniewski.com/lab#organization"},
-  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets Research Lab", "url": "https://kylewisniewski.com/lab/"},
-  "mainEntityOfPage": "https://kylewisniewski.com/lab/finding-portfolio-estimation.html",
+  "dateModified": "2026-08-09",
+  "author": {"@id": "https://www.kylewisniewski.com/lab#organization"},
+  "isPartOf": {"@type": "CreativeWork", "name": "Quantitative Markets & Institutions Lab", "url": "https://www.kylewisniewski.com/lab/"},
+  "mainEntityOfPage": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html",
   "about": ["portfolio optimization", "estimation error", "risk parity", "hierarchical risk parity"],
   "proficiencyLevel": "Intermediate"
 }
 </script>
 <link rel="stylesheet" href="css/main.css">
-<link rel="alternate" type="application/atom+xml" title="Quantitative Markets Research Lab findings" href="feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 <script id="breadcrumb-schema" type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,20 +48,20 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "name": "Research Lab",
-      "item": "https://kylewisniewski.com/lab"
+      "name": "Quantitative Markets & Institutions Lab",
+      "item": "https://www.kylewisniewski.com/lab"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Questions",
-      "item": "https://kylewisniewski.com/lab/findings.html"
+      "item": "https://www.kylewisniewski.com/lab/findings.html"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Why “optimal” portfolios fail out of sample",
-      "item": "https://kylewisniewski.com/lab/finding-portfolio-estimation.html"
+      "item": "https://www.kylewisniewski.com/lab/finding-portfolio-estimation.html"
     }
   ]
 }
@@ -74,7 +74,7 @@
 <header class="site-header">
   <div class="wrap">
     <div class="identity-lockup" aria-label="Site identity">
-      <a class="wordmark" href="index.html">Quantitative Markets <span class="tail">Research Lab</span></a>
+      <a class="wordmark" href="index.html">Quantitative Markets &amp; Institutions <span class="tail">Lab</span></a>
     </div>
     <nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Start</a><a href="findings.html" aria-current="page">Questions</a><a href="tools.html">Models</a><a href="method.html">Method</a></nav>
   </div>
@@ -108,7 +108,7 @@
         2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk parity and hierarchical
         risk parity ran at roughly half the volatility and two-thirds the drawdown of the optimized
         books, but they did not reliably win on return. That narrower claim is what the evidence supports.</p>
-        <p><small>Published 8 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
+        <p><small>Published 8 August 2026 · Brief revised 9 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
       <dl class="proof-strip ledger-summary" aria-label="Principal evidence">
@@ -186,6 +186,18 @@
         </div>
       </section>
 
+      <aside class="regime-lens" aria-labelledby="regime-lens-portfolio">
+        <p class="kicker">Regime lens · Portfolio construction</p>
+        <h2 id="regime-lens-portfolio">Fitted return and covariance relationships entered a different observed environment</h2>
+        <dl class="regime-lens__evidence">
+          <div><dt>Measured here</dt><dd>Maximum-Sharpe optimization fell from approximately 1.12 in the 2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk-based methods produced a more stable risk shape without establishing a return advantage.</dd></div>
+          <div><dt>Established context</dt><dd>The fit and evaluation windows straddle a documented change in stock–bond correlation and monetary conditions, including inflation pressure, rapid tightening, and simultaneous weakness in equities and nominal bonds.</dd></div>
+          <div><dt>Interpretive implication</dt><dd>An optimized portfolio implicitly assumes its fitted return and covariance relationships remain decision-relevant. Precise weights can transport relationships measured in one observed environment into a different one.</dd></div>
+        </dl>
+        <p class="regime-lens__boundary">Causal boundary: the experiment does not identify regime change as the cause of the performance ranking. Correlation, estimation error, concentration, asset selection, and the realized equity path can all affect the result.</p>
+        <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-allocation" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:allocation">Examine the allocation regime <span aria-hidden="true">→</span></a>
+      </aside>
+
       <section class="section" aria-labelledby="related">
         <p class="kicker">Related research</p>
         <h2 id="related">The regime assumptions inside the allocation</h2>
@@ -199,7 +211,7 @@
   </div>
 </main>
 
-<footer class="site-footer"><div class="wrap"><span>Quantitative Markets Research Lab · MMXXVI</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
+<footer class="site-footer"><div class="wrap"><span>Quantitative Markets &amp; Institutions Lab · 2026</span><span><a href="findings.html">Questions</a> · <a href="tools.html">Models</a> · <a href="method.html">Method</a> · <a href="research-log.html">Research record</a> · <a href="about.html">About the lab</a> · <a href="feed.xml">Feed</a> · <a href="https://github.com/kwisniewski-ops/quant-finance-research-lab">Source code</a> · <a href="https://www.kylewisniewski.com">Main site</a> · Not investment advice</span></div></footer>
 
 <script src="js/engagement.js"></script>
 </body>

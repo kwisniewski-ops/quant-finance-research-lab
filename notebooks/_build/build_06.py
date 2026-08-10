@@ -9,7 +9,7 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 06 — A Market Risk Workup for a Real Portfolio
 
-**Quantitative Markets Research Lab** · risk measurement notebook
+**Quantitative Markets & Institutions Lab** · risk measurement notebook
 
 This notebook does what a risk team does on a Monday morning, end to end, on real data: define a portfolio, backtest it honestly (costs included, no look-ahead), and then interrogate the return stream with every lens in the risk library — VaR in four flavors, expected shortfall, drawdown anatomy, historical scenario shocks, correlation stress, and the regime break that quietly invalidated a generation of risk models in 2022.
 
@@ -68,7 +68,7 @@ md(r"""Costs are real but small for this strategy — monthly re-anchoring of a 
 code("""perf = summary(r, rf=0.02)
 perf.round(4)""")
 
-md(r"""**Interpretation.** Over 2016–2026 the book earned about **10.1%** a year at **11.5%** volatility — Sharpe ≈ 0.72 against a 2% cash rate, hit rate a modest 57% of days. The distribution shape is the part that deserves attention: skew **−0.54** and excess kurtosis **≈ 13**. A diversified, boring, monthly-rebalanced portfolio still inherits equity markets' asymmetry: its worst days are much worse than its best days are good. Every Gaussian-based number below should be read with that kurtosis in mind — which is exactly why we compute VaR four ways rather than one.
+md(r"""**Interpretation.** Over 2016–2026 the book earned about **10.1%** a year at **11.5%** volatility — Sharpe ≈ 0.72 against a 2% cash rate, hit rate a modest 57% of days. The distribution shape is the part that deserves attention: skew **−0.54** and excess kurtosis **≈ 13**. A diversified, boring, monthly-rebalanced portfolio still inherits equity markets' asymmetry: its worst days are much worse than its best days are good. Every Gaussian-based number below should be read with that kurtosis in mind, which motivates computing VaR four ways rather than one.
 
 ## 2. Value-at-Risk, four ways — and why they disagree
 
@@ -149,7 +149,7 @@ plt.tight_layout()""")
 
 md(r"""The four panels compress the story so far: the equity curve compounds below SPY (as a 55%-equity book should), the drawdown panel shows 2020's spike versus 2022's trench, rolling volatility shows the clustering of notebook 03 surviving diversification, and the histogram panel marks where VaR and ES sit inside the empirical left tail.
 
-## 5. Historical scenarios: replaying the disasters we know
+## 5. Historical scenarios: replaying documented historical crises
 
 Scenario analysis asks a question VaR cannot: *what does this specific portfolio lose if a named historical episode replays?* The library ships approximate peak-to-trough asset-class shocks for four episodes; applying them to today's weights is a matrix multiply, $\Delta P = w^\top s$.""")
 
@@ -166,11 +166,11 @@ plt.tight_layout()
 md(r"""**Interpretation.** A GFC replay costs this book about **−30%**; Covid about **−21%** (closely matching the realized 2020 drawdown — a reassuring calibration check); the 2022 rate shock **−25%**; dot-com **−24%**. Two observations with teeth:
 
 1. **The rate-shock scenario is nearly as bad as the GFC for this portfolio** despite equity shocks half the size — because it is the only scenario where the 30% bond sleeve *adds* to the loss (−17% AGG, −33% TLT) instead of offsetting it. Scenario tables reveal *which* diversification a portfolio actually depends on.
-2. These are static shocks to today's weights: no rebalancing, no flight-to-quality timing, no second-round effects. They are floor-level estimates of episodes we already know about — and the next crisis is under no obligation to resemble the last four.
+2. These are static shocks to today's weights: no rebalancing, no flight-to-quality timing, no second-round effects. They are floor-level estimates of previously observed episodes — and the next crisis is under no obligation to resemble the last four.
 
 ## 6. Correlation stress: watching diversification evaporate
 
-The oldest cruelty in markets: correlations rise exactly when you need them low. We stress the covariance matrix by blending its correlation block toward 1, $\rho^{\text{stress}} = (1-\lambda)\rho + \lambda\mathbf{1}\mathbf{1}^\top$ (volatilities untouched, PSD enforced), and track portfolio volatility.""")
+The oldest cruelty in markets: correlations rise exactly when you need them low. The covariance matrix is stressed by blending its correlation block toward 1, $\rho^{\text{stress}} = (1-\lambda)\rho + \lambda\mathbf{1}\mathbf{1}^\top$ (volatilities untouched, PSD enforced), with portfolio volatility tracked across the stress path.""")
 
 code("""from src.risk.stress_testing import correlation_stress
 
@@ -214,7 +214,7 @@ print(f"mean correlation 2015-2019: {roll_corr.loc[:'2019'].mean():+.2f}")
 print(f"peak correlation 2022-2023: {roll_corr.loc['2022':'2023'].max():+.2f}")
 print(f"latest value:               {roll_corr.iloc[-1]:+.2f}")""")
 
-md(r"""**Interpretation.** For 2015–2019 the correlation averaged **−0.35**: on bad equity days, bonds rallied, and every risk model calibrated on that era "knew" it. Through 2022–23 it swung to **+0.37** — a ~0.7 swing in the single most load-bearing correlation in institutional portfolio construction — and it remains positive (**+0.31**) at the end of our sample. The mechanism is well understood *after the fact*: when inflation drives the discount rate, stocks and bonds share a common factor; when growth fear drives it, they oppose. The uncomfortable part is that a decade of daily data (2,500 observations!) provided precisely zero warning, because all 2,500 observations were drawn from one regime.
+md(r"""**Interpretation.** For 2015–2019 the correlation averaged **−0.35**: on bad equity days, bonds rallied, and every risk model calibrated on that era "knew" it. Through 2022–23 it swung to **+0.37** — a ~0.7 swing in the single most load-bearing correlation in institutional portfolio construction — and it remains positive (**+0.31**) at the end of the analyzed sample. The mechanism is well understood *after the fact*: when inflation drives the discount rate, stocks and bonds share a common factor; when growth fear drives it, they oppose. The uncomfortable part is that a decade of daily data (2,500 observations!) provided precisely zero warning, because all 2,500 observations were drawn from one regime.
 
 This single chart is the strongest argument in the whole notebook for scenario analysis and correlation stress as *complements* to statistical risk measures: the statistics can only summarize the regime they were fed.
 

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "quant-research-lab"
 version = "0.1.0"
-description = "Quantitative Markets Research Lab — a reproducible research engine for testing, visualizing, and explaining quantitative finance models across asset pricing, portfolio optimization, derivatives, risk, and stochastic simulation."
+description = "Quantitative Markets & Institutions Lab — reproducible research on financial models, market regimes, institutions, and investor decisions."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

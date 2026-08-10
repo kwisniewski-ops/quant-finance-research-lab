@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Quantitative Markets Research Lab — shared stylesheet
+   Quantitative Markets & Institutions Lab — shared stylesheet
    Palette: shared ivory / navy / gold brand foundation + scientific series
    Type: system-native editorial serif + sans + monospace (zero font payload)
    ========================================================================== */
@@ -1347,6 +1347,13 @@ sup, sub { line-height: 0; }
 
 .hero-reframed h1 { max-width: 17em; font-size: clamp(2.55rem, 5.7vw, 4.8rem); line-height: 1.04; }
 .hero-reframed .lede { max-width: 42em; }
+.hero-context {
+  max-width: 48em;
+  margin: -0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
 
 .proof-strip {
   display: grid;
@@ -1428,6 +1435,34 @@ sup, sub { line-height: 0; }
   color: var(--ink);
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+.dossier-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(230px, 0.65fr);
+  gap: 2.5rem;
+  align-items: center;
+  margin: 4rem 0 0;
+  padding: 2rem 2.1rem;
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.dossier-feature h2 { max-width: 25em; margin-bottom: 0.45rem; }
+.dossier-feature p:not(.kicker) { max-width: 48em; margin-bottom: 0; color: var(--ink-soft); }
+.dossier-feature > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 48px;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .depth-nav { margin: 1.4rem 0 0; }
@@ -1564,6 +1599,74 @@ sup, sub { line-height: 0; }
 .related-grid strong { font-weight: 500; line-height: 1.35; }
 .related-grid em { margin-top: auto; padding-top: 0.8rem; color: var(--muted); font-family: var(--mono); font-size: 0.66rem; font-style: normal; }
 
+.evidence-taxonomy {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--rule);
+  background: var(--rule);
+}
+.evidence-taxonomy article { min-width: 0; padding: 1.1rem 1.15rem; background: var(--paper); }
+.evidence-taxonomy article p:last-child { margin: 0; color: var(--muted); font-size: 0.84rem; line-height: 1.5; }
+.evidence-label {
+  margin: 0 0 0.45rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+.evidence-label-inline { display: inline-block; margin: 0 0.35rem 0 0; }
+
+.regime-lens {
+  margin-top: 3.2rem;
+  padding: 1.55rem 1.6rem 1.65rem;
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+}
+.regime-lens > h2 { max-width: 32em; font-size: 1.42rem; }
+.regime-lens__evidence {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1.25rem 0;
+  border: 1px solid var(--rule);
+  background: var(--rule);
+}
+.regime-lens__evidence > div { min-width: 0; padding: 1rem; background: var(--paper); }
+.regime-lens__evidence dt {
+  margin-bottom: 0.4rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.regime-lens__evidence dd { margin: 0; color: var(--ink-soft); font-size: 0.84rem; line-height: 1.5; }
+.regime-lens__boundary {
+  max-width: 70em;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
+}
+.regime-lens__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.45rem 0;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-decoration: none;
+}
+
 .finding-article { max-width: 900px; }
 .finding-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin: 1.4rem 0; border: 1px solid var(--rule); background: var(--rule); }
 .finding-meta > div { padding: 0.9rem; background: var(--paper); }
@@ -1582,6 +1685,7 @@ sup, sub { line-height: 0; }
   .checklist-grid { grid-template-columns: 1fr; }
   .depth-path { grid-template-columns: 1fr; }
   .cta-band { grid-template-columns: 1fr; }
+  .dossier-feature { grid-template-columns: 1fr; gap: 1.25rem; }
 }
 
 @media (max-width: 700px) {
@@ -1589,10 +1693,14 @@ sup, sub { line-height: 0; }
   .decision-grid,
   .tool-card-grid,
   .related-grid,
-  .finding-meta { grid-template-columns: 1fr; }
+  .finding-meta,
+  .evidence-taxonomy,
+  .regime-lens__evidence { grid-template-columns: 1fr; }
   .tool-card:last-child:nth-child(odd) { grid-column: auto; }
   .decision-summary { padding: 1.3rem 1rem; }
   .cta-band { padding: 1.5rem 1rem; }
+  .dossier-feature,
+  .regime-lens { padding: 1.4rem 1rem; }
 }
 
 @media (max-width: 520px) {

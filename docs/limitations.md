@@ -27,7 +27,7 @@ noise* and should never be used to rank methods.
 Every model here freezes something the world insists on moving:
 
 - Black–Scholes freezes $\sigma$; SPY's 21-day realized vol ran from **3.4% to 93%**
-  in our sample (notebook 03).
+  in the analyzed sample (notebook 03).
 - Heston freezes $(\kappa, \theta, \xi, \rho)$; desks recalibrate them daily, which
   is a running confession that they are state variables, not constants.
 - Factor models freeze betas; QQQ's momentum loading swung from **−0.14 to +0.26**

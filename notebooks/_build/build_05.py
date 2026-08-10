@@ -9,9 +9,9 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s))
 
 md(r"""# 05 — Factor Investing: Decomposing ETF Returns into Priced Risks
 
-**Quantitative Markets Research Lab** · empirical asset pricing notebook
+**Quantitative Markets & Institutions Lab** · empirical asset pricing notebook
 
-The central claim of factor models is deflationary: most of what looks like manager skill (or ETF "strategy") is compensation for exposure to a handful of systematic risks. Formally, we regress an asset's *excess* return on the Fama–French five factors plus momentum:
+The central claim of factor models is deflationary: most of what looks like manager skill (or ETF "strategy") is compensation for exposure to a handful of systematic risks. Formally, the analysis regresses an asset's *excess* return on the Fama–French five factors plus momentum:
 
 $$r_{i,t} - r_{f,t} = \alpha_i + \beta_{i,\text{Mkt}}\,\text{MktRF}_t + \beta_{i,\text{SMB}}\,\text{SMB}_t + \beta_{i,\text{HML}}\,\text{HML}_t + \beta_{i,\text{RMW}}\,\text{RMW}_t + \beta_{i,\text{CMA}}\,\text{CMA}_t + \beta_{i,\text{Mom}}\,\text{Mom}_t + \varepsilon_{i,t}.$$
 
@@ -19,7 +19,7 @@ The $\beta$s say *which* risks the asset carries; $\alpha$ is what remains — r
 
 This notebook runs that regression on six ETFs whose marketing departments make explicit factor claims, using real daily data:
 
-| ETF | Claim | If the claim is true, we should see |
+| ETF | Claim | Expected empirical signature |
 |---|---|---|
 | QQQ | Nasdaq-100 (mega-cap growth) | market $\beta > 1$, **negative** HML, negative SMB |
 | USMV | minimum volatility | market $\beta$ well **below 1**, positive RMW/CMA tilt |
@@ -63,7 +63,7 @@ print(f"aligned sample: {len(common)} days, {common[0].date()} to {common[-1].da
 
 md(r"""## 1. Full-sample exposures
 
-For each ETF: OLS on daily data, ~2,860 observations. We report $\hat\beta$ with plain OLS $t$-statistics (a caveat on those below), annualized $\hat\alpha$, and $R^2$.""")
+For each ETF: OLS on daily data, ~2,860 observations. Reported outputs include $\hat\beta$ with plain OLS $t$-statistics (a caveat on those below), annualized $\hat\alpha$, and $R^2$.""")
 
 code("""fits = {t: fit_factor_model(rets[t], F, rf=rf) for t in ETFS}
 
@@ -120,7 +120,7 @@ plt.tight_layout()
 print("beta ranges across windows:")
 print(rb[["Mkt-RF", "Mom", "HML"]].agg(["min", "max"]).round(2))""")
 
-md(r"""**Interpretation.** The market beta is comparatively stable (roughly 1.0–1.2), but the **momentum loading swings sign** — QQQ behaves like a momentum asset when tech has been winning (its holdings *become* the momentum portfolio, as in 2020–21 and the AI rally) and like an anti-momentum asset after reversals, when the momentum factor rotates into whatever replaced tech. The HML loading is persistently negative but far from constant. Two research consequences: (i) a full-sample beta is a *time average* that may describe no actual year; (ii) any risk model or hedging program keyed to static loadings silently accumulates basis risk as the loadings wander. This is the same lesson as notebook 03's, one level up: parameters we call constants are state variables we have declined to model.
+md(r"""**Interpretation.** The market beta is comparatively stable (roughly 1.0–1.2), but the **momentum loading swings sign** — QQQ behaves like a momentum asset when tech has been winning (its holdings *become* the momentum portfolio, as in 2020–21 and the AI rally) and like an anti-momentum asset after reversals, when the momentum factor rotates into whatever replaced tech. The HML loading is persistently negative but far from constant. Two research consequences: (i) a full-sample beta is a *time average* that may describe no actual year; (ii) any risk model or hedging program keyed to static loadings silently accumulates basis risk as the loadings wander. This is the same lesson as notebook 03's, one level up: parameters treated as constants are unmodeled state variables.
 
 ## 3. How distinct are the factors themselves?""")
 

@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-# The lab is published at https://kylewisniewski.com/lab — every page here
+# The lab is published at https://www.kylewisniewski.com/lab — every page here
 # declares that as its canonical, and the main site's sitemap lists them.
-Sitemap: https://kylewisniewski.com/sitemap.xml
+Sitemap: https://www.kylewisniewski.com/sitemap.xml
