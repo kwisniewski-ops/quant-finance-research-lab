@@ -93,9 +93,8 @@
     <div class="page-head">
       <p class="kicker">Quantitative model · Derivatives</p>
       <h1>Option valuation under Black–Scholes–Merton and Cox–Ross–Rubinstein</h1>
-      <p class="lede">Closed-form and binomial-lattice values, sensitivities, convergence, and
-      early-exercise effects are compared under common inputs. Agreement tests implementation
-      consistency; it does not establish market realism.</p>
+      <p class="lede">The model compares closed-form and lattice values, sensitivities, convergence,
+      and early-exercise effects under one set of inputs.</p>
     </div>
 
     <section class="decision-summary" data-reveal aria-labelledby="pricing-decision-title">
@@ -103,8 +102,8 @@
       <h2 id="pricing-decision-title">Use agreement to validate the implementation—not the market model</h2>
       <div class="decision-grid">
         <div><h3>Interpretation</h3><p>For European options, Black–Scholes and a sufficiently fine CRR tree should converge. For American exercise, the lattice also represents early-exercise value that the closed form omits.</p></div>
-        <div><h3>Decision context</h3><p>Cross-method agreement is evidence that a pricing implementation is numerically coherent. It does not establish that constant volatility, continuous hedging, or Gaussian returns describe the market.</p></div>
-        <div><h3>Intended analytical use</h3><p>Derivatives practitioners, quantitative developers, model validators, and quantitative-finance researchers separating numerical error from model risk.</p></div>
+        <div><h3>Decision context</h3><p>Cross-method agreement shows that a pricing implementation is numerically coherent. It does not show that constant volatility, continuous hedging, or Gaussian returns describe the market.</p></div>
+        <div><h3>Intended analytical use</h3><p>Derivatives practitioners, quantitative developers, model validators, and researchers use it to separate numerical error from model risk.</p></div>
         <div><h3>Principal limitation</h3><p>This educational tool uses user-selected inputs rather than a live option chain. Its outputs are model values, not executable prices or investment advice.</p></div>
       </div>
     </section>
@@ -183,8 +182,8 @@
         <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="value-chart-title">Option value by underlying price</h2>
           <div id="chart-value" class="chart" role="img" aria-labelledby="value-chart-title" aria-describedby="value-chart-caption"></div>
-          <figcaption class="chart-caption" id="value-chart-caption">Option value against the underlying price at several times to maturity,
-          holding the current strike, rate, volatility, and yield fixed. Each maturity has a distinct line pattern; the dashed gray line is intrinsic value.</figcaption>
+          <figcaption class="chart-caption" id="value-chart-caption">Option value against the underlying price at several times to maturity.
+          The current strike, rate, volatility, and yield stay fixed. Each maturity has a distinct line pattern. The dashed gray line is intrinsic value.</figcaption>
           <details class="chart-data">
             <summary>View representative option-value data</summary>
             <div class="table-scroll" id="value-data-table"></div>
@@ -194,7 +193,7 @@
         <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="vol-chart-title">Option value by volatility</h2>
           <div id="chart-vol" class="chart short" role="img" aria-labelledby="vol-chart-title" aria-describedby="vol-chart-caption"></div>
-          <figcaption class="chart-caption" id="vol-chart-caption">Price as a function of volatility (vega is the slope). The current volatility is marked by an open circle. Under these assumptions, option value generally increases with volatility.</figcaption>
+          <figcaption class="chart-caption" id="vol-chart-caption">Price against volatility; the slope is vega. An open circle marks the current volatility. Under these assumptions, option value generally rises with volatility.</figcaption>
           <details class="chart-data">
             <summary>View representative volatility data</summary>
             <div class="table-scroll" id="vol-data-table"></div>
@@ -227,7 +226,7 @@
         <dd>A single risk-free rate for borrowing and lending, with no arbitrage. Reasonable at
         short horizons; strained across regimes.</dd>
         <dt>Continuing analytical utility</dt>
-        <dd>Because the market uses it in reverse: quote the price, invert for implied volatility.
+        <dd>The market uses it in reverse: quote the price, invert for implied volatility.
         The formula became a coordinate system rather than a forecast — a theme the
         <a href="case-study.html">case study</a> takes up in full.</dd>
       </dl>
@@ -240,24 +239,23 @@
       <div class="math-block">
       $$p = \frac{e^{(r-q)\Delta t} - d}{u - d}$$
       </div>
-      <p>Prices are computed by backward induction from the terminal payoffs, discounting the
-      expected value one step at a time. Two properties make the lattice more than a numerical
-      curiosity. First, as \(N \to \infty\) the CRR price converges to Black-Scholes — the tree
-      <em>is</em> the binomial construction of Brownian motion, and agreement between the two prices
-      as \(N\) increases makes convergence visible (the oscillation at low \(N\) is
-      the tree's discrete strikes straddling the true value). Second, the lattice handles what the
-      closed form cannot: <strong>early exercise</strong>. At each node an American option is worth
-      the greater of continuation value and immediate exercise, a free-boundary problem with no
-      closed-form solution. Toggle the American put above and note the premium over its European
-      twin — that gap is the value of the right to exercise early, largest deep in the money and
-      when rates are high.</p>
+      <p>The lattice prices by backward induction from the terminal payoffs, discounting the
+      expected value one step at a time. Two properties make it more than a numerical
+      curiosity. First, the CRR price converges to Black-Scholes as \(N \to \infty\). The tree
+      <em>is</em> the binomial construction of Brownian motion. Raising \(N\) makes that convergence
+      visible. The oscillation at low \(N\) is the tree's discrete strikes straddling the true
+      value. Second, the lattice handles what the closed form cannot: <strong>early exercise</strong>.
+      At each node an American option is worth the greater of continuation value and immediate
+      exercise. That is a free-boundary problem with no closed-form solution. Toggle the American put
+      above and note the premium over its European twin. That gap is the value of the right to
+      exercise early, largest deep in the money and when rates are high.</p>
 
       <div class="note">
         <span class="note-label">Reading the difference column</span>
         For European contracts the BS-CRR gap is pure discretization error, shrinking like
         \(O(1/N)\). For American contracts the gap is economically real: early-exercise value the
-        European formula structurally omits. The same numerical difference therefore has two
-        meanings and must be interpreted according to contract type.
+        European formula structurally omits. The same numerical difference therefore carries two
+        meanings. Read it by contract type.
       </div>
     </section>
 

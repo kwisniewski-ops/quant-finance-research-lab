@@ -56,7 +56,7 @@
 </script>
 <link rel="alternate" type="application/atom+xml" title="Quantitative Markets &amp; Institutions Lab research" href="feed.xml">
 </head>
-<body>
+<body class="home">
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -74,21 +74,11 @@
     <div class="hero-field" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap">
       <div class="hero-copy">
-        <p class="kicker">Independent research program</p>
-        <h1>Independent, evidence-led research on financial models, market regimes, institutions, and investor decisions.</h1>
-        <p class="lede">The lab examines how quantitative methods behave when estimates leave
-        sample, correlations change sign, liquidity deteriorates, and institutional constraints
-        reshape market transmission.</p>
+        <h1>Research on financial models, market regimes, institutions, and investor decisions.</h1>
         <div class="hero-actions" aria-label="Start exploring">
           <a class="primary-action" href="findings.html">Examine the research <span aria-hidden="true">→</span></a>
-          <a class="secondary-action" href="method.html">Review the methodology <span aria-hidden="true">→</span></a>
+          <a class="secondary-action" href="tools.html">Explore the models <span aria-hidden="true">→</span></a>
         </div>
-      </div>
-      <div class="hero-meter">
-        <span>Live demonstration · geometric Brownian motion</span>
-        <span class="meter-val"><span id="meter-paths">0</span> simulated paths · seed 20260810</span>
-        <span class="meter-val">standard error of terminal mean · <span id="meter-se">—</span></span>
-        <span class="meter-note">Sampling error contracts with the square root of the path count—the convergence law examined in the simulation research. Drawn in the browser at each visit; identical seed, identical fan.</span>
       </div>
     </div>
   </section>
@@ -98,25 +88,25 @@
       <div><dt>Executed investigations</dt><dd>06</dd></div>
       <div><dt>Empirical studies</dt><dd>04</dd></div>
       <div><dt>Numerical validations</dt><dd>02</dd></div>
-      <div><dt>Registered programs</dt><dd>04</dd></div>
+      <div><dt>Interactive models</dt><dd>05</dd></div>
     </dl>
 
     <section class="section" aria-labelledby="research-program">
       <p class="kicker">Research program</p>
-      <h2 id="research-program">Four domains connect models, markets, and institutions</h2>
-      <div class="related-grid research-domain-grid" data-reveal>
-        <a href="finding-portfolio-estimation.html"><span>Portfolio construction &amp; market risk</span><strong>Estimation error, diversification, forecast calibration, and stress behavior</strong><em>Review empirical findings and their decision boundaries.</em></a>
-        <a href="case-study.html"><span>Derivatives &amp; computational finance</span><strong>Pricing consistency, stochastic assumptions, and numerical convergence</strong><em>Inspect validation studies, mathematical foundations, and model alternatives.</em></a>
-        <a href="finding-factor-etfs.html"><span>Factor exposure &amp; empirical attribution</span><strong>Product identity, parameter stability, alpha inference, and multiplicity</strong><em>Regression output, holdout stability, and model risk.</em></a>
-        <a href="regime-atlas.html"><span>Market regimes &amp; institutional transmission</span><strong>Activity, inflation, liquidity, policy constraints, and cross-asset dependence</strong><em>Distinguish historical framework, measured synthesis, and proposed research.</em></a>
-      </div>
+      <h2 id="research-program">Contents</h2>
+      <ol class="domain-index" data-reveal>
+        <li><a href="finding-portfolio-estimation.html"><span class="domain-no">01</span><span class="domain-name">Portfolio construction &amp; market risk</span><span class="domain-tag">Findings and their decision boundaries.</span></a></li>
+        <li><a href="case-study.html"><span class="domain-no">02</span><span class="domain-name">Derivatives &amp; computational finance</span><span class="domain-tag">Validation studies and model alternatives.</span></a></li>
+        <li><a href="finding-factor-etfs.html"><span class="domain-no">03</span><span class="domain-name">Factor exposure &amp; empirical attribution</span><span class="domain-tag">Regression output, holdout stability, and model risk.</span></a></li>
+        <li><a href="regime-atlas.html"><span class="domain-no">04</span><span class="domain-name">Market regimes &amp; institutional transmission</span><span class="domain-tag">Framework, synthesis, and proposed research.</span></a></li>
+      </ol>
     </section>
 
-    <section class="section" aria-labelledby="start-result">
+    <section class="section" data-reel aria-labelledby="start-result">
       <p class="kicker">Published research</p>
       <div class="section-heading-row">
         <h2 id="start-result">Seven public results from six executed investigations</h2>
-        <a class="text-link" href="findings.html">Review the complete research corpus →</a>
+        <a class="text-link" href="findings.html">All seven results →</a>
       </div>
       <div class="finding-card-grid featured-findings">
         <a class="finding-card finding-card--validation" data-reveal href="research-log.html#pricing-validation">
@@ -200,37 +190,26 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="home-regime-research">
-      <p class="kicker">Markets and institutions</p>
-      <h2 id="home-regime-research">Regimes alter the transmission mechanisms embedded in financial models</h2>
-      <div class="related-grid regime-entry-grid" data-reveal>
-        <a href="regime-atlas.html" data-analytics-event="research_engagement" data-analytics-target="regime-atlas"><span>Historical framework · Scenario design</span><strong>Regime Atlas: macroeconomic conditions, liquidity, and institutional response</strong><em>Trace conditional transmission channels across six dated historical lenses.</em></a>
-        <a href="stock-bond-regime-dossier.html" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier"><span>Empirical dossier · Measured relationship</span><strong>Stock–bond correlation regimes and their portfolio consequences</strong><em>Trace the measured sign change through diversification, allocation, and risk calibration.</em></a>
-      </div>
+    <section class="section models-invite" aria-labelledby="models-invite-title">
+      <p class="kicker">Working instruments</p>
+      <h2 id="models-invite-title">Interactive models</h2>
+      <p class="models-line">Five implementations run live in the browser. Change an assumption; watch the answer move.</p>
+      <nav class="models-links" data-reveal aria-label="Interactive models">
+        <a href="asset-pricing.html">Option valuation</a>
+        <a href="portfolio.html">Portfolio geometry</a>
+        <a href="risk.html">Risk backtest</a>
+        <a href="factors.html">Factor attribution</a>
+        <a href="simulations.html">Monte Carlo</a>
+      </nav>
+      <div class="models-cta"><a class="primary-action" href="tools.html">Open the model suite <span aria-hidden="true">→</span></a></div>
     </section>
 
-    <section class="section" aria-labelledby="active-program">
-      <p class="kicker">Registered research agenda</p>
-      <h2 id="active-program">Unresolved mechanisms and pre-declared empirical tests</h2>
-      <div class="arrival-grid" data-reveal>
-        <article class="arrival-item arrival-new">
-          <p class="kicker">Proposed program</p>
-          <h3>Four mechanisms registered before testing</h3>
-          <p>Valuation, liquidity, policy constraints, and institutional transmission each have a declared baseline, competing explanation, and publication gate.</p>
-          <a href="research-log.html#research-pipeline">Inspect the registered program →</a>
-        </article>
-        <article class="arrival-item">
-          <p class="kicker">Current boundary</p>
-          <h3>No present-state regime classifier</h3>
-          <p>The Atlas organizes scenarios and historical transmission channels; it assigns no probability, live state, or investment instruction.</p>
-          <a href="regime-atlas.html#atlas-ledger">Review the evidence classification →</a>
-        </article>
-        <article class="arrival-item">
-          <p class="kicker">Versioned record</p>
-          <h3>Failures remain visible</h3>
-          <p>Each investigation records its question, evidence, uncertainty, failure modes, and exact reproduction artifact.</p>
-          <a href="research-log.html">Inspect the research record →</a>
-        </article>
+    <section class="section" aria-labelledby="home-regime-research">
+      <p class="kicker">Markets and institutions</p>
+      <h2 id="home-regime-research">Regimes rewire how shocks move through markets</h2>
+      <div class="related-grid regime-entry-grid" data-reveal>
+        <a href="regime-atlas.html" data-analytics-event="research_engagement" data-analytics-target="regime-atlas"><span>Historical framework · Scenario design</span><strong>Regime Atlas: macroeconomic conditions, liquidity, and institutional response</strong><em>Six dated lenses, no present-state claims.</em></a>
+        <a href="stock-bond-regime-dossier.html" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier"><span>Empirical dossier · Measured relationship</span><strong>Stock–bond correlation regimes and their portfolio consequences</strong><em>One sign change, three portfolio consequences.</em></a>
       </div>
     </section>
 
@@ -245,7 +224,7 @@
     <section class="cta-band" data-reveal aria-labelledby="research-standard">
       <div>
         <p class="kicker">Research standard</p>
-        <h2 id="research-standard">Every published result includes the evidence required for independent scrutiny.</h2>
+        <h2 id="research-standard">Every result ships with the evidence needed to challenge it.</h2>
       </div>
       <div class="cta-actions">
         <a class="primary-action" href="method.html">Review the methods <span aria-hidden="true">→</span></a>
@@ -260,6 +239,7 @@
 <script src="js/common.js"></script>
 <script src="js/hero-field.js"></script>
 <script src="js/reveal.js"></script>
+<script src="js/results-reel.js"></script>
 
 <script src="js/engagement.js"></script>
 </body>

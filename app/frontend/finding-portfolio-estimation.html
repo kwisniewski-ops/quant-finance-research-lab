@@ -85,8 +85,8 @@
       <header class="page-head">
         <p class="kicker">Empirical finding · Portfolio construction</p>
         <h1>Portfolio optimization under estimation error and out-of-sample evaluation</h1>
-        <p class="lede">In this frozen-window study, the maximum-Sharpe portfolio’s performance
-        declined when fixed weights were evaluated on later data.</p>
+        <p class="lede">One maximum-Sharpe portfolio was fitted, frozen, and then run on later data.
+        Its measured performance fell.</p>
       </header>
 
       <nav class="depth-nav" aria-label="Research depth">
@@ -103,10 +103,11 @@
       <section class="decision-summary" aria-labelledby="bottom-line">
         <p class="kicker">01 · Principal finding</p>
         <h2 id="bottom-line">Risk-based methods delivered a more stable risk shape—not a reliable return advantage.</h2>
-        <p>Maximum-Sharpe mean–variance optimization fell from a Sharpe ratio of about 1.12 in the
-        2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk parity and hierarchical
-        risk parity ran at roughly half the volatility and two-thirds the drawdown of the optimized
-        books, but they did not reliably win on return. That narrower claim is what the evidence supports.</p>
+        <p>Maximum-Sharpe mean–variance optimization scored a Sharpe ratio near 1.12 in the 2015–2021
+        fit period. The same frozen weights scored 0.44 in the sealed 2022–2026 evaluation. Risk parity
+        and hierarchical risk parity ran at roughly half the volatility of the optimized books. Their
+        drawdowns were about two-thirds as deep. Neither reliably won on return. The evidence supports that
+        narrower claim.</p>
         <p><small>Published 8 August 2026 · Editorial framing revised 10 August 2026 · Underlying investigation last updated 6 July 2026</small></p>
       </section>
 
@@ -160,18 +161,18 @@
       <section class="section prose-col" aria-labelledby="evidence">
         <p class="kicker">02 · Measured evidence</p>
         <h2 id="evidence">The ranking changed when the estimates left the fit window</h2>
-        <p>The experiment used 2,891 daily observations for 15 liquid ETFs from a frozen adjusted-close
-        snapshot. Maximum-Sharpe MVO, box-uncertainty robust MVO, equal-risk-contribution risk parity,
-        and hierarchical risk parity were fit on 2015–2021 data. Their weights were then frozen and
-        applied to one untouched 2022–2026 window.</p>
-        <p>The robust portfolio posted the best out-of-sample Sharpe, about 0.6, but it remained
-        concentrated in QQQ and benefited from the 2023–2025 mega-cap rally after drawing down more
-        than 30% in 2022. The box uncertainty set reduced estimated return levels without changing
-        their ranking, so it did not solve concentration. One 4.5-year window cannot distinguish a
-        robust method from a fortunate regime.</p>
-        <p>Differences of ±0.2 in Sharpe are well inside an estimated sampling error near 0.5 for this
-        evaluation window. The defensible conclusion is about realized risk shape, not which method
-        will earn the highest future return.</p>
+        <p>Four construction methods sat the same test. The experiment drew 2,891 daily observations
+        for 15 liquid ETFs from a frozen adjusted-close snapshot. Maximum-Sharpe MVO, box-uncertainty
+        robust MVO, equal-risk-contribution risk parity, and hierarchical risk parity were each fit on
+        2015–2021 data. Their weights were then frozen and applied to one untouched 2022–2026 window.</p>
+        <p>The robust portfolio posted the best out-of-sample Sharpe, about 0.6. It also stayed
+        concentrated in QQQ and drew down more than 30% in 2022, then rode the 2023–2025 mega-cap
+        rally. The box uncertainty set lowered estimated return levels without changing their ranking,
+        so concentration survived. One 4.5-year window cannot separate a robust method from a
+        fortunate regime.</p>
+        <p>Differences of ±0.2 in Sharpe sit well inside an estimated sampling error near 0.5 for this
+        evaluation window. So the defensible conclusion describes realized risk shape. It does not name
+        the method that will earn the highest future return.</p>
       </section>
 
       <section class="section prose-col" aria-labelledby="practice">
@@ -180,8 +181,8 @@
         <ul class="refs">
           <li>Separate the return objective from the risk-budget objective before comparing methods.</li>
           <li>Report concentration, risk contribution, drawdown, and out-of-sample behavior beside the in-sample optimum.</li>
-          <li>Make the uncertainty treatment explicit: shrinking return levels is not the same as changing uncertain rankings.</li>
-          <li>Use multiple rolling-origin evaluations before making comparative performance claims; this study did not perform them.</li>
+          <li>State the uncertainty treatment plainly: shrinking return levels does not change an uncertain ranking.</li>
+          <li>Rank methods only after multiple rolling-origin evaluations. This study ran one window.</li>
           <li>State each method's regime dependency. Risk-based allocations can embed a bond and stock–bond-correlation bet.</li>
         </ul>
       </section>
@@ -190,11 +191,11 @@
         <p class="kicker">04 · Identification and limits</p>
         <h2 id="limitations">Identification boundary for the comparative result</h2>
         <ul class="refs">
-          <li>There is one sealed evaluation window, not a distribution of rolling-origin outcomes.</li>
-          <li>The 15-ETF universe was selected in 2026 and is therefore survivorship-tilted.</li>
-          <li>Weights were frozen; rebalancing, transaction costs, and drift were outside this experiment.</li>
-          <li>All methods received the same raw covariance estimate. Covariance shrinkage was available but deliberately not used.</li>
-          <li>The study does not prove risk parity or HRP will outperform, nor that MVO will always underperform.</li>
+          <li>The result rests on one sealed evaluation window, not a distribution of rolling-origin outcomes.</li>
+          <li>The 15-ETF universe was selected in 2026, so it tilts toward survivors.</li>
+          <li>Weights stayed frozen. Rebalancing, transaction costs, and drift sat outside this experiment.</li>
+          <li>Every method received the same raw covariance estimate. Shrinkage was available and deliberately unused.</li>
+          <li>The study does not prove risk parity or HRP outperform, or that MVO always underperforms.</li>
         </ul>
       </section>
 
@@ -212,11 +213,11 @@
         <p class="kicker">Regime lens · Portfolio construction</p>
         <h2 id="regime-lens-portfolio">Fitted return and covariance relationships entered a different observed environment</h2>
         <dl class="regime-lens__evidence">
-          <div><dt>Lab measurement</dt><dd>Maximum-Sharpe optimization fell from approximately 1.12 in the 2015–2021 fit period to 0.44 in the sealed 2022–2026 evaluation. Risk-based methods produced a more stable risk shape without establishing a return advantage.</dd></div>
-          <div><dt>Institutional record</dt><dd>The fit and evaluation windows straddle a documented change in stock–bond correlation and monetary conditions, including inflation pressure, rapid tightening, and simultaneous weakness in equities and nominal bonds.</dd></div>
-          <div><dt>Interpretive synthesis</dt><dd>An optimized portfolio implicitly assumes its fitted return and covariance relationships remain decision-relevant. Precise weights can transport relationships measured in one observed environment into a different one.</dd></div>
+          <div><dt>Lab measurement</dt><dd>Maximum-Sharpe optimization scored about 1.12 in the 2015–2021 fit period. It scored 0.44 in the sealed 2022–2026 evaluation. Risk-based methods held a steadier risk shape without establishing a return advantage.</dd></div>
+          <div><dt>Institutional record</dt><dd>The two windows straddle a documented change in stock–bond correlation and monetary conditions. That change brought inflation pressure, rapid tightening, and weakness in equities and nominal bonds at once.</dd></div>
+          <div><dt>Interpretive synthesis</dt><dd>An optimized portfolio assumes its fitted return and covariance relationships still bear on the decision. Precise weights carry relationships measured in one observed environment into a different one.</dd></div>
         </dl>
-        <p class="regime-lens__boundary">Causal boundary: the experiment does not identify regime change as the cause of the performance ranking. Correlation, estimation error, concentration, asset selection, and the realized equity path can all affect the result.</p>
+        <p class="regime-lens__boundary">Causal boundary: the experiment does not identify regime change as the cause of the performance ranking. Correlation, estimation error, concentration, asset selection, and the realized equity path can each move the result.</p>
         <a class="regime-lens__link" href="stock-bond-regime-dossier.html#dossier-allocation" data-analytics-event="research_engagement" data-analytics-target="stock-bond-regime-dossier:allocation">Examine the allocation regime <span aria-hidden="true">→</span></a>
       </aside>
 
@@ -225,7 +226,7 @@
         <h2 id="related">The regime assumptions inside the allocation</h2>
         <div class="related-grid" data-reveal>
           <a href="finding-diversification-regimes.html"><span>Regime risk</span><strong>Stock–bond diversification across changing correlation environments</strong><em>The stock–bond correlation assumption that 2022 called into question.</em></a>
-          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>Inspect the calibration tests applied to a portfolio risk forecast.</em></a>
+          <a href="finding-var-backtest.html"><span>Model calibration</span><strong>Historical VaR under coverage and independence tests</strong><em>The calibration tests a portfolio risk forecast has to pass.</em></a>
         </div>
       </section>
 

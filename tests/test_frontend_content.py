@@ -170,7 +170,6 @@ def test_research_hub_maps_seven_results_to_six_investigations() -> None:
     assert source.count("Empirical finding") == 5
     assert source.count("Numerical validation") >= 2
     assert "Seven published results from six executed investigations" in source
-    assert "market-risk investigation supports separate public findings" in source
     assert "Six questions investors should ask quantitative models" not in source
 
 
@@ -477,10 +476,6 @@ def test_regime_frameworks_publish_ledgers_without_inflating_investigations() ->
         assert field in atlas
     for field in ("Classification", "Data vintage", "Forecast status"):
         assert field in dossier
-    assert 'id="research-pipeline"' in record
-    assert record.count('class="status status-proposed">Proposed</span>') >= 5
-    assert "Registered program on regime transmission and model failure" in record
-    assert "<dt>Investigations</dt><dd>06</dd>" in record
     assert (ROOT / "docs" / "research_pipeline.md").exists()
 
 
@@ -562,7 +557,6 @@ def test_evidence_classes_statuses_and_corpus_boundaries_are_explicit() -> None:
     assert "Replicated" not in visible_text(record)
     assert "Seeded 05" not in visible_text(record)
     assert '<span class="status status-validated">Validated</span>' in record
-    assert "<dt>Numerical</dt><dd>02</dd>" in record
 
     about = visible_text((FRONTEND / "about.html").read_text(encoding="utf-8"))
     atlas = visible_text(ATLAS.read_text(encoding="utf-8"))

@@ -86,7 +86,7 @@
     <div class="page-head">
       <p class="kicker">Empirical investigation · Factor attribution</p>
       <h1>ETF factor exposures, alpha, and out-of-sample stability</h1>
-      <p class="lede">Six style ETFs are evaluated for advertised factor exposure, alpha after
+      <p class="lede">The study measures six style ETFs on advertised factor exposure, alpha after
       multiple-testing correction, rolling parameter stability, and out-of-sample explanatory power.</p>
       <p class="revision-line">Revised <time datetime="2026-08-03">3 August 2026</time> ·
       <a href="research-log.html#factor-exposures">research record</a></p>
@@ -96,10 +96,10 @@
       <p class="kicker">Decision summary</p>
       <h2 id="factor-decision-title">The labels were informative; the apparent alpha was not robust</h2>
       <div class="decision-grid">
-        <div><h3>Interpretation</h3><p>The advertised factor exposures were recovered, but no ETF alpha survived a 5% false-discovery threshold after six simultaneous tests.</p></div>
-        <div><h3>Decision context</h3><p>Evaluate a style fund by measured exposures, uncertainty, stability, and implementation—not by branding or one unadjusted alpha result.</p></div>
-        <div><h3>Intended analytical use</h3><p>Fund selectors, portfolio analysts, wealth and asset-management teams, quantitative researchers, and model reviewers.</p></div>
-        <div><h3>Principal limitation</h3><p>The conclusion is conditional on six ETFs, the selected factor menu, one 2015–2026 vintage, and one chronological split. Exposure estimates can change across regimes and specifications.</p></div>
+        <div><h3>Interpretation</h3><p>The advertised factor exposures were recovered. No ETF alpha survived a 5% false-discovery threshold across six simultaneous tests.</p></div>
+        <div><h3>Decision context</h3><p>Evaluate a style fund by measured exposures, uncertainty, stability, and implementation. Branding and one unadjusted alpha result are not evidence.</p></div>
+        <div><h3>Intended analytical use</h3><p>Fund selectors, portfolio analysts, wealth and asset-management teams, quantitative researchers, and model reviewers use it to check product labels against measured exposure.</p></div>
+        <div><h3>Principal limitation</h3><p>The conclusion holds for six ETFs, the selected factor menu, one 2015–2026 vintage, and one chronological split. Exposure estimates can change across regimes and specifications.</p></div>
       </div>
     </section>
 
@@ -116,10 +116,10 @@
       <p class="kicker">Estimate 01</p>
       <h2 id="exposure-title">ETF exposures with 95% confidence intervals</h2>
       <div class="prose-col">
-        <p>For each ETF, the model is a time-series regression of daily excess returns on MKT–RF,
+        <p>For each ETF, the model regresses daily excess returns on MKT–RF,
         SMB, HML, RMW, CMA, and momentum. Intervals use Newey–West HAC covariance estimates with
-        five lags. This is an exposure study—not the two-pass Fama–MacBeth procedure used to estimate
-        cross-sectional factor premia.<sup><a href="#factor-ref-1" id="factor-cite-1">1</a></sup></p>
+        five lags. This is an exposure study. It is not the two-pass Fama–MacBeth procedure that
+        estimates cross-sectional factor premia.<sup><a href="#factor-ref-1" id="factor-cite-1">1</a></sup></p>
       </div>
       <div class="panel compact-panel">
         <label class="select-label" for="factor-etf">ETF to inspect</label>
@@ -137,7 +137,7 @@
       <p class="kicker">Estimate 02</p>
       <h2 id="rolling-title">Rolling versus full-sample QQQ betas</h2>
       <p class="prose-col">A full-sample beta compresses eleven years into one number. The lines below
-      re-estimate QQQ on a trailing 252-observation window; dashed references show the corresponding
+      re-estimate QQQ on a trailing 252-observation window. Dashed references show the corresponding
       full-sample estimates. Instability is evidence about model scope, not chart noise.</p>
       <figure class="chart-figure" data-reveal>
         <div id="chart-factor-rolling" class="chart" role="img" aria-label="Rolling one-year QQQ factor betas compared with full-sample estimates" aria-describedby="rolling-caption"></div>
@@ -164,8 +164,8 @@
       <h2 id="multiplicity-title">Multiple-testing correction across six simultaneous alpha hypotheses</h2>
       <p class="prose-col">Raw significance is not a research conclusion. The table reports unadjusted
       p-values, Holm family-wise adjusted p-values, and Benjamini–Hochberg q-values. On this snapshot,
-      no ETF alpha survives a 5% false-discovery threshold—an important correction to the tempting
-      standalone QQQ result.<sup><a href="#factor-ref-2" id="factor-cite-2">2</a></sup></p>
+      no ETF alpha survives a 5% false-discovery threshold. That correction matters most for the
+      tempting standalone QQQ result.<sup><a href="#factor-ref-2" id="factor-cite-2">2</a></sup></p>
       <div class="table-scroll" id="factor-multiple-table" tabindex="0" role="region" aria-label="Multiple testing results table"><!-- research-data:factor-multiple-table:start --><table><caption>ETF alpha tests with family-wise and false-discovery corrections</caption><thead><tr><th scope="col">ETF</th><th scope="col">Annualized alpha</th><th scope="col">Raw p</th><th scope="col">Holm adjusted p</th><th scope="col">BH q</th><th scope="col">BH 5% decision</th></tr></thead><tbody><tr><th scope="row">QQQ</th><td>3.29%</td><td>0.0245</td><td>0.1467</td><td>0.1467</td><td>Does not survive</td></tr><tr><th scope="row">USMV</th><td>-1.23%</td><td>0.5189</td><td>1.0000</td><td>0.7784</td><td>Does not survive</td></tr><tr><th scope="row">MTUM</th><td>0.02%</td><td>0.9902</td><td>1.0000</td><td>0.9902</td><td>Does not survive</td></tr><tr><th scope="row">VLUE</th><td>0.49%</td><td>0.7738</td><td>1.0000</td><td>0.9285</td><td>Does not survive</td></tr><tr><th scope="row">QUAL</th><td>-0.74%</td><td>0.4177</td><td>1.0000</td><td>0.7784</td><td>Does not survive</td></tr><tr><th scope="row">IWM</th><td>-1.14%</td><td>0.1100</td><td>0.5500</td><td>0.3300</td><td>Does not survive</td></tr></tbody></table><!-- research-data:factor-multiple-table:end --></div>
     </section>
 

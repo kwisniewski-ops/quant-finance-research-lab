@@ -93,8 +93,8 @@
     <div class="page-head">
       <p class="kicker">Quantitative model · Portfolio construction</p>
       <h1>Efficient-frontier geometry under uncertain inputs</h1>
-      <p class="lede">Expected returns, volatility, correlations, and constraints determine which
-      portfolios appear efficient. All inputs are illustrative rather than forecasts.
+      <p class="lede">Expected returns, volatility, correlations, and constraints decide which
+      portfolios look efficient. Every input here is illustrative, not a forecast.
       <span class="tag warn" style="margin-left:0.4rem">Illustrative inputs</span></p>
     </div>
 
@@ -102,9 +102,9 @@
       <p class="kicker">Decision summary</p>
       <h2 id="portfolio-decision-title">An efficient portfolio is only as stable as its inputs</h2>
       <div class="decision-grid">
-        <div><h3>Interpretation</h3><p>The efficient frontier is conditional on expected returns and covariances that are not known in advance. A precise optimizer can amplify small estimation errors into concentrated allocations.</p></div>
-        <div><h3>Decision context</h3><p>Choose an allocation method according to confidence in the inputs. In the lab’s locked test, risk-based portfolios reduced out-of-sample volatility and drawdown, but did not reliably deliver higher returns.</p></div>
-        <div><h3>Intended analytical use</h3><p>Asset allocators, investment committees, model validators, and analysts comparing optimization with risk-budgeting approaches.</p></div>
+        <div><h3>Interpretation</h3><p>The efficient frontier depends on expected returns and covariances that are not known in advance. A precise optimizer can amplify small estimation errors into concentrated allocations.</p></div>
+        <div><h3>Decision context</h3><p>Choose an allocation method according to confidence in the inputs. In the lab’s locked test, risk-based portfolios reduced out-of-sample volatility and drawdown. They did not reliably deliver higher returns.</p></div>
+        <div><h3>Intended analytical use</h3><p>Asset allocators, investment committees, model validators, and analysts use it to compare optimization with risk budgeting.</p></div>
         <div><h3>Principal limitation</h3><p>This explorer uses illustrative capital-market assumptions. The empirical result comes from one frozen 2015–2026 ETF sample and one sealed evaluation window.</p></div>
       </div>
     </section>
@@ -146,7 +146,7 @@
         <figure class="chart-figure" data-reveal>
           <h2 class="sr-only" id="frontier-chart-title">Efficient frontier risk-return plot</h2>
           <div id="chart-frontier" class="chart tall" role="img" aria-labelledby="frontier-chart-title" aria-describedby="frontier-chart-caption"></div>
-          <figcaption class="chart-caption" id="frontier-chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are individual assets; a circle marks minimum variance, an X marks maximum Sharpe, and an open triangle marks equal weight. The dotted line from the risk-free rate through the max-Sharpe portfolio is the capital market line. Exact highlighted values appear in the table beside the chart.</figcaption>
+          <figcaption class="chart-caption" id="frontier-chart-caption">Long-only random portfolios colored by Sharpe ratio. Diamonds are individual assets. A circle marks minimum variance, an X maximum Sharpe, and an open triangle equal weight. The dotted line from the risk-free rate through the max-Sharpe portfolio is the capital market line. Exact highlighted values appear in the table beside the chart.</figcaption>
         </figure>
 
         <figure class="chart-figure" data-reveal>
@@ -165,10 +165,10 @@
       <p class="kicker">Inputs</p>
       <h2>Illustrative capital market assumptions</h2>
       <p>The explorer uses the annualized expected returns, volatilities, and correlations below.
-      They are <strong>illustrative</strong> — plausible in magnitude and ordering, chosen for
-      pedagogy, and not estimated from any particular sample. That is precisely the point: change
+      They are <strong>illustrative</strong>: plausible in magnitude and ordering, chosen for
+      pedagogy, not estimated from any particular sample. That is precisely the point. Change
       them by amounts well within estimation error and the "optimal" portfolio can change
-      dramatically. Expected returns are the least estimable quantity in finance, and mean-variance
+      dramatically. Expected returns are the least estimable quantity in finance. Mean-variance
       optimization is maximally sensitive to them.</p>
       <div class="table-scroll" id="assumptions-table"></div>
 
@@ -182,16 +182,16 @@
       <p><strong>Mean-variance optimization</strong> (Markowitz, 1952) solves
       \( \min_w \; w^\top \Sigma w \) subject to a target return \( w^\top \mu = \bar\mu \). It is
       the intellectual foundation of the comparison. The solution is highly sensitive to estimated
-      expected returns, so small input perturbations can produce materially different weights.</p>
+      expected returns. Small input changes can produce materially different weights.</p>
       <p><strong>Risk parity</strong> abandons return forecasts entirely and equalizes each asset's
       contribution to portfolio risk, \( w_i (\Sigma w)_i = w_j (\Sigma w)_j \). It answers
-      uncertainty about \(\mu\) by removing it from the objective. This implicitly assumes risk
-      premia per unit of risk are roughly comparable across assets, and it
-      typically requires leverage on low-vol assets to reach equity-like returns.</p>
+      uncertainty about \(\mu\) by removing it from the objective. That implicitly assumes risk
+      premia per unit of risk are roughly comparable across assets. Reaching equity-like returns
+      then typically requires leverage on low-volatility assets.</p>
       <p><strong>Hierarchical risk parity</strong> (López de Prado, 2016) attacks a different
       weakness: inverting an estimated covariance matrix. HRP clusters assets by correlation
       distance, then allocates down the resulting tree by inverse variance — no matrix inversion,
-      no return forecasts. It sacrifices in-sample optimality in pursuit of greater stability under
+      no return forecasts. It trades in-sample optimality for greater stability under
       covariance-estimation error.</p>
       <p>MVO, risk parity, and HRP encode different assumptions about expected returns and covariance
       estimates. Their allocations therefore differ in concentration, sensitivity to estimation
@@ -199,10 +199,11 @@
 
       <div class="note">
         <span class="note-label">On the sampling method</span>
-        Weights are drawn from a symmetric Dirichlet distribution (normalized unit-rate exponentials),
-        which is uniform on the simplex — every long-only, fully invested portfolio is equally likely.
-        The frontier is then the empirical upper envelope. A quadratic-programming solver would find it
-        exactly; the cloud makes the geometry, and the sparseness of near-optimal portfolios, visible.
+        Weights are drawn from a symmetric Dirichlet distribution (normalized unit-rate exponentials).
+        That distribution is uniform on the simplex, so every long-only, fully invested portfolio is
+        equally likely. The frontier is then the empirical upper envelope. A quadratic-programming
+        solver would find it exactly. The cloud instead makes the geometry, and the sparseness of
+        near-optimal portfolios, visible.
       </div>
     </section>
 
