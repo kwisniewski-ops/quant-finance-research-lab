@@ -103,8 +103,10 @@
     ctx.moveTo(xOf(fromStep), yOf(p[fromStep]));
     for (var k = fromStep + 1; k <= toStep; k++) ctx.lineTo(xOf(k), yOf(p[k]));
     var warm = i % 9 === 0;
+    /* the standalone mobile band has no text veil, so draw stronger */
+    var boost = geom.w < 700 ? 1.7 : 1;
     ctx.strokeStyle = warm ? colors.warmLine : colors.faintLine;
-    ctx.globalAlpha = warm ? 0.34 : 0.13;
+    ctx.globalAlpha = Math.min(1, (warm ? 0.34 : 0.13) * boost);
     ctx.lineWidth = 1;
     ctx.stroke();
     ctx.globalAlpha = 1;

@@ -278,10 +278,10 @@ hr {
 }
 
 .section {
-  padding-top: clamp(3.2rem, 7vw, 5.2rem);
+  padding-top: clamp(4rem, 9vw, 7rem);
 }
 .section + .section {
-  margin-top: clamp(3.2rem, 7vw, 5.2rem);
+  margin-top: clamp(4rem, 9vw, 7rem);
   border-top: 1px solid var(--rule);
 }
 
@@ -320,22 +320,22 @@ hr {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 8.5fr) minmax(0, 3.5fr);
+  gap: 2.5rem;
   align-items: end;
-  padding-top: clamp(3.4rem, 7vw, 6rem);
-  padding-bottom: clamp(2.6rem, 5vw, 4.2rem);
+  padding-top: clamp(2.8rem, 6vw, 4.6rem);
+  padding-bottom: clamp(2.2rem, 4.5vw, 3.6rem);
 }
 
-.hero-copy { max-width: 34em; }
+.hero-copy { max-width: none; }
 
 .hero-observatory h1 {
-  max-width: 13.5em;
-  font-size: clamp(2.5rem, 4.6vw, 4rem);
-  line-height: 1.06;
+  max-width: 18em;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
 }
 
-.hero-observatory .lede { max-width: 30em; }
+.hero-observatory .lede { max-width: 36em; }
 
 .hero-field {
   position: absolute;
@@ -439,9 +439,9 @@ hr {
 .proof-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0 2.4rem;
+  gap: 0 3rem;
   margin: 0;
-  padding: 2rem 0 0.4rem;
+  padding: 2.8rem 0 0.6rem;
 }
 
 .proof-strip > div {
@@ -493,9 +493,9 @@ hr {
 
 .finding-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.6rem 2.4rem;
-  margin-top: 2.2rem;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 2.6rem;
 }
 
 .finding-card {
@@ -503,7 +503,7 @@ hr {
   display: flex;
   min-width: 0;
   min-height: 100%;
-  padding: 1.15rem 0 0.6rem;
+  padding: 2.6rem 0 2.4rem;
   flex-direction: column;
   border-top: 1px solid var(--rule);
   background: transparent;
@@ -527,9 +527,9 @@ hr {
 
 .finding-card .finding-status { align-self: flex-start; margin-bottom: 1.1rem; }
 .finding-card .finding-question { margin-bottom: 0.7rem; }
-.finding-card h3 { font-size: 1.32rem; margin-bottom: 0.55rem; }
+.finding-card h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); margin-bottom: 0.55rem; max-width: 26em; }
 .finding-card:hover h3 { color: var(--accent); }
-.finding-card p:not(.finding-question):not(.finding-metric) { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+.finding-card p:not(.finding-question):not(.finding-metric) { color: var(--muted); font-size: 0.95rem; line-height: 1.6; max-width: 44em; }
 .finding-card .finding-metric {
   order: 5;
   margin: 0.4rem 0 0.2rem;
@@ -558,12 +558,12 @@ hr {
 /* evidence spark: the finding's own result, drawn small */
 .finding-spark {
   order: 4;
-  margin: 0.5rem 0 0.2rem;
+  margin: 1rem 0 0.4rem;
 }
 .finding-spark svg {
   display: block;
   width: 100%;
-  max-width: 300px;
+  max-width: 420px;
   height: auto;
   overflow: visible;
 }
@@ -593,15 +593,16 @@ hr {
 
 .arrival-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 2.4rem;
+  grid-template-columns: 1fr;
+  gap: 0;
   margin: 0 0 3rem;
 }
 .arrival-item {
   min-width: 0;
-  padding: 1.2rem 0 1.4rem;
+  padding: 1.8rem 0 1.7rem;
   border-top: 1px solid var(--rule);
 }
+.arrival-item p:not(.kicker) { max-width: 46em; }
 .arrival-item.arrival-new { border-top: 2px solid var(--accent); }
 .arrival-item .kicker { margin-bottom: 0.7rem; font-size: 0.61rem; }
 .arrival-item .kicker::before { display: none; }
@@ -1053,8 +1054,8 @@ table.data caption {
 
 .chart-pair {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.8rem;
+  grid-template-columns: 1fr;
+  gap: 2.6rem;
 }
 
 .chart-load-failed {
@@ -1935,8 +1936,8 @@ sup, sub { line-height: 0; }
 }
 
 .decision-summary > h2 { max-width: 31em; font-size: clamp(1.45rem, 2.2vw, 1.75rem); }
-.decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.4rem; margin-top: 1.5rem; background: transparent; }
-.decision-grid > div { min-width: 0; padding: 1rem 0 1.1rem; border-top: 1px solid var(--rule); }
+.decision-grid { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 1.5rem; background: transparent; }
+.decision-grid > div { min-width: 0; max-width: 48em; padding: 1.6rem 0 1.5rem; border-top: 1px solid var(--rule); }
 .decision-grid h3 { margin-bottom: 0.4rem; color: var(--accent); }
 .decision-grid dt { margin-bottom: 0.4rem; color: var(--accent); }
 .decision-grid p { margin: 0; color: var(--ink-soft); font-size: 0.88rem; line-height: 1.55; }
@@ -1979,13 +1980,12 @@ sup, sub { line-height: 0; }
 .checklist li { position: relative; margin: 0; padding: 0.48rem 0 0.48rem 1.45rem; border-top: 1px solid var(--rule-soft); color: var(--ink-soft); font-size: 0.83rem; line-height: 1.4; }
 .checklist li::before { content: "□"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
 
-.related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.related-grid { grid-template-columns: 1fr; gap: 0; }
 .related-grid a {
   position: relative;
   display: flex;
   min-width: 0;
-  min-height: 7rem;
-  padding: 1.2rem 0 0.6rem;
+  padding: 1.8rem 0 1.6rem;
   flex-direction: column;
   border-top: 1px solid var(--rule);
   background: transparent;
@@ -2006,8 +2006,8 @@ sup, sub { line-height: 0; }
 .related-grid a:hover { color: var(--ink); }
 .related-grid a:hover strong { color: var(--accent); }
 .related-grid span { margin-bottom: 0.55rem; color: var(--accent); }
-.related-grid strong { font-weight: 500; line-height: 1.4; font-family: var(--serif); font-size: 1.1rem; color: var(--navy); transition: color var(--speed) ease; }
-.related-grid em { margin-top: auto; padding-top: 0.8rem; color: var(--muted); font-family: var(--mono); font-size: 0.66rem; font-style: normal; }
+.related-grid strong { font-weight: 500; line-height: 1.4; font-family: var(--serif); font-size: 1.22rem; color: var(--navy); transition: color var(--speed) ease; max-width: 34em; }
+.related-grid em { margin-top: auto; padding-top: 0.7rem; color: var(--muted); font-family: var(--mono); font-size: 0.66rem; font-style: normal; max-width: 60em; }
 
 .evidence-taxonomy {
   display: grid;
@@ -2040,11 +2040,11 @@ sup, sub { line-height: 0; }
 .regime-lens > h2 { max-width: 32em; font-size: 1.42rem; }
 .regime-lens__evidence {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 2rem;
+  grid-template-columns: 1fr;
+  gap: 0;
   margin: 1.25rem 0;
 }
-.regime-lens__evidence > div { min-width: 0; padding: 0.9rem 0 0.4rem; border-top: 1px solid var(--rule); }
+.regime-lens__evidence > div { min-width: 0; max-width: 48em; padding: 1.2rem 0 1.1rem; border-top: 1px solid var(--rule); }
 .regime-lens__evidence dt {
   margin-bottom: 0.4rem;
   color: var(--accent);
@@ -2383,13 +2383,31 @@ sup, sub { line-height: 0; }
   .hero-meter { justify-self: start; padding-top: 0.4rem; }
 }
 
+/* on small screens the fan leaves the backdrop and becomes its own band:
+   copy and actions first, then the meter, then the full-strength drawing */
+@media (max-width: 760px) {
+  .hero-observatory { display: flex; flex-direction: column; }
+  .hero-observatory .wrap { order: 1; padding-bottom: 1rem; }
+  .hero-field {
+    position: relative;
+    order: 2;
+    height: 240px;
+    margin-top: 0.4rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .hero-field::after {
+    background:
+      linear-gradient(180deg, var(--paper), transparent 18%),
+      linear-gradient(0deg, var(--paper), transparent 22%);
+  }
+}
+
 @media (max-width: 880px) {
   .proof-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.8rem; }
-  .finding-card-grid,
   .route-grid,
   .capability-grid,
   .checklist-grid { grid-template-columns: 1fr; gap: 0; }
-  .finding-card-grid { gap: 1.2rem; }
+  .finding-card { padding: 2rem 0 1.9rem; }
   .depth-path { grid-template-columns: 1fr; gap: 0; }
   .depth-path li { border-top: none; }
   .depth-path li + li { border-top: 1px solid var(--rule-soft); }
