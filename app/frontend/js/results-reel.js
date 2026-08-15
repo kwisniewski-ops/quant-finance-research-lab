@@ -40,7 +40,11 @@
       card.classList.remove("reveal", "is-in");
       card.removeAttribute("data-reveal");
       card.setAttribute("aria-roledescription", "slide");
-      card.setAttribute("aria-label", "Result " + (i + 1) + " of " + N);
+      card.removeAttribute("aria-label");
+      var position = document.createElement("span");
+      position.className = "sr-only";
+      position.textContent = "Result " + (i + 1) + " of " + N + ". ";
+      card.insertBefore(position, card.firstChild);
     });
 
     /* circular seam: clone of the last study before the first,
@@ -50,6 +54,9 @@
       c.setAttribute("aria-hidden", "true");
       c.setAttribute("data-reel-clone", "");
       c.removeAttribute("aria-label");
+      if (c.matches("a, button, input, select, textarea, [tabindex]")) {
+        c.setAttribute("tabindex", "-1");
+      }
       Array.prototype.forEach.call(c.querySelectorAll("a, button"), function (el) {
         el.setAttribute("tabindex", "-1");
       });

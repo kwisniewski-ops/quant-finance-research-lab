@@ -138,7 +138,7 @@ var QL = (function () {
     ];
   }
 
-  var monoStack = "'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace";
+  var monoStack = "'Roboto Mono', 'SFMono-Regular', Menlo, Consolas, monospace";
 
   function layout(overrides) {
     var grid = themeVar("--chart-grid", "#e7e2d6");

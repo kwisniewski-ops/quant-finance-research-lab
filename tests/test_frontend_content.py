@@ -63,6 +63,31 @@ def visible_text(source: str) -> str:
     return " ".join(" ".join(parser.parts).split())
 
 
+def test_results_reel_preserves_visible_names_and_hides_clones_from_focus() -> None:
+    source = (FRONTEND / "js" / "results-reel.js").read_text(encoding="utf-8")
+    assert 'position.className = "sr-only"' in source
+    assert 'position.textContent = "Result " + (i + 1) + " of " + N + ". "' in source
+    assert 'card.setAttribute("aria-label", "Result "' not in source
+    assert 'c.setAttribute("tabindex", "-1")' in source
+
+
+def test_audited_supporting_text_meets_the_fourteen_pixel_floor() -> None:
+    expected_sizes = {
+        "about.html": "font-size:0.875rem",
+        "asset-pricing.html": "font-size:0.875rem",
+        "case-study.html": "font-size:0.875rem",
+        "simulations.html": "font-size:0.875rem",
+    }
+    for page_name, size in expected_sizes.items():
+        source = (FRONTEND / page_name).read_text(encoding="utf-8")
+        assert size in source, page_name
+
+    stylesheet = (FRONTEND / "css" / "main.css").read_text(encoding="utf-8")
+    assert ".reel-dash {" in stylesheet
+    assert "height: 24px;" in stylesheet
+    assert "contain: inline-size;" in stylesheet
+
+
 def test_global_navigation_exposes_the_research_program_and_record() -> None:
     expected = ["Overview", "Explore", "Research", "Methods", "Record"]
     for page in PUBLIC_PAGES:

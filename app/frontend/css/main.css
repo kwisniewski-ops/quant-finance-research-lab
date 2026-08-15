@@ -2,10 +2,26 @@
    Quantitative Markets & Institutions Lab — shared stylesheet
    Design language v2 · "Working observatory"
    Palette: shared ivory / navy / gold brand foundation + validated chart series
-   Type: system-native editorial serif + sans + monospace (zero font payload)
+   Type: Roboto Flex + Roboto Mono, self-hosted as compact Latin variable fonts
    Grammar: hairline rules and open space instead of boxed cards; the lab's own
    computed evidence is the ornament.
    ========================================================================== */
+
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('../fonts/roboto-flex-latin-wght-normal.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../fonts/roboto-mono-latin-wght-normal.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+}
 
 :root {
   --paper:       #faf8f4;
@@ -36,9 +52,9 @@
   --chart-grid: #e7e2d6;
   --chart-wash: rgba(160, 111, 28, 0.07);
 
-  --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
-  --sans:  Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono:  'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --serif: 'Roboto Flex', Arial, sans-serif;
+  --sans:  'Roboto Flex', Arial, sans-serif;
+  --mono:  'Roboto Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
 
   --shadow-lift: 0 1.2rem 3rem -1.6rem rgba(20, 32, 46, 0.35);
   --speed: 240ms;
@@ -89,6 +105,7 @@ body {
   font-family: var(--sans);
   font-size: 18px;
   line-height: 1.62;
+  font-optical-sizing: auto;
   font-feature-settings: "liga" 1;
   text-rendering: optimizeLegibility;
 }
@@ -796,16 +813,18 @@ hr {
   margin-top: 1.7rem;
 }
 .reel-dash {
+  --dash-color: var(--rule);
+  flex: 0 0 30px;
   width: 30px;
-  height: 3px;
+  height: 24px;
   padding: 0;
   border: none;
-  background: var(--rule);
+  background: linear-gradient(var(--dash-color), var(--dash-color)) center / 100% 3px no-repeat;
   cursor: pointer;
   transition: background var(--speed) ease;
 }
-.reel-dash:hover { background: var(--control-border); }
-.reel-dash[aria-current="true"] { background: var(--accent); }
+.reel-dash:hover { --dash-color: var(--control-border); }
+.reel-dash[aria-current="true"] { --dash-color: var(--accent); }
 .reel-rail .reel-counter {
   margin-left: 0.9rem;
   font-family: var(--mono);
@@ -820,7 +839,7 @@ hr {
   .reel-flank { width: 44px; height: 44px; }
   .reel-flank--prev { left: 0.15rem; }
   .reel-flank--next { right: 0.15rem; }
-  .reel-dash { width: 18px; }
+  .reel-dash { width: 24px; flex-basis: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -923,7 +942,7 @@ hr {
   .tool-grid { grid-template-columns: 1fr; }
 }
 
-.prose-col { max-width: 46em; }
+.prose-col { max-width: 46em; overflow-wrap: anywhere; }
 
 /* ---------- controls ---------- */
 
@@ -1225,7 +1244,13 @@ table.data tbody th {
 }
 
 .chart-data[open] summary { color: var(--accent); }
-.table-scroll { max-width: 100%; overflow-x: auto; }
+.table-scroll {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  contain: inline-size;
+}
 .table-scroll > table {
   width: 100%;
   min-width: 620px;
@@ -1401,7 +1426,7 @@ code { font-family: var(--mono); font-size: 0.82em; }
   overflow: visible;
 }
 
-.scroll-frame { position: relative; max-width: 100%; }
+.scroll-frame { position: relative; max-width: 100%; overflow: clip; }
 .scroll-frame > .math-block,
 .scroll-frame > .table-scroll { margin-left: 0; margin-right: 0; }
 .scroll-cue {
