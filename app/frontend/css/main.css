@@ -199,6 +199,11 @@ main { padding-bottom: 6rem; }
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
+.site-nav a.nav-explore {
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.site-nav a.nav-explore:hover { color: var(--ink); }
 
 /* ---------- footer ---------- */
 

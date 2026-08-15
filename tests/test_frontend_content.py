@@ -64,7 +64,7 @@ def visible_text(source: str) -> str:
 
 
 def test_global_navigation_exposes_the_research_program_and_record() -> None:
-    expected = ["Overview", "Research", "Models", "Methods", "Record"]
+    expected = ["Overview", "Explore", "Research", "Methods", "Record"]
     for page in PUBLIC_PAGES:
         source = page.read_text(encoding="utf-8")
         nav = re.search(r'<nav class="site-nav".*?</nav>', source, flags=re.DOTALL)
@@ -239,7 +239,7 @@ def test_every_finding_uses_the_same_progressive_depth_path() -> None:
 
 def test_regime_dossier_is_a_research_synthesis_not_a_seventh_brief() -> None:
     source = DOSSIER.read_text(encoding="utf-8")
-    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a>' in source
+    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a class="nav-explore" href="tools.html">Explore</a><a href="findings.html" aria-current="page">Research</a>' in source
     assert 'class="depth-nav"' not in source
     assert '<link rel="canonical" href="https://www.kylewisniewski.com/lab/stock-bond-regime-dossier.html">' in source
     assert '"@type": "TechArticle"' in source
@@ -310,7 +310,7 @@ def test_regime_dossier_is_discoverable_and_returns_to_the_record() -> None:
 def test_regime_atlas_is_a_bounded_research_framework() -> None:
     source = ATLAS.read_text(encoding="utf-8")
     assert '<link rel="canonical" href="https://www.kylewisniewski.com/lab/regime-atlas.html">' in source
-    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Research</a>' in source
+    assert '<nav class="site-nav" aria-label="Primary navigation"><a href="index.html">Overview</a><a class="nav-explore" href="tools.html">Explore</a><a href="findings.html" aria-current="page">Research</a>' in source
     assert 'class="depth-nav"' not in source
     assert ATLAS not in FINDING_PAGES
 
