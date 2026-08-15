@@ -7,6 +7,16 @@
 <meta name="robots" content="noindex">
 <title>How to read the lab — an 84-second introduction</title>
 <style>
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('../fonts/roboto-flex-latin-wght-normal.woff2') format('woff2-variations');
+  font-style: normal; font-weight: 100 1000; font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../fonts/roboto-mono-latin-wght-normal.woff2') format('woff2-variations');
+  font-style: normal; font-weight: 100 700; font-display: swap;
+}
 /* ============================================================
    OPERATORS ARE NOT STANDING BY
    An 84-second deadpan infomercial that walks first-time
@@ -39,9 +49,10 @@
   --chart-3: #c05a33;
   --chart-grid: #e7e2d6;
   --chart-wash: rgba(160, 111, 28, 0.07);
-  --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
-  --sans:  Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono:  'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  /* the lab's own stack — it self-hosts both faces under app/frontend/fonts */
+  --serif: 'Roboto Flex', Arial, sans-serif;
+  --sans:  'Roboto Flex', Arial, sans-serif;
+  --mono:  'Roboto Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
   --dur: 84s;
   color-scheme: light;
 }
@@ -251,6 +262,28 @@ body {
 .disc { position: relative; color: var(--ink-soft); }
 .footul { position: absolute; left: 0; bottom: -4px; height: 1px; width: 0; background: var(--accent); animation-name: kf-foot-ul; }
 
+/* ------------------------------------------------ scene: record tab bar */
+/* record-select.js hides the stacked index and builds a six-across tab strip
+   with exactly one investigation open beneath it — this mirrors that. */
+.rtabs { display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 20px; }
+.rtab { position: relative; border-top: 1px solid var(--rule); padding: 13px 4px 14px; text-align: center; }
+.rtab em { display: block; font-family: var(--mono); font-style: normal; font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--faint); }
+.rtab b { display: block; font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 30px; line-height: 1.1; color: var(--navy); margin: 5px 0 6px; }
+.rtab i { font-family: var(--mono); font-style: normal; font-size: 8.5px;
+  text-transform: uppercase; letter-spacing: 0.1em; }
+.rtab i.v { color: var(--moss); } .rtab i.r { color: var(--accent); } .rtab i.x { color: var(--negative); }
+.rtbar { position: absolute; top: -1px; left: 0; height: 2px; width: 0; background: var(--accent); }
+.rrecs { position: relative; margin-top: 26px; min-height: 156px; }
+.rrec { position: absolute; inset: 0; opacity: 0; }
+.rk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--accent); }
+.rfields { margin-top: 14px; }
+.rfields > div { border-top: 1px solid var(--rule-soft); padding: 11px 2px; display: grid;
+  grid-template-columns: 190px 1fr; gap: 20px; align-items: baseline; }
+.rfields dt { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--faint); }
+.rfields dd { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
 /* ------------------------------------------------ cursor, ring, endcard */
 #cursor { position: absolute; top: 0; left: 0; z-index: 30; animation-name: kf-cursor; width: 0; height: 0; }
 #cursorfade { position: absolute; top: 0; left: 0; animation-name: kf-cursor-fade; }
@@ -263,6 +296,10 @@ body {
 .endcard .route { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--muted); }
 .endcard .route i { color: var(--accent); font-style: normal; }
 .endcard small { display: block; margin-top: 26px; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+
+/* ?embed=1 — strip page chrome so the film can be iframed from another site */
+html.embed body { padding: 0; }
+html.embed #pagetop, html.embed #pagecta, html.embed #doc { display: none; }
 
 /* ------------------------------------------------ caption bar */
 #capbar { padding: 16px 2px 4px; min-height: 84px; }
@@ -277,22 +314,22 @@ body {
 @keyframes capfade { from { opacity: 0.35; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
 /* ------------------------------------------------ controls */
-#controls { display: flex; align-items: center; gap: 16px; border-top: 1px solid var(--rule); margin-top: 12px; padding-top: 12px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
-#controls button { background: none; border: 1px solid var(--control-border); color: var(--ink); font: inherit; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 14px; cursor: pointer; transition: border-color 240ms ease, color 240ms ease; }
+#controls { display: flex; align-items: center; gap: 16px; border-top: 1px solid var(--rule); margin-top: 12px; padding-top: 12px; font-family: var(--mono); font-size: 14px; color: var(--muted); }
+#controls button { background: none; border: 1px solid var(--control-border); color: var(--ink); font: inherit; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 14px; cursor: pointer; transition: border-color 240ms ease, color 240ms ease; }
 #controls button:hover { border-color: var(--accent); color: var(--accent); }
 #controls button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 #rail { flex: 1; height: 20px; display: flex; align-items: center; cursor: pointer; }
 #rail .rt { width: 100%; height: 1px; background: var(--rule); position: relative; }
 #rail .rf { position: absolute; left: 0; top: 0; height: 1px; background: var(--accent); width: 0%; }
-#clock { font-variant-numeric: tabular-nums; min-width: 8ch; text-align: right; font-size: 10px; letter-spacing: 0.06em; }
+#clock { font-variant-numeric: tabular-nums; min-width: 8ch; text-align: right; font-size: 13px; letter-spacing: 0.06em; }
 
 /* transcript */
 #transcript { margin-top: 20px; border-top: 1px solid var(--rule); padding-top: 10px; }
-#transcript summary { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--faint); cursor: pointer; }
-#transcript table { border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+#transcript summary { font-family: var(--mono); font-size: 14px; text-transform: uppercase; letter-spacing: 0.11em; color: var(--faint); cursor: pointer; }
+#transcript table { border-collapse: collapse; margin-top: 10px; font-size: 15px; }
 #transcript td { border-top: 1px solid var(--rule-soft); padding: 7px 18px 7px 0; vertical-align: top; color: var(--ink-soft); }
-#transcript td.tc { font-family: var(--mono); font-size: 10px; color: var(--faint); white-space: nowrap; padding-top: 9px; }
-#transcript td.ak { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); white-space: nowrap; padding-top: 9px; }
+#transcript td.tc { font-family: var(--mono); font-size: 13px; color: var(--faint); white-space: nowrap; padding-top: 9px; }
+#transcript td.ak { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); white-space: nowrap; padding-top: 9px; }
 
 #pagetop, #pagecta { width: min(920px, 100%); margin: 0 auto; }
 #pagetop { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
@@ -381,6 +418,21 @@ body {
 @keyframes kf-sweep { 0%, 79.762% { width: 0; } 85.714%, 100% { width: 100%; } }
 @keyframes kf-foot-ul { 0%, 88.095% { width: 0; } 91.667%, 100% { width: 100%; } }
 
+
+/* the record tab bar: 01 is active on load (what a visitor actually sees),
+   then investigation 06 is selected at 63.2s. 480ms accent-bar grow matches
+   the site's own --speed * 2 transition. */
+@keyframes kf-rb1 { 0%, 75.238% { width: 100%; } 75.298%, 100% { width: 0; } }
+@keyframes kf-rn1 { 0%, 75.238% { color: var(--accent); } 75.298%, 100% { color: var(--navy); } }
+@keyframes kf-rb6 { 0%, 75.238% { width: 0; } 75.810%, 100% { width: 100%; } }
+@keyframes kf-rn6 { 0%, 75.238% { color: var(--navy); } 75.298%, 100% { color: var(--accent); } }
+@keyframes kf-rr1 { 0%, 75.238% { opacity: 1; } 75.298%, 100% { opacity: 0; } }
+@keyframes kf-rr6 { 0%, 75.298% { opacity: 0; } 75.595%, 100% { opacity: 1; } }
+#rb1 { animation-name: kf-rb1; } #rn1 { animation-name: kf-rn1; }
+#rb6 { animation-name: kf-rb6; animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1); }
+#rn6 { animation-name: kf-rn6; }
+#rr1 { animation-name: kf-rr1; } #rr6 { animation-name: kf-rr6; }
+
 /* endcard */
 @keyframes kf-endcard { 0%, 95.238% { opacity: 0; } 96.429%, 100% { opacity: 1; } }
 /* cursor retires just before the end card so it never sits over the route line */
@@ -393,7 +445,7 @@ body {
   0%       { transform: translate(620px, 300px); }  /*  0.0s rest */
   7.143%   { transform: translate(620px, 300px); }  /*  6.0s hold */
   10.714%  { transform: translate(600px, 340px); }  /*  9.0s drift */
-  13.095%  { transform: translate(534px, 402px); }  /* 11.0s portfolio spark 1.12->0.44 */
+  13.095%  { transform: translate(534px, 402px); }  /* 11.0s portfolio card, 1.12 -> 0.44 */
   14.881%  { transform: translate(534px, 330px); }  /* 12.5s rides the scroll */
   16.667%  { transform: translate(500px, 120px); }  /* 14.0s rising to the nav */
   17.857%  { transform: translate(551px, 23px); }  /* 15.0s Overview */
@@ -429,22 +481,22 @@ body {
   66.667%  { transform: translate(275px, 360px); }  /* 56.0s stage 05 */
   68.452%  { transform: translate(855px, 23px); }  /* 57.5s to Record */
   69.286%  { transform: translate(855px, 23px); }  /* 58.2s CLICK Record */
-  72.024%  { transform: translate(815px, 164px); }  /* 60.5s chip 01 Validated */
-  73.810%  { transform: translate(816px, 259px); }  /* 62.0s chip 03 Rejected */
-  76.786%  { transform: translate(818px, 402px); }  /* 64.5s chip 06 Rejected */
-  78.571%  { transform: translate(818px, 402px); }  /* 66.0s hold */
-  80.357%  { transform: translate(150px, 420px); }  /* 67.5s repro block, left */
-  82.143%  { transform: translate(350px, 320px); }  /* 69.0s following the sweep */
-  83.929%  { transform: translate(550px, 261px); }  /* 70.5s sweep */
-  85.714%  { transform: translate(780px, 261px); }  /* 72.0s sweep ends */
-  87.500%  { transform: translate(580px, 400px); }  /* 73.5s toward the footer */
-  89.286%  { transform: translate(620px, 290px); }  /* 75.0s tracking the scroll */
-  90.476%  { transform: translate(700px, 206px); }  /* 76.0s the disclaimer */
-  91.667%  { transform: translate(845px, 206px); }  /* 77.0s tracing the underline */
+  71.429%  { transform: translate(115px, 222px); }  /* 60.0s tab 01, active on load */
+  73.214%  { transform: translate(517px, 222px); }  /* 61.5s scanning the strip */
+  74.762%  { transform: translate(785px, 222px); }  /* 62.8s tab 06, Rejected */
+  75.238%  { transform: translate(785px, 222px); }  /* 63.2s CLICK tab 06 */
+  77.381%  { transform: translate(450px, 391px); }  /* 65.0s the record it opened */
+  78.810%  { transform: translate(450px, 391px); }  /* 66.2s hold */
+  80.952%  { transform: translate(200px, 446px); }  /* 68.0s repro block, left */
+  83.333%  { transform: translate(430px, 296px); }  /* 70.0s following the sweep */
+  85.714%  { transform: translate(760px, 296px); }  /* 72.0s sweep ends */
+  87.500%  { transform: translate(600px, 387px); }  /* 73.5s toward the footer */
+  90.476%  { transform: translate(700px, 214px); }  /* 76.0s the disclaimer */
+  91.667%  { transform: translate(845px, 214px); }  /* 77.0s tracing the underline */
   92.619%  { transform: translate(551px, 23px); }  /* 77.8s to Overview */
   93.095%  { transform: translate(551px, 23px); }  /* 78.2s CLICK Overview */
   95.238%  { transform: translate(620px, 300px); }  /* 80.0s rest */
-  100%     { transform: translate(620px, 300px); }
+  100.000% { transform: translate(620px, 300px); }
 }
 
 /* click ring: seven pulses at 21.2 / 28.2 / 36.2 / 43.2 / 51.2 / 58.2 / 78.2 s */
@@ -467,7 +519,10 @@ body {
   61.667%, 69.167% { opacity: 0; transform: scale(0.3); }
   69.286% { opacity: 0.85; transform: scale(0.45); }
   69.881% { opacity: 0; transform: scale(1.4); }
-  70%, 92.976% { opacity: 0; transform: scale(0.3); }
+  70%, 75.119% { opacity: 0; transform: scale(0.3); }
+  75.238% { opacity: 0.85; transform: scale(0.45); }
+  75.833% { opacity: 0; transform: scale(1.4); }
+  75.952%, 92.976% { opacity: 0; transform: scale(0.3); }
   93.095% { opacity: 0.85; transform: scale(0.45); }
   93.69%  { opacity: 0; transform: scale(1.4); }
   93.81%, 100% { opacity: 0; transform: scale(0.3); }
@@ -523,9 +578,9 @@ body {
             </div>
             <div class="homecards">
               <div class="mcard">
-                <div class="k">Empirical finding</div>
-                <h4>The volatility surface is not flat</h4>
-                <div class="metric">observed smile · constant σ reference</div>
+                <div class="k">Derivatives · Stochastic assumptions</div>
+                <h4>Constant-volatility dynamics under empirical tests</h4>
+                <div class="metric">≈3% → 93% realized vol</div>
                 <svg class="spark" width="130" height="34" viewBox="0 0 130 34">
                   <line x1="4" y1="17" x2="126" y2="17" stroke="var(--chart-grid)" stroke-dasharray="3 3"/>
                   <path d="M6 8 C 45 30, 85 30, 124 6" fill="none" stroke="var(--chart-2)" stroke-width="1.6"/>
@@ -533,9 +588,9 @@ body {
                 </svg>
               </div>
               <div class="mcard">
-                <div class="k">Empirical finding</div>
-                <h4>Optimization rewards its own inputs</h4>
-                <div class="metric">1.12 fitted → 0.44 out of sample</div>
+                <div class="k">Portfolio construction · Estimation risk</div>
+                <h4>Portfolio optimization under estimation error</h4>
+                <div class="metric">1.12 → 0.44 Sharpe</div>
                 <svg class="spark" width="130" height="34" viewBox="0 0 130 34">
                   <line x1="4" y1="30" x2="126" y2="30" stroke="var(--chart-grid)"/>
                   <rect x="18" y="6" width="30" height="24" fill="var(--chart-1)"/>
@@ -543,9 +598,9 @@ body {
                 </svg>
               </div>
               <div class="mcard">
-                <div class="k">Empirical finding</div>
-                <h4>A plausible risk number failed</h4>
-                <div class="metric">135 vs 107 breaches · exceptions clustered</div>
+                <div class="k">Market risk · Forecast calibration</div>
+                <h4>Historical VaR under coverage and independence tests</h4>
+                <div class="metric">135 vs 107 breaches</div>
                 <svg class="spark" width="130" height="34" viewBox="0 0 130 34">
                   <line x1="4" y1="28" x2="126" y2="28" stroke="var(--chart-grid)"/>
                   <g stroke="var(--control-border)"><line x1="12" y1="16" x2="12" y2="28"/><line x1="30" y1="16" x2="30" y2="28"/><line x1="58" y1="16" x2="58" y2="28"/><line x1="96" y1="16" x2="96" y2="28"/></g>
@@ -553,9 +608,9 @@ body {
                 </svg>
               </div>
               <div class="mcard">
-                <div class="k">Empirical finding</div>
-                <h4>No alpha survived correction</h4>
-                <div class="metric">every interval spans zero</div>
+                <div class="k">Factor models · Product inference</div>
+                <h4>ETF factor exposure and alpha after multiple testing</h4>
+                <div class="metric">0 alphas at 5% FDR</div>
                 <svg class="spark" width="130" height="34" viewBox="0 0 130 34">
                   <line x1="65" y1="2" x2="65" y2="32" stroke="var(--chart-grid)" stroke-dasharray="3 3"/>
                   <g stroke="var(--chart-2)" stroke-width="1.4">
@@ -670,21 +725,21 @@ body {
           <div class="mscroll">
             <div class="findwrap">
               <div class="k">Research program</div>
-              <h3 class="sh" style="font-size:24px; margin:10px 0 2px;">Seven public results from six executed investigations</h3>
+              <h3 class="sh" style="font-size:24px; margin:10px 0 2px;">Seven published results from six executed investigations</h3>
               <div class="findgrid">
                 <div class="mcard fc a" id="fc1">
-                  <div class="k">Empirical finding</div>
-                  <h4>The volatility surface is not flat</h4>
-                  <div class="metric">observed smile · constant σ reference</div>
+                  <div class="k">Derivatives · Stochastic assumptions</div>
+                  <h4>Constant-volatility dynamics under empirical tests</h4>
+                  <div class="metric">≈3% → 93% realized vol</div>
                   <svg class="spark" width="130" height="30" viewBox="0 0 130 34">
                     <path d="M6 8 C 45 30, 85 30, 124 6" fill="none" stroke="var(--chart-2)" stroke-width="1.6"/>
                     <line x1="6" y1="24" x2="124" y2="24" stroke="var(--control-border)" stroke-dasharray="4 3"/>
                   </svg>
                 </div>
                 <div class="mcard fc a" id="fc2">
-                  <div class="k">Empirical finding · Market-risk validation</div>
-                  <h4>A plausible risk number failed its backtest</h4>
-                  <div class="metric" style="color:var(--negative)">135 vs 107 breaches · exceptions clustered</div>
+                  <div class="k">Market risk · Forecast calibration</div>
+                  <h4>Historical VaR under coverage and independence tests</h4>
+                  <div class="metric" style="color:var(--negative)">135 vs 107 breaches</div>
                   <svg class="spark" width="130" height="30" viewBox="0 0 130 34">
                     <line x1="4" y1="28" x2="126" y2="28" stroke="var(--chart-grid)"/>
                     <g stroke="var(--control-border)"><line x1="12" y1="16" x2="12" y2="28"/><line x1="30" y1="16" x2="30" y2="28"/><line x1="58" y1="16" x2="58" y2="28"/><line x1="96" y1="16" x2="96" y2="28"/></g>
@@ -692,9 +747,9 @@ body {
                   </svg>
                 </div>
                 <div class="mcard fc a" id="fc3">
-                  <div class="k">Empirical finding</div>
-                  <h4>Optimization rewards its own inputs</h4>
-                  <div class="metric">Sharpe 1.12 → 0.44 out of sample</div>
+                  <div class="k">Portfolio construction · Estimation risk</div>
+                  <h4>Portfolio optimization under estimation error</h4>
+                  <div class="metric">1.12 → 0.44 Sharpe</div>
                   <svg class="spark" width="130" height="30" viewBox="0 0 130 34">
                     <line x1="4" y1="30" x2="126" y2="30" stroke="var(--chart-grid)"/>
                     <rect x="18" y="6" width="30" height="24" fill="var(--chart-1)"/>
@@ -702,9 +757,9 @@ body {
                   </svg>
                 </div>
                 <div class="mcard fc a" id="fc4">
-                  <div class="k">Numerical validation</div>
-                  <h4>Monte Carlo error shrinks as N⁻¹ᐟ²</h4>
-                  <div class="metric">one more digit costs 100× the samples</div>
+                  <div class="k">Numerical methods · Simulation error</div>
+                  <h4>Monte Carlo convergence, bias, and variance reduction</h4>
+                  <div class="metric">Error ∝ N⁻¹ᐟ²</div>
                   <svg class="spark" width="130" height="30" viewBox="0 0 130 34">
                     <path d="M6 6 C 30 26, 70 30, 124 31" fill="none" stroke="var(--chart-2)" stroke-width="1.6"/>
                     <line x1="4" y1="32" x2="126" y2="32" stroke="var(--chart-grid)"/>
@@ -784,7 +839,7 @@ body {
         </div>
       </div>
 
-      <!-- ================= RECORD ================= -->
+      <!-- ================= RECORD (tab bar: one investigation at a time) ============ -->
       <div class="pg a" id="pr">
         <div class="mhead">
           <span class="mword">Quantitative Markets &amp; Institutions <i>Lab</i></span>
@@ -794,31 +849,50 @@ body {
           <div class="mscroll a">
             <div class="recwrap">
               <div class="k">Versioned research ledger</div>
-              <h3 class="sh" style="font-size:26px; margin:10px 0 0;">Research record and reproducibility ledger</h3>
-              <div class="ledger">
-                <div class="lrow"><div class="t"><span class="num">01</span><h5>Cross-method option-pricing validation</h5></div><span class="chip v">Validated</span></div>
-                <div class="lrow"><div class="t"><span class="num">02</span><h5>Portfolio construction under estimation error</h5></div><span class="chip r">Revised</span></div>
-                <div class="lrow"><div class="t"><span class="num">03</span><h5>Empirical evaluation of constant-volatility dynamics</h5></div><span class="chip x">Rejected</span></div>
-                <div class="lrow"><div class="t"><span class="num">04</span><h5>Monte Carlo convergence and numerical error</h5></div><span class="chip v">Validated</span></div>
-                <div class="lrow"><div class="t"><span class="num">05</span><h5>ETF factor attribution and multiple-testing control</h5></div><span class="chip r">Revised</span></div>
-                <div class="lrow" style="border-bottom:1px solid var(--rule);"><div class="t"><span class="num">06</span><h5>Historical VaR coverage and independence backtest</h5></div><span class="chip x">Rejected</span></div>
+              <h3 class="sh" style="font-size:26px; margin:10px 0 8px;">Research record and reproducibility ledger</h3>
+              <p class="ld" style="font-size:13px;">A versioned record of every question, method, result, and revision.</p>
+              <nav class="rtabs">
+                <span class="rtab"><span class="rtbar a" id="rb1"></span><em>Investigation</em><b class="a" id="rn1">01</b><i class="v">Validated</i></span>
+                <span class="rtab"><span class="rtbar"></span><em>Investigation</em><b>02</b><i class="r">Revised</i></span>
+                <span class="rtab"><span class="rtbar"></span><em>Investigation</em><b>03</b><i class="x">Rejected</i></span>
+                <span class="rtab"><span class="rtbar"></span><em>Investigation</em><b>04</b><i class="v">Validated</i></span>
+                <span class="rtab"><span class="rtbar"></span><em>Investigation</em><b>05</b><i class="r">Revised</i></span>
+                <span class="rtab"><span class="rtbar a" id="rb6"></span><em>Investigation</em><b class="a" id="rn6">06</b><i class="x">Rejected</i></span>
+              </nav>
+              <div class="rrecs">
+                <article class="rrec a" id="rr1">
+                  <div class="rk">Investigation 01 &middot; Cross-method option-pricing validation</div>
+                  <dl class="rfields">
+                    <div><dt>Falsification criterion</dt><dd>Reject if any two methods disagree beyond the declared tolerance.</dd></div>
+                    <div><dt>Result</dt><dd>Black&ndash;Scholes, CRR, PDE, and Monte Carlo agreed within tolerance.</dd></div>
+                    <div><dt>Status</dt><dd><span class="chip v">Validated</span></dd></div>
+                  </dl>
+                </article>
+                <article class="rrec a" id="rr6">
+                  <div class="rk">Investigation 06 &middot; Historical VaR coverage and independence backtest</div>
+                  <dl class="rfields">
+                    <div><dt>Falsification criterion</dt><dd>Reject if Kupiec or Christoffersen rejects at the 5% level.</dd></div>
+                    <div><dt>Result</dt><dd>135 breaches against 107 expected; the exceptions clustered.</dd></div>
+                    <div><dt>Status</dt><dd><span class="chip x">Rejected</span></dd></div>
+                  </dl>
+                </article>
               </div>
             </div>
             <div class="repro">
               <div class="k">Shared reproduction protocol</div>
               <div class="reprobox" style="margin-top:12px;">
                 <span class="sweep a"></span>
-                <div><span class="c">$</span> git clone github.com/kwisniewski-ops/quant-finance-research-lab</div>
-                <div><span class="c">$</span> git checkout ad24c4999583</div>
+                <div><span class="c">$</span> git clone https://github.com/kwisniewski-ops/quant-finance-research-lab.git</div>
+                <div><span class="c">$</span> git checkout ad24c49995832f84ebeceb2f8243011463591a4a</div>
+                <div><span class="c">$</span> pip install -e ".[all]"</div>
                 <div><span class="c">$</span> pytest</div>
-                <div class="c" style="font-size:10px; letter-spacing:0.04em;">— every ledger entry is pinned to this commit; executed notebooks linked per entry</div>
               </div>
             </div>
-            <div class="mfoot" style="margin-top:120px;">
-              <span>Quantitative Markets &amp; Institutions Lab · 2026</span>
+            <div class="mfoot" style="margin-top:90px;">
+              <span>Quantitative Markets &amp; Institutions Lab &middot; 2026</span>
               <span class="disc">Educational research; not investment advice.<span class="footul a"></span></span>
             </div>
-            <div style="height:400px;"></div>
+            <div style="height:360px;"></div>
           </div>
         </div>
       </div>
@@ -870,7 +944,7 @@ body {
       <tr><td class="tc">0:14</td><td class="ak">The product</td><td>Introducing the Quantitative Markets &amp; Institutions Lab. Five tabs. No login. No forecasts.</td></tr>
       <tr><td class="tc">0:21</td><td class="ak">The features</td><td>Five interactive models. Each one lists what not to use it for.</td></tr>
       <tr><td class="tc">0:28</td><td class="ak">The demonstration</td><td>Change an assumption; watch the answer move. That is the entire demonstration.</td></tr>
-      <tr><td class="tc">0:36</td><td class="ak">But wait</td><td>There is more. Seven public results from six executed investigations.</td></tr>
+      <tr><td class="tc">0:36</td><td class="ak">But wait</td><td>There is more. Seven published results from six executed investigations.</td></tr>
       <tr><td class="tc">0:43</td><td class="ak">The catch, disclosed</td><td>This model failed. 135 breaches against 107 expected — and the exceptions clustered. It was published anyway.</td></tr>
       <tr><td class="tc">0:51</td><td class="ak">The guarantee</td><td>The test comes before the conclusion. Question, data, uncertainty, and failure criteria — declared first.</td></tr>
       <tr><td class="tc">0:58</td><td class="ak">The track record</td><td>Two of six investigations are stamped Rejected. This is the product working as designed.</td></tr>
@@ -918,7 +992,7 @@ body {
     { t: 14, k: 'The product',            x: 'Introducing the Quantitative Markets & Institutions Lab. Five tabs. No login. No forecasts.' },
     { t: 21, k: 'The features',           x: 'Five interactive models. Each one lists what not to use it for.' },
     { t: 28, k: 'The demonstration',      x: 'Change an assumption; watch the answer move. That is the entire demonstration.' },
-    { t: 36, k: 'But wait',               x: 'There is more. Seven public results from six executed investigations.' },
+    { t: 36, k: 'But wait',               x: 'There is more. Seven published results from six executed investigations.' },
     { t: 43, k: 'The catch, disclosed',   x: 'This model failed. 135 breaches against 107 expected — and the exceptions clustered. It was published anyway.' },
     { t: 51, k: 'The guarantee',          x: 'The test comes before the conclusion. Question, data, uncertainty, and failure criteria — declared first.' },
     { t: 58, k: 'The track record',       x: 'Two of six investigations are stamped Rejected. This is the product working as designed.' },
@@ -930,6 +1004,8 @@ body {
   let t = 0, playing = true, last = null, capIdx = -2;
 
   const params = new URLSearchParams(location.search);
+  // ?embed=1 — drop page chrome so this can be iframed from another site
+  if (params.get('embed') === '1') document.documentElement.classList.add('embed');
   if (params.has('t')) { t = Math.min(DUR, Math.max(0, parseFloat(params.get('t')) || 0)); playing = false; }
   if (params.get('autoplay') === '0') playing = false;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) playing = false;
