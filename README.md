@@ -32,7 +32,7 @@ models, methods, and a versioned research record:
 | **Data** (`src/data/`) | Cache-first loaders (15-ETF universe 2015→present, Fama–French 5 factors + momentum), data validation with outlier/staleness detection |
 | **Research notebooks** (`notebooks/`) | Six executed notebooks — pricing model cross-validation, optimization under estimation error, the flagship Black-Scholes→Heston case study, Monte Carlo methods, factor regressions on real ETFs, a full market-risk workup |
 | **Documentation** (`docs/`) | [Publication guidelines](docs/publication_guidelines.md) · [Editorial architecture](docs/editorial_architecture.md) · [Mathematical foundations](docs/mathematical_foundations.md) · [Model assumptions](docs/model_assumptions.md) · [Research methodology](docs/research_methodology.md) · [Limitations](docs/limitations.md) · [API contract](docs/api_contract.md) |
-| **Website** (`app/frontend/`) | Static research interface: empirical findings, numerical validations, the Market Regime Atlas, the stock–bond regime dossier, interactive models, mathematical notes, validation checklists, and the public research record |
+| **Website** (`app/frontend/`) | Static research interface: empirical findings, numerical validations, the Market Regime Atlas, the stock–bond regime dossier, interactive models, mathematical notes, validation checklists, and the public research record. The personal site renders the same investigations natively from the provenance-bearing artifacts in `app/frontend/site-artifacts/` (`python scripts/export_site_artifacts.py`; schema in [`docs/site_artifact_schema.md`](docs/site_artifact_schema.md)) |
 
 ## Selected findings from the notebooks
 
