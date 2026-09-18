@@ -125,6 +125,25 @@ availability must remain explicit. Any institutional variable must add stable,
 out-of-sample information after market and balance-sheet baselines. A cross-country
 narrative without a declared comparison does not qualify.
 
+## Publication step — site artifacts
+
+Every executed investigation is published twice from one computation: as the lab's own pages
+in `app/frontend/` and as a provenance-bearing JSON artifact the personal site renders
+natively. After a notebook, snapshot, or page changes, run from the repository root:
+
+```bash
+python scripts/build_frontend_research_data.py   # browser JSON for the Factor and Risk pages
+python scripts/export_site_artifacts.py          # app/frontend/site-artifacts/*.json, ledger.json, manifest.json
+python scripts/verify_site_artifacts.py          # fails if a page-stated number is not reproduced
+pytest -q                                        # quantitative anchors, publishing regressions, artifact schema
+```
+
+`export_site_artifacts.py` is the step the personal site consumes (`scripts/sync-lab.mjs`
+vendors `app/frontend/site-artifacts/` into `src/content/lab/`). The artifact shape is fixed
+by `docs/site_artifact_schema.md`; a number that cannot be reproduced is exported with
+`"unverified": true` rather than adjusted. A regime study that passes the acceptance gate
+above enters the record through the same path.
+
 ## Evidence status
 
 | Program | Status | New empirical estimate | Present classifier | Forecast |

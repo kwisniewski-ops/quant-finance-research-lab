@@ -49,7 +49,13 @@ def write_json(name: str, payload: dict) -> None:
     )
 
 
-def factor_study() -> None:
+def compute_factor_study() -> dict:
+    """Run the factor study and return every intermediate object.
+
+    The returned state feeds both ``factor_study_payload`` (the browser
+    JSON) and ``scripts/export_site_artifacts.py`` (the personal-site
+    artifacts), so the two surfaces never disagree on a number.
+    """
     factor_path = DATA / "ff_factors.csv"
     price_path = DATA / "prices.csv"
     factors = pd.read_csv(factor_path, index_col=0, parse_dates=True).sort_index()
@@ -101,6 +107,7 @@ def factor_study() -> None:
 
     # Rolling one-year QQQ exposures, sampled at month-end for a compact payload.
     rolling_rows = []
+    rolling_models = []
     qqq = y_by_etf["QQQ"]
     window = 252
     for end in range(window, len(aligned) + 1):
@@ -108,6 +115,7 @@ def factor_study() -> None:
             continue
         sl = slice(end - window, end)
         roll_model = sm.OLS(qqq.iloc[sl], X.iloc[sl]).fit()
+        rolling_models.append((aligned.index[end - 1], sl))
         rolling_rows.append(
             {
                 "date": aligned.index[end - 1].date().isoformat(),
@@ -141,6 +149,29 @@ def factor_study() -> None:
             }
         )
 
+    return {
+        "factor_path": factor_path,
+        "price_path": price_path,
+        "factors": factors,
+        "prices": prices,
+        "aligned": aligned,
+        "X": X,
+        "y_by_etf": y_by_etf,
+        "fitted": fitted,
+        "regressions": regressions,
+        "rolling_rows": rolling_rows,
+        "rolling_windows": rolling_models,
+        "qqq_full": qqq_full,
+        "oos_rows": oos_rows,
+        "split": split,
+    }
+
+
+def factor_study_payload(state: dict) -> dict:
+    factor_path, price_path = state["factor_path"], state["price_path"]
+    factors, prices, aligned = state["factors"], state["prices"], state["aligned"]
+    regressions, rolling_rows, oos_rows = state["regressions"], state["rolling_rows"], state["oos_rows"]
+    qqq_full = state["qqq_full"]
     payload = {
         "schema_version": 1,
         "built_on": BUILD_DATE,
@@ -169,7 +200,11 @@ def factor_study() -> None:
         },
         "out_of_sample": oos_rows,
     }
-    write_json("factor-study.json", payload)
+    return payload
+
+
+def factor_study() -> None:
+    write_json("factor-study.json", factor_study_payload(compute_factor_study()))
 
 
 def _safe_log_likelihood(counts: list[int], probs: list[float]) -> float:
@@ -215,7 +250,8 @@ def coverage_tests(breaches: np.ndarray, expected_probability: float) -> dict:
     }
 
 
-def risk_study() -> None:
+def compute_risk_study() -> dict:
+    """Run the market-risk workup and return every intermediate object."""
     price_path = DATA / "prices.csv"
     tickers = ["SPY", "QQQ", "IWM", "EFA", "AGG", "TLT", "GLD", "VNQ"]
     target = pd.Series(
@@ -309,6 +345,46 @@ def risk_study() -> None:
     sample_idx = list(range(0, len(returns), 5))
     if sample_idx[-1] != len(returns) - 1:
         sample_idx.append(len(returns) - 1)
+    return {
+        "price_path": price_path,
+        "tickers": tickers,
+        "target": target,
+        "prices": prices,
+        "result": result,
+        "returns": returns,
+        "equity": equity,
+        "drawdown": drawdown,
+        "roll_vol": roll_vol,
+        "var95": var95,
+        "es95": es95,
+        "boot_var": boot_var,
+        "boot_es": boot_es,
+        "window": window,
+        "forecasts": forecasts,
+        "breach_values": np.array(breach_values),
+        "tests": tests,
+        "stress_defs": stress_defs,
+        "stresses": stresses,
+        "mean_d": mean_d,
+        "sd_d": sd_d,
+        "annual_return": annual_return,
+        "annual_vol": annual_vol,
+        "histogram_counts": histogram_counts,
+        "histogram_edges": histogram_edges,
+        "histogram_centers": histogram_centers,
+        "normal_counts": normal_counts,
+        "sample_idx": sample_idx,
+    }
+
+
+def risk_study_payload(state: dict) -> dict:
+    price_path, prices, target, result = state["price_path"], state["prices"], state["target"], state["result"]
+    returns, equity, drawdown, roll_vol = state["returns"], state["equity"], state["drawdown"], state["roll_vol"]
+    var95, es95, boot_var, boot_es = state["var95"], state["es95"], state["boot_var"], state["boot_es"]
+    tests, stresses = state["tests"], state["stresses"]
+    mean_d, sd_d, annual_return, annual_vol = state["mean_d"], state["sd_d"], state["annual_return"], state["annual_vol"]
+    histogram_counts, histogram_centers, normal_counts = state["histogram_counts"], state["histogram_centers"], state["normal_counts"]
+    sample_idx = state["sample_idx"]
     chart_dates = [returns.index[i].date().isoformat() for i in sample_idx]
     payload = {
         "schema_version": 1,
@@ -355,7 +431,11 @@ def risk_study() -> None:
             "normal_counts": [clean_number(x, 5) for x in normal_counts],
         },
     }
-    write_json("risk-study.json", payload)
+    return payload
+
+
+def risk_study() -> None:
+    write_json("risk-study.json", risk_study_payload(compute_risk_study()))
 
 
 if __name__ == "__main__":

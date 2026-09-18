@@ -23,6 +23,22 @@ repository vendors `app/frontend/` with `scripts/sync-lab.mjs`, publishes those 
 `public/lab/`, and includes every lab page in the main sitemap. Run the personal site's lab
 sync before its production build whenever this repository changes.
 
+The personal site also renders each investigation natively from the provenance-bearing
+artifacts in `app/frontend/site-artifacts/` (schema: `docs/site_artifact_schema.md`). Regenerate
+and check them whenever a notebook, snapshot, or published page changes, before the site sync:
+
+```bash
+python scripts/build_frontend_research_data.py   # factor-study.json, risk-study.json, prerendered defaults
+python scripts/export_site_artifacts.py          # one JSON per investigation + ledger.json + manifest.json
+python scripts/verify_site_artifacts.py          # asserts every page-stated number to printed precision
+pytest tests/test_site_artifacts.py -q           # schema regressions
+```
+
+The exporter is deterministic (fixed seeds; byte-identical output except `generated_at`) and
+records `source_commit` (`git rev-parse HEAD`), snapshot hashes and row counts, the universe,
+and the test count in every artifact. Commit the regenerated artifacts with the change that
+produced them; `scripts/sync-lab.mjs` copies them into the site's `src/content/lab/`.
+
 All internal lab links are relative, so the same source can also be opened locally.
 
 ## 3. After pushing, update two placeholders
